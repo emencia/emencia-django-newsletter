@@ -3,19 +3,23 @@ import os
 
 version = '0.1'
 
-setup(name='emencia-django-newsletter',
+setup(name='emencia.django.newsletter',
       version=version,
-      description="",
-      long_description=open("README.txt").read() + "\n" +
+      description="A Django app for sending newsletter by email to a contact list.",
+      long_description=open("README.rst").read() + "\n" +
                        open(os.path.join("docs", "HISTORY.txt")).read(),
-      # Get more strings from http://pypi.python.org/pypi?%3Aaction=list_classifiers
+      keywords='django, newsletter, mailing',
       classifiers=[
-        "Programming Language :: Python",
+        'Intended Audience :: Developers',
+        'Operating System :: OS Independent',
+        'Programming Language :: Python',
+        'Topic :: Software Development :: Libraries :: Python Modules',
         ],
-      keywords='',
+
       author='Fantomas42',
       author_email='fantomas42@gmail.com',
       url='http://emencia.fr',
+      
       license='GPL',
       packages=find_packages(exclude=['ez_setup']),
       namespace_packages=['emencia', 'emencia.django'],
