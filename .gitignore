@@ -1,0 +1,13 @@
+*.orig
+*.rej
+*~
+*.pyc
+.installed.cfg
+emencia.django.newsletter.egg-info/*
+bin/*
+eggs/*
+parts/*
+develop-eggs/*
+downloads/*
+src_eggs/*
+
