@@ -1,0 +1,221 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: emencia.django.newsletter\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-10-13 15:54+0200\n"
+"PO-Revision-Date: 2009-10-13 16:03+0100\n"
+"Last-Translator: Fantomas <Fantomas42@gmail.com>\n"
+"Language-Team: fr <jfache@emencia.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: French\n"
+"X-Poedit-Country: FRANCE\n"
+"X-Poedit-SourceCharset: 8bit\n"
+
+#: models.py:12
+#: models.py:70
+msgid "name"
+msgstr "Nom"
+
+#: models.py:13
+msgid "server host"
+msgstr "Hôte"
+
+#: models.py:14
+msgid "server user"
+msgstr "Utilisateur"
+
+#: models.py:15
+msgid "Leave it empty if the host is public."
+msgstr "Laissez ce champs vide, si aucune authentification n'est nécessaire."
+
+#: models.py:16
+msgid "server password"
+msgstr "Mot de passe"
+
+#: models.py:17
+msgid "Leave it empty if not necessary."
+msgstr "Laissez ce champs vide, si ce n'est pas nécessaire."
+
+#: models.py:18
+msgid "server port"
+msgstr "Port"
+
+#: models.py:19
+msgid "server use TLS"
+msgstr "Chiffrement TLS"
+
+#: models.py:21
+msgid "mails per hour"
+msgstr "Envois/Heure"
+
+#: models.py:29
+msgid "SMTP Server"
+msgstr "Serveur SMTP"
+
+#: models.py:30
+msgid "SMTP Servers"
+msgstr "Serveurs SMTP"
+
+#: models.py:36
+msgid "email"
+msgstr "Email"
+
+#: models.py:37
+msgid "first name"
+msgstr "Prénom"
+
+#: models.py:38
+msgid "last name"
+msgstr "Nom"
+
+#: models.py:40
+msgid "subscriber"
+msgstr "Inscrit à la newsletter"
+
+#: models.py:41
+msgid "invalid"
+msgstr "Adresse invalide"
+
+#: models.py:42
+msgid "tags"
+msgstr "Tags"
+
+#: models.py:48
+#: models.py:74
+#: models.py:118
+#: models.py:146
+msgid "creation date"
+msgstr "Date de création"
+
+#: models.py:49
+#: models.py:75
+#: models.py:119
+msgid "modification date"
+msgstr "Date de modification"
+
+#: models.py:55
+msgid "mail format"
+msgstr "Contact"
+
+#: models.py:64
+msgid "Contact"
+msgstr "Contact"
+
+#: models.py:65
+msgid "Contacts"
+msgstr "Contacts"
+
+#: models.py:71
+msgid "description"
+msgstr "Description"
+
+#: models.py:72
+msgid "contacts"
+msgstr "Contacts"
+
+#: models.py:79
+msgid "contacts length"
+msgstr "Nombre de contacts"
+
+#: models.py:86
+msgid "Mailing List"
+msgstr "Liste de diffusion"
+
+#: models.py:87
+msgid "Mailing Lists"
+msgstr "Listes de diffusions"
+
+#: models.py:98
+msgid "draft"
+msgstr "Brouillon"
+
+#: models.py:99
+msgid "waiting sending"
+msgstr "Prête à envoyer"
+
+#: models.py:100
+msgid "sending"
+msgstr "En cours d'envois"
+
+#: models.py:101
+#: models.py:137
+msgid "sent"
+msgstr "Envoyée"
+
+#: models.py:103
+msgid "title"
+msgstr "Titre"
+
+#: models.py:104
+msgid "content"
+msgstr "Contenu"
+
+#: models.py:106
+msgid "mailing list"
+msgstr "Liste de diffusion"
+
+#: models.py:107
+msgid "test contacts"
+msgstr "Contacts de test"
+
+#: models.py:109
+msgid "smtp server"
+msgstr "Serveur d'envois"
+
+#: models.py:110
+msgid "sender"
+msgstr "Expéditeur"
+
+#: models.py:112
+msgid "reply to"
+msgstr "Répondre à"
+
+#: models.py:115
+#: models.py:144
+msgid "status"
+msgstr "Statut"
+
+#: models.py:116
+msgid "sending date"
+msgstr "Date d'envois"
+
+#: models.py:126
+msgid "Newsletter"
+msgstr "Newsletter"
+
+#: models.py:127
+msgid "Newsletters"
+msgstr "Newsletters"
+
+#: models.py:138
+msgid "error"
+msgstr "Erreur lors de l'envois"
+
+#: models.py:139
+msgid "invalid email"
+msgstr "Email Invalide"
+
+#: models.py:140
+msgid "opened"
+msgstr "Réception OK"
+
+#: models.py:142
+msgid "newsletter"
+msgstr "Newsletter"
+
+#: models.py:143
+msgid "contact"
+msgstr "contact"
+
+#: models.py:155
+#: models.py:156
+msgid "Contact Mailing Status"
+msgstr "Status d'envois"
+
