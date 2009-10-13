@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: emencia.django.newsletter\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-13 15:54+0200\n"
-"PO-Revision-Date: 2009-10-13 16:03+0100\n"
+"POT-Creation-Date: 2009-10-13 17:39+0200\n"
+"PO-Revision-Date: 2009-10-13 17:40+0100\n"
 "Last-Translator: Fantomas <Fantomas42@gmail.com>\n"
 "Language-Team: fr <jfache@emencia.com>\n"
 "MIME-Version: 1.0\n"
@@ -18,204 +18,229 @@ msgstr ""
 "X-Poedit-Country: FRANCE\n"
 "X-Poedit-SourceCharset: 8bit\n"
 
-#: models.py:12
-#: models.py:70
+#: admin.py:16
+msgid "Configuration"
+msgstr "Configuration"
+
+#: admin.py:18
+#: admin.py:69
+msgid "Miscellaneous"
+msgstr "Divers"
+
+#: admin.py:33
+msgid "Status"
+msgstr "Statut"
+
+#: admin.py:34
+msgid "Advanced"
+msgstr "Avancé"
+
+#: admin.py:67
+msgid "Receivers"
+msgstr "Destinataires"
+
+#: admin.py:68
+msgid "Sending"
+msgstr "Expédition"
+
+#: models.py:14
+#: models.py:72
 msgid "name"
 msgstr "Nom"
 
-#: models.py:13
+#: models.py:15
 msgid "server host"
 msgstr "Hôte"
 
-#: models.py:14
+#: models.py:16
 msgid "server user"
 msgstr "Utilisateur"
 
-#: models.py:15
+#: models.py:17
 msgid "Leave it empty if the host is public."
 msgstr "Laissez ce champs vide, si aucune authentification n'est nécessaire."
 
-#: models.py:16
+#: models.py:18
 msgid "server password"
 msgstr "Mot de passe"
 
-#: models.py:17
+#: models.py:19
 msgid "Leave it empty if not necessary."
 msgstr "Laissez ce champs vide, si ce n'est pas nécessaire."
 
-#: models.py:18
+#: models.py:20
 msgid "server port"
 msgstr "Port"
 
-#: models.py:19
+#: models.py:21
 msgid "server use TLS"
 msgstr "Chiffrement TLS"
 
-#: models.py:21
+#: models.py:23
 msgid "mails per hour"
 msgstr "Envois/Heure"
 
-#: models.py:29
+#: models.py:31
 msgid "SMTP Server"
 msgstr "Serveur SMTP"
 
-#: models.py:30
+#: models.py:32
 msgid "SMTP Servers"
 msgstr "Serveurs SMTP"
 
-#: models.py:36
+#: models.py:38
 msgid "email"
 msgstr "Email"
 
-#: models.py:37
+#: models.py:39
 msgid "first name"
 msgstr "Prénom"
 
-#: models.py:38
+#: models.py:40
 msgid "last name"
 msgstr "Nom"
 
-#: models.py:40
+#: models.py:42
 msgid "subscriber"
 msgstr "Inscrit à la newsletter"
 
-#: models.py:41
+#: models.py:43
 msgid "invalid"
 msgstr "Adresse invalide"
 
-#: models.py:42
+#: models.py:44
 msgid "tags"
 msgstr "Tags"
 
-#: models.py:48
-#: models.py:74
-#: models.py:118
-#: models.py:146
+#: models.py:50
+#: models.py:76
+#: models.py:122
+#: models.py:150
 msgid "creation date"
 msgstr "Date de création"
 
-#: models.py:49
-#: models.py:75
-#: models.py:119
+#: models.py:51
+#: models.py:77
+#: models.py:123
 msgid "modification date"
 msgstr "Date de modification"
 
-#: models.py:55
+#: models.py:57
 msgid "mail format"
 msgstr "Contact"
 
-#: models.py:64
+#: models.py:66
 msgid "Contact"
 msgstr "Contact"
 
-#: models.py:65
+#: models.py:67
 msgid "Contacts"
 msgstr "Contacts"
 
-#: models.py:71
+#: models.py:73
 msgid "description"
 msgstr "Description"
 
-#: models.py:72
+#: models.py:74
 msgid "contacts"
 msgstr "Contacts"
 
-#: models.py:79
+#: models.py:81
 msgid "contacts length"
 msgstr "Nombre de contacts"
 
-#: models.py:86
+#: models.py:88
 msgid "Mailing List"
 msgstr "Liste de diffusion"
 
-#: models.py:87
+#: models.py:89
 msgid "Mailing Lists"
 msgstr "Listes de diffusions"
 
-#: models.py:98
+#: models.py:100
 msgid "draft"
 msgstr "Brouillon"
 
-#: models.py:99
+#: models.py:101
 msgid "waiting sending"
 msgstr "Prête à envoyer"
 
-#: models.py:100
+#: models.py:102
 msgid "sending"
 msgstr "En cours d'envois"
 
-#: models.py:101
-#: models.py:137
+#: models.py:103
+#: models.py:141
 msgid "sent"
 msgstr "Envoyée"
 
-#: models.py:103
+#: models.py:105
 msgid "title"
 msgstr "Titre"
 
-#: models.py:104
+#: models.py:106
 msgid "content"
 msgstr "Contenu"
 
-#: models.py:106
+#: models.py:108
 msgid "mailing list"
 msgstr "Liste de diffusion"
 
-#: models.py:107
+#: models.py:109
 msgid "test contacts"
 msgstr "Contacts de test"
 
-#: models.py:109
+#: models.py:112
 msgid "smtp server"
 msgstr "Serveur d'envois"
 
-#: models.py:110
+#: models.py:114
 msgid "sender"
 msgstr "Expéditeur"
 
-#: models.py:112
+#: models.py:116
 msgid "reply to"
 msgstr "Répondre à"
 
-#: models.py:115
-#: models.py:144
+#: models.py:119
+#: models.py:148
 msgid "status"
 msgstr "Statut"
 
-#: models.py:116
+#: models.py:120
 msgid "sending date"
 msgstr "Date d'envois"
 
-#: models.py:126
+#: models.py:130
 msgid "Newsletter"
 msgstr "Newsletter"
 
-#: models.py:127
+#: models.py:131
 msgid "Newsletters"
 msgstr "Newsletters"
 
-#: models.py:138
+#: models.py:142
 msgid "error"
 msgstr "Erreur lors de l'envois"
 
-#: models.py:139
+#: models.py:143
 msgid "invalid email"
 msgstr "Email Invalide"
 
-#: models.py:140
+#: models.py:144
 msgid "opened"
 msgstr "Réception OK"
 
-#: models.py:142
+#: models.py:146
 msgid "newsletter"
 msgstr "Newsletter"
 
-#: models.py:143
+#: models.py:147
 msgid "contact"
 msgstr "contact"
 
-#: models.py:155
-#: models.py:156
+#: models.py:159
+#: models.py:160
 msgid "Contact Mailing Status"
 msgstr "Status d'envois"
 

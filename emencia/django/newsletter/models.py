@@ -1,4 +1,6 @@
 """Models for emencia.django.newsletter"""
+from datetime import datetime
+
 from django.db import models
 from django.utils.translation import ugettext as _
 from django.contrib.contenttypes.models import ContentType
@@ -41,8 +43,8 @@ class Contact(models.Model):
     invalid = models.BooleanField(_('invalid'), default=False)
     tags = TagField(_('tags'))
 
-    content_type = models.ForeignKey(ContentType)
-    object_id = models.PositiveIntegerField()
+    content_type = models.ForeignKey(ContentType, blank=True, null=True)
+    object_id = models.PositiveIntegerField(blank=True, null=True)
     content_object = generic.GenericForeignKey('content_type', 'object_id')
 
     creation_date = models.DateTimeField(_('creation date'), auto_now_add=True)
@@ -79,7 +81,7 @@ class MailingList(models.Model):
     contacts_length.short_description = _('contacts length')
 
     def __unicode__(self):
-        return '%s (%s)' % (self.name, self.contacts_length)
+        return self.name
 
     class Meta:
         ordering = ('creation_date',)
@@ -104,16 +106,18 @@ class Newsletter(models.Model):
     content = models.TextField(_('content'))
     
     mailing_list = models.ForeignKey(MailingList, verbose_name=_('mailing list'))
-    test_contacts = models.ManyToManyField(Contact, verbose_name=_('test contacts'))
+    test_contacts = models.ManyToManyField(Contact, verbose_name=_('test contacts'),
+                                           blank=True, null=True)
 
-    server = models.ForeignKey(SMTPServer, verbose_name=_('smtp server'))
+    server = models.ForeignKey(SMTPServer, verbose_name=_('smtp server'),
+                               default=1)
     header_sender = models.CharField(_('sender'), max_length=250,
                                      default=DEFAULT_HEADER)
     header_reply = models.CharField(_('reply to'), max_length=250,
                                     default=DEFAULT_HEADER)
 
-    status = models.IntegerField(_('status'), choices=STATUS_CHOICES)
-    sending_date = models.DateTimeField(_('sending date'))
+    status = models.IntegerField(_('status'), choices=STATUS_CHOICES, default=DRAFT)
+    sending_date = models.DateTimeField(_('sending date'), default=datetime.now)
     
     creation_date = models.DateTimeField(_('creation date'), auto_now_add=True)
     modification_date = models.DateTimeField(_('modification date'), auto_now=True)
