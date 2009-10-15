@@ -104,6 +104,7 @@ class Newsletter(models.Model):
 
     title = models.CharField(_('title'), max_length=255)
     content = models.TextField(_('content'))
+    content_text = models.TextField(_('content text'))
     
     mailing_list = models.ForeignKey(MailingList, verbose_name=_('mailing list'))
     test_contacts = models.ManyToManyField(Contact, verbose_name=_('test contacts'),
