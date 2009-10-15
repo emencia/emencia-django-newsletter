@@ -10,7 +10,7 @@ from emencia.django.newsletter.models import Newsletter
 from emencia.django.newsletter.models import ContactMailingStatus
 
 class SMTPServerAdmin(admin.ModelAdmin):
-    list_display = ('name', 'host', 'port', 'user', 'tls', 'mails_hour')
+    list_display = ('name', 'host', 'port', 'user', 'tls', 'mails_hour',)# 'check_connection')
     list_filter = ('tls',)
     search_fields = ('name', 'host', 'user',)
     fieldsets = ((None, {'fields': ('name',),}),
@@ -18,15 +18,21 @@ class SMTPServerAdmin(admin.ModelAdmin):
                                                   'user', 'password', 'tls'),}),
                  (_('Miscellaneous'), {'fields': ('mails_hour',),}),
                  )
+    actions = ['check_connections']
     actions_on_top = False
-    actions_on_bottom = False
+    actions_on_bottom = True
+
+    def check_connections(self, request, queryset):
+        for server in queryset:            
+            message = server.connection_valid() and '%s connection OK' or '%s connection KO'
+            self.message_user(request, message % server.__unicode__())
     
 admin.site.register(SMTPServer, SMTPServerAdmin)
 
 class ContactAdmin(admin.ModelAdmin):
     date_hierarchy = 'creation_date'
     list_display = ('email', 'first_name', 'last_name', 'subscriber',
-                    'invalid', 'tags', 'creation_date')
+                    'invalid', 'tags', 'creation_date', 'related_object_admin')
     list_filter = ('subscriber', 'invalid', 'creation_date', 'modification_date')
     search_fields = ('email', 'first_name', 'last_name', 'tags')
     fieldsets = ((None, {'fields': ('email', 'first_name', 'last_name')}),
@@ -35,8 +41,21 @@ class ContactAdmin(admin.ModelAdmin):
                  (_('Advanced'), {'fields': ('object_id', 'content_type'),
                                   'classes': ('collapse',)}),
                  )
+    actions = ['create_mailinglist',]
     actions_on_top = False
-    actions_on_bottom = False
+    actions_on_bottom = True
+
+    def create_mailinglist(self, request, queryset):
+        when = str(datetime.now()).split('.')[0]
+        new_mailing = MailingList(name=_('New mailinglist at %s') % when, 
+                                  description=_('New mailing list created in admin at %s') % when)
+        new_mailing.save()
+        new_mailing.contacts = queryset.all()
+        
+        self.message_user(request, _('%s succesfully created.') % new_mailing)
+        
+    create_mailinglist.short_description = _('Create a mailinglist')
+        
 
 admin.site.register(Contact, ContactAdmin)
 

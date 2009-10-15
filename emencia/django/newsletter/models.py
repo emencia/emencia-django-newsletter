@@ -1,7 +1,9 @@
 """Models for emencia.django.newsletter"""
+from smtplib import SMTP
 from datetime import datetime
 
 from django.db import models
+from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext as _
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes import generic
@@ -16,13 +18,24 @@ class SMTPServer(models.Model):
     user = models.CharField(_('server user'), max_length=128, blank=True,
                             help_text=_('Leave it empty if the host is public.'))
     password = models.CharField(_('server password'), max_length=128, blank=True,
-                                help_text=_('Leave it empty if not necessary.'))
+                                help_text=_('Leave it empty if the host is public.'))
     port = models.IntegerField(_('server port'), default=25)
     tls = models.BooleanField(_('server use TLS'))
 
     mails_hour = models.IntegerField(_('mails per hour'), default=0)
 
-    # Add a connection test method
+    def connection_valid(self):
+        try:            
+            smtp = SMTP(self.host, self.port)
+            if self.user or self.password:
+                smtp.login(self.user, self.password)
+            if self.tls:
+                smtp.starttls()
+            smtp.quit()
+        except:
+            return False
+        return True
+    connection_valid.short_description = _('Connection valid')
 
     def __unicode__(self):
         return '%s (%s)' % (self.name, self.host)
@@ -50,12 +63,29 @@ class Contact(models.Model):
     creation_date = models.DateTimeField(_('creation date'), auto_now_add=True)
     modification_date = models.DateTimeField(_('modification date'), auto_now=True)
 
+    def related_object_admin(self):
+        if self.content_type and self.object_id:
+            admin_url = reverse('admin:%s_%s_change' % (self.content_type.app_label,
+                                                        self.content_type.model),
+                                args=(self.object_id,))
+            return '%s: <a href="%s">%s</a>' % (self.content_type.model.capitalize(),
+                                                admin_url,
+                                                self.content_object.__unicode__())
+        return _('No relative object')
+    related_object_admin.allow_tags = True
+    related_object_admin.short_description = _('Related object')
+
     def mail_format(self):
         if self.first_name and self.last_name:
             return '%s, %s <%s>' % (self.last_name, self.first_name, self.email)
         return self.email
     mail_format.short_description = _('mail format')
 
+    def get_absolute_url(self):
+        if self.content_type and self.object_id:
+            return self.content_object.get_absolute_url()
+        return reverse('admin:newsletter_contact_change', args=(self.pk,))
+    
     def __unicode__(self):
         if self.first_name and self.last_name:
             return '%s %s | %s' % (self.last_name, self.first_name, self.tags)
