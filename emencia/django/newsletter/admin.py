@@ -31,8 +31,8 @@ admin.site.register(SMTPServer, SMTPServerAdmin)
 
 class ContactAdmin(admin.ModelAdmin):
     date_hierarchy = 'creation_date'
-    list_display = ('email', 'first_name', 'last_name', 'subscriber',
-                    'invalid', 'tags', 'creation_date', 'related_object_admin')
+    list_display = ('email', 'first_name', 'last_name', 'tags', 'subscriber',
+                    'invalid', 'total_subscriptions', 'creation_date', 'related_object_admin')
     list_filter = ('subscriber', 'invalid', 'creation_date', 'modification_date')
     search_fields = ('email', 'first_name', 'last_name', 'tags')
     fieldsets = ((None, {'fields': ('email', 'first_name', 'last_name')}),
@@ -45,12 +45,18 @@ class ContactAdmin(admin.ModelAdmin):
     actions_on_top = False
     actions_on_bottom = True
 
+    def total_subscriptions(self, contact):
+        subscriptions = contact.subscriptions().count()
+        unsubscriptions = contact.unsubscriptions().count()
+        return '%s / %s' % (subscriptions - unsubscriptions, subscriptions)
+    total_subscriptions.short_description = _('Total subscriptions')
+
     def create_mailinglist(self, request, queryset):
         when = str(datetime.now()).split('.')[0]
         new_mailing = MailingList(name=_('New mailinglist at %s') % when, 
                                   description=_('New mailing list created in admin at %s') % when)
         new_mailing.save()
-        new_mailing.contacts = queryset.all()
+        new_mailing.subscribers = queryset.all()
         
         self.message_user(request, _('%s succesfully created.') % new_mailing)
         
@@ -61,13 +67,15 @@ admin.site.register(Contact, ContactAdmin)
 
 class MailingListAdmin(admin.ModelAdmin):
     date_hierarchy = 'creation_date'
-    list_display = ('name', 'description', 'contacts_length',
+    list_display = ('name', 'description',
+                    'subscribers_count', 'unsubscribers_count',
                     'creation_date', 'modification_date')    
     list_filter = ('creation_date', 'modification_date')
     search_fields = ('name', 'description',)
-    filter_horizontal = ['contacts']
+    filter_horizontal = ['subscribers', 'unsubscribers']
     fieldsets = ((None, {'fields': ('name', 'description',)}),
-                 (None, {'fields': ('contacts',)}),
+                 (None, {'fields': ('subscribers',)}),
+                 (None, {'fields': ('unsubscribers',)}),
                  )
     actions = ['merge_mailinglist',]
     actions_on_top = False
@@ -80,14 +88,14 @@ class MailingListAdmin(admin.ModelAdmin):
         
         contacts = {}
         for ml in queryset:
-            for contact in ml.contacts.all():
+            for contact in ml.subscribers.all():
                 contacts[contact] = ''
 
         when = str(datetime.now()).split('.')[0]
         new_mailing = MailingList(name=_('Merging list at %s') % when, 
                                   description=_('Mailing list created by merging at %s') % when)
         new_mailing.save()
-        new_mailing.contacts = contacts.keys()
+        new_mailing.subscribers = contacts.keys()
         
         self.message_user(request, _('%s succesfully created by merging.') % new_mailing)
         

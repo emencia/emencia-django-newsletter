@@ -75,6 +75,14 @@ class Contact(models.Model):
     related_object_admin.allow_tags = True
     related_object_admin.short_description = _('Related object')
 
+    def subscriptions(self):
+        """Return the user subscriptions"""
+        return MailingList.objects.filter(subscribers=self)
+
+    def unsubscriptions(self):
+        """Return the user unsubscriptions"""
+        return MailingList.objects.filter(unsubscribers=self)
+
     def mail_format(self):
         if self.first_name and self.last_name:
             return '%s, %s <%s>' % (self.last_name, self.first_name, self.email)
@@ -101,14 +109,23 @@ class MailingList(models.Model):
     
     name = models.CharField(_('name'), max_length=30)
     description = models.TextField(_('description'), blank=True)
-    contacts = models.ManyToManyField(Contact, verbose_name=_('contacts'))
+    
+    subscribers = models.ManyToManyField(Contact, verbose_name=_('subscribers'),
+                                         related_name='mailinglist_subscriber')
+    unsubscribers = models.ManyToManyField(Contact, verbose_name=_('unsubscribers'),
+                                           related_name='mailinglist_unsubscriber',
+                                           null=True, blank=True)
 
     creation_date = models.DateTimeField(_('creation date'), auto_now_add=True)
     modification_date = models.DateTimeField(_('modification date'), auto_now=True)
 
-    def contacts_length(self):
-        return self.contacts.all().count()
-    contacts_length.short_description = _('contacts length')
+    def subscribers_count(self):
+        return self.subscribers.all().count()
+    subscribers_count.short_description = _('subscribers')
+
+    def unsubscribers_count(self):
+        return self.unsubscribers.all().count()
+    unsubscribers_count.short_description = _('unsubscribers')
 
     def __unicode__(self):
         return self.name
