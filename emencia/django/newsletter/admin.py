@@ -1,4 +1,5 @@
 """Admin for emencia.django.newsletter"""
+from datetime import datetime
 from django.contrib import admin
 from django.utils.translation import ugettext as _
 
@@ -49,8 +50,30 @@ class MailingListAdmin(admin.ModelAdmin):
     fieldsets = ((None, {'fields': ('name', 'description',)}),
                  (None, {'fields': ('contacts',)}),
                  )
+    actions = ['merge_mailinglist',]
     actions_on_top = False
-    actions_on_bottom = False
+    actions_on_bottom = True
+
+    def merge_mailinglist(self, request, queryset):
+        if queryset.count() == 1:
+            self.message_user(request, _('Please select a least 2 mailing list.'))
+            return None
+        
+        contacts = {}
+        for ml in queryset:
+            for contact in ml.contacts.all():
+                contacts[contact] = ''
+
+        when = str(datetime.now()).split('.')[0]
+        new_mailing = MailingList(name=_('Merging list at %s') % when, 
+                                  description=_('Mailing list created by merging at %s') % when)
+        new_mailing.save()
+        new_mailing.contacts = contacts.keys()
+        
+        self.message_user(request, _('%s succesfully created by merging.') % new_mailing)
+        
+    merge_mailinglist.short_description = _('Merge selected mailinglists')
+    
 
 admin.site.register(MailingList, MailingListAdmin)
 
