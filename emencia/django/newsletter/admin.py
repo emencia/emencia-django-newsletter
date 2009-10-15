@@ -1,5 +1,6 @@
 """Admin for emencia.django.newsletter"""
 from datetime import datetime
+
 from django.contrib import admin
 from django.utils.translation import ugettext as _
 
@@ -8,6 +9,7 @@ from emencia.django.newsletter.models import Contact
 from emencia.django.newsletter.models import MailingList
 from emencia.django.newsletter.models import Newsletter
 from emencia.django.newsletter.models import ContactMailingStatus
+from emencia.django.newsletter.utils import get_webpage_body
 
 class SMTPServerAdmin(admin.ModelAdmin):
     list_display = ('name', 'host', 'port', 'user', 'tls', 'mails_hour',)# 'check_connection')
@@ -117,12 +119,18 @@ class NewsletterAdmin(admin.ModelAdmin):
                  (_('Receivers'), {'fields': ('mailing_list', 'test_contacts',)}),
                  (_('Sending'), {'fields': ('sending_date', 'status',)}),
                  (_('Miscellaneous'), {'fields': ('server', 'header_sender',
-                                                  'header_reply'),
+                                                  'header_reply', 'slug'),
                                        'classes': ('collapse',)}),                 
                  )
-
+    prepopulated_fields = {'slug': ('title',)}
     actions_on_top = False
     actions_on_bottom = False
+
+    def save_model(self, request, newsletter, form, change):
+        if newsletter.content.startswith('http://'):
+            newsletter.content = get_webpage_body(newsletter.content)
+        
+        newsletter.save()
 
 admin.site.register(Newsletter, NewsletterAdmin)
 

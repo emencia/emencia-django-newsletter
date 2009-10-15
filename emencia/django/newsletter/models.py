@@ -150,8 +150,7 @@ class Newsletter(models.Model):
                       (SENT, _('sent')),)
 
     title = models.CharField(_('title'), max_length=255)
-    content = models.TextField(_('content'))
-    content_text = models.TextField(_('content text'))
+    content = models.TextField(_('content'), help_text=_('Or paste an URL.'))
     
     mailing_list = models.ForeignKey(MailingList, verbose_name=_('mailing list'))
     test_contacts = models.ManyToManyField(Contact, verbose_name=_('test contacts'),
@@ -166,9 +165,14 @@ class Newsletter(models.Model):
 
     status = models.IntegerField(_('status'), choices=STATUS_CHOICES, default=DRAFT)
     sending_date = models.DateTimeField(_('sending date'), default=datetime.now)
-    
+
+    slug = models.SlugField(help_text=_('Used for displaying the newsletter on the site.'))
     creation_date = models.DateTimeField(_('creation date'), auto_now_add=True)
     modification_date = models.DateTimeField(_('modification date'), auto_now=True)
+
+    @models.permalink
+    def get_absolute_url(self):
+        return ('newsletter_newsletter_detail', (self.slug,))
 
     def __unicode__(self):
         return self.title
