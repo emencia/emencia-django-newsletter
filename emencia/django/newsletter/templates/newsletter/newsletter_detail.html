@@ -3,5 +3,6 @@
 {% block title %}{{ object.title }}{% endblock %}
 
 {% block content %}
-  {{ object.content|safe }}
+  {{ content|safe }}
+  {{ footer|safe }}
 {% endblock %}
