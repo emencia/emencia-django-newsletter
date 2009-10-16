@@ -176,6 +176,10 @@ class Newsletter(models.Model):
     creation_date = models.DateTimeField(_('creation date'), auto_now_add=True)
     modification_date = models.DateTimeField(_('modification date'), auto_now=True)
 
+    def mails_sent(self):
+        SENT = 0
+        return self.contactmailingstatus_set.filter(status=SENT)
+
     @models.permalink
     def get_absolute_url(self):
         return ('newsletter_newsletter_preview', (self.slug,))
