@@ -4,6 +4,7 @@ from datetime import datetime
 from django.contrib import admin
 from django.utils.translation import ugettext as _
 
+from emencia.django.newsletter.mailer import Mailer
 from emencia.django.newsletter.models import SMTPServer
 from emencia.django.newsletter.models import Contact
 from emencia.django.newsletter.models import MailingList
@@ -123,14 +124,22 @@ class NewsletterAdmin(admin.ModelAdmin):
                                        'classes': ('collapse',)}),                 
                  )
     prepopulated_fields = {'slug': ('title',)}
+    actions = ['send_mail_test',]
     actions_on_top = False
-    actions_on_bottom = False
+    actions_on_bottom = True
 
     def save_model(self, request, newsletter, form, change):
         if newsletter.content.startswith('http://'):
             newsletter.content = get_webpage_content(newsletter.content)
         
         newsletter.save()
+        
+    def send_mail_test(self, request, queryset):
+        for newsletter in queryset:
+            mailer = Mailer(newsletter, test=True)
+            mailer.run()
+            self.message_user(request, _('%s succesfully sent.') % newsletter)
+    send_mail_test.short_description = _('Send test email')
 
 admin.site.register(Newsletter, NewsletterAdmin)
 
