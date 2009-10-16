@@ -1,13 +1,17 @@
-"""Urls for the newsletter"""
+"""Urls for the emencia.django.newsletter"""
 from django.conf.urls.defaults import *
 
 from emencia.django.newsletter.models import Newsletter
 
-newsletter_conf = {'queryset': Newsletter.objects.all()}
-
-
-urlpatterns = patterns('django.views.generic.list_detail',
-                       url(r'^(?P<slug>[-\w]+)/$', 'object_detail',
-                           newsletter_conf, 'newsletter_newsletter_detail'),
+urlpatterns = patterns('emencia.django.newsletter.views',
+                       url(r'^preview/(?P<slug>[-\w]+)/$',
+                           'view_newsletter_preview',
+                           name='newsletter_newsletter_preview'),
+                       url(r'^(?P<slug>[-\w]+)/(?P<uidb36>[0-9A-Za-z]+)-(?P<token>.+)/$',
+                           'view_newsletter_contact',
+                           name='newsletter_newsletter_preview'),
+                       url(r'^unsubscribe/(?P<slug>[-\w]+)/(?P<uidb36>[0-9A-Za-z]+)-(?P<token>.+)/$',
+                           'view_mailinglist_unsubscribe',
+                           name='newsletter_mailinglist_unsubscribe'),
                        )
 
