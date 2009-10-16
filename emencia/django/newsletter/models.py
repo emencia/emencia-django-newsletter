@@ -178,7 +178,7 @@ class Newsletter(models.Model):
 
     @models.permalink
     def get_absolute_url(self):
-        return ('newsletter_newsletter_detail', (self.slug,))
+        return ('newsletter_newsletter_preview', (self.slug,))
 
     def __unicode__(self):
         return self.title
