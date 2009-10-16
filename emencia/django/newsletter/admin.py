@@ -9,7 +9,7 @@ from emencia.django.newsletter.models import Contact
 from emencia.django.newsletter.models import MailingList
 from emencia.django.newsletter.models import Newsletter
 from emencia.django.newsletter.models import ContactMailingStatus
-from emencia.django.newsletter.utils import get_webpage_body
+from emencia.django.newsletter.utils import get_webpage_content
 
 class SMTPServerAdmin(admin.ModelAdmin):
     list_display = ('name', 'host', 'port', 'user', 'tls', 'mails_hour',)# 'check_connection')
@@ -128,7 +128,7 @@ class NewsletterAdmin(admin.ModelAdmin):
 
     def save_model(self, request, newsletter, form, change):
         if newsletter.content.startswith('http://'):
-            newsletter.content = get_webpage_body(newsletter.content)
+            newsletter.content = get_webpage_content(newsletter.content)
         
         newsletter.save()
 
