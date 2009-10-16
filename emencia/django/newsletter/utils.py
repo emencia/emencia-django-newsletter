@@ -2,6 +2,7 @@
 import urllib2
 
 from BeautifulSoup import BeautifulSoup
+from django.template import Context, Template
 
 def get_webpage_content(url):
     """Return the content of the website
@@ -11,3 +12,9 @@ def get_webpage_content(url):
     soup = BeautifulSoup(page)
     
     return soup.body.findChild().prettify()
+
+def render_string(template_string, context={}):
+    """Shortcut for render a template string with a context"""
+    t = Template(template_string)
+    c = Context(context)
+    return t.render(c)
