@@ -11,7 +11,6 @@ from emencia.django.newsletter.models import Newsletter
 from emencia.django.newsletter.utils import render_string
 from emencia.django.newsletter.tokens import untokenize
 from emencia.django.newsletter.tokens import ContactTokenGenerator
-from emencia.django.newsletter.settings import INCLUDE_UNSUBSCRIPTION
 
 def render_newsletter(request, slug, context):
     """Return a newsletter in HTML format"""
@@ -19,8 +18,7 @@ def render_newsletter(request, slug, context):
     context.update({'newsletter': newsletter})
     
     content = render_string(newsletter.content, context)
-    footer = INCLUDE_UNSUBSCRIPTION and \
-             render_file('newsletter/newsletter_footer.html', context) or ''
+    footer = render_file('newsletter/newsletter_footer_unsubscribe.html', context)
     
     return render_to_response('newsletter/newsletter_detail.html',
                               {'content': content,
