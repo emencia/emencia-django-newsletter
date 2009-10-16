@@ -9,6 +9,9 @@ from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes import generic
 
 from tagging.fields import TagField
+from emencia.django.newsletter.settings import DEFAULT_HEADER_REPLY
+from emencia.django.newsletter.settings import DEFAULT_HEADER_SENDER
+
 
 class SMTPServer(models.Model):
     """Configuration of a SMTP server"""
@@ -127,6 +130,10 @@ class MailingList(models.Model):
         return self.unsubscribers.all().count()
     unsubscribers_count.short_description = _('unsubscribers')
 
+    def expedition_set(self):
+        return self.subscribers.filter(subscriber=True,
+                                       invalid=False).exclude(self.unscribers.all())
+
     def __unicode__(self):
         return self.name
 
@@ -142,7 +149,6 @@ class Newsletter(models.Model):
     WAITING  = 1
     SENDING = 2
     SENT = 4
-    DEFAULT_HEADER = 'Emencia Newsletter<noreply@emencia.com>'
 
     STATUS_CHOICES = ((DRAFT, _('draft')),
                       (WAITING, _('waiting sending')),
@@ -159,9 +165,9 @@ class Newsletter(models.Model):
     server = models.ForeignKey(SMTPServer, verbose_name=_('smtp server'),
                                default=1)
     header_sender = models.CharField(_('sender'), max_length=250,
-                                     default=DEFAULT_HEADER)
+                                     default=DEFAULT_HEADER_SENDER)
     header_reply = models.CharField(_('reply to'), max_length=250,
-                                    default=DEFAULT_HEADER)
+                                    default=DEFAULT_HEADER_REPLY)
 
     status = models.IntegerField(_('status'), choices=STATUS_CHOICES, default=DRAFT)
     sending_date = models.DateTimeField(_('sending date'), default=datetime.now)
