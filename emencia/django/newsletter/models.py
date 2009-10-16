@@ -131,8 +131,9 @@ class MailingList(models.Model):
     unsubscribers_count.short_description = _('unsubscribers')
 
     def expedition_set(self):
-        return self.subscribers.filter(subscriber=True,
-                                       invalid=False).exclude(self.unscribers.all())
+        unsubscribers_id = self.unsubscribers.values_list('id', flat=True)
+        return self.subscribers.filter(subscriber=True, invalid=False).exclude(
+            id__in=unsubscribers_id)
 
     def __unicode__(self):
         return self.name
