@@ -54,7 +54,6 @@ class SMTPServer(models.Model):
             newsletter__server=self,
             creation_date__gte=last_hour).count()
         return self.mails_hour - sent_last_hour
-    credits.short_description = _('Credits')
 
     def __unicode__(self):
         return '%s (%s)' % (self.name, self.host)
