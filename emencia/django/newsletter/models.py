@@ -56,7 +56,7 @@ class Contact(models.Model):
     last_name = models.CharField(_('last name'), max_length=30, blank=True)
 
     subscriber = models.BooleanField(_('subscriber'), default=True)
-    invalid = models.BooleanField(_('invalid'), default=False)
+    valid = models.BooleanField(_('valid email'), default=True)
     tags = TagField(_('tags'))
 
     content_type = models.ForeignKey(ContentType, blank=True, null=True)
@@ -132,7 +132,7 @@ class MailingList(models.Model):
 
     def expedition_set(self):
         unsubscribers_id = self.unsubscribers.values_list('id', flat=True)
-        return self.subscribers.filter(subscriber=True, invalid=False).exclude(
+        return self.subscribers.filter(subscriber=True, valid=True).exclude(
             id__in=unsubscribers_id)
 
     def __unicode__(self):

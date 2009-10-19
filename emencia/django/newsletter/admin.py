@@ -27,21 +27,22 @@ class SMTPServerAdmin(admin.ModelAdmin):
     actions_on_bottom = True
 
     def check_connections(self, request, queryset):
+        message = '%s connection %s'
         for server in queryset:            
-            message = server.connection_valid() and '%s connection OK' or '%s connection KO'
-            self.message_user(request, message % server.__unicode__())
+            status = server.connection_valid() and 'OK' or 'KO'
+            self.message_user(request, message % (server.__unicode__(), status))
     
 admin.site.register(SMTPServer, SMTPServerAdmin)
 
 class ContactAdmin(admin.ModelAdmin):
     date_hierarchy = 'creation_date'
     list_display = ('email', 'first_name', 'last_name', 'tags', 'subscriber',
-                    'invalid', 'total_subscriptions', 'creation_date', 'related_object_admin')
-    list_filter = ('subscriber', 'invalid', 'creation_date', 'modification_date')
+                    'valid', 'total_subscriptions', 'creation_date', 'related_object_admin')
+    list_filter = ('subscriber', 'valid', 'creation_date', 'modification_date')
     search_fields = ('email', 'first_name', 'last_name', 'tags')
     fieldsets = ((None, {'fields': ('email', 'first_name', 'last_name')}),
                  (None, {'fields': ('tags',)}),
-                 (_('Status'), {'fields': ('subscriber', 'invalid')}),
+                 (_('Status'), {'fields': ('subscriber', 'valid')}),
                  (_('Advanced'), {'fields': ('object_id', 'content_type'),
                                   'classes': ('collapse',)}),
                  )
