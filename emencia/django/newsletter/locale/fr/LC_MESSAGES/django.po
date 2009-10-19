@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: emencia.django.newsletter\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-19 14:22+0200\n"
-"PO-Revision-Date: 2009-10-19 14:22+0100\n"
+"POT-Creation-Date: 2009-10-19 16:03+0200\n"
+"PO-Revision-Date: 2009-10-19 16:08+0100\n"
 "Last-Translator: Fantomas <Fantomas42@gmail.com>\n"
 "Language-Team: fr <jfache@emencia.com>\n"
 "MIME-Version: 1.0\n"
@@ -189,7 +189,7 @@ msgstr "Tags"
 #: models.py:66
 #: models.py:122
 #: models.py:180
-#: models.py:216
+#: models.py:219
 msgid "creation date"
 msgstr "Date de création"
 
@@ -254,7 +254,7 @@ msgid "sending"
 msgstr "En cours d'envois"
 
 #: models.py:158
-#: models.py:207
+#: models.py:208
 msgid "sent"
 msgstr "Envoyée"
 
@@ -295,7 +295,7 @@ msgid "reply to"
 msgstr "Répondre à"
 
 #: models.py:176
-#: models.py:214
+#: models.py:217
 msgid "status"
 msgstr "Statut"
 
@@ -315,30 +315,51 @@ msgstr "Newsletter"
 msgid "Newsletters"
 msgstr "Newsletters"
 
-#: models.py:208
+#: models.py:209
 msgid "error"
 msgstr "Erreur lors de l'envois"
 
-#: models.py:209
+#: models.py:210
 msgid "invalid email"
 msgstr "Email Invalide"
 
-#: models.py:210
+#: models.py:211
 msgid "opened"
 msgstr "Réception OK"
 
 #: models.py:212
+msgid "opened on site"
+msgstr "Ouvert sur le site"
+
+#: models.py:215
 msgid "newsletter"
 msgstr "Newsletter"
 
-#: models.py:213
+#: models.py:216
 msgid "contact"
 msgstr "contact"
 
-#: models.py:225
-#: models.py:226
+#: models.py:228
+#: models.py:229
 msgid "Contact Mailing Status"
 msgstr "Status d'envois"
+
+#: templates/newsletter/newsletter_unsubscribe.html:4
+#: templates/newsletter/newsletter_unsubscribe.html:7
+msgid "Unsubscription"
+msgstr "Désabonnements"
+
+#: templates/newsletter/newsletter_unsubscribe.html:9
+msgid "You are unsubscribed for this mailing list."
+msgstr "Vous êtes désinscrit de cette liste de diffusion."
+
+#: templates/newsletter/newsletter_unsubscribe.html:11
+msgid "Validate this form to unsubscribe to this mailing list."
+msgstr "Validez ce formulaire pour vous désinscrire de la liste de diffusion."
+
+#: templates/newsletter/newsletter_unsubscribe.html:14
+msgid "Unsubscribe"
+msgstr "Désinscription"
 
 #~ msgid "invalid"
 #~ msgstr "Adresse invalide"

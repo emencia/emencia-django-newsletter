@@ -62,4 +62,18 @@ def view_newsletter_tracking(request, slug, uidb36, token):
 
 def view_mailinglist_unsubscribe(request, slug, uidb36, token):
     """Unsubscribe a contact to a mailing list"""
-    pass
+    newsletter = get_object_or_404(Newsletter, slug=slug)
+    contact = untokenize(uidb36, token)
+    
+    already_unsubscribed = contact in newsletter.mailing_list.unsubscribers.all()
+
+    if request.POST.get('email'):
+        newsletter.mailing_list.unsubscribers.add(contact)
+        newsletter.mailing_list.save()
+        already_unsubcribed = True
+
+    return render_to_response('newsletter/newsletter_unsubscribe.html',
+                              {'email': contact.email,
+                               'already_unsubscribed': already_unsubscribed},
+                              context_instance=RequestContext(request))
+
