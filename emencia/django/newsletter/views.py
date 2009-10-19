@@ -4,6 +4,7 @@ from django.shortcuts import get_object_or_404
 from django.shortcuts import render_to_response
 from django.utils.http import base36_to_int
 from django.http import HttpResponseRedirect
+from django.contrib.sites.models import Site
 from django.contrib.auth.decorators import login_required
 from django.template.loader import render_to_string as render_file
 
@@ -15,7 +16,8 @@ from emencia.django.newsletter.tokens import ContactTokenGenerator
 def render_newsletter(request, slug, context):
     """Return a newsletter in HTML format"""
     newsletter = get_object_or_404(Newsletter, slug=slug)
-    context.update({'newsletter': newsletter})
+    context.update({'newsletter': newsletter,
+                    'domain': Site.objects.get_current().domain})
     
     content = render_string(newsletter.content, context)
     footer = render_file('newsletter/newsletter_footer_unsubscribe.html', context)

@@ -5,6 +5,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
 from html2text import html2text
+from django.contrib.sites.models import Site
 from django.template import Context, Template
 from django.template.loader import render_to_string
 
@@ -78,6 +79,7 @@ class Mailer(object):
         """Generate the mail for a contact"""
         uidb36, token = tokenize(contact)
         context = Context({'contact': contact,
+                           'domain': Site.objects.get_current().domain,
                            'newsletter': self.newsletter,
                            'uidb36': uidb36, 'token': token})
 
