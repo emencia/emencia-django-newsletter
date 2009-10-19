@@ -28,7 +28,6 @@ class Mailer(object):
 
     def run(self):
         """Send the mails"""
-        # Need a to procedure to use the server limit
         if self.can_send:
             self.smtp_connect()
             
@@ -37,10 +36,9 @@ class Mailer(object):
                 self.smtp.sendmail(self.newsletter.header_sender,
                                    contact.email,
                                    message.as_string())
-                if not self.test:
-                    ContactMailingStatus.objects.create(newsletter=self.newsletter,
-                                                        contact=contact,
-                                                        status=ContactMailingStatus.SENT)
+                status = self.test and ContactMailingStatus.SENT_TEST or ContactMailingStatus.SENT
+                ContactMailingStatus.objects.create(newsletter=self.newsletter,
+                                                    contact=contact, status=status)
             self.smtp.quit()
             self.update_newsletter_status()
 
@@ -71,9 +69,14 @@ class Mailer(object):
 
     def get_expedition_list(self):
         """Build the expedition list"""
+        credits = self.newsletter.server.credits()
         if self.test:
-            return self.newsletter.test_contacts.all()
-        return self.newsletter.mailing_list.expedition_set()
+            return self.newsletter.test_contacts.all()[:credits]
+
+        already_sent = ContactMailingStatus.objects.filter(status=ContactMailingStatus.SENT,
+                                                           newsletter=self.newsletter).values_list('id', flat=True)
+        expedition_list = self.newsletter.mailing_list.expedition_set().exclude(id__in=already_send)
+        return expedition_list[:credits]
 
     def build_email_content(self, contact):
         """Generate the mail for a contact"""
@@ -107,6 +110,9 @@ class Mailer(object):
     @property
     def can_send(self):
         """Check if the newsletter can be sent"""
+        if self.newsletter.server.credits() <= 0:
+            return False
+
         if self.test:
             return True
         

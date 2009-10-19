@@ -1,6 +1,7 @@
 """Models for emencia.django.newsletter"""
 from smtplib import SMTP
 from datetime import datetime
+from datetime import timedelta
 
 from django.db import models
 from django.core.urlresolvers import reverse
@@ -28,6 +29,7 @@ class SMTPServer(models.Model):
     mails_hour = models.IntegerField(_('mails per hour'), default=0)
 
     def connection_valid(self):
+        """Check if the server can be connected"""
         try:            
             smtp = SMTP(self.host, self.port)
             if self.user or self.password:
@@ -39,6 +41,20 @@ class SMTPServer(models.Model):
             return False
         return True
     connection_valid.short_description = _('Connection valid')
+
+    def credits(self):
+        """Return how many mails the server can send"""
+        if not self.mails_hour:
+            return 1000 # Arbitrary value
+
+        last_hour = datetime.now() - timedelta(hours=1)
+        sent_last_hour = ContactMailingStatus.objects.filter(
+            models.Q(status=ContactMailingStatus.SENT) |
+            models.Q(status=ContactMailingStatus.SENT_TEST),
+            newsletter__server=self,
+            creation_date__gte=last_hour).count()
+        return self.mails_hour - sent_last_hour
+    credits.short_description = _('Credits')
 
     def __unicode__(self):
         return '%s (%s)' % (self.name, self.host)
@@ -199,6 +215,7 @@ class Newsletter(models.Model):
 
 class ContactMailingStatus(models.Model):
     """Status of the reception"""
+    SENT_TEST = -1
     SENT = 0
     ERROR = 1
     INVALID = 2
