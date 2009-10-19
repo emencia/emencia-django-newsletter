@@ -3,6 +3,7 @@ from datetime import datetime
 
 from django.contrib import admin
 from django.utils.translation import ugettext as _
+from django.db.models import Q
 
 from emencia.django.newsletter.mailer import Mailer
 from emencia.django.newsletter.models import SMTPServer
@@ -124,7 +125,7 @@ class NewsletterAdmin(admin.ModelAdmin):
                                        'classes': ('collapse',)}),                 
                  )
     prepopulated_fields = {'slug': ('title',)}
-    actions = ['send_mail_test',]
+    actions = ['send_mail_test', 'make_ready_to_send', 'make_cancel_sending']
     actions_on_top = False
     actions_on_bottom = True
 
@@ -140,6 +141,23 @@ class NewsletterAdmin(admin.ModelAdmin):
             mailer.run()
             self.message_user(request, _('%s succesfully sent.') % newsletter)
     send_mail_test.short_description = _('Send test email')
+
+    def make_ready_to_send(self, request, queryset):
+        queryset = queryset.filter(status=Newsletter.DRAFT)
+        for newsletter in queryset:
+            newsletter.status = Newsletter.WAITING
+            newsletter.save()
+        self.message_user(request, _('%s newletters are ready to send') % queryset.count())
+    make_ready_to_send.short_description = _('Make ready to send')
+
+    def make_cancel_sending(self, request, queryset):
+        queryset = queryset.filter(Q(status=Newsletter.WAITING) |
+                                   Q(status=Newsletter.SENDING))
+        for newsletter in queryset:
+            newsletter.status = Newsletter.CANCELED
+            newsletter.save()
+        self.message_user(request, _('%s newletters are cancelled') % queryset.count())
+    make_cancel_sending.short_description = _('Cancel the sending')
 
 admin.site.register(Newsletter, NewsletterAdmin)
 
