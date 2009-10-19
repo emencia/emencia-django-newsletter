@@ -203,6 +203,10 @@ class Newsletter(models.Model):
     def get_absolute_url(self):
         return ('newsletter_newsletter_preview', (self.slug,))
 
+    @models.permalink
+    def get_stats_url(self):
+        return ('admin:newsletter_newsletter_stats', (self.slug,))
+
     def __unicode__(self):
         return self.title
     

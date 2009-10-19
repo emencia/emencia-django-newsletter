@@ -2,7 +2,11 @@
 from datetime import datetime
 
 from django.contrib import admin
+from django.conf.urls.defaults import *
+from django.template import RequestContext
+from django.shortcuts import render_to_response
 from django.utils.translation import ugettext as _
+from django.shortcuts import get_object_or_404
 from django.db.models import Q
 
 from emencia.django.newsletter.mailer import Mailer
@@ -113,7 +117,7 @@ admin.site.register(MailingList, MailingListAdmin)
 class NewsletterAdmin(admin.ModelAdmin):
     date_hierarchy = 'creation_date'
     list_display = ('title', 'mailing_list', 'server', 'status',
-                    'sending_date', 'creation_date', 'modification_date')
+                    'sending_date', 'creation_date', 'modification_date', 'stats_link')
     list_filter = ('mailing_list', 'server', 'status', 'sending_date',
                    'creation_date', 'modification_date')
     search_fields = ('title', 'content', 'header_sender', 'header_reply')
@@ -129,6 +133,11 @@ class NewsletterAdmin(admin.ModelAdmin):
     actions = ['send_mail_test', 'make_ready_to_send', 'make_cancel_sending']
     actions_on_top = False
     actions_on_bottom = True
+
+    def stats_link(self, newsletter):
+        return '<a href="%s">%s</a>' % (newsletter.get_stats_url(), _('View stats'))
+    stats_link.allow_tags = True
+    stats_link.short_description = _('Statistics')
 
     def save_model(self, request, newsletter, form, change):
         if newsletter.content.startswith('http://'):
@@ -159,6 +168,29 @@ class NewsletterAdmin(admin.ModelAdmin):
             newsletter.save()
         self.message_user(request, _('%s newletters are cancelled') % queryset.count())
     make_cancel_sending.short_description = _('Cancel the sending')
+
+    def stats(self, request, slug):
+        """Display stats of a newsletters"""
+        opts = self.model._meta
+        newsletter = get_object_or_404(Newsletter, slug=slug)
+        
+        context = {'title': _('Stats %s') % newsletter.__unicode__(),
+                   'original': newsletter,
+                   'opts': opts,
+                   'object_id': newsletter.pk,
+                   'root_path': self.admin_site.root_path,
+                   'app_label': opts.app_label,}
+        return render_to_response('newsletter/newsletter_stats.html',
+                                  context,
+                                  context_instance=RequestContext(request))
+
+    def get_urls(self):
+        urls = super(NewsletterAdmin, self).get_urls()
+        my_urls = patterns('',
+                           url(r'^stats/(?P<slug>[-\w]+)/$', self.stats,
+                               name='newsletter_newsletter_stats'),
+                           )
+        return my_urls + urls
 
 admin.site.register(Newsletter, NewsletterAdmin)
 

@@ -1,0 +1,25 @@
+{% extends "admin/change_list.html" %}
+{% load i18n %}
+
+{% block bodyclass %}change-list stats{% endblock %}
+
+{% block breadcrumbs %}
+{% if not is_popup %}
+<div class="breadcrumbs">
+     <a href="../../../">{% trans "Home" %}</a> &rsaquo;
+     <a href="../../">{{ app_label|capfirst|escape }}</a> &rsaquo; 
+     <a href="../">{{ opts.verbose_name_plural|capfirst }}</a> &rsaquo; 
+     {{ title }}
+</div>
+{% endif %}
+{% endblock %}
+
+{% block content %}
+<div id="content-main">
+  <ul>
+    {% for stat in original.contactmailingstatus_set.all %}
+    <li>{{ stat }}</li>
+    {% endfor %}
+  </ul>
+</div>
+{% endblock %}
