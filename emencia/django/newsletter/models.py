@@ -88,7 +88,7 @@ class Contact(models.Model):
 
     def mail_format(self):
         if self.first_name and self.last_name:
-            return '%s, %s <%s>' % (self.last_name, self.first_name, self.email)
+            return '%s %s <%s>' % (self.last_name, self.first_name, self.email)
         return self.email
     mail_format.short_description = _('mail format')
 
@@ -150,11 +150,14 @@ class Newsletter(models.Model):
     WAITING  = 1
     SENDING = 2
     SENT = 4
+    CANCELED = 5
 
     STATUS_CHOICES = ((DRAFT, _('draft')),
                       (WAITING, _('waiting sending')),
                       (SENDING, _('sending')),
-                      (SENT, _('sent')),)
+                      (SENT, _('sent')),
+                      (CANCELED, _('canceled')),
+                      )
 
     title = models.CharField(_('title'), max_length=255)
     content = models.TextField(_('content'), help_text=_('Or paste an URL.'))
