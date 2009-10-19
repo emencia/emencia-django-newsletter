@@ -203,11 +203,14 @@ class ContactMailingStatus(models.Model):
     ERROR = 1
     INVALID = 2
     OPENED = 4
+    OPENED_ON_SITE = 5
     
     STATUS_CHOICES = ((SENT, _('sent')),
                       (ERROR, _('error')),
                       (INVALID, _('invalid email')),
-                      (OPENED, _('opened')),)
+                      (OPENED, _('opened')),
+                      (OPENED_ON_SITE, _('opened on site')),
+                      )
     
     newsletter = models.ForeignKey(Newsletter, verbose_name=_('newsletter'))
     contact = models.ForeignKey(Contact, verbose_name=_('contact'))
