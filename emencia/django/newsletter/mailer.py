@@ -84,8 +84,10 @@ class Mailer(object):
                            'uidb36': uidb36, 'token': token})
 
         content = self.newsletter_template.render(context)
+        content += render_to_string('newsletter/newsletter_footer_tracking.html', context)
+        
         if INCLUDE_UNSUBSCRIPTION:
-            content += render_to_string('newsletter/newsletter_footer_unsubscribe.html', context)    
+            content += render_to_string('newsletter/newsletter_footer_unsubscribe.html', context)
         content += render_to_string('newsletter/newsletter_footer_links.html', context)
 
         return content
