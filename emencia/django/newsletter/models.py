@@ -225,7 +225,8 @@ class ContactMailingStatus(models.Model):
     OPENED = 4
     OPENED_ON_SITE = 5
     
-    STATUS_CHOICES = ((SENT, _('sent')),
+    STATUS_CHOICES = ((SENT_TEST, _('sent in test')),
+                      (SENT, _('sent')),
                       (ERROR, _('error')),
                       (INVALID, _('invalid email')),
                       (OPENED, _('opened')),

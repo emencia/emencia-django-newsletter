@@ -16,10 +16,25 @@
 
 {% block content %}
 <div id="content-main">
-  <ul>
-    {% for stat in original.contactmailingstatus_set.all %}
-    <li>{{ stat }}</li>
-    {% endfor %}
-  </ul>
+  <div class="module" id="changelist">
+    <table cellspacing="0">
+      <thead>
+	<tr>
+	  <th>{% trans "Date" %}</th>
+	  <th>{% trans "Contact" %}</th>
+	  <th>{% trans "Action" %}</th>
+	</tr>
+      </thead>
+      <tbody>
+	{% for stat in original.contactmailingstatus_set.all %}
+	<tr class="{% cycle row1,row2 %}">
+	  <td class="nowrap">{{ stat.creation_date|date:"d F Y, H:i" }}</td>
+	  <td>{{ stat.contact.mail_format }}</td>
+	  <td>{{ stat.get_status_display }}</td>
+	</tr>
+	{% endfor %}
+      </tbody>
+    </table>
+  </div>
 </div>
 {% endblock %}
