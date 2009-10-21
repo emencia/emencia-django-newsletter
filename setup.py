@@ -27,7 +27,8 @@ setup(name='emencia.django.newsletter',
       zip_safe=False,
       install_requires=[
           'setuptools',
-          # -*- Extra requirements: -*-
+          'html2text',
+          'BeautifulSoup',
       ],
       entry_points="""
       # -*- Entry points: -*-
