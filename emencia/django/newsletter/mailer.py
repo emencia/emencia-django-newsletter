@@ -1,8 +1,13 @@
 """Mailer for emencia.django.newsletter"""
 from smtplib import SMTP
 from datetime import datetime
-from email.mime.multipart import MIMEMultipart
-from email.mime.text import MIMEText
+try:
+    from email.mime.multipart import MIMEMultipart
+    from email.mime.text import MIMEText
+except ImportError :  #python 2.4 compatibility
+    from email.MIMEMultipart import MIMEMultipart
+    from email.MIMEText import MIMEText
+                  
 
 from html2text import html2text
 from django.contrib.sites.models import Site
