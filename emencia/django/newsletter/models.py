@@ -196,8 +196,7 @@ class Newsletter(models.Model):
     modification_date = models.DateTimeField(_('modification date'), auto_now=True)
 
     def mails_sent(self):
-        SENT = 0
-        return self.contactmailingstatus_set.filter(status=SENT).count()
+        return self.contactmailingstatus_set.filter(status=ContactMailingStatus.SENT).count()
 
     @models.permalink
     def get_absolute_url(self):
