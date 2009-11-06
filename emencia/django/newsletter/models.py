@@ -197,7 +197,7 @@ class Newsletter(models.Model):
 
     def mails_sent(self):
         SENT = 0
-        return self.contactmailingstatus_set.filter(status=SENT)
+        return self.contactmailingstatus_set.filter(status=SENT).count()
 
     @models.permalink
     def get_absolute_url(self):
