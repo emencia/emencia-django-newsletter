@@ -34,7 +34,8 @@ class Mailer(object):
     def run(self):
         """Send the mails"""
         if self.can_send:
-            self.smtp_connect()
+            if not self.smtp:
+                self.smtp_connect()
             
             for contact in self.expedition_list:
                 message = self.build_message(contact)
