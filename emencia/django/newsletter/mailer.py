@@ -80,7 +80,7 @@ class Mailer(object):
 
         already_sent = ContactMailingStatus.objects.filter(status=ContactMailingStatus.SENT,
                                                            newsletter=self.newsletter).values_list('id', flat=True)
-        expedition_list = self.newsletter.mailing_list.expedition_set().exclude(id__in=already_send)
+        expedition_list = self.newsletter.mailing_list.expedition_set().exclude(id__in=already_sent)
         return expedition_list[:credits]
 
     def build_email_content(self, contact):
