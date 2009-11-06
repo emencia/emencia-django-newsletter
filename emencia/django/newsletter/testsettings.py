@@ -1,10 +1,9 @@
 import os
 
 DATABASE_ENGINE = 'sqlite3'
-DATABASE_NAME = '/tmp/links.db'
-INSTALLED_APPS = ['django.contrib.auth',
-                  'django.contrib.contenttypes',
-                  'django.contrib.sessions',
+DATABASE_NAME = '/tmp/newsletter.db'
+INSTALLED_APPS = ['django.contrib.contenttypes',
+                  'tagging',
                   'emencia.django.newsletter',]
 ROOT_URLCONF = 'emencia.django.newsletter.urls'
 
