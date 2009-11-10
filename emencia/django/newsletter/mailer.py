@@ -14,9 +14,11 @@ from django.contrib.sites.models import Site
 from django.template import Context, Template
 from django.template.loader import render_to_string
 
+from emencia.django.newsletter.utils import track_links
 from emencia.django.newsletter.tokens import tokenize
 from emencia.django.newsletter.models import Newsletter
 from emencia.django.newsletter.models import ContactMailingStatus
+from emencia.django.newsletter.settings import TRACKING_LINKS
 from emencia.django.newsletter.settings import INCLUDE_UNSUBSCRIPTION
 
 
@@ -93,11 +95,14 @@ class Mailer(object):
                            'uidb36': uidb36, 'token': token})
 
         content = render_to_string('newsletter/newsletter_footer_links.html', context)
-        content += render_to_string('newsletter/newsletter_footer_tracking.html', context)
-        content += self.newsletter_template.render(context)
+        newsletter_content = self.newsletter_template.render(context)
+        if TRACKING_LINKS:
+            newsletter_content = unicode(track_links(newsletter_content, context))        
+        content += newsletter_content
         
         if INCLUDE_UNSUBSCRIPTION:
             content += render_to_string('newsletter/newsletter_footer_unsubscribe.html', context)
+        content += render_to_string('newsletter/newsletter_footer_tracking.html', context)
 
         return content
             
