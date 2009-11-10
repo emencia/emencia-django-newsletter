@@ -6,9 +6,9 @@
 {% block breadcrumbs %}
 {% if not is_popup %}
 <div class="breadcrumbs">
-     <a href="../../../">{% trans "Home" %}</a> &rsaquo;
-     <a href="../../">{{ app_label|capfirst|escape }}</a> &rsaquo; 
-     <a href="../">{{ opts.verbose_name_plural|capfirst }}</a> &rsaquo; 
+     <a href="../../../../">{% trans "Home" %}</a> &rsaquo;
+     <a href="../../../">{{ app_label|capfirst|escape }}</a> &rsaquo; 
+     <a href="../../">{{ opts.verbose_name_plural|capfirst }}</a> &rsaquo; 
      {{ title }}
 </div>
 {% endif %}
