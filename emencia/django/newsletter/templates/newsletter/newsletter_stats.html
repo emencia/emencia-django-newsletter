@@ -30,7 +30,7 @@
 	<tr class="{% cycle row1,row2 %}">
 	  <td class="nowrap">{{ stat.creation_date|date:"d F Y, H:i" }}</td>
 	  <td>{{ stat.contact.mail_format }}</td>
-	  <td>{{ stat.get_status_display }}</td>
+	  <td>{{ stat.get_status_display }} {% if stat.link %}{{ stat.link.url|urlize }}{% endif %}</td>
 	</tr>
 	{% endfor %}
       </tbody>
