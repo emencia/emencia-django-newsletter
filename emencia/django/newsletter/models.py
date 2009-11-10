@@ -214,6 +214,23 @@ class Newsletter(models.Model):
         verbose_name = _('Newsletter')
         verbose_name_plural = _('Newsletters')
 
+class Link(models.Model):
+    """Link sended in a newsletter"""
+    title = models.CharField(_('title'), max_length=255)
+    url = models.CharField(_('url'), max_length=255)
+    
+    creation_date = models.DateTimeField(_('creation date'), auto_now_add=True)
+
+    def get_absolute_url(self):
+        return self.url
+
+    def __unicode__(self):
+        return self.title
+
+    class Meta:
+        ordering = ('creation_date',)
+        verbose_name = _('Link')
+        verbose_name_plural = _('Links')
 
 class ContactMailingStatus(models.Model):
     """Status of the reception"""
@@ -223,6 +240,7 @@ class ContactMailingStatus(models.Model):
     INVALID = 2
     OPENED = 4
     OPENED_ON_SITE = 5
+    LINK_OPENED = 6
     
     STATUS_CHOICES = ((SENT_TEST, _('sent in test')),
                       (SENT, _('sent')),
@@ -230,12 +248,15 @@ class ContactMailingStatus(models.Model):
                       (INVALID, _('invalid email')),
                       (OPENED, _('opened')),
                       (OPENED_ON_SITE, _('opened on site')),
+                      (LINK_OPENED, _('link opened')),
                       )
     
     newsletter = models.ForeignKey(Newsletter, verbose_name=_('newsletter'))
     contact = models.ForeignKey(Contact, verbose_name=_('contact'))
     status = models.IntegerField(_('status'), choices=STATUS_CHOICES)
-
+    link = models.ForeignKey(Link, verbose_name=_('link'),
+                             blank=True, null=True)
+    
     creation_date = models.DateTimeField(_('creation date'), auto_now_add=True)
 
     def __unicode__(self):
@@ -247,5 +268,3 @@ class ContactMailingStatus(models.Model):
         ordering = ('creation_date',)
         verbose_name = _('Contact Mailing Status')
         verbose_name_plural = _('Contact Mailing Status')
-
-        
