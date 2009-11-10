@@ -11,12 +11,15 @@ from django.contrib.sites.models import Site
 from django.contrib.auth.decorators import login_required
 from django.template.loader import render_to_string as render_file
 
+from emencia.django.newsletter.models import Link
 from emencia.django.newsletter.models import Newsletter
 from emencia.django.newsletter.models import ContactMailingStatus
 from emencia.django.newsletter.utils import render_string
+from emencia.django.newsletter.utils import track_links
 from emencia.django.newsletter.tokens import untokenize
 from emencia.django.newsletter.tokens import ContactTokenGenerator
 from emencia.django.newsletter.settings import TRACKING_IMAGE
+from emencia.django.newsletter.settings import TRACKING_LINKS
 
 def render_newsletter(request, slug, context):
     """Return a newsletter in HTML format"""
@@ -25,11 +28,14 @@ def render_newsletter(request, slug, context):
                     'domain': Site.objects.get_current().domain})
     
     content = render_string(newsletter.content, context)
+    if TRACKING_LINKS:
+        content = track_links(content, context)
     footer = render_file('newsletter/newsletter_footer_unsubscribe.html', context)
     
     return render_to_response('newsletter/newsletter_detail.html',
                               {'content': content,
-                               'footer': footer},
+                               'footer': footer,
+                               'object': newsletter},
                               context_instance=RequestContext(request))
 
 
@@ -59,6 +65,18 @@ def view_newsletter_tracking(request, slug, uidb36, token):
                                               contact=contact,
                                               status=ContactMailingStatus.OPENED)
     return HttpResponse(base64.b64decode(TRACKING_IMAGE), mimetype='image/png')
+
+def view_newsletter_tracking_link(request, slug, uidb36, token, link_id):
+    """Track the opening of a link on the website"""
+    newsletter = get_object_or_404(Newsletter, slug=slug)
+    contact = untokenize(uidb36, token)
+    link = get_object_or_404(Link, pk=link_id)
+    log = ContactMailingStatus.objects.create(newsletter=newsletter,
+                                              contact=contact,
+                                              status=ContactMailingStatus.LINK_OPENED,
+                                              link=link)
+    return HttpResponseRedirect(link.url)
+    
 
 def view_mailinglist_unsubscribe(request, slug, uidb36, token):
     """Unsubscribe a contact to a mailing list"""
