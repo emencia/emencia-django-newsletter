@@ -94,15 +94,15 @@ class Mailer(object):
                            'newsletter': self.newsletter,
                            'uidb36': uidb36, 'token': token})
 
-        content = render_to_string('newsletter/newsletter_footer_links.html', context)
+        content = render_to_string('newsletter/newsletter_link_site.html', context)
         newsletter_content = self.newsletter_template.render(context)
         if TRACKING_LINKS:
             newsletter_content = unicode(track_links(newsletter_content, context))        
         content += newsletter_content
         
         if INCLUDE_UNSUBSCRIPTION:
-            content += render_to_string('newsletter/newsletter_footer_unsubscribe.html', context)
-        content += render_to_string('newsletter/newsletter_footer_tracking.html', context)
+            content += render_to_string('newsletter/newsletter_link_unsubscribe.html', context)
+        content += render_to_string('newsletter/newsletter_image_tracking.html', context)
 
         return content
             

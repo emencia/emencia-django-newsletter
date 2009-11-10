@@ -30,7 +30,7 @@ def render_newsletter(request, slug, context):
     content = render_string(newsletter.content, context)
     if TRACKING_LINKS:
         content = track_links(content, context)
-    footer = render_file('newsletter/newsletter_footer_unsubscribe.html', context)
+    footer = render_file('newsletter/newsletter_link_unsubscribe.html', context)
     
     return render_to_response('newsletter/newsletter_detail.html',
                               {'content': content,
