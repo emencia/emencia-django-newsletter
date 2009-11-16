@@ -10,6 +10,7 @@ from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes import generic
 
 from tagging.fields import TagField
+from emencia.django.newsletter.managers import ContactManager
 from emencia.django.newsletter.settings import DEFAULT_HEADER_REPLY
 from emencia.django.newsletter.settings import DEFAULT_HEADER_SENDER
 
@@ -81,6 +82,8 @@ class Contact(models.Model):
     creation_date = models.DateTimeField(_('creation date'), auto_now_add=True)
     modification_date = models.DateTimeField(_('modification date'), auto_now=True)
 
+    objects = ContactManager()
+    
     def related_object_admin(self):
         if self.content_type and self.object_id:
             admin_url = reverse('admin:%s_%s_change' % (self.content_type.app_label,
@@ -147,7 +150,7 @@ class MailingList(models.Model):
 
     def expedition_set(self):
         unsubscribers_id = self.unsubscribers.values_list('id', flat=True)
-        return self.subscribers.filter(subscriber=True, valid=True).exclude(
+        return self.subscribers.valid_subscribers().exclude(
             id__in=unsubscribers_id)
 
     def __unicode__(self):
