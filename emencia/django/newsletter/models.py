@@ -18,7 +18,7 @@ from emencia.django.newsletter.settings import DEFAULT_HEADER_SENDER
 class SMTPServer(models.Model):
     """Configuration of a SMTP server"""
 
-    name = models.CharField(_('name'), max_length=30)
+    name = models.CharField(_('name'), max_length=255)
     host = models.CharField(_('server host'), max_length=255)
     user = models.CharField(_('server user'), max_length=128, blank=True,
                             help_text=_('Leave it empty if the host is public.'))
@@ -68,8 +68,8 @@ class Contact(models.Model):
     """Contact for emailing"""
     
     email = models.EmailField(_('email'), unique=True)
-    first_name = models.CharField(_('first name'), max_length=30, blank=True)
-    last_name = models.CharField(_('last name'), max_length=30, blank=True)
+    first_name = models.CharField(_('first name'), max_length=50, blank=True)
+    last_name = models.CharField(_('last name'), max_length=50, blank=True)
 
     subscriber = models.BooleanField(_('subscriber'), default=True)
     valid = models.BooleanField(_('valid email'), default=True)
@@ -126,9 +126,8 @@ class Contact(models.Model):
         verbose_name_plural = _('Contacts')
         
 class MailingList(models.Model):
-    """Mailing list"""
-    
-    name = models.CharField(_('name'), max_length=30)
+    """Mailing list"""    
+    name = models.CharField(_('name'), max_length=255)
     description = models.TextField(_('description'), blank=True)
     
     subscribers = models.ManyToManyField(Contact, verbose_name=_('subscribers'),
@@ -186,9 +185,9 @@ class Newsletter(models.Model):
 
     server = models.ForeignKey(SMTPServer, verbose_name=_('smtp server'),
                                default=1)
-    header_sender = models.CharField(_('sender'), max_length=250,
+    header_sender = models.CharField(_('sender'), max_length=255,
                                      default=DEFAULT_HEADER_SENDER)
-    header_reply = models.CharField(_('reply to'), max_length=250,
+    header_reply = models.CharField(_('reply to'), max_length=255,
                                     default=DEFAULT_HEADER_REPLY)
 
     status = models.IntegerField(_('status'), choices=STATUS_CHOICES, default=DRAFT)
