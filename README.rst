@@ -8,6 +8,8 @@ The problematic was :
 
 Imagine that we have an application containing some kind of profiles or something like the **django.contrib.auth** and you want to send newsletters to them and tracking the activity.
 
+.. contents::
+
 Features
 ========
 
