@@ -8,7 +8,7 @@ The problematic was :
 
 Imagine that we have an application containing some kind of profiles or something like the **django.contrib.auth** and you want to send newsletters to them and tracking the activity.
 
-.. contents::
+.. contents::Summary
 
 Features
 ========
@@ -68,6 +68,13 @@ In your project urls.py adding this following line to include the newsletter's u
   >>> (r'^newsletters/', include('emencia.django.newsletter.urls')),
 
 Now you can run a *syncdb* for installing the models into your database.
+
+DBMS considerations
+-------------------
+
+It's not recommended to use SQLite for production use. Because is limited to 999
+variables into a SQL query, you can not create a Mailing List greater than this limitations
+in the Django's admin modules. Prefer MySQL ou PgSQL.
 
 
 HOWTO couple your profile application with emencia.django.newsletter
