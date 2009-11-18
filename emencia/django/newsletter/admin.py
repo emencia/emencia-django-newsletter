@@ -9,6 +9,7 @@ from django.utils.translation import ugettext as _
 from django.shortcuts import get_object_or_404
 from django.db.models import Q
 
+from emencia.django.newsletter.models import Link
 from emencia.django.newsletter.mailer import Mailer
 from emencia.django.newsletter.models import SMTPServer
 from emencia.django.newsletter.models import Contact
@@ -193,6 +194,11 @@ class NewsletterAdmin(admin.ModelAdmin):
         return my_urls + urls
 
 admin.site.register(Newsletter, NewsletterAdmin)
+
+class LinkAdmin(admin.ModelAdmin):
+    list_display = ('title', 'url', 'creation_date')
+
+#admin.site.register(Link, LinkAdmin)
 
 #admin.site.register(ContactMailingStatus)
 
