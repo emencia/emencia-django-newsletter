@@ -1,8 +1,14 @@
-{% extends "newsletter/base.html" %}
+<html>
+  <head>
+    <title>{% block title %}{{ object.title }}{% endblock %}</title>
+  </head>
+  {% block body %}
+    {{ content|safe }}
+    {{ footer|safe }}
+  {% endblock %}
+</html>
 
-{% block title %}{{ object.title }}{% endblock %}
 
-{% block content %}
-  {{ content|safe }}
-  {{ footer|safe }}
-{% endblock %}
+
+
+

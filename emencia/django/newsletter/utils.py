@@ -13,8 +13,8 @@ def get_webpage_content(url):
     request = urllib2.Request(url)
     page = urllib2.urlopen(request)
     soup = BeautifulSoup(page)
-        
-    return soup.body.renderContents()
+            
+    return soup.body.prettify()
 
 def render_string(template_string, context={}):
     """Shortcut for render a template string with a context"""
