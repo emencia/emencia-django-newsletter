@@ -16,6 +16,15 @@ def get_webpage_content(url):
             
     return soup.body.prettify()
 
+def body_insertion(content, insertion, end=False):
+    """Insert an HTML content into the body HTML node"""
+    soup = BeautifulSoup(content)
+    if end:
+        soup.body.append(insertion)
+    else:
+        soup.body.insert(0, insertion)
+    return soup.prettify()
+
 def render_string(template_string, context={}):
     """Shortcut for render a template string with a context"""
     t = Template(template_string)
@@ -42,4 +51,4 @@ def track_links(content, context):
                                                                               args=[context['newsletter'].slug,
                                                                                     context['uidb36'], context['token'],
                                                                                     link.pk]))
-    return soup
+    return soup.prettify()
