@@ -15,6 +15,7 @@ from emencia.django.newsletter.models import Link
 from emencia.django.newsletter.models import Newsletter
 from emencia.django.newsletter.models import ContactMailingStatus
 from emencia.django.newsletter.utils import render_string
+from emencia.django.newsletter.utils import body_insertion
 from emencia.django.newsletter.utils import track_links
 from emencia.django.newsletter.tokens import untokenize
 from emencia.django.newsletter.tokens import ContactTokenGenerator
@@ -30,11 +31,11 @@ def render_newsletter(request, slug, context):
     content = render_string(newsletter.content, context)
     if TRACKING_LINKS:
         content = track_links(content, context)
-    footer = render_file('newsletter/newsletter_link_unsubscribe.html', context)
-    
+    unsubscription = render_file('newsletter/newsletter_link_unsubscribe.html', context)
+    content = body_insertion(content, unsubscription, end=True)
+        
     return render_to_response('newsletter/newsletter_detail.html',
                               {'content': content,
-                               'footer': footer,
                                'object': newsletter},
                               context_instance=RequestContext(request))
 
