@@ -177,7 +177,8 @@ class Newsletter(models.Model):
                       )
 
     title = models.CharField(_('title'), max_length=255)
-    content = models.TextField(_('content'), help_text=_('Or paste an URL.'))
+    content = models.TextField(_('content'), help_text=_('Or paste an URL.'),
+                               default='<body>\n\n</body>')
     
     mailing_list = models.ForeignKey(MailingList, verbose_name=_('mailing list'))
     test_contacts = models.ManyToManyField(Contact, verbose_name=_('test contacts'),
