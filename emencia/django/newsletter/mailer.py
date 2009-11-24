@@ -13,12 +13,15 @@ from html2text import html2text
 from django.contrib.sites.models import Site
 from django.template import Context, Template
 from django.template.loader import render_to_string
+from django.utils.encoding import smart_unicode
 
 from emencia.django.newsletter.utils import track_links
+from emencia.django.newsletter.utils import body_insertion
 from emencia.django.newsletter.tokens import tokenize
 from emencia.django.newsletter.models import Newsletter
 from emencia.django.newsletter.models import ContactMailingStatus
 from emencia.django.newsletter.settings import TRACKING_LINKS
+from emencia.django.newsletter.settings import TRACKING_IMAGE
 from emencia.django.newsletter.settings import INCLUDE_UNSUBSCRIPTION
 
 
@@ -94,17 +97,19 @@ class Mailer(object):
                            'newsletter': self.newsletter,
                            'uidb36': uidb36, 'token': token})
 
-        content = render_to_string('newsletter/newsletter_link_site.html', context)
-        newsletter_content = self.newsletter_template.render(context)
+        content = self.newsletter_template.render(context)
         if TRACKING_LINKS:
-            newsletter_content = unicode(track_links(newsletter_content, context))        
-        content += newsletter_content
+            content = track_links(content, context)
+        link_site = render_to_string('newsletter/newsletter_link_site.html', context)
+        content = body_insertion(content, link_site)
         
         if INCLUDE_UNSUBSCRIPTION:
-            content += render_to_string('newsletter/newsletter_link_unsubscribe.html', context)
-        content += render_to_string('newsletter/newsletter_image_tracking.html', context)
-
-        return content
+            unsubscription = render_to_string('newsletter/newsletter_link_unsubscribe.html', context)
+            content = body_insertion(content, unsubscription, end=True)
+        if TRACKING_IMAGE:
+            image_tracking = render_to_string('newsletter/newsletter_image_tracking.html', context)
+            content = body_insertion(content, image_tracking, end=True)
+        return smart_unicode(content)
             
     def update_newsletter_status(self):
         """Update the status of the newsletter"""
