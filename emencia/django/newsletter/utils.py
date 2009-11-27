@@ -1,7 +1,7 @@
 """Utils for newsletter"""
 import urllib2
 
-from BeautifulSoup import BeautifulSoup
+from BeautifulSoup import BeautifulSoup, Tag
 from django.core.urlresolvers import reverse
 from django.template import Context, Template
 
@@ -18,7 +18,10 @@ def get_webpage_content(url):
 
 def body_insertion(content, insertion, end=False):
     """Insert an HTML content into the body HTML node"""
+    if not content.startswith('<body'):
+        content = '<body>%s</body>' % content    
     soup = BeautifulSoup(content)
+    
     if end:
         soup.body.append(insertion)
     else:
