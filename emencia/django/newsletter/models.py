@@ -216,6 +216,7 @@ class Newsletter(models.Model):
         ordering = ('creation_date',)
         verbose_name = _('Newsletter')
         verbose_name_plural = _('Newsletters')
+        permissions = (('can_change_status', _('Can change status')),)
 
 class Link(models.Model):
     """Link sended in a newsletter"""
@@ -271,3 +272,4 @@ class ContactMailingStatus(models.Model):
         ordering = ('creation_date',)
         verbose_name = _('Contact Mailing Status')
         verbose_name_plural = _('Contact Mailing Status')
+        

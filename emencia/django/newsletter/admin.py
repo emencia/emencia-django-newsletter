@@ -140,9 +140,21 @@ class NewsletterAdmin(admin.ModelAdmin):
     stats_link.allow_tags = True
     stats_link.short_description = _('Statistics')
 
+    #def formfield_for_choice_field(self, db_field, request, **kwargs):
+    #    if db_field.name == 'status' and \
+    #           not request.user.has_perm('newsletter.can_change_status'):
+    #        kwargs['editable'] = False
+    #        # Marche po
+    #        return db_field.formfield(**kwargs)
+    #    return super(NewsletterAdmin, self).formfield_for_choice_field(
+    #        db_field, request, **kwargs)
+
     def save_model(self, request, newsletter, form, change):
         if newsletter.content.startswith('http://'):
             newsletter.content = get_webpage_content(newsletter.content)
+
+        if not request.user.has_perm('newsletter.can_change_status'):
+            newsletter.status = form.initial.get('status', Newsletter.DRAFT)
         
         newsletter.save()
         
