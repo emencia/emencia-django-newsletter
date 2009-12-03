@@ -1,7 +1,7 @@
 {% extends "admin/change_list.html" %}
 {% load i18n %}
 
-{% block bodyclass %}change-list stats{% endblock %}
+{% block bodyclass %}change-list historic{% endblock %}
 
 {% block breadcrumbs %}
 {% if not is_popup %}
@@ -26,11 +26,11 @@
 	</tr>
       </thead>
       <tbody>
-	{% for stat in original.contactmailingstatus_set.all %}
+	{% for event in original.contactmailingstatus_set.all %}
 	<tr class="{% cycle row1,row2 %}">
-	  <td class="nowrap">{{ stat.creation_date|date:"d F Y, H:i" }}</td>
-	  <td>{{ stat.contact.mail_format }}</td>
-	  <td>{{ stat.get_status_display }} {% if stat.link %}{{ stat.link.url|urlize }}{% endif %}</td>
+	  <td class="nowrap">{{ event.creation_date|date:"d F Y, H:i" }}</td>
+	  <td>{{ event.contact.mail_format }}</td>
+	  <td>{{ event.get_status_display }} {% if event.link %}{{ event.link.url|urlize }}{% endif %}</td>
 	</tr>
 	{% endfor %}
       </tbody>

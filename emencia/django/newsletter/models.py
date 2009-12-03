@@ -206,8 +206,8 @@ class Newsletter(models.Model):
         return ('newsletter_newsletter_preview', (self.slug,))
 
     @models.permalink
-    def get_stats_url(self):
-        return ('admin:newsletter_newsletter_stats', (self.slug,))
+    def get_historic_url(self):
+        return ('admin:newsletter_newsletter_historic', (self.slug,))
 
     def __unicode__(self):
         return self.title

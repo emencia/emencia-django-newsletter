@@ -118,7 +118,7 @@ admin.site.register(MailingList, MailingListAdmin)
 class NewsletterAdmin(admin.ModelAdmin):
     date_hierarchy = 'creation_date'
     list_display = ('title', 'mailing_list', 'server', 'status',
-                    'sending_date', 'creation_date', 'modification_date', 'stats_link')
+                    'sending_date', 'creation_date', 'modification_date', 'historic_link')
     list_filter = ('mailing_list', 'server', 'status', 'sending_date',
                    'creation_date', 'modification_date')
     search_fields = ('title', 'content', 'header_sender', 'header_reply')
@@ -135,10 +135,10 @@ class NewsletterAdmin(admin.ModelAdmin):
     actions_on_top = False
     actions_on_bottom = True
 
-    def stats_link(self, newsletter):
-        return '<a href="%s">%s</a>' % (newsletter.get_stats_url(), _('View stats'))
-    stats_link.allow_tags = True
-    stats_link.short_description = _('Statistics')
+    def historic_link(self, newsletter):
+        return '<a href="%s">%s</a>' % (newsletter.get_historic_url(), _('View historic'))
+    historic_link.allow_tags = True
+    historic_link.short_description = _('Historic')
 
     #def formfield_for_choice_field(self, db_field, request, **kwargs):
     #    if db_field.name == 'status' and \
@@ -182,8 +182,8 @@ class NewsletterAdmin(admin.ModelAdmin):
         self.message_user(request, _('%s newletters are cancelled') % queryset.count())
     make_cancel_sending.short_description = _('Cancel the sending')
 
-    def stats(self, request, slug):
-        """Display stats of a newsletters"""
+    def historic(self, request, slug):
+        """Display the historic of a newsletters"""
         opts = self.model._meta
         newsletter = get_object_or_404(Newsletter, slug=slug)
         
@@ -193,15 +193,15 @@ class NewsletterAdmin(admin.ModelAdmin):
                    'object_id': newsletter.pk,
                    'root_path': self.admin_site.root_path,
                    'app_label': opts.app_label,}
-        return render_to_response('newsletter/newsletter_stats.html',
+        return render_to_response('newsletter/newsletter_historic.html',
                                   context,
                                   context_instance=RequestContext(request))
 
     def get_urls(self):
         urls = super(NewsletterAdmin, self).get_urls()
         my_urls = patterns('',
-                           url(r'^stats/(?P<slug>[-\w]+)/$', self.stats,
-                               name='newsletter_newsletter_stats'),
+                           url(r'^historic/(?P<slug>[-\w]+)/$', self.historic,
+                               name='newsletter_newsletter_historic'),
                            )
         return my_urls + urls
 
