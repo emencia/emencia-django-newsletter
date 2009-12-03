@@ -84,6 +84,10 @@ class SMTPServerTestCase(TestCase):
                                             status=ContactMailingStatus.SENT)
         self.assertEquals(self.server.credits(), 39)
 
+    def test_custom_headers(self):
+        self.assertEquals(self.server.custom_headers, {})
+        self.server.headers = 'key_1: val_1\r\nkey_2   :   val_2'
+        self.assertEquals(len(self.server.custom_headers), 2)
 
 class ContactTestCase(TestCase):
     """Tests for the Contact model"""

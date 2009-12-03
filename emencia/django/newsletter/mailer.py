@@ -64,6 +64,9 @@ class Mailer(object):
         message['Reply-to'] = self.newsletter.header_reply
         message['To'] = contact.mail_format()
 
+        for header, value in self.newsletter.server.custom_headers.items():
+            message[header] = value
+
         message.attach(MIMEText(content_text, 'plain', 'UTF-8'))
         message.attach(MIMEText(content_html, 'html', 'UTF-8'))
         

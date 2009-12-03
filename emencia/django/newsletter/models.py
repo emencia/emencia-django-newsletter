@@ -58,6 +58,17 @@ class SMTPServer(models.Model):
             creation_date__gte=last_hour).count()
         return self.mails_hour - sent_last_hour
 
+    @property
+    def custom_headers(self):
+        if self.headers:
+            headers = {}
+            for header in self.headers.split('\r\n'):
+                if header:
+                    key, value = header.split(':')
+                    headers[key.strip()] = value.strip()            
+            return headers
+        return {}
+
     def __unicode__(self):
         return '%s (%s)' % (self.name, self.host)
 
