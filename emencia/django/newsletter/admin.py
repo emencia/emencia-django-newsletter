@@ -161,9 +161,12 @@ class NewsletterAdmin(admin.ModelAdmin):
         
     def send_mail_test(self, request, queryset):
         for newsletter in queryset:
-            mailer = Mailer(newsletter, test=True)
-            mailer.run()
-            self.message_user(request, _('%s succesfully sent.') % newsletter)
+            if newsletter.test_contacts.count():
+                mailer = Mailer(newsletter, test=True)
+                mailer.run()
+                self.message_user(request, _('%s succesfully sent.') % newsletter)
+            else:
+                self.message_user(request, _('No test contacts assigned for %s.') % newsletter)
     send_mail_test.short_description = _('Send test email')
 
     def make_ready_to_send(self, request, queryset):
