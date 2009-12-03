@@ -27,6 +27,8 @@ class SMTPServer(models.Model):
     port = models.IntegerField(_('server port'), default=25)
     tls = models.BooleanField(_('server use TLS'))
 
+    headers = models.TextField(_('custom headers'), blank=True,
+                               help_text=_('key1: value1 key2: value2, splitted by return line.'))
     mails_hour = models.IntegerField(_('mails per hour'), default=0)
 
     def connection_valid(self):
