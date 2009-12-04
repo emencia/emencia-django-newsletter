@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: emencia.django.newsletter\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-12-03 11:51+0100\n"
-"PO-Revision-Date: 2009-12-03 11:52+0100\n"
+"POT-Creation-Date: 2009-12-04 09:53+0100\n"
+"PO-Revision-Date: 2009-12-04 09:53+0100\n"
 "Last-Translator: Fantomas <Fantomas42@gmail.com>\n"
 "Language-Team: fr <jfache@emencia.com>\n"
 "MIME-Version: 1.0\n"
@@ -97,45 +97,45 @@ msgstr "Historique d'envois"
 msgid "Historic"
 msgstr "Historique"
 
-#: admin.py:167
+#: admin.py:173
 #, python-format
 msgid "%s succesfully sent."
 msgstr "%s envoyée en test avec succès."
 
-#: admin.py:169
+#: admin.py:175
 #, python-format
 msgid "No test contacts assigned for %s."
 msgstr "Pas de contacts de test assignés pour %s."
 
-#: admin.py:170
+#: admin.py:176
 msgid "Send test email"
 msgstr "Effectuer un test d'envois"
 
-#: admin.py:177
+#: admin.py:183
 #, python-format
 msgid "%s newletters are ready to send"
 msgstr "%s newsletters sont prêtes à être envoyées."
 
-#: admin.py:178
+#: admin.py:184
 msgid "Make ready to send"
 msgstr "Passer en attente d'expédition"
 
-#: admin.py:186
+#: admin.py:192
 #, python-format
 msgid "%s newletters are cancelled"
 msgstr "%s newsletters ont été annulées."
 
-#: admin.py:187
+#: admin.py:193
 msgid "Cancel the sending"
 msgstr "Annuler les envois"
 
-#: admin.py:194
+#: admin.py:200
 #, python-format
 msgid "Stats %s"
 msgstr "Statistiques %s"
 
 #: models.py:21
-#: models.py:143
+#: models.py:144
 msgid "name"
 msgstr "Nom"
 
@@ -209,195 +209,199 @@ msgid "valid email"
 msgstr "Email valide"
 
 #: models.py:89
+msgid "contact tester"
+msgstr "Testeur"
+
+#: models.py:90
 msgid "tags"
 msgstr "Tags"
-
-#: models.py:95
-#: models.py:152
-#: models.py:211
-#: models.py:239
-#: models.py:277
-msgid "creation date"
-msgstr "Date de création"
 
 #: models.py:96
 #: models.py:153
 #: models.py:212
+#: models.py:240
+#: models.py:278
+msgid "creation date"
+msgstr "Date de création"
+
+#: models.py:97
+#: models.py:154
+#: models.py:213
 msgid "modification date"
 msgstr "Date de modification"
 
-#: models.py:108
+#: models.py:109
 msgid "No relative object"
 msgstr "Pas de relations"
 
-#: models.py:110
+#: models.py:111
 msgid "Related object"
 msgstr "Objet relatif"
 
-#: models.py:124
+#: models.py:125
 msgid "mail format"
 msgstr "Contact"
 
-#: models.py:138
+#: models.py:139
 #: templates/newsletter/newsletter_historic.html:24
 msgid "Contact"
 msgstr "Contact"
 
-#: models.py:139
+#: models.py:140
 msgid "Contacts"
 msgstr "Contacts"
 
-#: models.py:144
+#: models.py:145
 msgid "description"
 msgstr "Description"
 
-#: models.py:146
-#: models.py:157
+#: models.py:147
+#: models.py:158
 msgid "subscribers"
 msgstr "Inscrits"
 
-#: models.py:148
-#: models.py:161
+#: models.py:149
+#: models.py:162
 msgid "unsubscribers"
 msgstr "Désinscrits"
 
-#: models.py:173
+#: models.py:174
 msgid "Mailing List"
 msgstr "Liste de diffusion"
 
-#: models.py:174
+#: models.py:175
 msgid "Mailing Lists"
 msgstr "Listes de diffusions"
 
-#: models.py:185
+#: models.py:186
 msgid "draft"
 msgstr "Brouillon"
 
-#: models.py:186
+#: models.py:187
 msgid "waiting sending"
 msgstr "Prête à envoyer"
 
-#: models.py:187
+#: models.py:188
 msgid "sending"
 msgstr "En cours d'envois"
 
-#: models.py:188
-#: models.py:263
+#: models.py:189
+#: models.py:264
 msgid "sent"
 msgstr "Envoyée"
 
-#: models.py:189
+#: models.py:190
 msgid "canceled"
 msgstr "Annulée"
 
-#: models.py:192
-#: models.py:236
+#: models.py:193
+#: models.py:237
 msgid "title"
 msgstr "Titre"
 
-#: models.py:193
+#: models.py:194
 msgid "content"
 msgstr "Contenu"
 
-#: models.py:193
+#: models.py:194
 msgid "Or paste an URL."
 msgstr "Ou collez simplement une URL."
 
-#: models.py:196
+#: models.py:197
 msgid "mailing list"
 msgstr "Liste de diffusion"
 
-#: models.py:197
+#: models.py:198
 msgid "test contacts"
 msgstr "Contacts de test"
 
-#: models.py:200
+#: models.py:201
 msgid "smtp server"
 msgstr "Serveur d'envois"
 
-#: models.py:202
+#: models.py:203
 msgid "sender"
 msgstr "Expéditeur"
 
-#: models.py:204
+#: models.py:205
 msgid "reply to"
 msgstr "Répondre à"
 
-#: models.py:207
-#: models.py:273
+#: models.py:208
+#: models.py:274
 msgid "status"
 msgstr "Statut"
 
-#: models.py:208
+#: models.py:209
 msgid "sending date"
 msgstr "Date d'envois"
 
-#: models.py:210
+#: models.py:211
 msgid "Used for displaying the newsletter on the site."
 msgstr "Utilisé pour construire le lien vers le site."
 
-#: models.py:230
+#: models.py:231
 msgid "Newsletter"
 msgstr "Newsletter"
 
-#: models.py:231
+#: models.py:232
 msgid "Newsletters"
 msgstr "Newsletters"
 
-#: models.py:232
+#: models.py:233
 msgid "Can change status"
 msgstr "Changement de status"
 
-#: models.py:237
+#: models.py:238
 msgid "url"
 msgstr "url"
 
-#: models.py:249
+#: models.py:250
 msgid "Link"
 msgstr "Lien monitoré"
 
-#: models.py:250
+#: models.py:251
 msgid "Links"
 msgstr "Liens monitorés"
 
-#: models.py:262
+#: models.py:263
 msgid "sent in test"
 msgstr "Envois en test"
 
-#: models.py:264
+#: models.py:265
 msgid "error"
 msgstr "Erreur lors de l'envois"
 
-#: models.py:265
+#: models.py:266
 msgid "invalid email"
 msgstr "Email Invalide"
 
-#: models.py:266
+#: models.py:267
 msgid "opened"
 msgstr "Réception OK"
 
-#: models.py:267
+#: models.py:268
 msgid "opened on site"
 msgstr "Ouvert sur le site"
 
-#: models.py:268
+#: models.py:269
 msgid "link opened"
 msgstr "Lien ouvert"
 
-#: models.py:271
+#: models.py:272
 msgid "newsletter"
 msgstr "Newsletter"
 
-#: models.py:272
+#: models.py:273
 msgid "contact"
 msgstr "contact"
 
-#: models.py:274
+#: models.py:275
 msgid "link"
 msgstr "lien"
 
-#: models.py:286
 #: models.py:287
+#: models.py:288
 msgid "Contact Mailing Status"
 msgstr "Status d'envois"
 
@@ -436,8 +440,6 @@ msgstr "Désinscription"
 #~ msgstr "Adresse invalide"
 #~ msgid "content text"
 #~ msgstr "Contenu texte"
-#~ msgid "contacts"
-#~ msgstr "Contacts"
 #~ msgid "contacts length"
 #~ msgstr "Nombre de contacts"
 #~ msgid "Leave it empty if not necessary."

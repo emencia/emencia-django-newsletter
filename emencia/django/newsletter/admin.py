@@ -42,13 +42,13 @@ admin.site.register(SMTPServer, SMTPServerAdmin)
 
 class ContactAdmin(admin.ModelAdmin):
     date_hierarchy = 'creation_date'
-    list_display = ('email', 'first_name', 'last_name', 'tags', 'subscriber',
+    list_display = ('email', 'first_name', 'last_name', 'tags', 'tester', 'subscriber',
                     'valid', 'total_subscriptions', 'creation_date', 'related_object_admin')
-    list_filter = ('subscriber', 'valid', 'creation_date', 'modification_date')
+    list_filter = ('subscriber', 'valid', 'tester', 'creation_date', 'modification_date')
     search_fields = ('email', 'first_name', 'last_name', 'tags')
     fieldsets = ((None, {'fields': ('email', 'first_name', 'last_name')}),
                  (None, {'fields': ('tags',)}),
-                 (_('Status'), {'fields': ('subscriber', 'valid')}),
+                 (_('Status'), {'fields': ('subscriber', 'valid', 'tester')}),
                  (_('Advanced'), {'fields': ('object_id', 'content_type'),
                                   'classes': ('collapse',)}),
                  )
@@ -149,6 +149,12 @@ class NewsletterAdmin(admin.ModelAdmin):
     #        return db_field.formfield(**kwargs)
     #    return super(NewsletterAdmin, self).formfield_for_choice_field(
     #        db_field, request, **kwargs)
+
+    def formfield_for_manytomany(self, db_field, request, **kwargs):
+        if db_field.name == 'test_contacts':
+            kwargs['queryset'] = Contact.objects.filter(tester=True)        
+        return super(NewsletterAdmin, self).formfield_for_manytomany(
+            db_field, request, **kwargs)
 
     def save_model(self, request, newsletter, form, change):
         if newsletter.content.startswith('http://'):
