@@ -98,18 +98,6 @@ class Contact(models.Model):
 
     objects = ContactManager()
     
-    def related_object_admin(self):
-        if self.content_type and self.object_id:
-            admin_url = reverse('admin:%s_%s_change' % (self.content_type.app_label,
-                                                        self.content_type.model),
-                                args=(self.object_id,))
-            return '%s: <a href="%s">%s</a>' % (self.content_type.model.capitalize(),
-                                                admin_url,
-                                                self.content_object.__unicode__())
-        return _('No relative object')
-    related_object_admin.allow_tags = True
-    related_object_admin.short_description = _('Related object')
-
     def subscriptions(self):
         """Return the user subscriptions"""
         return MailingList.objects.filter(subscribers=self)

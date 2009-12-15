@@ -5,6 +5,7 @@ from datetime import datetime
 from django.contrib import admin
 from django.conf.urls.defaults import *
 from django.template import RequestContext
+from django.core.urlresolvers import reverse
 from django.shortcuts import render_to_response
 from django.utils.translation import ugettext as _
 from django.shortcuts import get_object_or_404
@@ -56,6 +57,18 @@ class ContactAdmin(admin.ModelAdmin):
     actions = ['create_mailinglist',]
     actions_on_top = False
     actions_on_bottom = True
+
+    def related_object_admin(self, contact):
+        if contact.content_type and contact.object_id:
+            admin_url = reverse('admin:%s_%s_change' % (contact.content_type.app_label,
+                                                        contact.content_type.model),
+                                args=(contact.object_id,))
+            return '%s: <a href="%s">%s</a>' % (contact.content_type.model.capitalize(),
+                                                admin_url,
+                                                contact.content_object.__unicode__())
+        return _('No relative object')
+    related_object_admin.allow_tags = True
+    related_object_admin.short_description = _('Related object')
 
     def total_subscriptions(self, contact):
         subscriptions = contact.subscriptions().count()
