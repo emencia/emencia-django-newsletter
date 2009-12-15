@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: emencia.django.newsletter\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-12-04 09:53+0100\n"
-"PO-Revision-Date: 2009-12-04 09:53+0100\n"
+"POT-Creation-Date: 2009-12-15 10:59+0100\n"
+"PO-Revision-Date: 2009-12-15 11:01+0100\n"
 "Last-Translator: Fantomas <Fantomas42@gmail.com>\n"
 "Language-Team: fr <jfache@emencia.com>\n"
 "MIME-Version: 1.0\n"
@@ -18,118 +18,126 @@ msgstr ""
 "X-Poedit-Country: FRANCE\n"
 "X-Poedit-SourceCharset: 8bit\n"
 
-#: admin.py:26
+#: admin.py:27
 msgid "Configuration"
 msgstr "Configuration"
 
-#: admin.py:28
-#: admin.py:130
+#: admin.py:29
+#: admin.py:131
 msgid "Miscellaneous"
 msgstr "Divers"
 
-#: admin.py:51
+#: admin.py:52
 msgid "Status"
 msgstr "Statut"
 
-#: admin.py:52
+#: admin.py:53
 msgid "Advanced"
 msgstr "Avancé"
 
-#: admin.py:63
+#: admin.py:64
 msgid "Total subscriptions"
 msgstr "Abonnements"
 
-#: admin.py:67
+#: admin.py:68
 #, python-format
 msgid "New mailinglist at %s"
 msgstr "Nouvelle liste de diffusion du %s"
 
-#: admin.py:68
+#: admin.py:69
 #, python-format
 msgid "New mailing list created in admin at %s"
 msgstr "Nouvelle de liste de diffusion créée depuis la table contact le %s"
 
-#: admin.py:72
+#: admin.py:73
 #, python-format
 msgid "%s succesfully created."
 msgstr "%s créée avec succès."
 
-#: admin.py:74
+#: admin.py:75
 msgid "Create a mailinglist"
 msgstr "Créer une liste de diffusion"
 
-#: admin.py:97
+#: admin.py:98
 msgid "Please select a least 2 mailing list."
 msgstr "Veuillez sélectionner au moins 2 listes de diffusions."
 
-#: admin.py:106
+#: admin.py:107
 #, python-format
 msgid "Merging list at %s"
 msgstr "Liste de diffusion fusionnée du %s"
 
-#: admin.py:107
+#: admin.py:108
 #, python-format
 msgid "Mailing list created by merging at %s"
 msgstr "Liste de diffusion créée par fusion le %s"
 
-#: admin.py:111
+#: admin.py:112
 #, python-format
 msgid "%s succesfully created by merging."
 msgstr "%s créée avec succès."
 
-#: admin.py:113
+#: admin.py:114
 msgid "Merge selected mailinglists"
 msgstr "Fusionner les listes de diffusions sélectionnées."
 
-#: admin.py:128
+#: admin.py:129
 msgid "Receivers"
 msgstr "Destinataires"
 
-#: admin.py:129
+#: admin.py:130
 msgid "Sending"
 msgstr "Expédition"
 
-#: admin.py:140
+#: admin.py:141
 msgid "View historic"
 msgstr "Historique d'envois"
 
-#: admin.py:142
+#: admin.py:143
 msgid "Historic"
 msgstr "Historique"
 
-#: admin.py:173
+#: admin.py:165
+msgid "Unable to download HTML, due to errors within."
+msgstr "Impossible de télécharger le HTML, il contient des erreurs."
+
+#: admin.py:179
+msgid "Unable send newsletter, due to errors within HTML."
+msgstr "Impossible d'envoyer la newsletter, le HTML est mal formaté."
+
+#: admin.py:181
 #, python-format
 msgid "%s succesfully sent."
 msgstr "%s envoyée en test avec succès."
 
-#: admin.py:175
+#: admin.py:183
 #, python-format
 msgid "No test contacts assigned for %s."
 msgstr "Pas de contacts de test assignés pour %s."
 
-#: admin.py:176
+#: admin.py:184
 msgid "Send test email"
 msgstr "Effectuer un test d'envois"
 
-#: admin.py:183
+#: admin.py:191
 #, python-format
 msgid "%s newletters are ready to send"
 msgstr "%s newsletters sont prêtes à être envoyées."
 
-#: admin.py:184
+#: admin.py:192
 msgid "Make ready to send"
 msgstr "Passer en attente d'expédition"
 
-#: admin.py:192
+#: admin.py:200
 #, python-format
 msgid "%s newletters are cancelled"
 msgstr "%s newsletters ont été annulées."
 
-#: admin.py:193
+#: admin.py:201
 msgid "Cancel the sending"
 msgstr "Annuler les envois"
 
-#: admin.py:200
+#: admin.py:208
 #, python-format
 msgid "Stats %s"
 msgstr "Statistiques %s"

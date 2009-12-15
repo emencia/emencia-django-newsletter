@@ -1,4 +1,5 @@
 """Admin for emencia.django.newsletter"""
+from HTMLParser import HTMLParseError
 from datetime import datetime
 
 from django.contrib import admin
@@ -158,7 +159,10 @@ class NewsletterAdmin(admin.ModelAdmin):
 
     def save_model(self, request, newsletter, form, change):
         if newsletter.content.startswith('http://'):
-            newsletter.content = get_webpage_content(newsletter.content)
+            try:
+                newsletter.content = get_webpage_content(newsletter.content)
+            except HTMLParseError:
+                self.message_user(request, _('Unable to download HTML, due to errors within.'))
 
         if not request.user.has_perm('newsletter.can_change_status'):
             newsletter.status = form.initial.get('status', Newsletter.DRAFT)
@@ -169,7 +173,11 @@ class NewsletterAdmin(admin.ModelAdmin):
         for newsletter in queryset:
             if newsletter.test_contacts.count():
                 mailer = Mailer(newsletter, test=True)
-                mailer.run()
+                try:
+                    mailer.run()
+                except HTMLParseError:
+                    self.message_user(request, _('Unable send newsletter, due to errors within HTML.'))
+                    continue
                 self.message_user(request, _('%s succesfully sent.') % newsletter)
             else:
                 self.message_user(request, _('No test contacts assigned for %s.') % newsletter)
