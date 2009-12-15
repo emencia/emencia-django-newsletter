@@ -107,16 +107,12 @@ class Contact(models.Model):
         return MailingList.objects.filter(unsubscribers=self)
 
     def vcard_format(self):
-        import vobject
-        vc = vobject.vCard()
-        vc.add('n')
-        vc.n.value = vobject.vcard.Name(family=self.last_name, given=self.first_name)
-        vc.add('fn')
-        vc.fn.value = '%s %s' % (self.first_name, self.last_name)
-        vc.add('email')
-        vc.email.value = self.email
-        vc.email.type_param = 'INTERNET'
-        return vc.serialize()
+        VCARD_PATTERN = u'BEGIN:VCARD\r\nVERSION:3.0\r\n'\
+                        'EMAIL;TYPE=INTERNET:%(email)s\r\n'\
+                        'FN:%(first_name)s %(last_name)s\r\n'\
+                        'N:%(last_name)s;%(first_name)s;;;\r\n'\
+                        'END:VCARD\r\n'
+        return VCARD_PATTERN % self.__dict__
 
     def mail_format(self):
         if self.first_name and self.last_name:
