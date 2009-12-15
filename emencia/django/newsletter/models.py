@@ -106,6 +106,18 @@ class Contact(models.Model):
         """Return the user unsubscriptions"""
         return MailingList.objects.filter(unsubscribers=self)
 
+    def vcard_format(self):
+        import vobject
+        vc = vobject.vCard()
+        vc.add('n')
+        vc.n.value = vobject.vcard.Name(family=self.last_name, given=self.first_name)
+        vc.add('fn')
+        vc.fn.value = '%s %s' % (self.first_name, self.last_name)
+        vc.add('email')
+        vc.email.value = self.email
+        vc.email.type_param = 'INTERNET'
+        return vc.serialize()
+
     def mail_format(self):
         if self.first_name and self.last_name:
             return '%s %s <%s>' % (self.last_name, self.first_name, self.email)
