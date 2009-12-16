@@ -150,6 +150,13 @@ class NewsletterAdmin(admin.ModelAdmin):
     actions_on_top = False
     actions_on_bottom = True
 
+    def get_actions(self, request):
+        actions = super(NewsletterAdmin, self).get_actions(request)
+        if not request.user.has_perm('newsletter.can_change_status'):
+            del actions['make_ready_to_send']
+            del actions['make_cancel_sending']
+        return actions
+
     def historic_link(self, newsletter):
         return '<a href="%s">%s</a>' % (newsletter.get_historic_url(), _('View historic'))
     historic_link.allow_tags = True
