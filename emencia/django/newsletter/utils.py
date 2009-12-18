@@ -44,9 +44,9 @@ def track_links(content, context):
     for link_markup in soup('a'):
         if link_markup.get('href'):
             link_href = link_markup['href']
-            if '?' not in link_href and '@' not in link_href and \
-                   not link_href.endswith('/'):
-                link_href = '%s/' % link_href
+            #if '?' not in link_href and '@' not in link_href and \
+            #       not link_href.endswith('/'):
+            #    link_href = '%s/' % link_href
             link_title = link_markup.get('title', link_href)
             link, created = Link.objects.get_or_create(url=link_href,
                                                        defaults={'title': link_title})
