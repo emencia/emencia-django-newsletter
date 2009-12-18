@@ -38,8 +38,20 @@ def vcard_contacts_export_response(contacts, filename=''):
     return response
 
 def vcard_contact_import(vcard):
-    pass
+    from emencia.django.newsletter.models import Contact
+    
+    defaults = {'email': vcard.email.value,
+                'first_name': vcard.n.value.given,
+                'last_name': vcard.n.value.family}
+    
+    contact, created = Contact.objects.get_or_create(email=defaults['email'],
+                                                     defaults=defaults)
+    return int(created)
 
 def vcard_contacts_import(stream):
-    pass
+    vcards = vobject.readComponents(stream)
+    inserted = 0
+    for vcard in vcards:
+        inserted += vcard_contact_import(vcard)
+    return inserted
 

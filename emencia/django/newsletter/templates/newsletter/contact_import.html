@@ -1,0 +1,36 @@
+{% extends "admin/base_site.html" %}
+{% load i18n adminmedia %}
+
+{% block breadcrumbs %}
+{% if not is_popup %}
+<div class="breadcrumbs">
+     <a href="../../../">{% trans "Home" %}</a> &rsaquo;
+     <a href="../../">{{ app_label|capfirst|escape }}</a> &rsaquo;
+     <a href="../">{{ opts.verbose_name_plural|capfirst }}</a> &rsaquo;
+     {% trans 'Importation' %}
+</div>
+{% endif %}
+{% endblock %}
+
+{% block extrastyle %}{{ block.super }}<link rel="stylesheet" type="text/css" href="{% admin_media_prefix %}css/forms.css" />{% endblock %}
+
+{% block content %}
+<div id="content-main">
+  <p>Importez les contacts de votre client mail favoris, en fournissant un fichier VCard.</p>
+    <form action="." method="post" enctype="multipart/form-data">
+    <div>
+      <fieldset class="module aligned">
+        <div class="form-row source">
+          <div>
+            <label for="id_source" class="required">Fichier VCard (.cvf) :</label>
+            <input name="source" id="id_source" type="file" class="vTextField" />
+          </div>
+        </div>
+      </fieldset>
+      <div class="submit-row">
+        <input type="submit" class="default" value="Importation" />
+      </div>
+    </div>
+  </form>
+</div>
+{% endblock %}

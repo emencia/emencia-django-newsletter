@@ -4,10 +4,13 @@ from datetime import datetime
 from django.contrib import admin
 from django.conf.urls.defaults import *
 from django.core.urlresolvers import reverse
+from django.shortcuts import render_to_response
+from django.template import RequestContext
 from django.utils.translation import ugettext as _
 
 from emencia.django.newsletter.models import Contact
 from emencia.django.newsletter.models import MailingList
+from emencia.django.newsletter.vcard import vcard_contacts_import
 from emencia.django.newsletter.vcard import vcard_contacts_export_response
 
 class ContactAdmin(admin.ModelAdmin):
@@ -64,8 +67,21 @@ class ContactAdmin(admin.ModelAdmin):
 
     def importation(self, request):
         """Import contacts from a VCard"""
-        #TODO
-        pass
+        opts = self.model._meta
+        
+        if request.FILES:
+            source = request.FILES.get('source')
+            inserted = vcard_contacts_import(source)
+            self.message_user(request, _('%s contacts succesfully imported.') % inserted)
+            #redirect to changelist
+                
+        context = {'title': _('VCard import'),
+                   'opts': opts,
+                   'root_path': self.admin_site.root_path,
+                   'app_label': opts.app_label}
+    
+        return render_to_response('newsletter/contact_import.html',
+                                  context, RequestContext(request))
 
     def exportation(self, request):
         """Export all the contact in VCard"""
