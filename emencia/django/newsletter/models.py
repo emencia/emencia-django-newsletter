@@ -10,6 +10,7 @@ from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes import generic
 
 from tagging.fields import TagField
+from emencia.django.newsletter.vcard import vcard_contact_export
 from emencia.django.newsletter.managers import ContactManager
 from emencia.django.newsletter.settings import DEFAULT_HEADER_REPLY
 from emencia.django.newsletter.settings import DEFAULT_HEADER_SENDER
@@ -107,12 +108,7 @@ class Contact(models.Model):
         return MailingList.objects.filter(unsubscribers=self)
 
     def vcard_format(self):
-        VCARD_PATTERN = u'BEGIN:VCARD\r\nVERSION:3.0\r\n'\
-                        'EMAIL;TYPE=INTERNET:%(email)s\r\n'\
-                        'FN:%(first_name)s %(last_name)s\r\n'\
-                        'N:%(last_name)s;%(first_name)s;;;\r\n'\
-                        'END:VCARD\r\n'
-        return VCARD_PATTERN % self.__dict__
+        return vcard_contact_export(self)
 
     def mail_format(self):
         if self.first_name and self.last_name:
