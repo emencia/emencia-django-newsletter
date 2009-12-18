@@ -1,5 +1,6 @@
 """Mailer for emencia.django.newsletter"""
 from smtplib import SMTP
+from smtplib import SMTPRecipientsRefused
 from datetime import datetime
 try:
     from email.mime.multipart import MIMEMultipart
@@ -7,7 +8,7 @@ try:
 except ImportError :  #python 2.4 compatibility
     from email.MIMEMultipart import MIMEMultipart
     from email.MIMEText import MIMEText
-                  
+
 
 from html2text import html2text
 from django.contrib.sites.models import Site
@@ -41,13 +42,19 @@ class Mailer(object):
         if self.can_send:
             if not self.smtp:
                 self.smtp_connect()
-            
+
             for contact in self.expedition_list:
                 message = self.build_message(contact)
-                self.smtp.sendmail(self.newsletter.header_sender,
-                                   contact.email,
-                                   message.as_string())
-                status = self.test and ContactMailingStatus.SENT_TEST or ContactMailingStatus.SENT
+                try:
+                    self.smtp.sendmail(self.newsletter.header_sender,
+                                                 contact.email,
+                                                 message.as_string())
+                    status = self.test and ContactMailingStatus.SENT_TEST or ContactMailingStatus.SENT
+                except SMTPRecipientsRefused, e:
+                    status = ContactMailingStatus.INVALID
+                except:
+                    status = ContactMailingStatus.ERROR
+
                 ContactMailingStatus.objects.create(newsletter=self.newsletter,
                                                     contact=contact, status=status)
             self.smtp.quit()
@@ -69,7 +76,7 @@ class Mailer(object):
 
         message.attach(MIMEText(content_text, 'plain', 'UTF-8'))
         message.attach(MIMEText(content_html, 'html', 'UTF-8'))
-        
+
         return message
 
     def smtp_connect(self):
@@ -105,7 +112,7 @@ class Mailer(object):
             content = track_links(content, context)
         link_site = render_to_string('newsletter/newsletter_link_site.html', context)
         content = body_insertion(content, link_site)
-        
+
         if INCLUDE_UNSUBSCRIPTION:
             unsubscription = render_to_string('newsletter/newsletter_link_unsubscribe.html', context)
             content = body_insertion(content, unsubscription, end=True)
@@ -113,19 +120,19 @@ class Mailer(object):
             image_tracking = render_to_string('newsletter/newsletter_image_tracking.html', context)
             content = body_insertion(content, image_tracking, end=True)
         return smart_unicode(content)
-            
+
     def update_newsletter_status(self):
         """Update the status of the newsletter"""
         if self.test:
             return
-        
+
         if self.newsletter.status == Newsletter.WAITING:
             self.newsletter.status = Newsletter.SENDING
         if self.newsletter.status == Newsletter.SENDING and \
            self.newsletter.mails_sent() >= self.expedition_list.count():
             self.newsletter.status = Newsletter.SENT
         self.newsletter.save()
-    
+
     @property
     def can_send(self):
         """Check if the newsletter can be sent"""
@@ -134,7 +141,7 @@ class Mailer(object):
 
         if self.test:
             return True
-        
+
         if self.newsletter.sending_date <= datetime.now() and \
                (self.newsletter.status == Newsletter.WAITING or \
                 self.newsletter.status == Newsletter.SENDING):

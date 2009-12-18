@@ -20,10 +20,11 @@ class FakeSMTP(object):
     mails_sent = 0
     def sendmail(self, *ka, **kw):
         self.mails_sent += 1
+        return {}
 
     def quit(*ka, **kw):
         pass
-    
+
 def fake_email_content(*ka, **kw):
     return ''
 
@@ -42,7 +43,7 @@ class SMTPServerTestCase(TestCase):
                                                     content='Test Newsletter Content',
                                                     mailing_list=self.mailinglist,
                                                     server=self.server)
-        
+
         self.newsletter_2 = Newsletter.objects.create(title='Test Newsletter 2',
                                                       content='Test Newsletter 2 Content',
                                                       mailing_list=self.mailinglist,
@@ -51,7 +52,7 @@ class SMTPServerTestCase(TestCase):
                                                       content='Test Newsletter 2 Content',
                                                       mailing_list=self.mailinglist,
                                                       server=self.server_2)
-        
+
     def test_credits(self):
         # Testing unlimited account
         self.assertEquals(self.server.credits(), 1000)
@@ -99,7 +100,7 @@ class ContactTestCase(TestCase):
     def test_unique(self):
         contact = Contact(email='test@domain.com').save()
         self.assertRaises(IntegrityError, Contact(email='test@domain.com').save)
-        
+
     def test_mail_format(self):
         contact = Contact(email='test@domain.com')
         self.assertEquals(contact.mail_format(), 'test@domain.com')
@@ -108,10 +109,16 @@ class ContactTestCase(TestCase):
         contact = Contact(email='test@domain.com', first_name='Toto', last_name='Titi')
         self.assertEquals(contact.mail_format(), 'Titi Toto <test@domain.com>')
 
+    def test_vcard_format(self):
+        contact = Contact(email='test@domain.com', first_name='Toto', last_name='Titi')
+        self.assertEquals(contact.vcard_format(), 'BEGIN:VCARD\r\nVERSION:3.0\r\n'\
+                          'EMAIL;TYPE=INTERNET:test@domain.com\r\nFN:Toto Titi\r\n'\
+                          'N:Titi;Toto;;;\r\nEND:VCARD\r\n')
+
     def test_subscriptions(self):
         contact = Contact.objects.create(email='test@domain.com')
         self.assertEquals(len(contact.subscriptions()), 0)
-        
+
         self.mailinglist_1.subscribers.add(contact)
         self.assertEquals(len(contact.subscriptions()), 1)
         self.mailinglist_2.subscribers.add(contact)
@@ -120,7 +127,7 @@ class ContactTestCase(TestCase):
     def test_unsubscriptions(self):
         contact = Contact.objects.create(email='test@domain.com')
         self.assertEquals(len(contact.unsubscriptions()), 0)
-        
+
         self.mailinglist_1.unsubscribers.add(contact)
         self.assertEquals(len(contact.unsubscriptions()), 1)
         self.mailinglist_2.unsubscribers.add(contact)
@@ -188,7 +195,7 @@ class TokenizationTestCase(TestCase):
 
     def setUp(self):
         self.contact = Contact.objects.create(email='test@domain.com')
-        
+
     def test_tokenize_untokenize(self):
         uidb36, token = tokenize(self.contact)
         self.assertEquals(untokenize(uidb36, token), self.contact)
@@ -215,7 +222,7 @@ class MailerTestCase(TestCase):
                                                     status=Newsletter.WAITING)
         self.newsletter.test_contacts.add(*self.contacts[:2])
 
-        
+
     def test_expedition_list(self):
         mailer = Mailer(self.newsletter, test=True)
         self.assertEquals(len(mailer.get_expedition_list()), 2)
@@ -269,23 +276,25 @@ class MailerTestCase(TestCase):
         mailer = Mailer(self.newsletter)
         self.assertTrue(mailer.can_send)
 
-    def test_run(self):        
+    def test_run(self):
         mailer = Mailer(self.newsletter)
         mailer.smtp = FakeSMTP()
-        mailer.build_email_content = fake_email_content        
+        mailer.build_email_content = fake_email_content
         mailer.run()
         self.assertEquals(mailer.smtp.mails_sent, 4)
         self.assertEquals(ContactMailingStatus.objects.filter(
             status=ContactMailingStatus.SENT, newsletter=self.newsletter).count(), 4)
-        
+
         mailer = Mailer(self.newsletter, test=True)
         mailer.smtp = FakeSMTP()
         mailer.build_email_content = fake_email_content
-        
+
         mailer.run()
         self.assertEquals(mailer.smtp.mails_sent, 2)
         self.assertEquals(ContactMailingStatus.objects.filter(
             status=ContactMailingStatus.SENT_TEST, newsletter=self.newsletter).count(), 2)
+
+        mailer.smtp = None
 
     def test_update_newsletter_status(self):
         mailer = Mailer(self.newsletter, test=True)
@@ -305,3 +314,21 @@ class MailerTestCase(TestCase):
         mailer.update_newsletter_status()
         self.assertEquals(self.newsletter.status, Newsletter.SENT)
 
+    def test_recipients_refused(self):
+        server = SMTPServer.objects.create(name='Local SMTP',
+                                           host='localhost')
+        contact = Contact.objects.create(email='thisisaninvalidemail')
+        self.newsletter.test_contacts.clear()
+        self.newsletter.test_contacts.add(contact)
+        self.newsletter.server = server
+        self.newsletter.save()
+
+        self.assertEquals(ContactMailingStatus.objects.filter(
+            status=ContactMailingStatus.INVALID, newsletter=self.newsletter).count(), 0)
+
+        mailer = Mailer(self.newsletter, test=True)
+        mailer.build_email_content = fake_email_content
+        mailer.run()
+
+        self.assertEquals(ContactMailingStatus.objects.filter(
+            status=ContactMailingStatus.INVALID, newsletter=self.newsletter).count(), 1)
