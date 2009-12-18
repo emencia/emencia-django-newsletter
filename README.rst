@@ -18,6 +18,7 @@ More than a long speech, here the list of the main features :
   * Coupling capacities with another django model.
   * Variables can be used in the newsletter's templates.
   * Mailing list managements (merging, importing...).
+  * Import/Export of the contact in VCard 3.0.
   * Configurable SMTP servers with flow limit management.
   * Can send newsletter previews.
   * Unsubscriptions to mailing list.
