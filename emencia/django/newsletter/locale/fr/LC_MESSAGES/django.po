@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: emencia.django.newsletter\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-12-15 10:59+0100\n"
-"PO-Revision-Date: 2009-12-15 11:01+0100\n"
+"POT-Creation-Date: 2009-12-17 17:11+0100\n"
+"PO-Revision-Date: 2009-12-18 11:56+0100\n"
 "Last-Translator: Fantomas <Fantomas42@gmail.com>\n"
 "Language-Team: fr <jfache@emencia.com>\n"
 "MIME-Version: 1.0\n"
@@ -18,132 +18,152 @@ msgstr ""
 "X-Poedit-Country: FRANCE\n"
 "X-Poedit-SourceCharset: 8bit\n"
 
-#: admin.py:27
+#: admin.py:30
 msgid "Configuration"
 msgstr "Configuration"
 
-#: admin.py:29
-#: admin.py:131
+#: admin.py:32
+#: admin.py:197
 msgid "Miscellaneous"
 msgstr "Divers"
 
-#: admin.py:52
+#: admin.py:56
 msgid "Status"
 msgstr "Statut"
 
-#: admin.py:53
+#: admin.py:57
 msgid "Advanced"
 msgstr "Avancé"
 
-#: admin.py:64
+#: admin.py:73
+msgid "No relative object"
+msgstr "Pas de relations"
+
+#: admin.py:75
+msgid "Related object"
+msgstr "Objet relatif"
+
+#: admin.py:82
 msgid "Total subscriptions"
 msgstr "Abonnements"
 
-#: admin.py:68
+#: admin.py:93
+msgid "Export contacts as VCard"
+msgstr "Exporter les contacts en VCard"
+
+#: admin.py:98
 #, python-format
 msgid "New mailinglist at %s"
 msgstr "Nouvelle liste de diffusion du %s"
 
-#: admin.py:69
+#: admin.py:99
 #, python-format
 msgid "New mailing list created in admin at %s"
 msgstr "Nouvelle de liste de diffusion créée depuis la table contact le %s"
 
-#: admin.py:73
+#: admin.py:103
 #, python-format
 msgid "%s succesfully created."
 msgstr "%s créée avec succès."
 
-#: admin.py:75
+#: admin.py:104
 msgid "Create a mailinglist"
 msgstr "Créer une liste de diffusion"
 
-#: admin.py:98
+#: admin.py:146
 msgid "Please select a least 2 mailing list."
 msgstr "Veuillez sélectionner au moins 2 listes de diffusions."
 
-#: admin.py:107
+#: admin.py:155
 #, python-format
 msgid "Merging list at %s"
 msgstr "Liste de diffusion fusionnée du %s"
 
-#: admin.py:108
+#: admin.py:156
 #, python-format
 msgid "Mailing list created by merging at %s"
 msgstr "Liste de diffusion créée par fusion le %s"
 
-#: admin.py:112
+#: admin.py:160
 #, python-format
 msgid "%s succesfully created by merging."
 msgstr "%s créée avec succès."
 
-#: admin.py:114
+#: admin.py:161
 msgid "Merge selected mailinglists"
 msgstr "Fusionner les listes de diffusions sélectionnées."
 
-#: admin.py:129
+#: admin.py:166
+msgid "Export Subscribers"
+msgstr "Export des inscrits"
+
+#: admin.py:168
+msgid "Export"
+msgstr "Exportation"
+
+#: admin.py:195
 msgid "Receivers"
 msgstr "Destinataires"
 
-#: admin.py:130
+#: admin.py:196
 msgid "Sending"
 msgstr "Expédition"
 
-#: admin.py:141
-msgid "View historic"
-msgstr "Historique d'envois"
-
-#: admin.py:143
-msgid "Historic"
-msgstr "Historique"
-
-#: admin.py:165
+#: admin.py:233
 msgid "Unable to download HTML, due to errors within."
 msgstr "Impossible de télécharger le HTML, il contient des erreurs."
 
-#: admin.py:179
+#: admin.py:242
+msgid "View historic"
+msgstr "Historique d'envois"
+
+#: admin.py:244
+msgid "Historic"
+msgstr "Historique"
+
+#: admin.py:254
 msgid "Unable send newsletter, due to errors within HTML."
 msgstr "Impossible d'envoyer la newsletter, le HTML est mal formaté."
 
-#: admin.py:181
+#: admin.py:256
 #, python-format
 msgid "%s succesfully sent."
 msgstr "%s envoyée en test avec succès."
 
-#: admin.py:183
+#: admin.py:258
 #, python-format
 msgid "No test contacts assigned for %s."
 msgstr "Pas de contacts de test assignés pour %s."
 
-#: admin.py:184
+#: admin.py:259
 msgid "Send test email"
 msgstr "Effectuer un test d'envois"
 
-#: admin.py:191
+#: admin.py:267
 #, python-format
 msgid "%s newletters are ready to send"
 msgstr "%s newsletters sont prêtes à être envoyées."
 
-#: admin.py:192
+#: admin.py:268
 msgid "Make ready to send"
 msgstr "Passer en attente d'expédition"
 
-#: admin.py:200
+#: admin.py:277
 #, python-format
 msgid "%s newletters are cancelled"
 msgstr "%s newsletters ont été annulées."
 
-#: admin.py:201
+#: admin.py:278
 msgid "Cancel the sending"
 msgstr "Annuler les envois"
 
-#: admin.py:208
+#: admin.py:285
 #, python-format
 msgid "Stats %s"
 msgstr "Statistiques %s"
 
 #: models.py:21
-#: models.py:144
+#: models.py:140
 msgid "name"
 msgstr "Nom"
 
@@ -225,193 +245,200 @@ msgid "tags"
 msgstr "Tags"
 
 #: models.py:96
-#: models.py:153
-#: models.py:212
-#: models.py:240
-#: models.py:278
+#: models.py:149
+#: models.py:208
+#: models.py:236
+#: models.py:274
 msgid "creation date"
 msgstr "Date de création"
 
 #: models.py:97
-#: models.py:154
-#: models.py:213
+#: models.py:150
+#: models.py:209
 msgid "modification date"
 msgstr "Date de modification"
 
-#: models.py:109
-msgid "No relative object"
-msgstr "Pas de relations"
-
-#: models.py:111
-msgid "Related object"
-msgstr "Objet relatif"
-
-#: models.py:125
+#: models.py:121
 msgid "mail format"
 msgstr "Contact"
 
-#: models.py:139
+#: models.py:135
 #: templates/newsletter/newsletter_historic.html:24
 msgid "Contact"
 msgstr "Contact"
 
-#: models.py:140
+#: models.py:136
 msgid "Contacts"
 msgstr "Contacts"
 
-#: models.py:145
+#: models.py:141
 msgid "description"
 msgstr "Description"
 
-#: models.py:147
-#: models.py:158
+#: models.py:143
+#: models.py:154
 msgid "subscribers"
 msgstr "Inscrits"
 
-#: models.py:149
-#: models.py:162
+#: models.py:145
+#: models.py:158
 msgid "unsubscribers"
 msgstr "Désinscrits"
 
-#: models.py:174
+#: models.py:170
 msgid "Mailing List"
 msgstr "Liste de diffusion"
 
-#: models.py:175
+#: models.py:171
 msgid "Mailing Lists"
 msgstr "Listes de diffusions"
 
-#: models.py:186
+#: models.py:182
 msgid "draft"
 msgstr "Brouillon"
 
-#: models.py:187
+#: models.py:183
 msgid "waiting sending"
 msgstr "Prête à envoyer"
 
-#: models.py:188
+#: models.py:184
 msgid "sending"
 msgstr "En cours d'envois"
 
-#: models.py:189
-#: models.py:264
+#: models.py:185
+#: models.py:260
 msgid "sent"
 msgstr "Envoyée"
 
-#: models.py:190
+#: models.py:186
 msgid "canceled"
 msgstr "Annulée"
 
-#: models.py:193
-#: models.py:237
+#: models.py:189
+#: models.py:233
 msgid "title"
 msgstr "Titre"
 
-#: models.py:194
+#: models.py:190
 msgid "content"
 msgstr "Contenu"
 
-#: models.py:194
+#: models.py:190
 msgid "Or paste an URL."
 msgstr "Ou collez simplement une URL."
 
-#: models.py:197
+#: models.py:193
 msgid "mailing list"
 msgstr "Liste de diffusion"
 
-#: models.py:198
+#: models.py:194
 msgid "test contacts"
 msgstr "Contacts de test"
 
-#: models.py:201
+#: models.py:197
 msgid "smtp server"
 msgstr "Serveur d'envois"
 
-#: models.py:203
+#: models.py:199
 msgid "sender"
 msgstr "Expéditeur"
 
-#: models.py:205
+#: models.py:201
 msgid "reply to"
 msgstr "Répondre à"
 
-#: models.py:208
-#: models.py:274
+#: models.py:204
+#: models.py:270
 msgid "status"
 msgstr "Statut"
 
-#: models.py:209
+#: models.py:205
 msgid "sending date"
 msgstr "Date d'envois"
 
-#: models.py:211
+#: models.py:207
 msgid "Used for displaying the newsletter on the site."
 msgstr "Utilisé pour construire le lien vers le site."
 
-#: models.py:231
+#: models.py:227
 msgid "Newsletter"
 msgstr "Newsletter"
 
-#: models.py:232
+#: models.py:228
 msgid "Newsletters"
 msgstr "Newsletters"
 
-#: models.py:233
+#: models.py:229
 msgid "Can change status"
 msgstr "Changement de status"
 
-#: models.py:238
+#: models.py:234
 msgid "url"
 msgstr "url"
 
-#: models.py:250
+#: models.py:246
 msgid "Link"
 msgstr "Lien monitoré"
 
-#: models.py:251
+#: models.py:247
 msgid "Links"
 msgstr "Liens monitorés"
 
-#: models.py:263
+#: models.py:259
 msgid "sent in test"
 msgstr "Envois en test"
 
-#: models.py:265
+#: models.py:261
 msgid "error"
 msgstr "Erreur lors de l'envois"
 
-#: models.py:266
+#: models.py:262
 msgid "invalid email"
 msgstr "Email Invalide"
 
-#: models.py:267
+#: models.py:263
 msgid "opened"
 msgstr "Réception OK"
 
-#: models.py:268
+#: models.py:264
 msgid "opened on site"
 msgstr "Ouvert sur le site"
 
-#: models.py:269
+#: models.py:265
 msgid "link opened"
 msgstr "Lien ouvert"
 
-#: models.py:272
+#: models.py:268
 msgid "newsletter"
 msgstr "Newsletter"
 
-#: models.py:273
+#: models.py:269
 msgid "contact"
 msgstr "contact"
 
-#: models.py:275
+#: models.py:271
 msgid "link"
 msgstr "lien"
 
-#: models.py:287
-#: models.py:288
+#: models.py:283
+#: models.py:284
 msgid "Contact Mailing Status"
 msgstr "Status d'envois"
+
+#: templates/admin/newsletter/contact/change_list.html:9
+#, python-format
+msgid "Add %(name)s"
+msgstr "Ajouter %(name)s"
+
+#: templates/admin/newsletter/contact/change_list.html:14
+#, python-format
+msgid "Import %(name)s"
+msgstr "Importer %(name)s"
+
+#: templates/admin/newsletter/contact/change_list.html:20
+#, python-format
+msgid "Export %(name)s"
+msgstr "Exporter %(name)s"
 
 #: templates/newsletter/newsletter_historic.html:9
 msgid "Home"
