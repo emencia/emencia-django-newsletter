@@ -204,14 +204,13 @@ class NewsletterAdmin(admin.ModelAdmin):
             del actions['make_cancel_sending']
         return actions
 
-    #def formfield_for_choice_field(self, db_field, request, **kwargs):
-    #    if db_field.name == 'status' and \
-    #           not request.user.has_perm('newsletter.can_change_status'):
-    #        kwargs['editable'] = False
-    #        # Marche po
-    #        return db_field.formfield(**kwargs)
-    #    return super(NewsletterAdmin, self).formfield_for_choice_field(
-    #        db_field, request, **kwargs)
+    def formfield_for_choice_field(self, db_field, request, **kwargs):
+       if db_field.name == 'status' and \
+              not request.user.has_perm('newsletter.can_change_status'):           
+           kwargs['choices'] = ((Newsletter.DRAFT, _('Default')),)
+           return db_field.formfield(**kwargs)
+       return super(NewsletterAdmin, self).formfield_for_choice_field(
+           db_field, request, **kwargs)
 
     def formfield_for_manytomany(self, db_field, request, **kwargs):
         if db_field.name == 'test_contacts':
