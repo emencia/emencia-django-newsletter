@@ -6,12 +6,18 @@ from django.http import HttpResponse
 
 def vcard_contact_export(contact):
     """Export in VCard 3.0 a Contact model instance"""
-    VCARD_PATTERN = u'BEGIN:VCARD\r\nVERSION:3.0\r\n'\
-                    'EMAIL;TYPE=INTERNET:%(email)s\r\n'\
-                    'FN:%(first_name)s %(last_name)s\r\n'\
-                    'N:%(last_name)s;%(first_name)s;;;\r\n'\
-                    'END:VCARD\r\n'
-    return VCARD_PATTERN % contact.__dict__
+    if hasattr(contact.content_object, 'vcard_export'):
+        return contact.content_object.vcard_export()
+
+    vcard = vobject.vCard()
+    vcard.add('n')
+    vcard.n.value = vobject.vcard.Name(family=contact.last_name, given=contact.first_name)    
+    vcard.add('fn')
+    vcard.fn.value = '%s %s' % (contact.first_name, contact.last_name)
+    vcard.add('email')
+    vcard.email.value = contact.email
+    vcard.email.type_param = 'INTERNET'
+    return vcard.serialize()
 
 def vcard_contacts_export(contacts):
     """Export multiples contacts in VCard"""
