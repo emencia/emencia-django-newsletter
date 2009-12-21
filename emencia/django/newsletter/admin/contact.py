@@ -9,7 +9,10 @@ from django.template import RequestContext
 from django.utils.translation import ugettext as _
 
 from emencia.django.newsletter.models import Contact
+from emencia.django.newsletter.models import WorkGroup
 from emencia.django.newsletter.models import MailingList
+from emencia.django.newsletter.utils import request_workgroups
+from emencia.django.newsletter.utils import request_workgroups_contacts_pk
 from emencia.django.newsletter.vcard import vcard_contacts_import
 from emencia.django.newsletter.vcard import vcard_contacts_export_response
 
@@ -28,6 +31,21 @@ class ContactAdmin(admin.ModelAdmin):
     actions = ['create_mailinglist', 'export_vcard']
     actions_on_top = False
     actions_on_bottom = True
+
+    def queryset(self, request):
+        queryset = super(ContactAdmin, self).queryset(request)
+        if not request.user.is_superuser:
+            contacts_pk = request_workgroups_contacts_pk(request)
+            queryset = queryset.filter(pk__in=contacts_pk)
+        return queryset
+
+    def save_model(self, request, contact, form, change):
+        workgroups = []
+        if not contact.pk and not request.user.is_superuser:
+            workgroups = request_workgroups(request)
+        contact.save()
+        for workgroup in workgroups:
+            workgroup.contacts.add(contact)
 
     def related_object_admin(self, contact):
         """Display link to related object's admin"""
@@ -62,24 +80,27 @@ class ContactAdmin(admin.ModelAdmin):
         new_mailing.save()
         new_mailing.subscribers = queryset.all()
 
+        if not request.user.is_superuser:
+            for workgroup in request_workgroup(request):
+                workgroup.mailinglists.add(new_mailing)
+
         self.message_user(request, _('%s succesfully created.') % new_mailing)
     create_mailinglist.short_description = _('Create a mailinglist')
 
     def importation(self, request):
         """Import contacts from a VCard"""
         opts = self.model._meta
-        
+
         if request.FILES:
             source = request.FILES.get('source')
-            inserted = vcard_contacts_import(source)
+            inserted = vcard_contacts_import(source, request_workgroups(request))
             self.message_user(request, _('%s contacts succesfully imported.') % inserted)
-            #redirect to changelist
-                
+
         context = {'title': _('VCard import'),
                    'opts': opts,
                    'root_path': self.admin_site.root_path,
                    'app_label': opts.app_label}
-    
+
         return render_to_response('newsletter/contact_import.html',
                                   context, RequestContext(request))
 

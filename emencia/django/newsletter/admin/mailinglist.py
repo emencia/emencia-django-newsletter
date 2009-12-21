@@ -7,7 +7,9 @@ from django.core.urlresolvers import reverse
 from django.shortcuts import get_object_or_404
 from django.utils.translation import ugettext as _
 
+from emencia.django.newsletter.models import Contact
 from emencia.django.newsletter.models import MailingList
+from emencia.django.newsletter.utils import request_workgroups_contacts_pk
 from emencia.django.newsletter.vcard import vcard_contacts_export_response
 
 class MailingListAdmin(admin.ModelAdmin):
@@ -25,6 +27,13 @@ class MailingListAdmin(admin.ModelAdmin):
     actions = ['merge_mailinglist',]
     actions_on_top = False
     actions_on_bottom = True
+
+    def formfield_for_manytomany(self, db_field, request, **kwargs):
+        if 'subscribers' in db_field.name and not request.user.is_superuser:
+            contacts_pk = request_workgroups_contacts_pk(request)
+            kwargs['queryset'] = Contact.objects.filter(pk__in=contacts_pk)
+        return super(MailingListAdmin, self).formfield_for_manytomany(
+            db_field, request, **kwargs)
 
     def merge_mailinglist(self, request, queryset):
         """Merge multiple mailing list"""
