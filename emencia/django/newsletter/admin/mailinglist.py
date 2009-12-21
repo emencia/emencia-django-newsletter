@@ -9,7 +9,9 @@ from django.utils.translation import ugettext as _
 
 from emencia.django.newsletter.models import Contact
 from emencia.django.newsletter.models import MailingList
+from emencia.django.newsletter.utils import request_workgroups
 from emencia.django.newsletter.utils import request_workgroups_contacts_pk
+from emencia.django.newsletter.utils import request_workgroups_mailinglists_pk
 from emencia.django.newsletter.vcard import vcard_contacts_export_response
 
 class MailingListAdmin(admin.ModelAdmin):
@@ -27,6 +29,21 @@ class MailingListAdmin(admin.ModelAdmin):
     actions = ['merge_mailinglist',]
     actions_on_top = False
     actions_on_bottom = True
+
+    def queryset(self, request):
+        queryset = super(MailingListAdmin, self).queryset(request)
+        if not request.user.is_superuser:
+            mailinglists_pk = request_workgroups_mailinglists_pk(request)
+            queryset = queryset.filter(pk__in=mailinglists_pk)
+        return queryset
+
+    def save_model(self, request, mailinglist, form, change):
+        workgroups = []
+        if not mailinglist.pk and not request.user.is_superuser:
+            workgroups = request_workgroups(request)
+        mailinglist.save()
+        for workgroup in workgroups:
+            workgroup.mailinglists.add(mailinglist)
 
     def formfield_for_manytomany(self, db_field, request, **kwargs):
         if 'subscribers' in db_field.name and not request.user.is_superuser:
