@@ -6,8 +6,9 @@ from datetime import timedelta
 from django.db import models
 from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext as _
-from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes import generic
+from django.contrib.contenttypes.models import ContentType
+from django.contrib.auth.models import Group
 
 from tagging.fields import TagField
 from emencia.django.newsletter.vcard import vcard_contact_export
@@ -18,7 +19,6 @@ from emencia.django.newsletter.settings import DEFAULT_HEADER_SENDER
 
 class SMTPServer(models.Model):
     """Configuration of a SMTP server"""
-
     name = models.CharField(_('name'), max_length=255)
     host = models.CharField(_('server host'), max_length=255)
     user = models.CharField(_('server user'), max_length=128, blank=True,
@@ -34,7 +34,7 @@ class SMTPServer(models.Model):
 
     def connection_valid(self):
         """Check if the server can be connected"""
-        try:            
+        try:
             smtp = SMTP(self.host, self.port)
             if self.user or self.password:
                 smtp.login(self.user, self.password)
@@ -66,7 +66,7 @@ class SMTPServer(models.Model):
             for header in self.headers.split('\r\n'):
                 if header:
                     key, value = header.split(':')
-                    headers[key.strip()] = value.strip()            
+                    headers[key.strip()] = value.strip()
             return headers
         return {}
 
@@ -80,7 +80,6 @@ class SMTPServer(models.Model):
 
 class Contact(models.Model):
     """Contact for emailing"""
-    
     email = models.EmailField(_('email'), unique=True)
     first_name = models.CharField(_('first name'), max_length=50, blank=True)
     last_name = models.CharField(_('last name'), max_length=50, blank=True)
@@ -98,7 +97,7 @@ class Contact(models.Model):
     modification_date = models.DateTimeField(_('modification date'), auto_now=True)
 
     objects = ContactManager()
-    
+
     def subscriptions(self):
         """Return the user subscriptions"""
         return MailingList.objects.filter(subscribers=self)
@@ -120,7 +119,7 @@ class Contact(models.Model):
         if self.content_type and self.object_id:
             return self.content_object.get_absolute_url()
         return reverse('admin:newsletter_contact_change', args=(self.pk,))
-    
+
     def __unicode__(self):
         if self.first_name and self.last_name:
             return '%s %s | %s' % (self.last_name, self.first_name, self.tags)
@@ -130,12 +129,12 @@ class Contact(models.Model):
         ordering = ('creation_date',)
         verbose_name = _('Contact')
         verbose_name_plural = _('Contacts')
-        
+
 class MailingList(models.Model):
-    """Mailing list"""    
+    """Mailing list"""
     name = models.CharField(_('name'), max_length=255)
     description = models.TextField(_('description'), blank=True)
-    
+
     subscribers = models.ManyToManyField(Contact, verbose_name=_('subscribers'),
                                          related_name='mailinglist_subscriber')
     unsubscribers = models.ManyToManyField(Contact, verbose_name=_('unsubscribers'),
@@ -185,7 +184,7 @@ class Newsletter(models.Model):
     title = models.CharField(_('title'), max_length=255)
     content = models.TextField(_('content'), help_text=_('Or paste an URL.'),
                                default='<body>\n<!-- %s -->\n</body>' % _('Edit your newsletter here'))
-    
+
     mailing_list = models.ForeignKey(MailingList, verbose_name=_('mailing list'))
     test_contacts = models.ManyToManyField(Contact, verbose_name=_('test contacts'),
                                            blank=True, null=True)
@@ -217,7 +216,7 @@ class Newsletter(models.Model):
 
     def __unicode__(self):
         return self.title
-    
+
     class Meta:
         ordering = ('creation_date',)
         verbose_name = _('Newsletter')
@@ -228,7 +227,7 @@ class Link(models.Model):
     """Link sended in a newsletter"""
     title = models.CharField(_('title'), max_length=255)
     url = models.CharField(_('url'), max_length=255)
-    
+
     creation_date = models.DateTimeField(_('creation date'), auto_now_add=True)
 
     def get_absolute_url(self):
@@ -251,7 +250,7 @@ class ContactMailingStatus(models.Model):
     OPENED = 4
     OPENED_ON_SITE = 5
     LINK_OPENED = 6
-    
+
     STATUS_CHOICES = ((SENT_TEST, _('sent in test')),
                       (SENT, _('sent')),
                       (ERROR, _('error')),
@@ -260,13 +259,13 @@ class ContactMailingStatus(models.Model):
                       (OPENED_ON_SITE, _('opened on site')),
                       (LINK_OPENED, _('link opened')),
                       )
-    
+
     newsletter = models.ForeignKey(Newsletter, verbose_name=_('newsletter'))
     contact = models.ForeignKey(Contact, verbose_name=_('contact'))
     status = models.IntegerField(_('status'), choices=STATUS_CHOICES)
     link = models.ForeignKey(Link, verbose_name=_('link'),
                              blank=True, null=True)
-    
+
     creation_date = models.DateTimeField(_('creation date'), auto_now_add=True)
 
     def __unicode__(self):
@@ -278,4 +277,22 @@ class ContactMailingStatus(models.Model):
         ordering = ('creation_date',)
         verbose_name = _('Contact Mailing Status')
         verbose_name_plural = _('Contact Mailing Status')
-        
+
+class WorkGroup(models.Model):
+    """Work Group for privatization of the ressources"""
+    name = models.CharField(_('name'), max_length=255)
+    group = models.ForeignKey(Group, verbose_name=_('group'))
+
+    contacts = models.ManyToManyField(Contact, verbose_name=_('contacts'),
+                                      blank=True, null=True)
+    mailinglists = models.ManyToManyField(MailingList, verbose_name=_('mailing lists'),
+                                          blank=True, null=True)
+    newsletters = models.ManyToManyField(Newsletter, verbose_name=_('newsletters'),
+                                         blank=True, null=True)
+
+    def __unicode__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = _('Work Group')
+        verbose_name_plural = _('Work Groups')
