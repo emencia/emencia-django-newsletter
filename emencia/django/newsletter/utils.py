@@ -6,6 +6,7 @@ from django.core.urlresolvers import reverse
 from django.template import Context, Template
 
 from emencia.django.newsletter.models import Link
+from emencia.django.newsletter.models import WorkGroup
 
 def get_webpage_content(url):
     """Return the content of the website
@@ -13,15 +14,15 @@ def get_webpage_content(url):
     request = urllib2.Request(url)
     page = urllib2.urlopen(request)
     soup = BeautifulSoup(page)
-            
+
     return soup.body.prettify()
 
 def body_insertion(content, insertion, end=False):
     """Insert an HTML content into the body HTML node"""
     if not content.startswith('<body'):
-        content = '<body>%s</body>' % content    
+        content = '<body>%s</body>' % content
     soup = BeautifulSoup(content)
-    
+
     if end:
         soup.body.append(insertion)
     else:
@@ -39,7 +40,7 @@ def track_links(content, context):
     to track his navigation"""
     if not context.get('uidb36'):
         return content
-    
+
     soup = BeautifulSoup(content)
     for link_markup in soup('a'):
         if link_markup.get('href'):
@@ -55,3 +56,12 @@ def track_links(content, context):
                                                                                     context['uidb36'], context['token'],
                                                                                     link.pk]))
     return soup.prettify()
+
+def request_workgroups(request):
+    return WorkGroup.objects.filter(group__in=request.user.groups.all())
+
+def request_workgroups_contacts_pk(request):
+    contacts = []
+    for workgroup in request_workgroups(request):
+        contacts.extend([c.pk for c in workgroup.contacts.all()])
+    return set(contacts)
