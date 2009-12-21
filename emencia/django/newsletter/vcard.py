@@ -37,7 +37,7 @@ def vcard_contacts_export_response(contacts, filename=''):
     response['Content-Disposition'] = 'attachment; filename=%s.vcf' % filename
     return response
 
-def vcard_contact_import(vcard):
+def vcard_contact_import(vcard, workgroups=[]):
     from emencia.django.newsletter.models import Contact
     
     defaults = {'email': vcard.email.value,
@@ -46,12 +46,14 @@ def vcard_contact_import(vcard):
     
     contact, created = Contact.objects.get_or_create(email=defaults['email'],
                                                      defaults=defaults)
-    return int(created)
+    for workgroup in workgroups:
+        workgroup.contacts.add(contact)
+    return int(created)# TODO rewrite this
 
-def vcard_contacts_import(stream):
+def vcard_contacts_import(stream, workgroups=[]):
     vcards = vobject.readComponents(stream)
     inserted = 0
     for vcard in vcards:
-        inserted += vcard_contact_import(vcard)
+        inserted += vcard_contact_import(vcard, workgroups)
     return inserted
 
