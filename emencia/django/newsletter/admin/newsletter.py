@@ -11,15 +11,19 @@ from django.db.models import Q
 
 from emencia.django.newsletter.models import Contact
 from emencia.django.newsletter.models import Newsletter
+from emencia.django.newsletter.models import MailingList
 from emencia.django.newsletter.mailer import Mailer
+from emencia.django.newsletter.utils import request_workgroups
+from emencia.django.newsletter.utils import request_workgroups_contacts_pk
+from emencia.django.newsletter.utils import request_workgroups_newsletters_pk
+from emencia.django.newsletter.utils import request_workgroups_mailinglists_pk
 from emencia.django.newsletter.utils import get_webpage_content
 
 class NewsletterAdmin(admin.ModelAdmin):
     date_hierarchy = 'creation_date'
     list_display = ('title', 'mailing_list', 'server', 'status',
                     'sending_date', 'creation_date', 'modification_date', 'historic_link')
-    list_filter = ('mailing_list', 'server', 'status', 'sending_date',
-                   'creation_date', 'modification_date')
+    list_filter = ('status', 'sending_date', 'creation_date', 'modification_date')
     search_fields = ('title', 'content', 'header_sender', 'header_reply')
     filter_horizontal = ['test_contacts']
     fieldsets = ((None, {'fields': ('title', 'content',)}),
@@ -41,9 +45,25 @@ class NewsletterAdmin(admin.ModelAdmin):
             del actions['make_cancel_sending']
         return actions
 
+    def queryset(self, request):
+        queryset = super(NewsletterAdmin, self).queryset(request)
+        if not request.user.is_superuser:
+            newsletters_pk = request_workgroups_newsletters_pk(request)
+            queryset = queryset.filter(pk__in=newsletters_pk)
+        return queryset
+
+    def formfield_for_foreignkey(self, db_field, request, **kwargs):
+       if db_field.name == 'mailing_list' and \
+              not request.user.is_superuser:
+           mailinglists_pk = request_workgroups_mailinglists_pk(request)
+           kwargs['queryset'] = MailingList.objects.filter(pk__in=mailinglists_pk)
+           return db_field.formfield(**kwargs)
+       return super(NewsletterAdmin, self).formfield_for_foreignkey(
+           db_field, request, **kwargs)
+
     def formfield_for_choice_field(self, db_field, request, **kwargs):
        if db_field.name == 'status' and \
-              not request.user.has_perm('newsletter.can_change_status'):           
+              not request.user.has_perm('newsletter.can_change_status'):
            kwargs['choices'] = ((Newsletter.DRAFT, _('Default')),)
            return db_field.formfield(**kwargs)
        return super(NewsletterAdmin, self).formfield_for_choice_field(
@@ -51,11 +71,19 @@ class NewsletterAdmin(admin.ModelAdmin):
 
     def formfield_for_manytomany(self, db_field, request, **kwargs):
         if db_field.name == 'test_contacts':
-            kwargs['queryset'] = Contact.objects.filter(tester=True)
+            queryset = Contact.objects.filter(tester=True)
+            if not request.user.is_superuser:
+                contacts_pk = request_workgroups_contacts_pk(request)
+                queryset = queryset.filter(pk__in=contacts_pk)
+            kwargs['queryset'] = queryset
         return super(NewsletterAdmin, self).formfield_for_manytomany(
             db_field, request, **kwargs)
 
     def save_model(self, request, newsletter, form, change):
+        workgroups = []
+        if not newsletter.pk and not request.user.is_superuser:
+            workgroups = request_workgroups(request)
+
         if newsletter.content.startswith('http://'):
             try:
                 newsletter.content = get_webpage_content(newsletter.content)
@@ -66,6 +94,9 @@ class NewsletterAdmin(admin.ModelAdmin):
             newsletter.status = form.initial.get('status', Newsletter.DRAFT)
 
         newsletter.save()
+
+        for workgroup in workgroups:
+            workgroup.newsletters.add(newsletter)
 
     def historic_link(self, newsletter):
         """Display link for historic"""
