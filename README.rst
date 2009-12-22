@@ -20,6 +20,7 @@ More than a long speech, here the list of the main features :
   * Mailing list managements (merging, importing...).
   * Import/Export of the contact in VCard 3.0.
   * Configurable SMTP servers with flow limit management.
+  * Working groups.
   * Can send newsletter previews.
   * Unsubscriptions to mailing list.
   * Unique urls for an user.
