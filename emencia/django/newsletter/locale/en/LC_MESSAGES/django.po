@@ -2,8 +2,7 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-#, fuzzy
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
@@ -17,28 +16,34 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: models.py:22 models.py:135 models.py:283
+#, fuzzy
 msgid "name"
-msgstr ""
+msgstr "name"
 
 #: models.py:23
+#, fuzzy
 msgid "server host"
-msgstr ""
+msgstr "server host"
 
 #: models.py:24
+#, fuzzy
 msgid "server user"
-msgstr ""
+msgstr "server user"
 
 #: models.py:25 models.py:27
+#, fuzzy
 msgid "Leave it empty if the host is public."
-msgstr ""
+msgstr "Leave it empty if the host is public."
 
 #: models.py:26
+#, fuzzy
 msgid "server password"
-msgstr ""
+msgstr "server password"
 
 #: models.py:28
+#, fuzzy
 msgid "server port"
-msgstr ""
+msgstr "server port"
 
 #: models.py:29
 msgid "server use TLS"
