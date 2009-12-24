@@ -152,7 +152,6 @@ msgid "draft"
 msgstr "borrador"
 
 #: models.py:178
-#, fuzzy
 msgid "waiting sending"
 msgstr "espere, enviando"
 
@@ -281,7 +280,6 @@ msgstr "enlace"
 
 #: models.py:278
 #: models.py:279
-#, fuzzy
 msgid "Contact Mailing Status"
 msgstr "Estado del envío"
 
