@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-12-24 11:56+0100\n"
-"PO-Revision-Date: 2009-12-24 15:54+0100\n"
+"PO-Revision-Date: 2009-12-24 16:22+0100\n"
 "Last-Translator: \n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -32,7 +32,7 @@ msgstr "usuario del servidor"
 #: models.py:25
 #: models.py:27
 msgid "Leave it empty if the host is public."
-msgstr "Dejelo en blanco si el servidor es público"
+msgstr "Dejar en blanco si el servidor es público"
 
 #: models.py:26
 msgid "server password"
@@ -92,11 +92,11 @@ msgstr "email válido"
 
 #: models.py:89
 msgid "contact tester"
-msgstr ""
+msgstr "contacto de prueba"
 
 #: models.py:90
 msgid "tags"
-msgstr "etiqueta"
+msgstr "etiquetas"
 
 #: models.py:96
 #: models.py:144
@@ -136,9 +136,8 @@ msgstr "suscriptores"
 
 #: models.py:140
 #: models.py:153
-#, fuzzy
 msgid "unsubscribers"
-msgstr "desuscriptores"
+msgstr "desuscritos"
 
 #: models.py:165
 msgid "Mailing List"
@@ -262,7 +261,7 @@ msgstr "abierto"
 
 #: models.py:259
 msgid "opened on site"
-msgstr ""
+msgstr "abierto en sitio web"
 
 #: models.py:260
 msgid "link opened"
@@ -282,8 +281,9 @@ msgstr "enlace"
 
 #: models.py:278
 #: models.py:279
+#, fuzzy
 msgid "Contact Mailing Status"
-msgstr ""
+msgstr "Estado del envío"
 
 #: models.py:284
 msgid "group"
@@ -295,7 +295,7 @@ msgstr "contactos"
 
 #: models.py:288
 msgid "mailing lists"
-msgstr "listas de correos"
+msgstr "listas de correo"
 
 #: models.py:290
 msgid "newsletters"
@@ -319,11 +319,11 @@ msgstr "Avanzado"
 
 #: admin/contact.py:59
 msgid "No relative object"
-msgstr ""
+msgstr "Sin objetos relacionados"
 
 #: admin/contact.py:61
 msgid "Related object"
-msgstr ""
+msgstr "Objetos relacionados"
 
 #: admin/contact.py:68
 msgid "Total subscriptions"
@@ -336,17 +336,17 @@ msgstr "Exportar contactos como VCard"
 #: admin/contact.py:78
 #, python-format
 msgid "New mailinglist at %s"
-msgstr "Nueva lista de corre en %s"
+msgstr "Nueva lista de correo en %s"
 
 #: admin/contact.py:79
 #, python-format
 msgid "New mailing list created in admin at %s"
-msgstr "Nueva lista de correo creada en la administración en %s"
+msgstr "Nueva lista de correo creada en %s utilizando la administración"
 
 #: admin/contact.py:87
 #, python-format
 msgid "%s succesfully created."
-msgstr "%s creado con éxito."
+msgstr "%s creados con éxito."
 
 #: admin/contact.py:88
 msgid "Create a mailinglist"
@@ -403,7 +403,7 @@ msgstr "Enviando"
 #: admin/newsletter.py:32
 #: admin/smtpserver.py:12
 msgid "Miscellaneous"
-msgstr "Variado"
+msgstr "Miscelánea"
 
 #: admin/newsletter.py:67
 msgid "Default"
@@ -423,7 +423,7 @@ msgstr "Historial"
 
 #: admin/newsletter.py:115
 msgid "Unable send newsletter, due to errors within HTML."
-msgstr ""
+msgstr "Imposible enviar el boletin de noticias dado que el HTML contiene errores."
 
 #: admin/newsletter.py:117
 #, python-format
@@ -433,7 +433,7 @@ msgstr "%s enviado correctamente."
 #: admin/newsletter.py:119
 #, python-format
 msgid "No test contacts assigned for %s."
-msgstr ""
+msgstr "Sin contactos de prueba asignados a %s."
 
 #: admin/newsletter.py:120
 msgid "Send test email"
@@ -446,7 +446,7 @@ msgstr "%s boletines de noticias listos para enviar"
 
 #: admin/newsletter.py:129
 msgid "Make ready to send"
-msgstr ""
+msgstr "Preparar para envío"
 
 #: admin/newsletter.py:138
 #, python-format
@@ -467,18 +467,16 @@ msgid "Configuration"
 msgstr "Configuración"
 
 #: admin/workgroup.py:19
-#, fuzzy
 msgid "Contacts length"
-msgstr "Cantidad de Contactos"
+msgstr "Número de Contactos"
 
 #: admin/workgroup.py:23
 msgid "Mailing List length"
-msgstr ""
+msgstr "Número de listas de correo"
 
 #: admin/workgroup.py:27
-#, fuzzy
 msgid "Newsletter length"
-msgstr "Longitud del boletin de noticias"
+msgstr "Número de boletines de noticias"
 
 #: templates/admin/newsletter/contact/change_list.html:9
 #, python-format
@@ -519,14 +517,13 @@ msgstr "desuscripción"
 
 #: templates/newsletter/newsletter_unsubscribe.html:9
 msgid "You are unsubscribed for this mailing list."
-msgstr ""
+msgstr "Has sido desuscrito de la lista de correo."
 
 #: templates/newsletter/newsletter_unsubscribe.html:11
-#, fuzzy
 msgid "Validate this form to unsubscribe to this mailing list."
-msgstr "Confirme este formulario para desuscribirse de esta lista de correo."
+msgstr "Complete este formulario para desuscribirse de esta lista de correo."
 
 #: templates/newsletter/newsletter_unsubscribe.html:14
 msgid "Unsubscribe"
-msgstr "Desuscribirse"
+msgstr "Desuscribir"
 
