@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-12-24 11:56+0100\n"
-"PO-Revision-Date: 2009-12-24 15:33+0100\n"
+"PO-Revision-Date: 2009-12-24 15:54+0100\n"
 "Last-Translator: \n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -136,8 +136,9 @@ msgstr "suscriptores"
 
 #: models.py:140
 #: models.py:153
+#, fuzzy
 msgid "unsubscribers"
-msgstr ""
+msgstr "desuscriptores"
 
 #: models.py:165
 msgid "Mailing List"
@@ -152,8 +153,9 @@ msgid "draft"
 msgstr "borrador"
 
 #: models.py:178
+#, fuzzy
 msgid "waiting sending"
-msgstr ""
+msgstr "espere, enviando"
 
 #: models.py:179
 msgid "sending"
@@ -191,7 +193,7 @@ msgstr "lista de correo"
 
 #: models.py:189
 msgid "test contacts"
-msgstr ""
+msgstr "probar contactos"
 
 #: models.py:192
 msgid "smtp server"
@@ -199,7 +201,7 @@ msgstr "servidor smtp"
 
 #: models.py:194
 msgid "sender"
-msgstr ""
+msgstr "emisor"
 
 #: models.py:196
 msgid "reply to"
@@ -216,7 +218,7 @@ msgstr "fecha de envío"
 
 #: models.py:202
 msgid "Used for displaying the newsletter on the site."
-msgstr ""
+msgstr "Utilizado para mostrar el boletin de noticias en el sitio web."
 
 #: models.py:222
 msgid "Newsletter"
@@ -244,7 +246,7 @@ msgstr "Enlaces"
 
 #: models.py:254
 msgid "sent in test"
-msgstr ""
+msgstr "envío en prueba"
 
 #: models.py:256
 msgid "error"
@@ -301,11 +303,11 @@ msgstr "boletines de noticias"
 
 #: models.py:297
 msgid "Work Group"
-msgstr ""
+msgstr "Grupo de Trabajo"
 
 #: models.py:298
 msgid "Work Groups"
-msgstr ""
+msgstr "Grupos de Trabajo"
 
 #: admin/contact.py:27
 msgid "Status"
@@ -334,17 +336,17 @@ msgstr "Exportar contactos como VCard"
 #: admin/contact.py:78
 #, python-format
 msgid "New mailinglist at %s"
-msgstr ""
+msgstr "Nueva lista de corre en %s"
 
 #: admin/contact.py:79
 #, python-format
 msgid "New mailing list created in admin at %s"
-msgstr ""
+msgstr "Nueva lista de correo creada en la administración en %s"
 
 #: admin/contact.py:87
 #, python-format
 msgid "%s succesfully created."
-msgstr ""
+msgstr "%s creado con éxito."
 
 #: admin/contact.py:88
 msgid "Create a mailinglist"
@@ -353,7 +355,7 @@ msgstr "Crear una lista de correo"
 #: admin/contact.py:97
 #, python-format
 msgid "%s contacts succesfully imported."
-msgstr ""
+msgstr "%s contactos importados satisfactoriamente."
 
 #: admin/contact.py:99
 msgid "VCard import"
@@ -361,30 +363,30 @@ msgstr "Importar VCard"
 
 #: admin/mailinglist.py:58
 msgid "Please select a least 2 mailing list."
-msgstr ""
+msgstr "Por favor selecciona al menos 2 listas de correo."
 
 #: admin/mailinglist.py:67
 #, python-format
 msgid "Merging list at %s"
-msgstr ""
+msgstr "Uniendo lista en %s"
 
 #: admin/mailinglist.py:68
 #, python-format
 msgid "Mailing list created by merging at %s"
-msgstr ""
+msgstr "Lista de correo creada al unir %s"
 
 #: admin/mailinglist.py:72
 #, python-format
 msgid "%s succesfully created by merging."
-msgstr ""
+msgstr "%s creado exitosamente tras la unión."
 
 #: admin/mailinglist.py:73
 msgid "Merge selected mailinglists"
-msgstr ""
+msgstr "Unir las listas de correo seleccionadas"
 
 #: admin/mailinglist.py:78
 msgid "Export Subscribers"
-msgstr ""
+msgstr "Exportar Suscriptores"
 
 #: admin/mailinglist.py:80
 msgid "Export"
@@ -392,7 +394,7 @@ msgstr "Exportar"
 
 #: admin/newsletter.py:30
 msgid "Receivers"
-msgstr ""
+msgstr "Receptores"
 
 #: admin/newsletter.py:31
 msgid "Sending"
@@ -401,15 +403,15 @@ msgstr "Enviando"
 #: admin/newsletter.py:32
 #: admin/smtpserver.py:12
 msgid "Miscellaneous"
-msgstr ""
+msgstr "Variado"
 
 #: admin/newsletter.py:67
 msgid "Default"
-msgstr ""
+msgstr "Por defecto"
 
 #: admin/newsletter.py:91
 msgid "Unable to download HTML, due to errors within."
-msgstr ""
+msgstr "Imposible descargar el HTML dado que contiene errores."
 
 #: admin/newsletter.py:103
 msgid "View historic"
@@ -426,7 +428,7 @@ msgstr ""
 #: admin/newsletter.py:117
 #, python-format
 msgid "%s succesfully sent."
-msgstr ""
+msgstr "%s enviado correctamente."
 
 #: admin/newsletter.py:119
 #, python-format
@@ -440,7 +442,7 @@ msgstr "Enviar email de prueba"
 #: admin/newsletter.py:128
 #, python-format
 msgid "%s newletters are ready to send"
-msgstr ""
+msgstr "%s boletines de noticias listos para enviar"
 
 #: admin/newsletter.py:129
 msgid "Make ready to send"
@@ -449,7 +451,7 @@ msgstr ""
 #: admin/newsletter.py:138
 #, python-format
 msgid "%s newletters are cancelled"
-msgstr ""
+msgstr "%s boletines de noticias cancelados"
 
 #: admin/newsletter.py:139
 msgid "Cancel the sending"
@@ -500,7 +502,7 @@ msgstr "Inicio"
 
 #: templates/newsletter/contact_import.html:10
 msgid "Importation"
-msgstr ""
+msgstr "Importación"
 
 #: templates/newsletter/newsletter_historic.html:23
 msgid "Date"
