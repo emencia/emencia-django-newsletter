@@ -1,0 +1,510 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-12-24 12:00+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: models.py:22 models.py:135 models.py:283
+msgid "name"
+msgstr ""
+
+#: models.py:23
+msgid "server host"
+msgstr ""
+
+#: models.py:24
+msgid "server user"
+msgstr ""
+
+#: models.py:25 models.py:27
+msgid "Leave it empty if the host is public."
+msgstr ""
+
+#: models.py:26
+msgid "server password"
+msgstr ""
+
+#: models.py:28
+msgid "server port"
+msgstr ""
+
+#: models.py:29
+msgid "server use TLS"
+msgstr ""
+
+#: models.py:31
+msgid "custom headers"
+msgstr ""
+
+#: models.py:32
+msgid "key1: value1 key2: value2, splitted by return line."
+msgstr ""
+
+#: models.py:33
+msgid "mails per hour"
+msgstr ""
+
+#: models.py:47
+msgid "Connection valid"
+msgstr ""
+
+#: models.py:77
+msgid "SMTP Server"
+msgstr ""
+
+#: models.py:78
+msgid "SMTP Servers"
+msgstr ""
+
+#: models.py:83
+msgid "email"
+msgstr ""
+
+#: models.py:84
+msgid "first name"
+msgstr ""
+
+#: models.py:85
+msgid "last name"
+msgstr ""
+
+#: models.py:87
+msgid "subscriber"
+msgstr ""
+
+#: models.py:88
+msgid "valid email"
+msgstr ""
+
+#: models.py:89
+msgid "contact tester"
+msgstr ""
+
+#: models.py:90
+msgid "tags"
+msgstr ""
+
+#: models.py:96 models.py:144 models.py:203 models.py:231 models.py:269
+msgid "creation date"
+msgstr ""
+
+#: models.py:97 models.py:145 models.py:204
+msgid "modification date"
+msgstr ""
+
+#: models.py:116
+msgid "mail format"
+msgstr ""
+
+#: models.py:130 templates/newsletter/newsletter_historic.html:24
+msgid "Contact"
+msgstr ""
+
+#: models.py:131
+msgid "Contacts"
+msgstr ""
+
+#: models.py:136
+msgid "description"
+msgstr ""
+
+#: models.py:138 models.py:149
+msgid "subscribers"
+msgstr ""
+
+#: models.py:140 models.py:153
+msgid "unsubscribers"
+msgstr ""
+
+#: models.py:165
+msgid "Mailing List"
+msgstr ""
+
+#: models.py:166
+msgid "Mailing Lists"
+msgstr ""
+
+#: models.py:177
+msgid "draft"
+msgstr ""
+
+#: models.py:178
+msgid "waiting sending"
+msgstr ""
+
+#: models.py:179
+msgid "sending"
+msgstr ""
+
+#: models.py:180 models.py:255
+msgid "sent"
+msgstr ""
+
+#: models.py:181
+msgid "canceled"
+msgstr ""
+
+#: models.py:184 models.py:228
+msgid "title"
+msgstr ""
+
+#: models.py:185
+msgid "content"
+msgstr ""
+
+#: models.py:185
+msgid "Or paste an URL."
+msgstr ""
+
+#: models.py:186
+msgid "Edit your newsletter here"
+msgstr ""
+
+#: models.py:188
+msgid "mailing list"
+msgstr ""
+
+#: models.py:189
+msgid "test contacts"
+msgstr ""
+
+#: models.py:192
+msgid "smtp server"
+msgstr ""
+
+#: models.py:194
+msgid "sender"
+msgstr ""
+
+#: models.py:196
+msgid "reply to"
+msgstr ""
+
+#: models.py:199 models.py:265
+msgid "status"
+msgstr ""
+
+#: models.py:200
+msgid "sending date"
+msgstr ""
+
+#: models.py:202
+msgid "Used for displaying the newsletter on the site."
+msgstr ""
+
+#: models.py:222
+msgid "Newsletter"
+msgstr ""
+
+#: models.py:223
+msgid "Newsletters"
+msgstr ""
+
+#: models.py:224
+msgid "Can change status"
+msgstr ""
+
+#: models.py:229
+msgid "url"
+msgstr ""
+
+#: models.py:241
+msgid "Link"
+msgstr ""
+
+#: models.py:242
+msgid "Links"
+msgstr ""
+
+#: models.py:254
+msgid "sent in test"
+msgstr ""
+
+#: models.py:256
+msgid "error"
+msgstr ""
+
+#: models.py:257
+msgid "invalid email"
+msgstr ""
+
+#: models.py:258
+msgid "opened"
+msgstr ""
+
+#: models.py:259
+msgid "opened on site"
+msgstr ""
+
+#: models.py:260
+msgid "link opened"
+msgstr ""
+
+#: models.py:263
+msgid "newsletter"
+msgstr ""
+
+#: models.py:264
+msgid "contact"
+msgstr ""
+
+#: models.py:266
+msgid "link"
+msgstr ""
+
+#: models.py:278 models.py:279
+msgid "Contact Mailing Status"
+msgstr ""
+
+#: models.py:284
+msgid "group"
+msgstr ""
+
+#: models.py:286
+msgid "contacts"
+msgstr ""
+
+#: models.py:288
+msgid "mailing lists"
+msgstr ""
+
+#: models.py:290
+msgid "newsletters"
+msgstr ""
+
+#: models.py:297
+msgid "Work Group"
+msgstr ""
+
+#: models.py:298
+msgid "Work Groups"
+msgstr ""
+
+#: admin/contact.py:27
+msgid "Status"
+msgstr ""
+
+#: admin/contact.py:28
+msgid "Advanced"
+msgstr ""
+
+#: admin/contact.py:59
+msgid "No relative object"
+msgstr ""
+
+#: admin/contact.py:61
+msgid "Related object"
+msgstr ""
+
+#: admin/contact.py:68
+msgid "Total subscriptions"
+msgstr ""
+
+#: admin/contact.py:73
+msgid "Export contacts as VCard"
+msgstr ""
+
+#: admin/contact.py:78
+#, python-format
+msgid "New mailinglist at %s"
+msgstr ""
+
+#: admin/contact.py:79
+#, python-format
+msgid "New mailing list created in admin at %s"
+msgstr ""
+
+#: admin/contact.py:87
+#, python-format
+msgid "%s succesfully created."
+msgstr ""
+
+#: admin/contact.py:88
+msgid "Create a mailinglist"
+msgstr ""
+
+#: admin/contact.py:97
+#, python-format
+msgid "%s contacts succesfully imported."
+msgstr ""
+
+#: admin/contact.py:99
+msgid "VCard import"
+msgstr ""
+
+#: admin/mailinglist.py:58
+msgid "Please select a least 2 mailing list."
+msgstr ""
+
+#: admin/mailinglist.py:67
+#, python-format
+msgid "Merging list at %s"
+msgstr ""
+
+#: admin/mailinglist.py:68
+#, python-format
+msgid "Mailing list created by merging at %s"
+msgstr ""
+
+#: admin/mailinglist.py:72
+#, python-format
+msgid "%s succesfully created by merging."
+msgstr ""
+
+#: admin/mailinglist.py:73
+msgid "Merge selected mailinglists"
+msgstr ""
+
+#: admin/mailinglist.py:78
+msgid "Export Subscribers"
+msgstr ""
+
+#: admin/mailinglist.py:80
+msgid "Export"
+msgstr ""
+
+#: admin/newsletter.py:30
+msgid "Receivers"
+msgstr ""
+
+#: admin/newsletter.py:31
+msgid "Sending"
+msgstr ""
+
+#: admin/newsletter.py:32 admin/smtpserver.py:12
+msgid "Miscellaneous"
+msgstr ""
+
+#: admin/newsletter.py:67
+msgid "Default"
+msgstr ""
+
+#: admin/newsletter.py:91
+msgid "Unable to download HTML, due to errors within."
+msgstr ""
+
+#: admin/newsletter.py:103
+msgid "View historic"
+msgstr ""
+
+#: admin/newsletter.py:105
+msgid "Historic"
+msgstr ""
+
+#: admin/newsletter.py:115
+msgid "Unable send newsletter, due to errors within HTML."
+msgstr ""
+
+#: admin/newsletter.py:117
+#, python-format
+msgid "%s succesfully sent."
+msgstr ""
+
+#: admin/newsletter.py:119
+#, python-format
+msgid "No test contacts assigned for %s."
+msgstr ""
+
+#: admin/newsletter.py:120
+msgid "Send test email"
+msgstr ""
+
+#: admin/newsletter.py:128
+#, python-format
+msgid "%s newletters are ready to send"
+msgstr ""
+
+#: admin/newsletter.py:129
+msgid "Make ready to send"
+msgstr ""
+
+#: admin/newsletter.py:138
+#, python-format
+msgid "%s newletters are cancelled"
+msgstr ""
+
+#: admin/newsletter.py:139
+msgid "Cancel the sending"
+msgstr ""
+
+#: admin/newsletter.py:146
+#, python-format
+msgid "Stats %s"
+msgstr ""
+
+#: admin/smtpserver.py:10
+msgid "Configuration"
+msgstr ""
+
+#: admin/workgroup.py:19
+msgid "Contacts length"
+msgstr ""
+
+#: admin/workgroup.py:23
+msgid "Mailing List length"
+msgstr ""
+
+#: admin/workgroup.py:27
+msgid "Newsletter length"
+msgstr ""
+
+#: templates/admin/newsletter/contact/change_list.html:9
+#, python-format
+msgid "Add %(name)s"
+msgstr ""
+
+#: templates/admin/newsletter/contact/change_list.html:14
+#, python-format
+msgid "Import %(name)s"
+msgstr ""
+
+#: templates/admin/newsletter/contact/change_list.html:21
+#, python-format
+msgid "Export %(name)s"
+msgstr ""
+
+#: templates/newsletter/contact_import.html:7
+#: templates/newsletter/newsletter_historic.html:9
+msgid "Home"
+msgstr ""
+
+#: templates/newsletter/contact_import.html:10
+msgid "Importation"
+msgstr ""
+
+#: templates/newsletter/newsletter_historic.html:23
+msgid "Date"
+msgstr ""
+
+#: templates/newsletter/newsletter_historic.html:25
+msgid "Action"
+msgstr ""
+
+#: templates/newsletter/newsletter_unsubscribe.html:4
+#: templates/newsletter/newsletter_unsubscribe.html:7
+msgid "Unsubscription"
+msgstr ""
+
+#: templates/newsletter/newsletter_unsubscribe.html:9
+msgid "You are unsubscribed for this mailing list."
+msgstr ""
+
+#: templates/newsletter/newsletter_unsubscribe.html:11
+msgid "Validate this form to unsubscribe to this mailing list."
+msgstr ""
+
+#: templates/newsletter/newsletter_unsubscribe.html:14
+msgid "Unsubscribe"
+msgstr ""
