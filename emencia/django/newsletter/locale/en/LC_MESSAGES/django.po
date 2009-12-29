@@ -28,7 +28,6 @@ msgid "server user"
 msgstr "Server user"
 
 #: models.py:25 models.py:27
-#, fuzzy
 msgid "Leave it empty if the host is public."
 msgstr "Leave it empty if the host is public."
 
@@ -45,12 +44,10 @@ msgid "server use TLS"
 msgstr "Server use TLS"
 
 #: models.py:31
-#, fuzzy
 msgid "custom headers"
 msgstr "custom headers"
 
 #: models.py:32
-#, fuzzy
 msgid "key1: value1 key2: value2, splitted by return line."
 msgstr "key1: value1 key2: value2, splitted by return line."
 
@@ -63,12 +60,10 @@ msgid "Connection valid"
 msgstr "Connection valid"
 
 #: models.py:77
-#, fuzzy
 msgid "SMTP Server"
 msgstr "SMTP Server"
 
 #: models.py:78
-#, fuzzy
 msgid "SMTP Servers"
 msgstr "SMTP Servers"
 
@@ -313,9 +308,8 @@ msgid "Related object"
 msgstr "Related object"
 
 #: admin/contact.py:68
-#, fuzzy
 msgid "Total subscriptions"
-msgstr "Subscriptions"
+msgstr "Total Subscriptions"
 
 #: admin/contact.py:73
 msgid "Export contacts as VCard"
@@ -373,7 +367,6 @@ msgid "Merge selected mailinglists"
 msgstr "Merge selected mailing lists"
 
 #: admin/mailinglist.py:78
-#, fuzzy
 msgid "Export Subscribers"
 msgstr "Export Subscribers"
 
@@ -398,9 +391,8 @@ msgid "Default"
 msgstr "Default"
 
 #: admin/newsletter.py:91
-#, fuzzy
 msgid "Unable to download HTML, due to errors within."
-msgstr "Unable to download HTML, due to errors within it."
+msgstr "Unable to download HTML, due to internal errors."
 
 #: admin/newsletter.py:103
 msgid "View historic"
@@ -411,9 +403,8 @@ msgid "Historic"
 msgstr "Historic"
 
 #: admin/newsletter.py:115
-#, fuzzy
 msgid "Unable send newsletter, due to errors within HTML."
-msgstr "Unable to send the newsletter, due to errors within HTML."
+msgstr "Unable to send the newsletter, due to internal HTML errors."
 
 #: admin/newsletter.py:117
 #, python-format
@@ -423,12 +414,11 @@ msgstr "%s successfully sent."
 #: admin/newsletter.py:119
 #, python-format
 msgid "No test contacts assigned for %s."
-msgstr "No test contacts assigned for %s."
+msgstr "No contact test assigned for %s."
 
 #: admin/newsletter.py:120
-#, fuzzy
 msgid "Send test email"
-msgstr "Send test email"
+msgstr "Send email test"
 
 #: admin/newsletter.py:128
 #, python-format
@@ -437,7 +427,7 @@ msgstr "%s newsletters are ready to send"
 
 #: admin/newsletter.py:129
 msgid "Make ready to send"
-msgstr "Make ready to send"
+msgstr "Make it \"ready to send\""
 
 #: admin/newsletter.py:138
 #, python-format
@@ -454,24 +444,20 @@ msgid "Stats %s"
 msgstr "Stats %s"
 
 #: admin/smtpserver.py:10
-#, fuzzy
 msgid "Configuration"
 msgstr "Configuration"
 
 #: admin/workgroup.py:19
-#, fuzzy
 msgid "Contacts length"
-msgstr "Contacts length"
+msgstr "Number of contacts"
 
 #: admin/workgroup.py:23
-#, fuzzy
 msgid "Mailing List length"
-msgstr "Mailing List length"
+msgstr "Number of mailing List "
 
 #: admin/workgroup.py:27
-#, fuzzy
 msgid "Newsletter length"
-msgstr "Newsletter length"
+msgstr "Number of newsletter "
 
 #: templates/admin/newsletter/contact/change_list.html:9
 #, python-format
@@ -495,7 +481,7 @@ msgstr "Home"
 
 #: templates/newsletter/contact_import.html:10
 msgid "Importation"
-msgstr "Importation"
+msgstr "Import"
 
 #: templates/newsletter/newsletter_historic.html:23
 msgid "Date"
@@ -511,9 +497,8 @@ msgid "Unsubscription"
 msgstr "Unsubscription"
 
 #: templates/newsletter/newsletter_unsubscribe.html:9
-#, fuzzy
 msgid "You are unsubscribed for this mailing list."
-msgstr "You are not subscribed to this mailing list."
+msgstr "You are unsubscribed to this mailing list."
 
 #: templates/newsletter/newsletter_unsubscribe.html:11
 msgid "Validate this form to unsubscribe to this mailing list."
