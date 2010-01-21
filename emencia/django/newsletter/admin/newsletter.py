@@ -22,7 +22,8 @@ from emencia.django.newsletter.utils import get_webpage_content
 class NewsletterAdmin(admin.ModelAdmin):
     date_hierarchy = 'creation_date'
     list_display = ('title', 'mailing_list', 'server', 'status',
-                    'sending_date', 'creation_date', 'modification_date', 'historic_link')
+                    'sending_date', 'creation_date', 'modification_date',
+                    'historic_link', 'statistics_link')
     list_filter = ('status', 'sending_date', 'creation_date', 'modification_date')
     search_fields = ('title', 'content', 'header_sender', 'header_reply')
     filter_horizontal = ['test_contacts']
@@ -104,6 +105,12 @@ class NewsletterAdmin(admin.ModelAdmin):
     historic_link.allow_tags = True
     historic_link.short_description = _('Historic')
 
+    def statistics_link(self, newsletter):
+        """Display link for statistics"""
+        return '<a href="%s">%s</a>' % (newsletter.get_statistics_url(), _('View statistics'))
+    statistics_link.allow_tags = True
+    statistics_link.short_description = _('Statistics')
+
     def send_mail_test(self, request, queryset):
         """Send newsletter in test"""
         for newsletter in queryset:
@@ -143,7 +150,7 @@ class NewsletterAdmin(admin.ModelAdmin):
         opts = self.model._meta
         newsletter = get_object_or_404(Newsletter, slug=slug)
 
-        context = {'title': _('Stats %s') % newsletter.__unicode__(),
+        context = {'title': _('Historic of %s') % newsletter.__unicode__(),
                    'original': newsletter,
                    'opts': opts,
                    'object_id': newsletter.pk,
@@ -153,9 +160,27 @@ class NewsletterAdmin(admin.ModelAdmin):
                                   context,
                                   context_instance=RequestContext(request))
 
+    def statistics(self, request, slug):
+        """Display the statistics of a newsletters"""
+        opts = self.model._meta
+        newsletter = get_object_or_404(Newsletter, slug=slug)
+
+        context = {'title': _('Statistics of %s') % newsletter.__unicode__(),
+                   'original': newsletter,
+                   'opts': opts,
+                   'object_id': newsletter.pk,
+                   'root_path': self.admin_site.root_path,
+                   'app_label': opts.app_label,}
+        return render_to_response('newsletter/newsletter_statistics.html',
+                                  context,
+                                  context_instance=RequestContext(request))
+        
+
     def get_urls(self):
         urls = super(NewsletterAdmin, self).get_urls()
         my_urls = patterns('',
                            url(r'^historic/(?P<slug>[-\w]+)/$', self.historic,
-                               name='newsletter_newsletter_historic'),)
+                               name='newsletter_newsletter_historic'),
+                           url(r'^statistics/(?P<slug>[-\w]+)/$', self.statistics,
+                               name='newsletter_newsletter_statistics'),)
         return my_urls + urls
