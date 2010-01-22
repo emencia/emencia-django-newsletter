@@ -18,6 +18,7 @@ from emencia.django.newsletter.utils import request_workgroups_contacts_pk
 from emencia.django.newsletter.utils import request_workgroups_newsletters_pk
 from emencia.django.newsletter.utils import request_workgroups_mailinglists_pk
 from emencia.django.newsletter.utils import get_webpage_content
+from emencia.django.newsletter.statistics import get_newsletter_statistics
 
 class NewsletterAdmin(admin.ModelAdmin):
     date_hierarchy = 'creation_date'
@@ -166,11 +167,13 @@ class NewsletterAdmin(admin.ModelAdmin):
         newsletter = get_object_or_404(Newsletter, slug=slug)
 
         context = {'title': _('Statistics of %s') % newsletter.__unicode__(),
-                   'original': newsletter,
+                   'object': newsletter,
                    'opts': opts,
                    'object_id': newsletter.pk,
                    'root_path': self.admin_site.root_path,
-                   'app_label': opts.app_label,}
+                   'app_label': opts.app_label,
+                   'stats': get_newsletter_statistics(newsletter)}
+        
         return render_to_response('newsletter/newsletter_statistics.html',
                                   context,
                                   context_instance=RequestContext(request))

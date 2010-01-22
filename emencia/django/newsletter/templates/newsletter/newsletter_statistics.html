@@ -1,7 +1,11 @@
-{% extends "admin/change_list.html" %}
+{% extends "admin/base_site.html" %}
 {% load i18n %}
 
-{% block bodyclass %}change-list statistics{% endblock %}
+{% block coltype %}colMS{% endblock %}
+
+{% block bodyclass %}dashboard{% endblock %}
+
+{% block extrastyle %}{{ block.super }}<link rel="stylesheet" type="text/css" href="{% load adminmedia %}{% admin_media_prefix %}css/dashboard.css" />{% endblock %}
 
 {% block breadcrumbs %}
 {% if not is_popup %}
@@ -16,19 +20,91 @@
 
 {% block content %}
 <div id="content-main">
-  <div class="module" id="changelist">
-    <table cellspacing="0">
-      <thead>
-	<tr>
-	  <th></th>
-	</tr>
-      </thead>
-      <tbody>
-	<tr class="{% cycle row1,row2 %}">
-	  <td class="nowrap"></td>
-	</tr>
-      </tbody>
+  <!-- Receptions -->
+  <div class="module" id="reception">
+    <table summary="{% trans "Broadcasting statistics" %}">
+      <caption><a href="#" class="section">{% trans "Broadcasting statistics" %}</a></caption>
+      <tr>
+        <th scope="row">{% trans "Total openings" %}</th>
+	<td>&nbsp;</td>
+        <td>{{ stats.total_openings }}</td>
+      </tr>
+      <tr>
+        <th scope="row">{% trans "Openings on site" %}</th>
+        <td>{{ stats.total_on_site_openings }}</td>
+        <td>{{ stats.unique_on_site_openings }}</td>
+      </tr>
+      <tr>
+        <th scope="row">{% trans "Total openings unique" %}</th>
+        <td>{{ stats.unique_openings }}</td>
+	<td>{{ stats.unique_openings_percent|floatformat:2 }}%</td>
+      </tr>
+      <tr>
+        <th scope="row">{% trans "Unknow delivery" %}</th>
+        <td>{{ stats.unknow_openings }}</td>
+	<td>{{ stats.unknow_openings_percent|floatformat:2 }}%</td>
+      </tr>
+      <tr>
+        <th scope="row">{% trans "Openings average" %}</th>
+        <td>&nbsp;</td>
+        <td>{{ stats.opening_average|floatformat:2 }}</td>
+      </tr>
     </table>
   </div>
+  <!-- Links -->
+  <div class="module" id="reception">
+    <table summary="{% trans "Links statistics" %}">
+      <caption><a href="#" class="section">{% trans "Links statistics" %}</a></caption>
+      <tr>
+        <th scope="row">{% trans "Total clicked links" %}</th>
+        <td>{{ stats.total_clicked_links }}</td>
+        <td>{{ stats.total_clicked_links_percent|floatformat:2 }}%</td>
+      </tr>
+      <tr>
+        <th scope="row">{% trans "Total clicked links unique" %}</th>
+        <td>{{ stats.unique_clicked_links }}</td>
+        <td>{{ stats.unique_clicked_links_percent|floatformat:2 }}%</td>
+      </tr>
+      <tr>
+        <th scope="row">{% trans "Clicked links by openings" %}</th>
+	<td>&nbsp;</td>
+        <td>{{ stats.clicked_links_by_openings|floatformat:2 }}%</td>
+      </tr>
+      <tr>
+        <th scope="row">{% trans "Clicked links average" %}</th>
+	<td>&nbsp;</td>
+        <td>{{ stats.clicked_links_average|floatformat:2 }}</td>
+      </tr>
+    </table>
+  </div>
+</div>
+{% endblock %}
+
+{% block sidebar %}
+<div id="content-related">
+    <div class="module" id="recent-actions-module">
+        <h2>{% trans "Informations" %}</h2>
+	<h3>{% trans "Recipients" %}</h3>
+	<p>{{ stats.mails_to_send }} <a href="{% url admin:newsletter_mailinglist_change object.mailing_list.pk %}">{% trans "View" %}</a></p>
+        <h3>{% trans "Status" %}</h3>
+	<p>{{ object.get_status_display }} {% if stats.remaining_mails %}<span class="mini quiet">(-{{ stats.remaining_mails }})</span>{% endif %}</p>
+	<h3>{% trans "Sending date" %}</h3>
+	<p>{{ object.sending_date|date:"d M Y H:i" }}</p>
+	{% if stats.tests_sent %}
+	<h3>{% trans "Tests sent" %}</h3>
+	<p>{{ stats.tests_sent }}</p>
+	{% endif %}
+    </div>
+    <div class="module" id="recent-actions-module">
+	<h2>{% trans "Top Links" %}</h2>
+	<ul class="actionlist">
+	{% for link, views in stats.top_links %}
+	<li><a href="{{ link.url }}" title="{{ link.title }}" target="blank">{{ link.title|slice:":28" }}</a> 
+	  <span class="mini quiet">({{ views }})</span></li>
+	{% empty %}
+	<li>{% trans "No Top Links yet." %}</li>
+	{% endfor %}
+	</ul>
+    </div>
 </div>
 {% endblock %}
