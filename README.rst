@@ -26,6 +26,7 @@ More than a long speech, here the list of the main features :
   * Unique urls for an user.
   * Tracking statistics.
 
+
 Architecture
 ============
 
@@ -57,7 +58,10 @@ Installation
   
 First of all you need to install emencia.django.newsletter into your *PYTHON_PATH*.
 
-Then register this module, **admin** and **contenttypes** in your INSTALLED_APPS section your project settings. ::
+Applications
+------------
+
+Then register **emencia.django.newsletter**, **admin** and **contenttypes** in your INSTALLED_APPS section your project settings. ::
 
   >>> INSTALLED_APPS = (
   ...   # Your favorites apps
@@ -65,14 +69,42 @@ Then register this module, **admin** and **contenttypes** in your INSTALLED_APPS
   ...   'django.contrib.admin',
   ...   'emencia.django.newsletter',)
 
+
+Template Context Processors
+---------------------------
+
+Add the following template context processors if not already present. ::
+
+  >>> TEMPLATE_CONTEXT_PROCESSORS = (
+  >>>      'django.core.context_processors.auth',
+  >>>      'django.core.context_processors.i18n',
+  >>>      'django.core.context_processors.request',
+  >>>      'django.core.context_processors.media',
+  >>>      'emencia.django.newsletter.context_processors.media',
+  >>>	)
+
+Urls
+----
+
 In your project urls.py adding this following line to include the newsletter's urls for serving the newsletters in HTML. ::
 
-  >>> (r'^newsletters/', include('emencia.django.newsletter.urls')),
+  >>> url(r'^newsletters/', include('emencia.django.newsletter.urls')),
+
+Note this urlset is provided for convenient usage, but you can do something like that if you want to customize your urls : ::
+
+  >>> url(r'^newsletters/', include('emencia.django.newsletter.urls.newsletter')),
+  >>> url(r'^mailing/', include('emencia.django.newsletter.urls.mailing_list')),
+  >>> url(r'^tracking/', include('emencia.django.newsletter.urls.tracking')),
+  >>> url(r'^statistics/', include('emencia.django.newsletter.urls.statistics')),
+
+Synchronization
+---------------
 
 Now you can run a *syncdb* for installing the models into your database.
 
+
 DBMS considerations
--------------------
+===================
 
 It's not recommended to use SQLite for production use. Because is limited to 999
 variables into a SQL query, you can not create a Mailing List greater than this limitations
