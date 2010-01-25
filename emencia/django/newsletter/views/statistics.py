@@ -6,11 +6,14 @@ from django.template import RequestContext
 from django.utils.translation import ugettext as _
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render_to_response
+from django.contrib.auth.decorators import login_required
 
 from emencia.django.newsletter.models import Newsletter
 from emencia.django.newsletter.models import ContactMailingStatus
 from emencia.django.newsletter.statistics import get_newsletter_statistics
 
+
+@login_required
 def view_newsletter_statistics(request, slug):
     """Display the statistics of a newsletters"""
     opts = Newsletter._meta

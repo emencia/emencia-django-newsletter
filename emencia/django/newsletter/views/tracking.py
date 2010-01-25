@@ -7,6 +7,7 @@ from django.shortcuts import get_object_or_404
 from django.template import RequestContext
 from django.utils.translation import ugettext as _
 from django.shortcuts import render_to_response
+from django.contrib.auth.decorators import login_required
 
 from emencia.django.newsletter.models import Link
 from emencia.django.newsletter.models import Newsletter
@@ -15,6 +16,7 @@ from emencia.django.newsletter.models import ContactMailingStatus
 from emencia.django.newsletter.settings import TRACKING_IMAGE
 
 
+@login_required
 def view_newsletter_tracking(request, slug, uidb36, token):
     """Track the opening of the newsletter by requesting a blank img"""
     newsletter = get_object_or_404(Newsletter, slug=slug)
