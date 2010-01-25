@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-01-22 16:27+0100\n"
+"POT-Creation-Date: 2010-01-25 14:12+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -292,7 +292,7 @@ msgstr ""
 msgid "Work Groups"
 msgstr ""
 
-#: admin/contact.py:27 templates/newsletter/newsletter_statistics.html:89
+#: admin/contact.py:27 templates/newsletter/newsletter_statistics.html:100
 msgid "Status"
 msgstr ""
 
@@ -375,86 +375,76 @@ msgstr ""
 msgid "Export"
 msgstr ""
 
-#: admin/newsletter.py:32
+#: admin/newsletter.py:28
 msgid "Receivers"
 msgstr ""
 
-#: admin/newsletter.py:33
+#: admin/newsletter.py:29
 msgid "Sending"
 msgstr ""
 
-#: admin/newsletter.py:34 admin/smtpserver.py:12
+#: admin/newsletter.py:30 admin/smtpserver.py:12
 msgid "Miscellaneous"
 msgstr ""
 
-#: admin/newsletter.py:69
+#: admin/newsletter.py:65
 msgid "Default"
 msgstr ""
 
-#: admin/newsletter.py:93
+#: admin/newsletter.py:89
 msgid "Unable to download HTML, due to errors within."
 msgstr ""
 
-#: admin/newsletter.py:105
+#: admin/newsletter.py:101
 msgid "View historic"
 msgstr ""
 
-#: admin/newsletter.py:107
+#: admin/newsletter.py:103
 msgid "Historic"
 msgstr ""
 
-#: admin/newsletter.py:111
+#: admin/newsletter.py:107
 msgid "View statistics"
 msgstr ""
 
-#: admin/newsletter.py:113
+#: admin/newsletter.py:109
 msgid "Statistics"
 msgstr ""
 
-#: admin/newsletter.py:123
+#: admin/newsletter.py:119
 msgid "Unable send newsletter, due to errors within HTML."
 msgstr ""
 
-#: admin/newsletter.py:125
+#: admin/newsletter.py:121
 #, python-format
 msgid "%s succesfully sent."
 msgstr ""
 
-#: admin/newsletter.py:127
+#: admin/newsletter.py:123
 #, python-format
 msgid "No test contacts assigned for %s."
 msgstr ""
 
-#: admin/newsletter.py:128
+#: admin/newsletter.py:124
 msgid "Send test email"
 msgstr ""
 
-#: admin/newsletter.py:136
+#: admin/newsletter.py:132
 #, python-format
 msgid "%s newletters are ready to send"
 msgstr ""
 
-#: admin/newsletter.py:137
+#: admin/newsletter.py:133
 msgid "Make ready to send"
 msgstr ""
 
-#: admin/newsletter.py:146
+#: admin/newsletter.py:142
 #, python-format
 msgid "%s newletters are cancelled"
 msgstr ""
 
-#: admin/newsletter.py:147
+#: admin/newsletter.py:143
 msgid "Cancel the sending"
-msgstr ""
-
-#: admin/newsletter.py:154
-#, python-format
-msgid "Historic of %s"
-msgstr ""
-
-#: admin/newsletter.py:169
-#, python-format
-msgid "Statistics of %s"
 msgstr ""
 
 #: admin/smtpserver.py:10
@@ -489,13 +479,33 @@ msgid "Export %(name)s"
 msgstr ""
 
 #: templates/newsletter/contact_import.html:7
-#: templates/newsletter/newsletter_historic.html:9
-#: templates/newsletter/newsletter_statistics.html:13
 msgid "Home"
 msgstr ""
 
 #: templates/newsletter/contact_import.html:10
 msgid "Importation"
+msgstr ""
+
+#: templates/newsletter/mailing_list_unsubscribe.html:4
+#: templates/newsletter/mailing_list_unsubscribe.html:7
+msgid "Unsubscription"
+msgstr ""
+
+#: templates/newsletter/mailing_list_unsubscribe.html:9
+msgid "You are unsubscribed for this mailing list."
+msgstr ""
+
+#: templates/newsletter/mailing_list_unsubscribe.html:11
+msgid "Validate this form to unsubscribe to this mailing list."
+msgstr ""
+
+#: templates/newsletter/mailing_list_unsubscribe.html:14
+msgid "Unsubscribe"
+msgstr ""
+
+#: templates/newsletter/newsletter_historic.html:9
+#: templates/newsletter/newsletter_statistics.html:21
+msgid "Admin."
 msgstr ""
 
 #: templates/newsletter/newsletter_historic.html:23
@@ -506,93 +516,90 @@ msgstr ""
 msgid "Action"
 msgstr ""
 
-#: templates/newsletter/newsletter_statistics.html:25
-#: templates/newsletter/newsletter_statistics.html:26
+#: templates/newsletter/newsletter_statistics.html:33
+#: templates/newsletter/newsletter_statistics.html:34
 msgid "Broadcasting statistics"
 msgstr ""
 
-#: templates/newsletter/newsletter_statistics.html:28
+#: templates/newsletter/newsletter_statistics.html:36
 msgid "Total openings"
 msgstr ""
 
-#: templates/newsletter/newsletter_statistics.html:33
+#: templates/newsletter/newsletter_statistics.html:41
 msgid "Openings on site"
 msgstr ""
 
-#: templates/newsletter/newsletter_statistics.html:38
+#: templates/newsletter/newsletter_statistics.html:46
 msgid "Total openings unique"
 msgstr ""
 
-#: templates/newsletter/newsletter_statistics.html:43
+#: templates/newsletter/newsletter_statistics.html:51
 msgid "Unknow delivery"
 msgstr ""
 
-#: templates/newsletter/newsletter_statistics.html:48
+#: templates/newsletter/newsletter_statistics.html:56
 msgid "Openings average"
 msgstr ""
 
-#: templates/newsletter/newsletter_statistics.html:56
-#: templates/newsletter/newsletter_statistics.html:57
+#: templates/newsletter/newsletter_statistics.html:64
+#: templates/newsletter/newsletter_statistics.html:65
 msgid "Links statistics"
 msgstr ""
 
-#: templates/newsletter/newsletter_statistics.html:59
+#: templates/newsletter/newsletter_statistics.html:67
 msgid "Total clicked links"
 msgstr ""
 
-#: templates/newsletter/newsletter_statistics.html:64
+#: templates/newsletter/newsletter_statistics.html:72
 msgid "Total clicked links unique"
 msgstr ""
 
-#: templates/newsletter/newsletter_statistics.html:69
+#: templates/newsletter/newsletter_statistics.html:77
 msgid "Clicked links by openings"
 msgstr ""
 
-#: templates/newsletter/newsletter_statistics.html:74
+#: templates/newsletter/newsletter_statistics.html:82
 msgid "Clicked links average"
 msgstr ""
 
-#: templates/newsletter/newsletter_statistics.html:86
+#: templates/newsletter/newsletter_statistics.html:97
 msgid "Informations"
 msgstr ""
 
-#: templates/newsletter/newsletter_statistics.html:87
+#: templates/newsletter/newsletter_statistics.html:98
 msgid "Recipients"
 msgstr ""
 
-#: templates/newsletter/newsletter_statistics.html:88
+#: templates/newsletter/newsletter_statistics.html:99
 msgid "View"
 msgstr ""
 
-#: templates/newsletter/newsletter_statistics.html:91
+#: templates/newsletter/newsletter_statistics.html:102
 msgid "Sending date"
 msgstr ""
 
-#: templates/newsletter/newsletter_statistics.html:94
+#: templates/newsletter/newsletter_statistics.html:105
 msgid "Tests sent"
 msgstr ""
 
-#: templates/newsletter/newsletter_statistics.html:99
+#: templates/newsletter/newsletter_statistics.html:110
 msgid "Top Links"
 msgstr ""
 
-#: templates/newsletter/newsletter_statistics.html:105
+#: templates/newsletter/newsletter_statistics.html:116
 msgid "No Top Links yet."
 msgstr ""
 
-#: templates/newsletter/newsletter_unsubscribe.html:4
-#: templates/newsletter/newsletter_unsubscribe.html:7
-msgid "Unsubscription"
+#: views/statistics.py:22
+#, python-format
+msgid "Statistics of %s"
 msgstr ""
 
-#: templates/newsletter/newsletter_unsubscribe.html:9
-msgid "You are unsubscribed for this mailing list."
+#: views/statistics.py:59
+msgid "Tracking charts"
 msgstr ""
 
-#: templates/newsletter/newsletter_unsubscribe.html:11
-msgid "Validate this form to unsubscribe to this mailing list."
-msgstr ""
-
-#: templates/newsletter/newsletter_unsubscribe.html:14
-msgid "Unsubscribe"
+#: views/tracking.py:45
+#, python-format
+msgid "Historic of %s"
 msgstr ""
