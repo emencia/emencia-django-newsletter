@@ -4,6 +4,9 @@ import base64
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
+from django.template import RequestContext
+from django.utils.translation import ugettext as _
+from django.shortcuts import render_to_response
 
 from emencia.django.newsletter.models import Link
 from emencia.django.newsletter.models import Newsletter
@@ -31,3 +34,16 @@ def view_newsletter_tracking_link(request, slug, uidb36, token, link_id):
                                               status=ContactMailingStatus.LINK_OPENED,
                                               link=link)
     return HttpResponseRedirect(link.url)
+
+def view_newsletter_historic(request, slug):
+    """Display the historic of a newsletter"""
+    opts = Newsletter._meta
+    newsletter = get_object_or_404(Newsletter, slug=slug)
+    
+    context = {'title': _('Historic of %s') % newsletter.__unicode__(),
+               'original': newsletter,
+               'opts': opts,
+               'object_id': newsletter.pk,
+               'app_label': opts.app_label,}
+    return render_to_response('newsletter/newsletter_historic.html',
+                              context, context_instance=RequestContext(request))

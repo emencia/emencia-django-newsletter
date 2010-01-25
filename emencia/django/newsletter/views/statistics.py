@@ -1,13 +1,30 @@
 """Views for emencia.django.newsletter statistics"""
 import pyofc2
 
-from django.shortcuts import get_object_or_404
 from django.http import HttpResponse
-from django.utils.translation import ugettext_lazy as _
+from django.template import RequestContext
+from django.utils.translation import ugettext as _
+from django.shortcuts import get_object_or_404
+from django.shortcuts import render_to_response
 
 from emencia.django.newsletter.models import Newsletter
 from emencia.django.newsletter.models import ContactMailingStatus
+from emencia.django.newsletter.statistics import get_newsletter_statistics
 
+def view_newsletter_statistics(request, slug):
+    """Display the statistics of a newsletters"""
+    opts = Newsletter._meta
+    newsletter = get_object_or_404(Newsletter, slug=slug)
+    
+    context = {'title': _('Statistics of %s') % newsletter.__unicode__(),
+               'object': newsletter,
+               'opts': opts,
+               'object_id': newsletter.pk,
+               'app_label': opts.app_label,
+               'stats': get_newsletter_statistics(newsletter)}
+    
+    return render_to_response('newsletter/newsletter_statistics.html',
+                              context, context_instance=RequestContext(request))
 
 def view_newsletter_charts(request, slug):
     newsletter = get_object_or_404(Newsletter, slug=slug)
