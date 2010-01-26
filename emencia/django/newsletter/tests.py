@@ -10,11 +10,17 @@ from django.contrib.sites.models import Site
 from emencia.django.newsletter.tokens import tokenize
 from emencia.django.newsletter.tokens import untokenize
 from emencia.django.newsletter.mailer import Mailer
+from emencia.django.newsletter.models import Link
 from emencia.django.newsletter.models import Contact
 from emencia.django.newsletter.models import MailingList
 from emencia.django.newsletter.models import SMTPServer
 from emencia.django.newsletter.models import Newsletter
 from emencia.django.newsletter.models import ContactMailingStatus
+from emencia.django.newsletter.statistics import get_newsletter_opening_statistics
+from emencia.django.newsletter.statistics import get_newsletter_on_site_opening_statistics
+from emencia.django.newsletter.statistics import get_newsletter_clicked_link_statistics
+from emencia.django.newsletter.statistics import get_newsletter_top_links
+from emencia.django.newsletter.statistics import get_newsletter_statistics
 
 class FakeSMTP(object):
     mails_sent = 0
@@ -332,3 +338,235 @@ class MailerTestCase(TestCase):
 
         self.assertEquals(ContactMailingStatus.objects.filter(
             status=ContactMailingStatus.INVALID, newsletter=self.newsletter).count(), 1)
+
+class StatisticsTestCase(TestCase):
+    """Tests for the statistics functions"""
+
+    def setUp(self):
+        self.server = SMTPServer.objects.create(name='Test SMTP',
+                                                host='smtp.domain.com')
+        self.contacts = [Contact.objects.create(email='test1@domain.com'),
+                         Contact.objects.create(email='test2@domain.com'),
+                         Contact.objects.create(email='test3@domain.com'),
+                         Contact.objects.create(email='test4@domain.com'),]
+        self.mailinglist = MailingList.objects.create(name='Test MailingList')
+        self.mailinglist.subscribers.add(*self.contacts)
+        self.newsletter = Newsletter.objects.create(title='Test Newsletter',
+                                                    content='Test Newsletter Content',
+                                                    mailing_list=self.mailinglist,
+                                                    server=self.server,
+                                                    status=Newsletter.SENT)
+        self.links = [Link.objects.create(title='link 1', url='htt://link.1'),
+                      Link.objects.create(title='link 2', url='htt://link.2'),]
+
+        for contact in self.contacts:
+            ContactMailingStatus.objects.create(newsletter=self.newsletter,
+                                                contact=contact,
+                                                status=ContactMailingStatus.SENT)
+        ContactMailingStatus.objects.create(newsletter=self.newsletter,
+                                            contact=self.contacts[0],
+                                            status=ContactMailingStatus.SENT_TEST)
+        
+        self.recipients = len(self.contacts)
+        self.status = ContactMailingStatus.objects.filter(newsletter=self.newsletter)
+        
+
+    def test_get_newsletter_opening_statistics(self):
+        stats = get_newsletter_opening_statistics(self.status, self.recipients)
+        self.assertEquals(stats['total_openings'], 0)
+        self.assertEquals(stats['unique_openings'], 0)
+        self.assertEquals(stats['unique_openings_percent'], 0)
+        self.assertEquals(stats['unknow_openings'], 0)
+        self.assertEquals(stats['unknow_openings_percent'], 0)
+        self.assertEquals(stats['opening_average'], 0)
+
+        ContactMailingStatus.objects.create(newsletter=self.newsletter,
+                                            contact=self.contacts[0],
+                                            status=ContactMailingStatus.OPENED)
+        ContactMailingStatus.objects.create(newsletter=self.newsletter,
+                                            contact=self.contacts[0],
+                                            status=ContactMailingStatus.OPENED)
+        ContactMailingStatus.objects.create(newsletter=self.newsletter,
+                                            contact=self.contacts[1],
+                                            status=ContactMailingStatus.OPENED)
+        ContactMailingStatus.objects.create(newsletter=self.newsletter,
+                                            contact=self.contacts[2],
+                                            status=ContactMailingStatus.OPENED_ON_SITE)
+        status = ContactMailingStatus.objects.filter(newsletter=self.newsletter)
+
+        stats = get_newsletter_opening_statistics(status, self.recipients)
+        self.assertEquals(stats['total_openings'], 4)
+        self.assertEquals(stats['unique_openings'], 3)
+        self.assertEquals(stats['unique_openings_percent'], 75.0)
+        self.assertEquals(stats['unknow_openings'], 1)
+        self.assertEquals(stats['unknow_openings_percent'], 25.0)
+        self.assertEquals(stats['opening_average'], 1.3333333333333333)
+
+    def test_get_newsletter_on_site_opening_statistics(self):
+        stats = get_newsletter_on_site_opening_statistics(self.status)
+        self.assertEquals(stats['total_on_site_openings'], 0)
+        self.assertEquals(stats['unique_on_site_openings'], 0)
+
+        ContactMailingStatus.objects.create(newsletter=self.newsletter,
+                                            contact=self.contacts[0],
+                                            status=ContactMailingStatus.OPENED_ON_SITE)
+        ContactMailingStatus.objects.create(newsletter=self.newsletter,
+                                            contact=self.contacts[0],
+                                            status=ContactMailingStatus.OPENED_ON_SITE)
+        ContactMailingStatus.objects.create(newsletter=self.newsletter,
+                                            contact=self.contacts[1],
+                                            status=ContactMailingStatus.OPENED_ON_SITE)
+        ContactMailingStatus.objects.create(newsletter=self.newsletter,
+                                            contact=self.contacts[2],
+                                            status=ContactMailingStatus.OPENED_ON_SITE)
+        status = ContactMailingStatus.objects.filter(newsletter=self.newsletter)
+
+        stats = get_newsletter_on_site_opening_statistics(status)
+        self.assertEquals(stats['total_on_site_openings'], 4)
+        self.assertEquals(stats['unique_on_site_openings'], 3)
+
+    def test_get_newsletter_clicked_link_statistics(self):
+        stats = get_newsletter_clicked_link_statistics(self.status, self.recipients, 0)
+        self.assertEquals(stats['total_clicked_links'], 0)
+        self.assertEquals(stats['total_clicked_links_percent'], 0)
+        self.assertEquals(stats['unique_clicked_links'], 0)
+        self.assertEquals(stats['unique_clicked_links_percent'], 0)
+        self.assertEquals(stats['clicked_links_by_openings'], 0.0)
+        self.assertEquals(stats['clicked_links_average'], 0.0)
+
+        ContactMailingStatus.objects.create(newsletter=self.newsletter,
+                                            contact=self.contacts[0],
+                                            link=self.links[0],
+                                            status=ContactMailingStatus.LINK_OPENED)
+        ContactMailingStatus.objects.create(newsletter=self.newsletter,
+                                            contact=self.contacts[0],
+                                            link=self.links[1],
+                                            status=ContactMailingStatus.LINK_OPENED)
+        ContactMailingStatus.objects.create(newsletter=self.newsletter,
+                                            contact=self.contacts[0],
+                                            link=self.links[1],
+                                            status=ContactMailingStatus.LINK_OPENED)
+        ContactMailingStatus.objects.create(newsletter=self.newsletter,
+                                            contact=self.contacts[1],
+                                            link=self.links[0],
+                                            status=ContactMailingStatus.LINK_OPENED)
+        ContactMailingStatus.objects.create(newsletter=self.newsletter,
+                                            contact=self.contacts[2],
+                                            link=self.links[0],
+                                            status=ContactMailingStatus.LINK_OPENED)
+        status = ContactMailingStatus.objects.filter(newsletter=self.newsletter)
+
+        stats = get_newsletter_clicked_link_statistics(status, self.recipients, 3)
+        self.assertEquals(stats['total_clicked_links'], 5)
+        self.assertEquals(stats['total_clicked_links_percent'], 125.0)
+        self.assertEquals(stats['unique_clicked_links'], 3)
+        self.assertEquals(stats['unique_clicked_links_percent'], 75.0)
+        self.assertEquals(stats['clicked_links_by_openings'], 166.66666666666669)
+        self.assertEquals(stats['clicked_links_average'], 1.6666666666666667)
+
+    def test_get_newsletter_top_links(self):
+        stats = get_newsletter_top_links(self.status)
+        self.assertEquals(stats['top_links'], [])
+
+        ContactMailingStatus.objects.create(newsletter=self.newsletter,
+                                            contact=self.contacts[0],
+                                            link=self.links[0],
+                                            status=ContactMailingStatus.LINK_OPENED)
+        ContactMailingStatus.objects.create(newsletter=self.newsletter,
+                                            contact=self.contacts[0],
+                                            link=self.links[1],
+                                            status=ContactMailingStatus.LINK_OPENED)
+        ContactMailingStatus.objects.create(newsletter=self.newsletter,
+                                            contact=self.contacts[1],
+                                            link=self.links[0],
+                                            status=ContactMailingStatus.LINK_OPENED)
+        ContactMailingStatus.objects.create(newsletter=self.newsletter,
+                                            contact=self.contacts[2],
+                                            link=self.links[0],
+                                            status=ContactMailingStatus.LINK_OPENED)
+        status = ContactMailingStatus.objects.filter(newsletter=self.newsletter)
+
+        stats = get_newsletter_top_links(status)
+        self.assertEquals(len(stats['top_links']), 2)
+        self.assertEquals(stats['top_links'][0][1], 3)
+        self.assertEquals(stats['top_links'][1][1], 1)
+
+    def test_get_newsletter_statistics(self):
+        stats = get_newsletter_statistics(self.newsletter)
+
+        self.assertEquals(stats['clicked_links_average'], 0.0)
+        self.assertEquals(stats['clicked_links_by_openings'], 0.0)
+        self.assertEquals(stats['mails_sent'], 4)
+        self.assertEquals(stats['mails_to_send'], 4)
+        self.assertEquals(stats['opening_average'], 0)
+        self.assertEquals(stats['remaining_mails'], 0)
+        self.assertEquals(stats['tests_sent'], 1)
+        self.assertEquals(stats['top_links'], [])
+        self.assertEquals(stats['total_clicked_links'], 0)
+        self.assertEquals(stats['total_clicked_links_percent'], 0.0)
+        self.assertEquals(stats['total_on_site_openings'], 0)
+        self.assertEquals(stats['total_openings'], 0)
+        self.assertEquals(stats['unique_clicked_links'], 0)
+        self.assertEquals(stats['unique_clicked_links_percent'], 0.0)
+        self.assertEquals(stats['unique_on_site_openings'], 0)
+        self.assertEquals(stats['unique_openings'], 0)
+        self.assertEquals(stats['unique_openings_percent'], 0)
+        self.assertEquals(stats['unknow_openings'], 0)
+        self.assertEquals(stats['unknow_openings_percent'], 0.0)
+
+        ContactMailingStatus.objects.create(newsletter=self.newsletter,
+                                            contact=self.contacts[0],
+                                            status=ContactMailingStatus.OPENED)
+        ContactMailingStatus.objects.create(newsletter=self.newsletter,
+                                            contact=self.contacts[0],
+                                            status=ContactMailingStatus.OPENED)
+        ContactMailingStatus.objects.create(newsletter=self.newsletter,
+                                            contact=self.contacts[1],
+                                            status=ContactMailingStatus.OPENED)
+        ContactMailingStatus.objects.create(newsletter=self.newsletter,
+                                            contact=self.contacts[0],
+                                            status=ContactMailingStatus.OPENED_ON_SITE)
+        ContactMailingStatus.objects.create(newsletter=self.newsletter,
+                                            contact=self.contacts[2],
+                                            status=ContactMailingStatus.OPENED_ON_SITE)
+        ContactMailingStatus.objects.create(newsletter=self.newsletter,
+                                            contact=self.contacts[0],
+                                            link=self.links[0],
+                                            status=ContactMailingStatus.LINK_OPENED)
+        ContactMailingStatus.objects.create(newsletter=self.newsletter,
+                                            contact=self.contacts[0],
+                                            link=self.links[1],
+                                            status=ContactMailingStatus.LINK_OPENED)
+        ContactMailingStatus.objects.create(newsletter=self.newsletter,
+                                            contact=self.contacts[0],
+                                            link=self.links[1],
+                                            status=ContactMailingStatus.LINK_OPENED)
+        ContactMailingStatus.objects.create(newsletter=self.newsletter,
+                                            contact=self.contacts[1],
+                                            link=self.links[0],
+                                            status=ContactMailingStatus.LINK_OPENED)
+        ContactMailingStatus.objects.create(newsletter=self.newsletter,
+                                            contact=self.contacts[2],
+                                            link=self.links[0],
+                                            status=ContactMailingStatus.LINK_OPENED)
+
+        stats = get_newsletter_statistics(self.newsletter)
+        
+        self.assertEquals(stats['clicked_links_average'], 1.6666666666666667)
+        self.assertEquals(stats['clicked_links_by_openings'], 100.0)
+        self.assertEquals(stats['mails_sent'], 4)
+        self.assertEquals(stats['mails_to_send'], 4)
+        self.assertEquals(stats['opening_average'], 1.6666666666666667)
+        self.assertEquals(stats['remaining_mails'], 0)
+        self.assertEquals(stats['tests_sent'], 1)
+        self.assertEquals(stats['total_clicked_links'], 5)
+        self.assertEquals(stats['total_clicked_links_percent'], 125.0)
+        self.assertEquals(stats['total_on_site_openings'], 2)
+        self.assertEquals(stats['total_openings'], 5)
+        self.assertEquals(stats['unique_clicked_links'], 3)
+        self.assertEquals(stats['unique_clicked_links_percent'], 75.0)
+        self.assertEquals(stats['unique_on_site_openings'], 2)
+        self.assertEquals(stats['unique_openings'], 3)
+        self.assertEquals(stats['unique_openings_percent'], 75)
+        self.assertEquals(stats['unknow_openings'], 1)
+        self.assertEquals(stats['unknow_openings_percent'], 25.0)
