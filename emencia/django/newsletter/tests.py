@@ -366,15 +366,16 @@ class StatisticsTestCase(TestCase):
         ContactMailingStatus.objects.create(newsletter=self.newsletter,
                                             contact=self.contacts[0],
                                             status=ContactMailingStatus.SENT_TEST)
-        
+
         self.recipients = len(self.contacts)
         self.status = ContactMailingStatus.objects.filter(newsletter=self.newsletter)
-        
+
 
     def test_get_newsletter_opening_statistics(self):
         stats = get_newsletter_opening_statistics(self.status, self.recipients)
         self.assertEquals(stats['total_openings'], 0)
         self.assertEquals(stats['unique_openings'], 0)
+        self.assertEquals(stats['double_openings'], 0)
         self.assertEquals(stats['unique_openings_percent'], 0)
         self.assertEquals(stats['unknow_openings'], 0)
         self.assertEquals(stats['unknow_openings_percent'], 0)
@@ -397,6 +398,7 @@ class StatisticsTestCase(TestCase):
         stats = get_newsletter_opening_statistics(status, self.recipients)
         self.assertEquals(stats['total_openings'], 4)
         self.assertEquals(stats['unique_openings'], 3)
+        self.assertEquals(stats['double_openings'], 1)
         self.assertEquals(stats['unique_openings_percent'], 75.0)
         self.assertEquals(stats['unknow_openings'], 1)
         self.assertEquals(stats['unknow_openings_percent'], 25.0)
@@ -429,6 +431,8 @@ class StatisticsTestCase(TestCase):
         stats = get_newsletter_clicked_link_statistics(self.status, self.recipients, 0)
         self.assertEquals(stats['total_clicked_links'], 0)
         self.assertEquals(stats['total_clicked_links_percent'], 0)
+        self.assertEquals(stats['double_clicked_links'], 0)
+        self.assertEquals(stats['double_clicked_links_percent'], 0.0)
         self.assertEquals(stats['unique_clicked_links'], 0)
         self.assertEquals(stats['unique_clicked_links_percent'], 0)
         self.assertEquals(stats['clicked_links_by_openings'], 0.0)
@@ -459,6 +463,8 @@ class StatisticsTestCase(TestCase):
         stats = get_newsletter_clicked_link_statistics(status, self.recipients, 3)
         self.assertEquals(stats['total_clicked_links'], 5)
         self.assertEquals(stats['total_clicked_links_percent'], 125.0)
+        self.assertEquals(stats['double_clicked_links'], 2)
+        self.assertEquals(stats['double_clicked_links_percent'], 50.0)
         self.assertEquals(stats['unique_clicked_links'], 3)
         self.assertEquals(stats['unique_clicked_links_percent'], 75.0)
         self.assertEquals(stats['clicked_links_by_openings'], 166.66666666666669)
@@ -496,6 +502,9 @@ class StatisticsTestCase(TestCase):
 
         self.assertEquals(stats['clicked_links_average'], 0.0)
         self.assertEquals(stats['clicked_links_by_openings'], 0.0)
+        self.assertEquals(stats['double_clicked_links'], 0)
+        self.assertEquals(stats['double_clicked_links_percent'], 00.0)
+        self.assertEquals(stats['double_openings'], 0)
         self.assertEquals(stats['mails_sent'], 4)
         self.assertEquals(stats['mails_to_send'], 4)
         self.assertEquals(stats['opening_average'], 0)
@@ -551,9 +560,12 @@ class StatisticsTestCase(TestCase):
                                             status=ContactMailingStatus.LINK_OPENED)
 
         stats = get_newsletter_statistics(self.newsletter)
-        
+
         self.assertEquals(stats['clicked_links_average'], 1.6666666666666667)
         self.assertEquals(stats['clicked_links_by_openings'], 100.0)
+        self.assertEquals(stats['double_clicked_links'], 2)
+        self.assertEquals(stats['double_clicked_links_percent'], 50.0)
+        self.assertEquals(stats['double_openings'], 2)
         self.assertEquals(stats['mails_sent'], 4)
         self.assertEquals(stats['mails_to_send'], 4)
         self.assertEquals(stats['opening_average'], 1.6666666666666667)

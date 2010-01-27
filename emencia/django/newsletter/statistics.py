@@ -7,7 +7,7 @@ def get_newsletter_opening_statistics(status, recipients):
     """Return opening statistics of a newsletter based on status"""
     openings = status.filter(Q(status=Status.OPENED) | Q(status=Status.OPENED_ON_SITE))
     total_openings = openings.count()
-    if total_openings:        
+    if total_openings:
         unique_openings = len(set(openings.values_list('contact', flat=True)))
         unique_openings_percent = float(unique_openings) / float(recipients) * 100
         unknow_openings = recipients - unique_openings
@@ -16,8 +16,9 @@ def get_newsletter_opening_statistics(status, recipients):
     else:
         unique_openings = unique_openings_percent = unknow_openings = \
                           unknow_openings_percent = opening_average = 0
-    
+
     return {'total_openings': total_openings,
+            'double_openings': total_openings - unique_openings,
             'unique_openings': unique_openings,
             'unique_openings_percent': unique_openings_percent,
             'unknow_openings': unknow_openings,
@@ -40,9 +41,12 @@ def get_newsletter_clicked_link_statistics(status, recipients, openings):
 
     total_clicked_links = clicked_links.count()
     total_clicked_links_percent = float(total_clicked_links) / float(recipients) * 100
-    
+
     unique_clicked_links = len(set(clicked_links.values_list('contact', flat=True)))
     unique_clicked_links_percent = float(unique_clicked_links) / float(recipients) * 100
+
+    double_clicked_links = total_clicked_links - unique_clicked_links
+    double_clicked_links_percent = float(double_clicked_links) / float(recipients) * 100
 
     clicked_links_by_openings = openings and float(total_clicked_links) / float(openings) * 100 or 0.0
 
@@ -50,6 +54,8 @@ def get_newsletter_clicked_link_statistics(status, recipients, openings):
 
     return {'total_clicked_links': total_clicked_links,
             'total_clicked_links_percent': total_clicked_links_percent,
+            'double_clicked_links': double_clicked_links,
+            'double_clicked_links_percent': double_clicked_links_percent,
             'unique_clicked_links': unique_clicked_links,
             'unique_clicked_links_percent': unique_clicked_links_percent,
             'clicked_links_by_openings': clicked_links_by_openings,
@@ -75,13 +81,13 @@ def get_newsletter_statistics(newsletter):
                   'mails_sent': mails_sent,
                   'mails_to_send': recipients,
                   'remaining_mails': recipients - mails_sent}
-    
+
     statistics.update(get_newsletter_opening_statistics(post_sending_status, recipients))
     statistics.update(get_newsletter_on_site_opening_statistics(post_sending_status))
     statistics.update(get_newsletter_clicked_link_statistics(post_sending_status, recipients,
                                                              statistics['total_openings']))
     statistics.update(get_newsletter_top_links(post_sending_status))
-    
+
     return statistics
 
 
