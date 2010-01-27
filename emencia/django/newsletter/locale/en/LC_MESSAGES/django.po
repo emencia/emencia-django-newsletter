@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-01-25 14:12+0100\n"
+"POT-Creation-Date: 2010-01-27 13:26+0100\n"
 "PO-Revision-Date: 2010-01-21 10:54+0100\n"
 "Last-Translator: Fantomas <Fantomas42@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -291,7 +291,7 @@ msgstr "Work Group"
 msgid "Work Groups"
 msgstr "Work Groups"
 
-#: admin/contact.py:27 templates/newsletter/newsletter_statistics.html:100
+#: admin/contact.py:27 templates/newsletter/newsletter_statistics.html:161
 msgid "Status"
 msgstr "Status"
 
@@ -503,7 +503,7 @@ msgid "Unsubscribe"
 msgstr "Unsubscribe"
 
 #: templates/newsletter/newsletter_historic.html:9
-#: templates/newsletter/newsletter_statistics.html:21
+#: templates/newsletter/newsletter_statistics.html:48
 msgid "Admin."
 msgstr ""
 
@@ -515,98 +515,123 @@ msgstr "Date"
 msgid "Action"
 msgstr "Action"
 
-#: templates/newsletter/newsletter_statistics.html:33
-#: templates/newsletter/newsletter_statistics.html:34
+#: templates/newsletter/newsletter_statistics.html:60
+#: templates/newsletter/newsletter_statistics.html:61
 #, fuzzy
 msgid "Broadcasting statistics"
 msgstr "View statistics"
 
-#: templates/newsletter/newsletter_statistics.html:36
+#: templates/newsletter/newsletter_statistics.html:63
 #, fuzzy
 msgid "Total openings"
 msgstr "Total Subscriptions"
 
-#: templates/newsletter/newsletter_statistics.html:41
+#: templates/newsletter/newsletter_statistics.html:68
 #, fuzzy
 msgid "Openings on site"
 msgstr "Opened on site"
 
-#: templates/newsletter/newsletter_statistics.html:46
+#: templates/newsletter/newsletter_statistics.html:73
 msgid "Total openings unique"
 msgstr ""
 
-#: templates/newsletter/newsletter_statistics.html:51
+#: templates/newsletter/newsletter_statistics.html:78
 msgid "Unknow delivery"
 msgstr ""
 
-#: templates/newsletter/newsletter_statistics.html:56
+#: templates/newsletter/newsletter_statistics.html:83
 #, fuzzy
 msgid "Openings average"
 msgstr "Total Subscriptions"
 
-#: templates/newsletter/newsletter_statistics.html:64
-#: templates/newsletter/newsletter_statistics.html:65
+#: templates/newsletter/newsletter_statistics.html:91
+#: templates/newsletter/newsletter_statistics.html:92
 #, fuzzy
 msgid "Links statistics"
 msgstr "View statistics"
 
-#: templates/newsletter/newsletter_statistics.html:67
+#: templates/newsletter/newsletter_statistics.html:94
 #, fuzzy
 msgid "Total clicked links"
 msgstr "Total Subscriptions"
 
-#: templates/newsletter/newsletter_statistics.html:72
+#: templates/newsletter/newsletter_statistics.html:99
 msgid "Total clicked links unique"
 msgstr ""
 
-#: templates/newsletter/newsletter_statistics.html:77
+#: templates/newsletter/newsletter_statistics.html:104
 msgid "Clicked links by openings"
 msgstr ""
 
-#: templates/newsletter/newsletter_statistics.html:82
+#: templates/newsletter/newsletter_statistics.html:109
 #, fuzzy
 msgid "Clicked links average"
 msgstr "Total Subscriptions"
 
-#: templates/newsletter/newsletter_statistics.html:97
+#: templates/newsletter/newsletter_statistics.html:121 views/statistics.py:119
+msgid "Consultation histogram"
+msgstr ""
+
+#: templates/newsletter/newsletter_statistics.html:124
+msgid "Display clicks"
+msgstr ""
+
+#: templates/newsletter/newsletter_statistics.html:131
+msgid "Period"
+msgstr ""
+
+#: templates/newsletter/newsletter_statistics.html:158
 #, fuzzy
 msgid "Informations"
 msgstr "Import"
 
-#: templates/newsletter/newsletter_statistics.html:98
+#: templates/newsletter/newsletter_statistics.html:159
 #, fuzzy
 msgid "Recipients"
 msgstr "Receivers"
 
-#: templates/newsletter/newsletter_statistics.html:99
+#: templates/newsletter/newsletter_statistics.html:160
 msgid "View"
 msgstr ""
 
-#: templates/newsletter/newsletter_statistics.html:102
+#: templates/newsletter/newsletter_statistics.html:163
 #, fuzzy
 msgid "Sending date"
 msgstr "Sending date"
 
-#: templates/newsletter/newsletter_statistics.html:105
+#: templates/newsletter/newsletter_statistics.html:166
 msgid "Tests sent"
 msgstr ""
 
-#: templates/newsletter/newsletter_statistics.html:110
+#: templates/newsletter/newsletter_statistics.html:171
 #, fuzzy
 msgid "Top Links"
 msgstr "Links"
 
-#: templates/newsletter/newsletter_statistics.html:116
+#: templates/newsletter/newsletter_statistics.html:177
 msgid "No Top Links yet."
 msgstr ""
 
-#: views/statistics.py:22
+#: views/statistics.py:49
 #, python-format
 msgid "Statistics of %s"
 msgstr "Statistics of %s"
 
-#: views/statistics.py:59
-msgid "Tracking charts"
+#: views/statistics.py:106
+msgid "Unique opening"
+msgstr ""
+
+#: views/statistics.py:107
+#, fuzzy
+msgid "Double openings"
+msgstr "Total Subscriptions"
+
+#: views/statistics.py:113
+msgid "Unique click"
+msgstr ""
+
+#: views/statistics.py:114
+msgid "Double clicks"
 msgstr ""
 
 #: views/tracking.py:45
