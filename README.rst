@@ -97,6 +97,13 @@ Note this urlset is provided for convenient usage, but you can do something like
   >>> url(r'^tracking/', include('emencia.django.newsletter.urls.tracking')),
   >>> url(r'^statistics/', include('emencia.django.newsletter.urls.statistics')),
 
+Media Files
+-----------
+
+You have to make a symbolic link from  emencia/django/newsletter/media/ directory to your media directory or make a copy named **edn**,
+but if want to change this value, define NEWSLETTER_MEDIA_URL in the settings.py as appropriate.
+
+
 Synchronization
 ---------------
 
