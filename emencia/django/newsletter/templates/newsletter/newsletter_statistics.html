@@ -8,10 +8,37 @@
 {% block extrastyle %}{{ block.super }}<link rel="stylesheet" type="text/css" href="{% load adminmedia %}{% admin_media_prefix %}css/dashboard.css" />{% endblock %}
 
 {% block extrahead %}
-<script type="text/javascript" src="{{ NEWSLETTER_MEDIA_URL }}swfobject/swfobject.js"></script>
+<script type="text/javascript" src="{{ NEWSLETTER_MEDIA_URL }}js/jquery.js"></script>
+<script type="text/javascript" src="{{ NEWSLETTER_MEDIA_URL }}js/jquery.form.js"></script>
+<script type="text/javascript" src="{{ NEWSLETTER_MEDIA_URL }}js/swfobject/swfobject.js"></script>
 <script type="text/javascript">
-swfobject.embedSWF("{{ NEWSLETTER_MEDIA_URL }}open-flash-chart.swf", "opening_charts", "498", "350", "9.0.0", "{{ NEWSLETTER_MEDIA_URL }}swfobject/expressInstall.swf",
-                   {"data-file": "{% url newsletter_newsletter_charts object.slug %}"});
+$(document).ready(function(){
+  swfobject.embedSWF("{{ NEWSLETTER_MEDIA_URL }}swf/open-flash-chart.swf", "charts_view", "498", "350", "9.0.0", 
+                     "{{ NEWSLETTER_MEDIA_URL }}js/swfobject/expressInstall.swf",
+                     {"data-file": "{% url newsletter_newsletter_charts object.slug %}"});
+
+  function reload_charts(charts_data) {
+    swfobject.getObjectById("charts_view").load(charts_data);
+  };
+
+  function validate(formData, jqForm, options) { 
+    for (var i=0; i < formData.length; i++) { 
+        if (formData[i].name == 'start') { 
+	  var start = parseInt(formData[i].value);
+        } 
+        if (formData[i].name == 'end') { 
+	  var end = parseInt(formData[i].value);
+        } 
+    }
+    if (start > end) {
+      return false;
+    }
+  };
+
+  var options = {success: reload_charts,
+                 beforeSubmit: validate}; 
+  $("#period_selector").ajaxForm(options);
+});
 </script>
 {% endblock %}
 
@@ -85,9 +112,43 @@ swfobject.embedSWF("{{ NEWSLETTER_MEDIA_URL }}open-flash-chart.swf", "opening_ch
       </tr>
     </table>
   </div>
+  {% if period %}
   <div class="module" id="charts">
-    <div id="opening_charts"></div>
+    <div id="charts_view"></div>
   </div>
+  <div class="module" id="charts_options">
+    <form id="period_selector" action="{% url newsletter_newsletter_charts object.slug %}" method="post">
+      <table summary="{% trans "Consultation histogram" %}">
+	<tr>
+	  <th scope="row" style="vertical-align: middle;">
+	    {% trans "Display clicks" %} :
+	  </th>
+	  <td><input type="checkbox" checked="checked" name="display_clicks"></td>
+	  <td>&nbsp;</td>
+	</tr>
+	<tr>
+	  <th scope="row" style="vertical-align: middle;">
+	    {% trans "Period" %} :
+	  </th>
+	  <td>
+	    <select name="start">
+	      {% for date in period %}
+	      <option value="{{ forloop.counter0 }}" {% ifequal forloop.counter0 0 %}selected="selected"{% endifequal %}>{{ date|date:"d M Y" }}</option>
+	      {% endfor %}
+	    </select>
+	    <span>-></span>
+	    <select name="end">
+	      {% for date in period %}
+	      <option value="{{ forloop.counter0 }}" {% ifequal forloop.counter0 6 %}selected="selected"{% endifequal %}>{{ date|date:"d M Y" }}</option>
+	      {% endfor %}
+	    </select>
+	  </td>
+	  <td><input type="submit" value="OK" /></td>
+	</tr>
+      </table>
+    </form>
+  </div>
+  {% endif %}
 </div>
 {% endblock %}
 
