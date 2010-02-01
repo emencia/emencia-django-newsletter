@@ -1,7 +1,7 @@
 """Views for emencia.django.newsletter statistics"""
 from datetime import timedelta
 
-import pyofc2
+#import pyofc2
 from django.db.models import Q
 from django.http import HttpResponse
 from django.template import RequestContext
@@ -11,6 +11,7 @@ from django.shortcuts import render_to_response
 from django.contrib.auth.decorators import login_required
 from django.template.defaultfilters import date
 
+from emencia.django.newsletter.ofc import Chart
 from emencia.django.newsletter.models import Newsletter
 from emencia.django.newsletter.models import ContactMailingStatus
 from emencia.django.newsletter.statistics import get_newsletter_statistics
@@ -62,75 +63,56 @@ def view_newsletter_charts(request, slug):
 
     start = int(request.POST.get('start', 0))
     end = int(request.POST.get('end', 6))
-    display_clicks = True
-    if request.POST:
-        display_clicks = request.POST.get('display_clicks')
 
     recipients = newsletter.mailing_list.expedition_set().count()
-    dates = []
-    day = newsletter.sending_date.date()
+
+    sending_date = newsletter.sending_date.date()
+    labels, clicks_by_day, openings_by_day = [], [], []
+    
     for i in range(start, end + 1):
-        dates.append(day + timedelta(days=i))
-
-    labels = []
-    total_clicks = []
-    total_openings = []
-    clicks_by_day = []
-    openings_by_day = []
-
-    for day in dates:
+        day = sending_date + timedelta(days=i)
         day_status = ContactMailingStatus.objects.filter(newsletter=newsletter,
                                                          creation_date__day=day.day,
                                                          creation_date__month=day.month,
                                                          creation_date__year=day.year)
+        
         opening_stats = get_newsletter_opening_statistics(day_status, recipients)
         click_stats = get_newsletter_clicked_link_statistics(day_status, recipients, 0)
         # Labels
         labels.append(date(day, 'D d M y').capitalize())
-        # For determining max Y scale
-        total_openings.append(opening_stats['total_openings'])
-        total_clicks.append(click_stats['total_clicked_links'])
         # Values
-        if not opening_stats['double_openings']:
-            opening_stats['double_openings'] = None
-        if not click_stats['double_clicked_links']:
-            click_stats['double_clicked_links'] = None
-        openings_by_day.append([opening_stats['unique_openings'],
-                                opening_stats['double_openings']])
-        clicks_by_day.append([click_stats['unique_clicked_links'],
-                              click_stats['double_clicked_links']])
+        openings_by_day.append(opening_stats['total_openings'])
+        clicks_by_day.append(click_stats['total_clicked_links'])
 
 
-    b1 = pyofc2.bar_stack()
-    b1.colours = (BAR_COLOR_1, BAR_COLOR_2)
-    b1.keys = [{'colour': BAR_COLOR_1, 'text':_('Unique opening'), 'font-size': 13},
-               {'colour': BAR_COLOR_2, 'text':_('Double openings'), 'font-size': 13},]
-    #b1.on_show = {'type': 'pop', 'cascade': 1, 'delay': 0.5 }
+    b1 = Chart()
+    b1.type = 'bar_3d'
+    b1.colour = BAR_COLOR_1
+    b1.text = _('Total openings')
+    b1.tip = _('#val# openings')
+    b1.on_show = {'type': 'grow-up'}
     b1.values = openings_by_day
 
-    b2 = pyofc2.bar_stack()
-    b2.colours = (BAR_COLOR_3, BAR_COLOR_4)
-    b2.keys = [{'colour': BAR_COLOR_3, 'text':_('Unique click'), 'font-size': 13},
-               {'colour': BAR_COLOR_4, 'text':_('Double clicks'), 'font-size': 13},]
-    #b2.on_show = {'type': 'pop', 'cascade': 1, 'delay': 0.5 }
+    b2 = Chart()
+    b2.type = 'bar_3d'
+    b2.colour = BAR_COLOR_2
+    b2.text = _('Total clicked links')
+    b2.tip = _('#val# clicks')
+    b2.on_show = {'type': 'grow-up'}
     b2.values = clicks_by_day
 
+    chart = Chart()
+    chart.bg_colour = BG_COLOR
+    chart.title.text = _('Consultation histogram')
+    chart.title.style = '{font-size: 16px; color: #666666; text-align: center; font-weight: bold;}'
 
-    title = pyofc2.title(text=_('Consultation histogram'),
-                         style='{font-size: 16px; color: #666666; text-align: center; font-weight: bold;}')
-    y = pyofc2.y_axis(min=0, max=max(total_openings) + 2,
-                      steps=max(total_openings) / 5, colour=AXIS_COLOR,
-                      grid_colour=GRID_COLOR)
+    chart.y_axis = {'colour': AXIS_COLOR, 'grid-colour': GRID_COLOR,
+                    'min': 0, 'max': max(openings_by_day) + 2,
+                    'steps': max(openings_by_day) / 5}
+    chart.x_axis = {'colour': AXIS_COLOR, 'grid-colour': GRID_COLOR,
+                    '3d': 5, 'labels': {'labels': labels, 'rotate': 60}}
+    
+    
+    chart.elements = [b1, b2]
 
-    x = pyofc2.x_axis(colour=AXIS_COLOR,
-                      grid_colour=GRID_COLOR, labels=pyofc2.x_axis_labels(
-                          rotate=60, labels=labels))
-
-    chart = pyofc2.open_flash_chart(title=title,
-                                    bg_colour=BG_COLOR,
-                                    x_axis=x, y_axis=y)
-    chart.add_element(b1)
-    if display_clicks:
-        chart.add_element(b2)
-
-    return HttpResponse(chart.render())
+    return HttpResponse(chart.create())
