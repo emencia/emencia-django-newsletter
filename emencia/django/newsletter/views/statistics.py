@@ -1,7 +1,6 @@
 """Views for emencia.django.newsletter statistics"""
 from datetime import timedelta
 
-#import pyofc2
 from django.db.models import Q
 from django.http import HttpResponse
 from django.template import RequestContext
@@ -85,24 +84,15 @@ def view_newsletter_charts(request, slug):
         clicks_by_day.append(click_stats['total_clicked_links'])
 
 
-    b1 = Chart()
-    b1.type = 'bar_3d'
-    b1.colour = BAR_COLOR_1
-    b1.text = _('Total openings')
-    b1.tip = _('#val# openings')
-    b1.on_show = {'type': 'grow-up'}
-    b1.values = openings_by_day
+    b1 = Chart(type='bar_3d', colour=BAR_COLOR_1,
+               text=_('Total openings'), tip=_('#val# openings'),
+               on_show={'type': 'grow-up'}, values=openings_by_day)
 
-    b2 = Chart()
-    b2.type = 'bar_3d'
-    b2.colour = BAR_COLOR_2
-    b2.text = _('Total clicked links')
-    b2.tip = _('#val# clicks')
-    b2.on_show = {'type': 'grow-up'}
-    b2.values = clicks_by_day
+    b2 = Chart(type='bar_3d', colour=BAR_COLOR_2,
+               text=_('Total clicked links'), tip=_('#val# clicks'),
+               on_show={'type': 'grow-up'}, values=clicks_by_day)
 
-    chart = Chart()
-    chart.bg_colour = BG_COLOR
+    chart = Chart(bg_colour=BG_COLOR)
     chart.title.text = _('Consultation histogram')
     chart.title.style = '{font-size: 16px; color: #666666; text-align: center; font-weight: bold;}'
 
@@ -111,8 +101,6 @@ def view_newsletter_charts(request, slug):
                     'steps': max(openings_by_day) / 5}
     chart.x_axis = {'colour': AXIS_COLOR, 'grid-colour': GRID_COLOR,
                     '3d': 5, 'labels': {'labels': labels, 'rotate': 60}}
-    
-    
     chart.elements = [b1, b2]
 
-    return HttpResponse(chart.create())
+    return HttpResponse(chart.render())

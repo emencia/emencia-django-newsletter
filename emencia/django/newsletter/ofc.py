@@ -27,6 +27,10 @@ class Chart(dict):
 	    'outline_colour': 'outline-colour', 'fill_alpha': 'fill-alpha',
 	    'gradient_fill': 'gradient-fill', 'negative_colour': 'negative-colour',}
 
+    def __init__(self, *ka, **kw):
+        for key, value in kw.items():
+            self.__dict__[key] = value
+
     def __getattribute__(self, key):
 	try:
 	    return dict.__getattribute__(self, key)
