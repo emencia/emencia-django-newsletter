@@ -5,6 +5,7 @@ from django.shortcuts import render_to_response
 
 from emencia.django.newsletter.tokens import untokenize
 from emencia.django.newsletter.models import Newsletter
+from emencia.django.newsletter.models import ContactMailingStatus
 
 
 def view_mailinglist_unsubscribe(request, slug, uidb36, token):
@@ -18,6 +19,8 @@ def view_mailinglist_unsubscribe(request, slug, uidb36, token):
         newsletter.mailing_list.unsubscribers.add(contact)
         newsletter.mailing_list.save()
         already_unsubcribed = True
+        log = ContactMailingStatus.objects.create(newsletter=newsletter, contact=contact,
+                                                  status=ContactMailingStatus.UNSUBSCRIPTION)
 
     return render_to_response('newsletter/mailing_list_unsubscribe.html',
                               {'email': contact.email,

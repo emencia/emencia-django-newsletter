@@ -254,6 +254,7 @@ class ContactMailingStatus(models.Model):
     OPENED = 4
     OPENED_ON_SITE = 5
     LINK_OPENED = 6
+    UNSUBSCRIPTION = 7
 
     STATUS_CHOICES = ((SENT_TEST, _('sent in test')),
                       (SENT, _('sent')),
@@ -262,6 +263,7 @@ class ContactMailingStatus(models.Model):
                       (OPENED, _('opened')),
                       (OPENED_ON_SITE, _('opened on site')),
                       (LINK_OPENED, _('link opened')),
+                      (UNSUBSCRIPTION, _('unsubscription')),
                       )
 
     newsletter = models.ForeignKey(Newsletter, verbose_name=_('newsletter'))
