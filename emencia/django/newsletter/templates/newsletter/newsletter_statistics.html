@@ -144,13 +144,6 @@ $(document).ready(function(){
   <div class="module" id="charts_options">
     <form id="period_selector" action="{% url newsletter_newsletter_charts object.slug %}" method="post">
       <table summary="{% trans "Consultation histogram" %}">
-	<!--<tr>
-	  <th scope="row" style="vertical-align: middle;">
-	    {% trans "Display clicks" %} :
-	  </th>
-	  <td><input type="checkbox" checked="checked" name="display_clicks"></td>
-	  <td>&nbsp;</td>
-	</tr>-->
 	<tr>
 	  <th scope="row" style="vertical-align: middle;">
 	    {% trans "Period" %} :
@@ -195,9 +188,11 @@ $(document).ready(function(){
     <div class="module" id="recent-actions-module">
 	<h2>{% trans "Top Links" %}</h2>
 	<ul class="actionlist">
-	{% for link, views in stats.top_links %}
-	<li><a href="{{ link.url }}" title="{{ link.title }}" target="blank">{{ link.title|slice:":28" }}</a> 
-	  <span class="mini quiet">({{ views }})</span></li>
+	{% for top_link in stats.top_links %}
+	<li><a href="{{ top_link.link.url }}" title="{{ top_link.link.title }}" target="blank">{{ top_link.link.title|slice:":23" }}</a> 
+	  <span class="quiet">({{ top_link.total_clicks }})</span>
+	  <span class="mini quiet">({{ top_link.unique_clicks }})</span>
+	</li>
 	{% empty %}
 	<li>{% trans "No Top Links yet." %}</li>
 	{% endfor %}
