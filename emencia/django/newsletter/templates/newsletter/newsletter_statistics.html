@@ -100,6 +100,11 @@ $(document).ready(function(){
 	<td>{{ stats.unknow_openings_percent|floatformat:2 }}%</td>
       </tr>
       <tr>
+        <th scope="row">{% trans "Unsubscriptions" %}</th>
+        <td>{{ stats.total_unsubscriptions }}</td>
+	<td>{{ stats.total_unsubscriptions_percent|floatformat:2 }}%</td>
+      </tr>
+      <tr>
         <th scope="row">{% trans "Openings average" %}</th>
         <td>&nbsp;</td>
         <td>{{ stats.opening_average|floatformat:2 }}</td>
