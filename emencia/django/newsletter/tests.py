@@ -499,6 +499,10 @@ class StatisticsTestCase(TestCase):
                                             status=ContactMailingStatus.LINK_OPENED)
         ContactMailingStatus.objects.create(newsletter=self.newsletter,
                                             contact=self.contacts[0],
+                                            link=self.links[0],
+                                            status=ContactMailingStatus.LINK_OPENED)
+        ContactMailingStatus.objects.create(newsletter=self.newsletter,
+                                            contact=self.contacts[0],
                                             link=self.links[1],
                                             status=ContactMailingStatus.LINK_OPENED)
         ContactMailingStatus.objects.create(newsletter=self.newsletter,
@@ -513,8 +517,12 @@ class StatisticsTestCase(TestCase):
 
         stats = get_newsletter_top_links(status)
         self.assertEquals(len(stats['top_links']), 2)
-        self.assertEquals(stats['top_links'][0][1], 3)
-        self.assertEquals(stats['top_links'][1][1], 1)
+        self.assertEquals(stats['top_links'][0]['link'], self.links[0])
+        self.assertEquals(stats['top_links'][0]['total_clicks'], 4)
+        self.assertEquals(stats['top_links'][0]['unique_clicks'], 3)
+        self.assertEquals(stats['top_links'][1]['link'], self.links[1])
+        self.assertEquals(stats['top_links'][1]['total_clicks'], 1)
+        self.assertEquals(stats['top_links'][1]['unique_clicks'], 1)
 
     def test_get_newsletter_statistics(self):
         stats = get_newsletter_statistics(self.newsletter)

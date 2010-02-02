@@ -73,11 +73,20 @@ def get_newsletter_unsubscription_statistics(status, recipients):
 def get_newsletter_top_links(status):
     """Return the most clicked links"""
     links = {}
-    for s in status.filter(status=Status.LINK_OPENED):
-        links.setdefault(s.link, 0)
-        links[s.link] += 1
+    clicked_links = status.filter(status=Status.LINK_OPENED)
+    
+    for cl in clicked_links:
+        links.setdefault(cl.link, 0)
+        links[cl.link] += 1
 
-    return {'top_links': sorted(links.iteritems(), key=lambda (k,v): (v,k), reverse=True)}
+    top_links = []
+    for link, score in sorted(links.iteritems(), key=lambda (k,v): (v,k), reverse=True):
+        unique_clicks = len(set(clicked_links.filter(link=link).values_list('contact', flat=True)))
+        top_links.append({'link': link,
+                          'total_clicks': score,
+                          'unique_clicks': unique_clicks})
+        
+    return {'top_links': top_links}
 
 def get_newsletter_statistics(newsletter):
     """Return the statistics of a newsletter"""
