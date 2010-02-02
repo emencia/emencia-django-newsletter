@@ -18,6 +18,7 @@ from emencia.django.newsletter.models import Newsletter
 from emencia.django.newsletter.models import ContactMailingStatus
 from emencia.django.newsletter.statistics import get_newsletter_opening_statistics
 from emencia.django.newsletter.statistics import get_newsletter_on_site_opening_statistics
+from emencia.django.newsletter.statistics import get_newsletter_unsubscription_statistics
 from emencia.django.newsletter.statistics import get_newsletter_clicked_link_statistics
 from emencia.django.newsletter.statistics import get_newsletter_top_links
 from emencia.django.newsletter.statistics import get_newsletter_statistics
@@ -470,6 +471,24 @@ class StatisticsTestCase(TestCase):
         self.assertEquals(stats['clicked_links_by_openings'], 166.66666666666669)
         self.assertEquals(stats['clicked_links_average'], 1.6666666666666667)
 
+    def test_get_newsletter_unsubscription_statistics(self):
+        stats = get_newsletter_unsubscription_statistics(self.status, self.recipients)
+        self.assertEquals(stats['total_unsubscriptions'], 0)
+        self.assertEquals(stats['total_unsubscriptions_percent'], 0.0)
+
+        ContactMailingStatus.objects.create(newsletter=self.newsletter,
+                                            contact=self.contacts[0],
+                                            status=ContactMailingStatus.UNSUBSCRIPTION)
+        ContactMailingStatus.objects.create(newsletter=self.newsletter,
+                                            contact=self.contacts[1],
+                                            status=ContactMailingStatus.UNSUBSCRIPTION)
+
+        status = ContactMailingStatus.objects.filter(newsletter=self.newsletter)
+
+        stats = get_newsletter_unsubscription_statistics(status, self.recipients)
+        self.assertEquals(stats['total_unsubscriptions'], 2)
+        self.assertEquals(stats['total_unsubscriptions_percent'], 50.0)
+
     def test_get_newsletter_top_links(self):
         stats = get_newsletter_top_links(self.status)
         self.assertEquals(stats['top_links'], [])
@@ -515,6 +534,8 @@ class StatisticsTestCase(TestCase):
         self.assertEquals(stats['total_clicked_links_percent'], 0.0)
         self.assertEquals(stats['total_on_site_openings'], 0)
         self.assertEquals(stats['total_openings'], 0)
+        self.assertEquals(stats['total_unsubscriptions'], 0)
+        self.assertEquals(stats['total_unsubscriptions_percent'], 0.0)
         self.assertEquals(stats['unique_clicked_links'], 0)
         self.assertEquals(stats['unique_clicked_links_percent'], 0.0)
         self.assertEquals(stats['unique_on_site_openings'], 0)
@@ -558,6 +579,9 @@ class StatisticsTestCase(TestCase):
                                             contact=self.contacts[2],
                                             link=self.links[0],
                                             status=ContactMailingStatus.LINK_OPENED)
+        ContactMailingStatus.objects.create(newsletter=self.newsletter,
+                                            contact=self.contacts[0],
+                                            status=ContactMailingStatus.UNSUBSCRIPTION)
 
         stats = get_newsletter_statistics(self.newsletter)
 
@@ -575,6 +599,8 @@ class StatisticsTestCase(TestCase):
         self.assertEquals(stats['total_clicked_links_percent'], 125.0)
         self.assertEquals(stats['total_on_site_openings'], 2)
         self.assertEquals(stats['total_openings'], 5)
+        self.assertEquals(stats['total_unsubscriptions'], 1)
+        self.assertEquals(stats['total_unsubscriptions_percent'], 25.0)
         self.assertEquals(stats['unique_clicked_links'], 3)
         self.assertEquals(stats['unique_clicked_links_percent'], 75.0)
         self.assertEquals(stats['unique_on_site_openings'], 2)

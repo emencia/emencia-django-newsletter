@@ -61,6 +61,15 @@ def get_newsletter_clicked_link_statistics(status, recipients, openings):
             'clicked_links_by_openings': clicked_links_by_openings,
             'clicked_links_average': clicked_links_average}
 
+def get_newsletter_unsubscription_statistics(status, recipients):
+    unsubscriptions = status.filter(status=Status.UNSUBSCRIPTION)
+
+    total_unsubscriptions = unsubscriptions.count()
+    total_unsubscriptions_percent = float(total_unsubscriptions) / float(recipients) * 100
+
+    return {'total_unsubscriptions': total_unsubscriptions,
+            'total_unsubscriptions_percent': total_unsubscriptions_percent}
+
 def get_newsletter_top_links(status):
     """Return the most clicked links"""
     links = {}
@@ -84,6 +93,7 @@ def get_newsletter_statistics(newsletter):
 
     statistics.update(get_newsletter_opening_statistics(post_sending_status, recipients))
     statistics.update(get_newsletter_on_site_opening_statistics(post_sending_status))
+    statistics.update(get_newsletter_unsubscription_statistics(post_sending_status, recipients))
     statistics.update(get_newsletter_clicked_link_statistics(post_sending_status, recipients,
                                                              statistics['total_openings']))
     statistics.update(get_newsletter_top_links(post_sending_status))
