@@ -186,7 +186,9 @@ $(document).ready(function(){
 	{% endif %}
     </div>
     <div class="module" id="recent-actions-module">
-	<h2>{% trans "Top Links" %}</h2>
+	<h2>{% trans "Top Links" %}
+	  (<a href="{% url newsletter_newsletter_density object.slug %}">{% trans "Density map" %}</a>)
+	</h2>
 	<ul class="actionlist">
 	{% for top_link in stats.top_links %}
 	<li><a href="{{ top_link.link.url }}" title="{{ top_link.link.title }}" target="blank">{{ top_link.link.title|slice:":23" }}</a> 

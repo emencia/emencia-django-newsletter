@@ -8,5 +8,8 @@ urlpatterns = patterns('emencia.django.newsletter.views.statistics',
                        url(r'^charts/(?P<slug>[-\w]+)/$',
                            'view_newsletter_charts',
                            name='newsletter_newsletter_charts'),
+                       url(r'^density/(?P<slug>[-\w]+)/$',
+                           'view_newsletter_density',
+                           name='newsletter_newsletter_density'),
                        )
 

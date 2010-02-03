@@ -13,6 +13,7 @@ from django.template.defaultfilters import date
 from emencia.django.newsletter.ofc import Chart
 from emencia.django.newsletter.models import Newsletter
 from emencia.django.newsletter.models import ContactMailingStatus
+from emencia.django.newsletter.statistics import get_newsletter_top_links
 from emencia.django.newsletter.statistics import get_newsletter_statistics
 from emencia.django.newsletter.statistics import get_newsletter_opening_statistics
 from emencia.django.newsletter.statistics import get_newsletter_clicked_link_statistics
@@ -57,6 +58,18 @@ def view_newsletter_statistics(request, slug):
     return render_to_response('newsletter/newsletter_statistics.html',
                               context, context_instance=RequestContext(request))
 
+@login_required
+def view_newsletter_density(request, slug):
+    newsletter = get_object_or_404(Newsletter, slug=slug)
+    status = ContactMailingStatus.objects.filter(newsletter=newsletter,
+                                                 creation_date__gte=newsletter.sending_date)
+    context = {'object': newsletter,
+               'top_links': get_newsletter_top_links(status)['top_links']}
+
+    return render_to_response('newsletter/newsletter_density.html',
+                              context, context_instance=RequestContext(request))
+
+@login_required
 def view_newsletter_charts(request, slug):
     newsletter = get_object_or_404(Newsletter, slug=slug)
 

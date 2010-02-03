@@ -1,0 +1,45 @@
+<html>
+  <head>
+    <style type="text/css">
+     .link_layout{ filter : alpha(opacity=70); -moz-opacity : 0.7; opacity : 0.7; }
+    </style>
+    <script type="text/javascript" src="{{ NEWSLETTER_MEDIA_URL }}js/jquery.js"></script>
+    <script type="text/javascript" src="{{ NEWSLETTER_MEDIA_URL }}js/jquery.heatcolor.js"></script>
+    <script type="text/javascript">
+      var top_links = [{% for tl in top_links %}"{{ tl.link.url }}",{% endfor %}];
+      var top_links_score = new Array();
+      {% for tl in top_links %}
+      top_links_score["{{ tl.link.url }}"] = "{{ tl.total_clicks }}";
+      {% endfor %}
+
+      function create_overlay(top, left, width, height, score) {
+        $("<div>", {"style": "position: absolute; width: "+ width +"px; height: "+ height +"px; top:" + top + "px; left:" + left + "px;",
+	            "text": score,
+	            "class": "link_layout"}).appendTo("#density_overlay");
+      }
+
+      $(document).ready(function(){
+        $("a").each(function(a){
+          var link = $(this);
+	  var href = link.attr("href");
+
+          if (jQuery.inArray(href, top_links) != -1) {
+            var position = link.position();
+            create_overlay(position.top, position.left, link.width(), link.height(),
+                           top_links_score[href]);
+          }
+	});
+	$("div.link_layout").heatcolor(
+	  function() { return $(this).text(); },
+	   {lightness: 0, colorStyle: 'greentored', reverseOrder: true });
+      });
+    </script>
+    <title>{% block title %}{{ object.title }}{% endblock %}</title>
+  </head>
+  <body>
+    <div id="density_overlay"></div>
+    {% block body %}
+    {{ object.content|safe }}
+    {% endblock %}
+  </body>
+</html>

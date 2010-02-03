@@ -1,0 +1,7 @@
+/*
+HeatColor, by Josh Nathanson
+A plugin for jQuery
+Complete documentation at http://www.jnathanson.com/blog/client/jquery/heatcolor/index.cfm
+*/
+
+eval(function(p,a,c,k,e,r){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--)r[e(c)]=k[c]||e(c);k=[function(e){return r[e]}];e=function(){return'\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('p.V.10=9(j,k){4 l={M:9(){v p(8)},q:0,t:0,N:0.Z,F:\'E\',y:X};u(k){p.W(l,k)};4 m={K:9(a,c,d){4 e=(a-c)/(d-c);4 f=l.F==\'E\'?0.5*e+1.7*(1-e):e+0.2+5.5*(1-e);4 h=Y;4 i=2*6.A;4 x=f+e*i;x=l.F!=\'E\'?-x:x;4 r=8.w(6.z((6.D(x)+1)*h));4 g=8.w(6.z((6.D(x+6.A/2)+1)*h));4 b=8.w(6.z((6.D(x+6.A)+1)*h));v\'#\'+r+g+b},w:9(a){4 n=6.z(a+l.N*(U-a));4 s=n.T(S);s=s.C==1?\'0\'+s:s;v s},J:9(c){4 d=[];c.I(9(){d.R(j.B(p(8)))});d=d.Q(9(a,b){v a-b});l.t=!l.y?d[d.C-1]:d[0];l.q=!l.y?d[0]:d[d.C-1]}};u(!l.q&&!l.t)m.J(p(8));H u(l.y){4 o=l.q;l.q=l.t;l.t=o}p(8).I(9(){4 a=p(8);4 b=j.B(a);4 c=m.K(b,l.q,l.t);4 d=l.M.B(a);u(d[0].L==1)d.O("P-G",c);H u(d[0].L==3)d.O("G",c)});v(8)}',62,63,'||||var||Math||this|function||||||||||||||||jQuery|minval|||maxval|if|return|process||reverseOrder|floor|PI|apply|length|cos|roygbiv|colorStyle|color|else|each|setMaxAndMin|findcolor|nodeType|elementFunction|lightness|css|background|sort|push|16|toString|256|fn|extend|false|128|75|heatcolor'.split('|'),0,{}))
