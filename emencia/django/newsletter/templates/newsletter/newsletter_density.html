@@ -1,7 +1,7 @@
 <html>
   <head>
     <style type="text/css">
-     .link_layout{ filter : alpha(opacity=70); -moz-opacity : 0.7; opacity : 0.7; }
+     .link_layout{ filter : alpha(opacity=70); -moz-opacity : 0.7; opacity : 0.7; border: 1px solid red;}
     </style>
     <script type="text/javascript" src="{{ NEWSLETTER_MEDIA_URL }}js/jquery.js"></script>
     <script type="text/javascript" src="{{ NEWSLETTER_MEDIA_URL }}js/jquery.heatcolor.js"></script>
@@ -25,7 +25,7 @@
 
           if (jQuery.inArray(href, top_links) != -1) {
             var position = link.position();
-            create_overlay(position.top, position.left, link.width(), link.height(),
+            create_overlay(position.top - 3, position.left - 3, link.width() + 4, link.height() + 4,
                            top_links_score[href]);
           }
 	});
