@@ -5,7 +5,7 @@ from django.contrib import admin
 from django.conf.urls.defaults import *
 from django.core.urlresolvers import reverse
 from django.shortcuts import get_object_or_404
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import ugettext as _
 
 from emencia.django.newsletter.models import Contact
 from emencia.django.newsletter.models import MailingList
