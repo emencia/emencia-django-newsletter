@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: emencia.django.newsletter\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-02 14:11+0100\n"
-"PO-Revision-Date: 2010-02-02 14:18+0100\n"
+"POT-Creation-Date: 2010-02-08 15:10+0100\n"
+"PO-Revision-Date: 2010-02-08 15:11+0100\n"
 "Last-Translator: Fantomas <Fantomas42@gmail.com>\n"
 "Language-Team: fr <jfache@emencia.com>\n"
 "MIME-Version: 1.0\n"
@@ -315,7 +315,7 @@ msgid "Work Groups"
 msgstr "Groupes de travail"
 
 #: admin/contact.py:27
-#: templates/newsletter/newsletter_statistics.html:186
+#: templates/newsletter/newsletter_statistics.html:179
 msgid "Status"
 msgstr "Statut"
 
@@ -475,6 +475,10 @@ msgstr "Annuler les envois"
 msgid "Configuration"
 msgstr "Configuration"
 
+#: admin/smtpserver.py:25
+msgid "Check connection"
+msgstr "Tester la connection"
+
 #: admin/workgroup.py:19
 msgid "Contacts length"
 msgstr "Nombre de contacts"
@@ -546,7 +550,7 @@ msgid "Broadcasting statistics"
 msgstr "Statistiques de diffusion"
 
 #: templates/newsletter/newsletter_statistics.html:83
-#: views/statistics.py:88
+#: views/statistics.py:101
 msgid "Total openings"
 msgstr "Nombre d'ouvertures cumulées"
 
@@ -576,7 +580,7 @@ msgid "Links statistics"
 msgstr "Statistiques sur les liens"
 
 #: templates/newsletter/newsletter_statistics.html:119
-#: views/statistics.py:92
+#: views/statistics.py:105
 msgid "Total clicked links"
 msgstr "Nombre de clics cumulés"
 
@@ -593,56 +597,56 @@ msgid "Clicked links average"
 msgstr "Nombre moyen de clics"
 
 #: templates/newsletter/newsletter_statistics.html:146
-#: views/statistics.py:96
+#: views/statistics.py:109
 msgid "Consultation histogram"
 msgstr "Histogramme des consultations"
 
 #: templates/newsletter/newsletter_statistics.html:149
-msgid "Display clicks"
-msgstr "Affichage des clics"
-
-#: templates/newsletter/newsletter_statistics.html:156
 msgid "Period"
 msgstr "Période"
 
-#: templates/newsletter/newsletter_statistics.html:183
+#: templates/newsletter/newsletter_statistics.html:176
 msgid "Informations"
 msgstr "Informations"
 
-#: templates/newsletter/newsletter_statistics.html:184
+#: templates/newsletter/newsletter_statistics.html:177
 msgid "Recipients"
 msgstr "Destinataires"
 
-#: templates/newsletter/newsletter_statistics.html:185
+#: templates/newsletter/newsletter_statistics.html:178
 msgid "View"
 msgstr "Voir"
 
-#: templates/newsletter/newsletter_statistics.html:188
+#: templates/newsletter/newsletter_statistics.html:181
 msgid "Sending date"
 msgstr "Date d'envois"
 
-#: templates/newsletter/newsletter_statistics.html:191
+#: templates/newsletter/newsletter_statistics.html:184
 msgid "Tests sent"
 msgstr "Envois en test"
 
-#: templates/newsletter/newsletter_statistics.html:196
+#: templates/newsletter/newsletter_statistics.html:189
 msgid "Top Links"
 msgstr "Top Liens"
 
-#: templates/newsletter/newsletter_statistics.html:202
+#: templates/newsletter/newsletter_statistics.html:190
+msgid "Density map"
+msgstr "Carte de densité"
+
+#: templates/newsletter/newsletter_statistics.html:199
 msgid "No Top Links yet."
 msgstr "Pas de Top Liens pour l'instant."
 
-#: views/statistics.py:49
+#: views/statistics.py:50
 #, python-format
 msgid "Statistics of %s"
 msgstr "Statistiques de %s"
 
-#: views/statistics.py:88
+#: views/statistics.py:101
 msgid "#val# openings"
 msgstr "#val# ouvertures"
 
-#: views/statistics.py:92
+#: views/statistics.py:105
 msgid "#val# clicks"
 msgstr "#val# clics"
 
@@ -651,6 +655,8 @@ msgstr "#val# clics"
 msgid "Historic of %s"
 msgstr "Historique de %s"
 
+#~ msgid "Display clicks"
+#~ msgstr "Affichage des clics"
 #~ msgid "Unique opening"
 #~ msgstr "Ouverture unique"
 #~ msgid "Double openings"
