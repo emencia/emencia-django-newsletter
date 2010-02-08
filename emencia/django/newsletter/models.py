@@ -4,6 +4,7 @@ from datetime import datetime
 from datetime import timedelta
 
 from django.db import models
+from django.utils.encoding import smart_str
 from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.contenttypes import generic
@@ -35,9 +36,9 @@ class SMTPServer(models.Model):
     def connection_valid(self):
         """Check if the server can be connected"""
         try:
-            smtp = SMTP(self.host, self.port)
+            smtp = SMTP(smart_str(self.host), int(self.port))
             if self.user or self.password:
-                smtp.login(self.user, self.password)
+                smtp.login(smart_str(self.user), smart_str(self.password))
             if self.tls:
                 smtp.starttls()
             smtp.quit()
