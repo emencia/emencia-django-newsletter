@@ -3,7 +3,7 @@ from django.contrib import admin
 from django.utils.translation import ugettext_lazy as _
 
 class SMTPServerAdmin(admin.ModelAdmin):
-    list_display = ('name', 'host', 'port', 'user', 'tls', 'mails_hour',)# 'check_connection')
+    list_display = ('name', 'host', 'port', 'user', 'tls', 'mails_hour',)
     list_filter = ('tls',)
     search_fields = ('name', 'host', 'user',)
     fieldsets = ((None, {'fields': ('name',),}),
@@ -20,6 +20,14 @@ class SMTPServerAdmin(admin.ModelAdmin):
         """Check the SMTP connection"""
         message = '%s connection %s'
         for server in queryset:
-            status = server.connection_valid() and 'OK' or 'KO'
+            try:
+                smtp = server.connect()
+                if smtp:
+                    status = 'OK'
+                    smtp.quit()
+                else:
+                    status = 'KO'
+            except:
+                status = 'KO'
             self.message_user(request, message % (server.__unicode__(), status))
     check_connections.short_description = _('Check connection')

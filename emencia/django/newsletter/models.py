@@ -33,19 +33,14 @@ class SMTPServer(models.Model):
                                help_text=_('key1: value1 key2: value2, splitted by return line.'))
     mails_hour = models.IntegerField(_('mails per hour'), default=0)
 
-    def connection_valid(self):
-        """Check if the server can be connected"""
-        try:
-            smtp = SMTP(smart_str(self.host), int(self.port))
-            if self.user or self.password:
-                smtp.login(smart_str(self.user), smart_str(self.password))
-            if self.tls:
-                smtp.starttls()
-            smtp.quit()
-        except:
-            return False
-        return True
-    connection_valid.short_description = _('Connection valid')
+    def connect(self):
+        """Connect the SMTP Server"""
+        smtp = SMTP(smart_str(self.host), int(self.port))
+        if self.user or self.password:
+            smtp.login(smart_str(self.user), smart_str(self.password))
+        if self.tls:
+            smtp.starttls()
+        return smtp
 
     def credits(self):
         """Return how many mails the server can send"""

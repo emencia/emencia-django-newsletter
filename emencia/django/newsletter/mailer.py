@@ -81,12 +81,7 @@ class Mailer(object):
 
     def smtp_connect(self):
         """Make a connection to the SMTP"""
-        server = self.newsletter.server
-        self.smtp = SMTP(server.host, server.port)
-        if server.user or server.password:
-            self.smtp.login(server.user, server.password)
-        if server.tls:
-            self.smtp.starttls()
+        self.smtp = self.newsletter.server.connect()
 
     def get_expedition_list(self):
         """Build the expedition list"""
