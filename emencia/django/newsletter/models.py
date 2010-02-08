@@ -6,6 +6,7 @@ from datetime import timedelta
 from django.db import models
 from django.utils.encoding import smart_str
 from django.core.urlresolvers import reverse
+from django.utils.translation import ugettext
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.contenttypes import generic
 from django.contrib.contenttypes.models import ContentType
@@ -34,12 +35,15 @@ class SMTPServer(models.Model):
     mails_hour = models.IntegerField(_('mails per hour'), default=0)
 
     def connect(self):
-        """Connect the SMTP Server"""
+        """Connect the SMTP Server"""        
         smtp = SMTP(smart_str(self.host), int(self.port))
-        if self.user or self.password:
-            smtp.login(smart_str(self.user), smart_str(self.password))
+        smtp.ehlo_or_helo_if_needed()
         if self.tls:
             smtp.starttls()
+            smtp.ehlo_or_helo_if_needed()
+        
+        if self.user or self.password:
+            smtp.login(smart_str(self.user), smart_str(self.password))
         return smtp
 
     def credits(self):
@@ -179,7 +183,7 @@ class Newsletter(models.Model):
 
     title = models.CharField(_('title'), max_length=255)
     content = models.TextField(_('content'), help_text=_('Or paste an URL.'),
-                               default='<body>\n<!-- %s -->\n</body>' % _('Edit your newsletter here'))
+                               default='<body>\n<!-- %s -->\n</body>' % ugettext('Edit your newsletter here'))
 
     mailing_list = models.ForeignKey(MailingList, verbose_name=_('mailing list'))
     test_contacts = models.ManyToManyField(Contact, verbose_name=_('test contacts'),
