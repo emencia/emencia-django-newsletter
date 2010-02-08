@@ -6,7 +6,7 @@ from django.conf.urls.defaults import *
 from django.core.urlresolvers import reverse
 from django.shortcuts import render_to_response
 from django.template import RequestContext
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext_lazy as _
 
 from emencia.django.newsletter.models import Contact
 from emencia.django.newsletter.models import WorkGroup

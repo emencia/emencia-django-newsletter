@@ -1,10 +1,10 @@
 """ModelAdmin for Newsletter"""
 from HTMLParser import HTMLParseError
 
+from django.db.models import Q
 from django.contrib import admin
 from django.conf.urls.defaults import *
-from django.utils.translation import ugettext as _
-from django.db.models import Q
+from django.utils.translation import ugettext_lazy as _
 
 from emencia.django.newsletter.models import Contact
 from emencia.django.newsletter.models import Newsletter

@@ -1,6 +1,6 @@
 """ModelAdmin for SMTPServer"""
 from django.contrib import admin
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext_lazy as _
 
 class SMTPServerAdmin(admin.ModelAdmin):
     list_display = ('name', 'host', 'port', 'user', 'tls', 'mails_hour',)# 'check_connection')
