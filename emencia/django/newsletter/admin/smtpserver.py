@@ -22,3 +22,4 @@ class SMTPServerAdmin(admin.ModelAdmin):
         for server in queryset:
             status = server.connection_valid() and 'OK' or 'KO'
             self.message_user(request, message % (server.__unicode__(), status))
+    check_connections.short_description = _('Check connection')
