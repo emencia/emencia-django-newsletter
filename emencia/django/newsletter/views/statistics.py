@@ -1,9 +1,11 @@
 """Views for emencia.django.newsletter statistics"""
+import csv
 from datetime import timedelta
 
 from django.db.models import Q
 from django.http import HttpResponse
 from django.template import RequestContext
+from django.utils.encoding import smart_str
 from django.utils.translation import ugettext as _
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render_to_response
@@ -59,6 +61,36 @@ def view_newsletter_statistics(request, slug):
                               context, context_instance=RequestContext(request))
 
 @login_required
+def view_newsletter_report(request, slug):
+    newsletter = get_object_or_404(Newsletter, slug=slug)
+    status = ContactMailingStatus.objects.filter(newsletter=newsletter,
+                                                 creation_date__gte=newsletter.sending_date)
+    links = set([s.link for s in status.exclude(link=None)])
+
+    def header_line(links):
+        link_cols = [link.title for link in links]
+        return [smart_str(_('first name')), smart_str(_('last name')),
+                smart_str(_('email')), smart_str(_('openings'))] + link_cols
+
+    def contact_line(contact, links):
+        link_cols = [status.filter(status=ContactMailingStatus.LINK_OPENED,
+                                   link=link, contact=contact).count() for link in links]
+        openings = status.filter(Q(status=ContactMailingStatus.OPENED) | Q(status=ContactMailingStatus.OPENED_ON_SITE),
+                                 contact=contact).count()
+        return [smart_str(contact.first_name), smart_str(contact.last_name),
+                smart_str(contact.email), openings] + link_cols
+
+    response = HttpResponse(mimetype='text/csv')
+    response['Content-Disposition'] = 'attachment; filename=report-%s.csv' % newsletter.slug
+
+    writer = csv.writer(response)
+    writer.writerow(header_line(links))
+    for contact in newsletter.mailing_list.expedition_set():
+        writer.writerow(contact_line(contact, links))
+
+    return response
+
+@login_required
 def view_newsletter_density(request, slug):
     newsletter = get_object_or_404(Newsletter, slug=slug)
     status = ContactMailingStatus.objects.filter(newsletter=newsletter,
@@ -80,14 +112,14 @@ def view_newsletter_charts(request, slug):
 
     sending_date = newsletter.sending_date.date()
     labels, clicks_by_day, openings_by_day = [], [], []
-    
+
     for i in range(start, end + 1):
         day = sending_date + timedelta(days=i)
         day_status = ContactMailingStatus.objects.filter(newsletter=newsletter,
                                                          creation_date__day=day.day,
                                                          creation_date__month=day.month,
                                                          creation_date__year=day.year)
-        
+
         opening_stats = get_newsletter_opening_statistics(day_status, recipients)
         click_stats = get_newsletter_clicked_link_statistics(day_status, recipients, 0)
         # Labels

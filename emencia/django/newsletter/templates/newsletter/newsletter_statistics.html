@@ -172,7 +172,14 @@ $(document).ready(function(){
 
 {% block sidebar %}
 <div id="content-related">
-    <div class="module" id="recent-actions-module">
+    <div class="module" id="report-module">
+      <h2>{% trans "Report" %}</h2>
+      <h3>
+	<a href="{% url newsletter_newsletter_report object.slug %}">{% trans "Download CSV report" %}</a>
+      </h3>
+      <p></p>
+    </div>
+    <div class="module" id="general-informations-module">
         <h2>{% trans "Informations" %}</h2>
 	<h3>{% trans "Recipients" %}</h3>
 	<p>{{ stats.mails_to_send }} <a href="{% url admin:newsletter_mailinglist_change object.mailing_list.pk %}">{% trans "View" %}</a></p>
@@ -185,7 +192,7 @@ $(document).ready(function(){
 	<p>{{ stats.tests_sent }}</p>
 	{% endif %}
     </div>
-    <div class="module" id="recent-actions-module">
+    <div class="module" id="top-links-module">
 	<h2>{% trans "Top Links" %}
 	  (<a href="{% url newsletter_newsletter_density object.slug %}">{% trans "Density map" %}</a>)
 	</h2>
