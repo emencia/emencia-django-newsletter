@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: emencia.django.newsletter\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-08 15:10+0100\n"
-"PO-Revision-Date: 2010-02-08 15:11+0100\n"
+"POT-Creation-Date: 2010-02-09 17:22+0100\n"
+"PO-Revision-Date: 2010-02-09 17:24+0100\n"
 "Last-Translator: Fantomas <Fantomas42@gmail.com>\n"
 "Language-Team: fr <jfache@emencia.com>\n"
 "MIME-Version: 1.0\n"
@@ -18,52 +18,48 @@ msgstr ""
 "X-Poedit-Country: FRANCE\n"
 "X-Poedit-SourceCharset: 8bit\n"
 
-#: models.py:22
+#: models.py:24
 #: models.py:135
 #: models.py:289
 msgid "name"
 msgstr "Nom"
 
-#: models.py:23
+#: models.py:25
 msgid "server host"
 msgstr "Hôte"
 
-#: models.py:24
+#: models.py:26
 msgid "server user"
 msgstr "Utilisateur"
 
-#: models.py:25
 #: models.py:27
+#: models.py:29
 msgid "Leave it empty if the host is public."
 msgstr "Laissez ce champs vide, si aucune authentification n'est nécessaire."
 
-#: models.py:26
+#: models.py:28
 msgid "server password"
 msgstr "Mot de passe"
 
-#: models.py:28
+#: models.py:30
 msgid "server port"
 msgstr "Port"
 
-#: models.py:29
+#: models.py:31
 msgid "server use TLS"
 msgstr "Chiffrement TLS"
 
-#: models.py:31
+#: models.py:33
 msgid "custom headers"
 msgstr "Entêtes personnalisées "
 
-#: models.py:32
+#: models.py:34
 msgid "key1: value1 key2: value2, splitted by return line."
 msgstr "clef_1: valeur_1 clef_2: valeur_2, séparés par des retours à la ligne."
 
-#: models.py:33
+#: models.py:35
 msgid "mails per hour"
 msgstr "Envois/Heure"
-
-#: models.py:47
-msgid "Connection valid"
-msgstr "Connexion au server"
 
 #: models.py:77
 msgid "SMTP Server"
@@ -74,14 +70,17 @@ msgid "SMTP Servers"
 msgstr "Serveurs SMTP"
 
 #: models.py:83
+#: views/statistics.py:73
 msgid "email"
 msgstr "Email"
 
 #: models.py:84
+#: views/statistics.py:72
 msgid "first name"
 msgstr "Prénom"
 
 #: models.py:85
+#: views/statistics.py:72
 msgid "last name"
 msgstr "Nom"
 
@@ -315,7 +314,7 @@ msgid "Work Groups"
 msgstr "Groupes de travail"
 
 #: admin/contact.py:27
-#: templates/newsletter/newsletter_statistics.html:179
+#: templates/newsletter/newsletter_statistics.html:186
 msgid "Status"
 msgstr "Statut"
 
@@ -475,7 +474,7 @@ msgstr "Annuler les envois"
 msgid "Configuration"
 msgstr "Configuration"
 
-#: admin/smtpserver.py:25
+#: admin/smtpserver.py:33
 msgid "Check connection"
 msgstr "Tester la connection"
 
@@ -550,7 +549,7 @@ msgid "Broadcasting statistics"
 msgstr "Statistiques de diffusion"
 
 #: templates/newsletter/newsletter_statistics.html:83
-#: views/statistics.py:101
+#: views/statistics.py:133
 msgid "Total openings"
 msgstr "Nombre d'ouvertures cumulées"
 
@@ -580,7 +579,7 @@ msgid "Links statistics"
 msgstr "Statistiques sur les liens"
 
 #: templates/newsletter/newsletter_statistics.html:119
-#: views/statistics.py:105
+#: views/statistics.py:137
 msgid "Total clicked links"
 msgstr "Nombre de clics cumulés"
 
@@ -597,7 +596,7 @@ msgid "Clicked links average"
 msgstr "Nombre moyen de clics"
 
 #: templates/newsletter/newsletter_statistics.html:146
-#: views/statistics.py:109
+#: views/statistics.py:141
 msgid "Consultation histogram"
 msgstr "Histogramme des consultations"
 
@@ -606,47 +605,59 @@ msgid "Period"
 msgstr "Période"
 
 #: templates/newsletter/newsletter_statistics.html:176
+msgid "Report"
+msgstr "Rapport"
+
+#: templates/newsletter/newsletter_statistics.html:178
+msgid "Download CSV report"
+msgstr "Télécharger le rapport CSV"
+
+#: templates/newsletter/newsletter_statistics.html:183
 msgid "Informations"
 msgstr "Informations"
 
-#: templates/newsletter/newsletter_statistics.html:177
+#: templates/newsletter/newsletter_statistics.html:184
 msgid "Recipients"
 msgstr "Destinataires"
 
-#: templates/newsletter/newsletter_statistics.html:178
+#: templates/newsletter/newsletter_statistics.html:185
 msgid "View"
 msgstr "Voir"
 
-#: templates/newsletter/newsletter_statistics.html:181
+#: templates/newsletter/newsletter_statistics.html:188
 msgid "Sending date"
 msgstr "Date d'envois"
 
-#: templates/newsletter/newsletter_statistics.html:184
+#: templates/newsletter/newsletter_statistics.html:191
 msgid "Tests sent"
 msgstr "Envois en test"
 
-#: templates/newsletter/newsletter_statistics.html:189
+#: templates/newsletter/newsletter_statistics.html:196
 msgid "Top Links"
 msgstr "Top Liens"
 
-#: templates/newsletter/newsletter_statistics.html:190
+#: templates/newsletter/newsletter_statistics.html:197
 msgid "Density map"
 msgstr "Carte de densité"
 
-#: templates/newsletter/newsletter_statistics.html:199
+#: templates/newsletter/newsletter_statistics.html:206
 msgid "No Top Links yet."
 msgstr "Pas de Top Liens pour l'instant."
 
-#: views/statistics.py:50
+#: views/statistics.py:52
 #, python-format
 msgid "Statistics of %s"
 msgstr "Statistiques de %s"
 
-#: views/statistics.py:101
+#: views/statistics.py:73
+msgid "openings"
+msgstr "Ouvertures"
+
+#: views/statistics.py:133
 msgid "#val# openings"
 msgstr "#val# ouvertures"
 
-#: views/statistics.py:105
+#: views/statistics.py:137
 msgid "#val# clicks"
 msgstr "#val# clics"
 
@@ -655,6 +666,8 @@ msgstr "#val# clics"
 msgid "Historic of %s"
 msgstr "Historique de %s"
 
+#~ msgid "Connection valid"
+#~ msgstr "Connexion au server"
 #~ msgid "Display clicks"
 #~ msgstr "Affichage des clics"
 #~ msgid "Unique opening"

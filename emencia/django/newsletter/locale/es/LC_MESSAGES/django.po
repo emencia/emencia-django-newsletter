@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-08 15:10+0100\n"
+"POT-Creation-Date: 2010-02-09 17:22+0100\n"
 "PO-Revision-Date: 2009-12-24 16:22+0100\n"
 "Last-Translator: \n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,49 +15,45 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: models.py:22 models.py:135 models.py:289
+#: models.py:24 models.py:135 models.py:289
 msgid "name"
 msgstr "nombre"
 
-#: models.py:23
+#: models.py:25
 msgid "server host"
 msgstr "dirección del servidor"
 
-#: models.py:24
+#: models.py:26
 msgid "server user"
 msgstr "usuario del servidor"
 
-#: models.py:25 models.py:27
+#: models.py:27 models.py:29
 msgid "Leave it empty if the host is public."
 msgstr "Dejar en blanco si el servidor es público"
 
-#: models.py:26
+#: models.py:28
 msgid "server password"
 msgstr "contraseña del servidor"
 
-#: models.py:28
+#: models.py:30
 msgid "server port"
 msgstr "puerto del servidor"
 
-#: models.py:29
+#: models.py:31
 msgid "server use TLS"
 msgstr "el servidor utiliza TLS"
 
-#: models.py:31
+#: models.py:33
 msgid "custom headers"
 msgstr "cabeceras personalizadas"
 
-#: models.py:32
+#: models.py:34
 msgid "key1: value1 key2: value2, splitted by return line."
 msgstr "clave1: valor1 clave2: valor2, separado por una nueva línea"
 
-#: models.py:33
+#: models.py:35
 msgid "mails per hour"
 msgstr "emails por hora"
-
-#: models.py:47
-msgid "Connection valid"
-msgstr "Conexión valida"
 
 #: models.py:77
 msgid "SMTP Server"
@@ -67,15 +63,15 @@ msgstr "Servidor SMTP"
 msgid "SMTP Servers"
 msgstr "Servidores SMTP"
 
-#: models.py:83
+#: models.py:83 views/statistics.py:73
 msgid "email"
 msgstr "email"
 
-#: models.py:84
+#: models.py:84 views/statistics.py:72
 msgid "first name"
 msgstr "nombre"
 
-#: models.py:85
+#: models.py:85 views/statistics.py:72
 msgid "last name"
 msgstr "apellido"
 
@@ -296,7 +292,7 @@ msgstr "Grupo de Trabajo"
 msgid "Work Groups"
 msgstr "Grupos de Trabajo"
 
-#: admin/contact.py:27 templates/newsletter/newsletter_statistics.html:179
+#: admin/contact.py:27 templates/newsletter/newsletter_statistics.html:186
 msgid "Status"
 msgstr "Estado"
 
@@ -458,7 +454,7 @@ msgstr "Cancelar el envío"
 msgid "Configuration"
 msgstr "Configuración"
 
-#: admin/smtpserver.py:25
+#: admin/smtpserver.py:33
 #, fuzzy
 msgid "Check connection"
 msgstr "Conexión valida"
@@ -534,7 +530,7 @@ msgstr "Acción"
 msgid "Broadcasting statistics"
 msgstr "Ver Historial"
 
-#: templates/newsletter/newsletter_statistics.html:83 views/statistics.py:101
+#: templates/newsletter/newsletter_statistics.html:83 views/statistics.py:133
 #, fuzzy
 msgid "Total openings"
 msgstr "Suscriptores totales"
@@ -568,7 +564,7 @@ msgstr "Suscriptores totales"
 msgid "Links statistics"
 msgstr "Ver Historial"
 
-#: templates/newsletter/newsletter_statistics.html:119 views/statistics.py:105
+#: templates/newsletter/newsletter_statistics.html:119 views/statistics.py:137
 #, fuzzy
 msgid "Total clicked links"
 msgstr "Suscriptores totales"
@@ -586,7 +582,7 @@ msgstr ""
 msgid "Clicked links average"
 msgstr "Suscriptores totales"
 
-#: templates/newsletter/newsletter_statistics.html:146 views/statistics.py:109
+#: templates/newsletter/newsletter_statistics.html:146 views/statistics.py:141
 msgid "Consultation histogram"
 msgstr ""
 
@@ -596,51 +592,65 @@ msgstr ""
 
 #: templates/newsletter/newsletter_statistics.html:176
 #, fuzzy
+msgid "Report"
+msgstr "Exportar"
+
+#: templates/newsletter/newsletter_statistics.html:178
+msgid "Download CSV report"
+msgstr ""
+
+#: templates/newsletter/newsletter_statistics.html:183
+#, fuzzy
 msgid "Informations"
 msgstr "Importación"
 
-#: templates/newsletter/newsletter_statistics.html:177
+#: templates/newsletter/newsletter_statistics.html:184
 #, fuzzy
 msgid "Recipients"
 msgstr "Receptores"
 
-#: templates/newsletter/newsletter_statistics.html:178
+#: templates/newsletter/newsletter_statistics.html:185
 msgid "View"
 msgstr ""
 
-#: templates/newsletter/newsletter_statistics.html:181
+#: templates/newsletter/newsletter_statistics.html:188
 #, fuzzy
 msgid "Sending date"
 msgstr "fecha de envío"
 
-#: templates/newsletter/newsletter_statistics.html:184
+#: templates/newsletter/newsletter_statistics.html:191
 msgid "Tests sent"
 msgstr ""
 
-#: templates/newsletter/newsletter_statistics.html:189
+#: templates/newsletter/newsletter_statistics.html:196
 #, fuzzy
 msgid "Top Links"
 msgstr "Enlaces"
 
-#: templates/newsletter/newsletter_statistics.html:190
+#: templates/newsletter/newsletter_statistics.html:197
 msgid "Density map"
 msgstr ""
 
-#: templates/newsletter/newsletter_statistics.html:199
+#: templates/newsletter/newsletter_statistics.html:206
 msgid "No Top Links yet."
 msgstr ""
 
-#: views/statistics.py:50
+#: views/statistics.py:52
 #, fuzzy, python-format
 msgid "Statistics of %s"
 msgstr "Estadísticas %s"
 
-#: views/statistics.py:101
+#: views/statistics.py:73
+#, fuzzy
+msgid "openings"
+msgstr "Suscriptores totales"
+
+#: views/statistics.py:133
 #, fuzzy
 msgid "#val# openings"
 msgstr "Suscriptores totales"
 
-#: views/statistics.py:105
+#: views/statistics.py:137
 msgid "#val# clicks"
 msgstr ""
 
@@ -648,6 +658,9 @@ msgstr ""
 #, fuzzy, python-format
 msgid "Historic of %s"
 msgstr "Historial"
+
+#~ msgid "Connection valid"
+#~ msgstr "Conexión valida"
 
 #, fuzzy
 #~ msgid "Double openings"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-08 15:10+0100\n"
+"POT-Creation-Date: 2010-02-09 17:22+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,48 +16,44 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: models.py:22 models.py:135 models.py:289
+#: models.py:24 models.py:135 models.py:289
 msgid "name"
 msgstr ""
 
-#: models.py:23
+#: models.py:25
 msgid "server host"
 msgstr ""
 
-#: models.py:24
+#: models.py:26
 msgid "server user"
 msgstr ""
 
-#: models.py:25 models.py:27
+#: models.py:27 models.py:29
 msgid "Leave it empty if the host is public."
 msgstr ""
 
-#: models.py:26
+#: models.py:28
 msgid "server password"
 msgstr ""
 
-#: models.py:28
+#: models.py:30
 msgid "server port"
 msgstr ""
 
-#: models.py:29
+#: models.py:31
 msgid "server use TLS"
 msgstr ""
 
-#: models.py:31
+#: models.py:33
 msgid "custom headers"
 msgstr ""
 
-#: models.py:32
+#: models.py:34
 msgid "key1: value1 key2: value2, splitted by return line."
 msgstr ""
 
-#: models.py:33
+#: models.py:35
 msgid "mails per hour"
-msgstr ""
-
-#: models.py:47
-msgid "Connection valid"
 msgstr ""
 
 #: models.py:77
@@ -68,15 +64,15 @@ msgstr ""
 msgid "SMTP Servers"
 msgstr ""
 
-#: models.py:83
+#: models.py:83 views/statistics.py:73
 msgid "email"
 msgstr ""
 
-#: models.py:84
+#: models.py:84 views/statistics.py:72
 msgid "first name"
 msgstr ""
 
-#: models.py:85
+#: models.py:85 views/statistics.py:72
 msgid "last name"
 msgstr ""
 
@@ -296,7 +292,7 @@ msgstr ""
 msgid "Work Groups"
 msgstr ""
 
-#: admin/contact.py:27 templates/newsletter/newsletter_statistics.html:179
+#: admin/contact.py:27 templates/newsletter/newsletter_statistics.html:186
 msgid "Status"
 msgstr ""
 
@@ -455,7 +451,7 @@ msgstr ""
 msgid "Configuration"
 msgstr ""
 
-#: admin/smtpserver.py:25
+#: admin/smtpserver.py:33
 msgid "Check connection"
 msgstr ""
 
@@ -529,7 +525,7 @@ msgstr ""
 msgid "Broadcasting statistics"
 msgstr ""
 
-#: templates/newsletter/newsletter_statistics.html:83 views/statistics.py:101
+#: templates/newsletter/newsletter_statistics.html:83 views/statistics.py:133
 msgid "Total openings"
 msgstr ""
 
@@ -558,7 +554,7 @@ msgstr ""
 msgid "Links statistics"
 msgstr ""
 
-#: templates/newsletter/newsletter_statistics.html:119 views/statistics.py:105
+#: templates/newsletter/newsletter_statistics.html:119 views/statistics.py:137
 msgid "Total clicked links"
 msgstr ""
 
@@ -574,7 +570,7 @@ msgstr ""
 msgid "Clicked links average"
 msgstr ""
 
-#: templates/newsletter/newsletter_statistics.html:146 views/statistics.py:109
+#: templates/newsletter/newsletter_statistics.html:146 views/statistics.py:141
 msgid "Consultation histogram"
 msgstr ""
 
@@ -583,47 +579,59 @@ msgid "Period"
 msgstr ""
 
 #: templates/newsletter/newsletter_statistics.html:176
-msgid "Informations"
-msgstr ""
-
-#: templates/newsletter/newsletter_statistics.html:177
-msgid "Recipients"
+msgid "Report"
 msgstr ""
 
 #: templates/newsletter/newsletter_statistics.html:178
-msgid "View"
+msgid "Download CSV report"
 msgstr ""
 
-#: templates/newsletter/newsletter_statistics.html:181
-msgid "Sending date"
+#: templates/newsletter/newsletter_statistics.html:183
+msgid "Informations"
 msgstr ""
 
 #: templates/newsletter/newsletter_statistics.html:184
+msgid "Recipients"
+msgstr ""
+
+#: templates/newsletter/newsletter_statistics.html:185
+msgid "View"
+msgstr ""
+
+#: templates/newsletter/newsletter_statistics.html:188
+msgid "Sending date"
+msgstr ""
+
+#: templates/newsletter/newsletter_statistics.html:191
 msgid "Tests sent"
 msgstr ""
 
-#: templates/newsletter/newsletter_statistics.html:189
+#: templates/newsletter/newsletter_statistics.html:196
 msgid "Top Links"
 msgstr ""
 
-#: templates/newsletter/newsletter_statistics.html:190
+#: templates/newsletter/newsletter_statistics.html:197
 msgid "Density map"
 msgstr ""
 
-#: templates/newsletter/newsletter_statistics.html:199
+#: templates/newsletter/newsletter_statistics.html:206
 msgid "No Top Links yet."
 msgstr ""
 
-#: views/statistics.py:50
+#: views/statistics.py:52
 #, python-format
 msgid "Statistics of %s"
 msgstr ""
 
-#: views/statistics.py:101
+#: views/statistics.py:73
+msgid "openings"
+msgstr ""
+
+#: views/statistics.py:133
 msgid "#val# openings"
 msgstr ""
 
-#: views/statistics.py:105
+#: views/statistics.py:137
 msgid "#val# clicks"
 msgstr ""
 
