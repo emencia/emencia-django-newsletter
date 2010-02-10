@@ -73,10 +73,12 @@ def view_newsletter_report(request, slug):
                 smart_str(_('email')), smart_str(_('openings'))] + link_cols
 
     def contact_line(contact, links):
-        link_cols = [status.filter(status=ContactMailingStatus.LINK_OPENED,
-                                   link=link, contact=contact).count() for link in links]
-        openings = status.filter(Q(status=ContactMailingStatus.OPENED) | Q(status=ContactMailingStatus.OPENED_ON_SITE),
-                                 contact=contact).count()
+        contact_status = status.filter(contact=contact)
+
+        link_cols = [contact_status.filter(status=ContactMailingStatus.LINK_OPENED,
+                                           link=link).count() for link in links]
+        openings = contact_status.filter(Q(status=ContactMailingStatus.OPENED) |
+                                         Q(status=ContactMailingStatus.OPENED_ON_SITE)).count()
         return [smart_str(contact.first_name), smart_str(contact.last_name),
                 smart_str(contact.email), openings] + link_cols
 
