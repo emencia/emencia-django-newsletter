@@ -18,6 +18,17 @@ from emencia.django.newsletter.managers import ContactManager
 from emencia.django.newsletter.settings import DEFAULT_HEADER_REPLY
 from emencia.django.newsletter.settings import DEFAULT_HEADER_SENDER
 
+# Patch for Python < 2.6
+try:
+    getattr(SMTP, 'ehlo_or_helo_if_needed')
+except AttributeError:
+    def ehlo_or_helo_if_needed(self):
+        if self.helo_resp is None and self.ehlo_resp is None:
+            if not (200 <= self.ehlo()[0] <= 299):
+                (code, resp) = self.helo()
+                if not (200 <= code <= 299):
+                    raise SMTPHeloError(code, resp)
+    SMTP.ehlo_or_helo_if_needed = ehlo_or_helo_if_needed
 
 class SMTPServer(models.Model):
     """Configuration of a SMTP server"""
