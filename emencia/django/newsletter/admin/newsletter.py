@@ -98,13 +98,18 @@ class NewsletterAdmin(admin.ModelAdmin):
 
     def historic_link(self, newsletter):
         """Display link for historic"""
-        return '<a href="%s">%s</a>' % (newsletter.get_historic_url(), _('View historic'))
+        if newsletter.contactmailingstatus_set.count():
+            return '<a href="%s">%s</a>' % (newsletter.get_historic_url(), _('View historic'))
+        return _('Not available')
     historic_link.allow_tags = True
     historic_link.short_description = _('Historic')
 
     def statistics_link(self, newsletter):
         """Display link for statistics"""
-        return '<a href="%s">%s</a>' % (newsletter.get_statistics_url(), _('View statistics'))
+        if newsletter.status == Newsletter.SENDING or \
+           newsletter.status == Newsletter.SENT:            
+            return '<a href="%s">%s</a>' % (newsletter.get_statistics_url(), _('View statistics'))
+        return _('Not available')
     statistics_link.allow_tags = True
     statistics_link.short_description = _('Statistics')
 
