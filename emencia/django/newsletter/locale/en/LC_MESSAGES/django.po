@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-11 17:17+0100\n"
+"POT-Creation-Date: 2010-02-12 17:04+0100\n"
 "PO-Revision-Date: 2010-01-21 10:54+0100\n"
 "Last-Translator: Fantomas <Fantomas42@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -264,13 +264,18 @@ msgstr "contact"
 msgid "link"
 msgstr "link"
 
-#: models.py:295 models.py:296
+#: models.py:295
 msgid "Contact Mailing Status"
 msgstr "Mailing Status"
 
+#: models.py:296
+#, fuzzy
+msgid "Contact Mailing Statuses"
+msgstr "Mailing Status"
+
 #: models.py:301
-msgid "group"
-msgstr "group"
+msgid "permissions group"
+msgstr ""
 
 #: models.py:303
 msgid "contacts"
@@ -659,6 +664,9 @@ msgstr ""
 #, python-format
 msgid "Historic of %s"
 msgstr "Historic of %s"
+
+#~ msgid "group"
+#~ msgstr "group"
 
 #~ msgid "Connection valid"
 #~ msgstr "Connection valid"

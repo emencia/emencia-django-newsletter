@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-11 17:17+0100\n"
+"POT-Creation-Date: 2010-02-12 17:04+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -264,12 +264,16 @@ msgstr ""
 msgid "link"
 msgstr ""
 
-#: models.py:295 models.py:296
+#: models.py:295
 msgid "Contact Mailing Status"
 msgstr ""
 
+#: models.py:296
+msgid "Contact Mailing Statuses"
+msgstr ""
+
 #: models.py:301
-msgid "group"
+msgid "permissions group"
 msgstr ""
 
 #: models.py:303

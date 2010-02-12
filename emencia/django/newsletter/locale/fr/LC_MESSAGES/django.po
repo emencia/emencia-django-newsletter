@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: emencia.django.newsletter\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-11 17:17+0100\n"
-"PO-Revision-Date: 2010-02-11 17:18+0100\n"
+"POT-Creation-Date: 2010-02-12 17:04+0100\n"
+"PO-Revision-Date: 2010-02-12 17:04+0100\n"
 "Last-Translator: Fantomas <Fantomas42@gmail.com>\n"
 "Language-Team: fr <jfache@emencia.com>\n"
 "MIME-Version: 1.0\n"
@@ -147,7 +147,7 @@ msgstr "Liste de diffusion"
 
 #: models.py:177
 msgid "Mailing Lists"
-msgstr "Listes de diffusions"
+msgstr "Listes de diffusion"
 
 #: models.py:188
 msgid "draft"
@@ -230,7 +230,7 @@ msgstr "Newsletters"
 
 #: models.py:239
 msgid "Can change status"
-msgstr "Changement de status"
+msgstr "Changement de statut"
 
 #: models.py:244
 msgid "url"
@@ -285,13 +285,16 @@ msgid "link"
 msgstr "lien"
 
 #: models.py:295
-#: models.py:296
 msgid "Contact Mailing Status"
-msgstr "Status d'envois"
+msgstr "Statut d'envoi"
+
+#: models.py:296
+msgid "Contact Mailing Statuses"
+msgstr "Statuts d'envoi"
 
 #: models.py:301
-msgid "group"
-msgstr "groupe"
+msgid "permissions group"
+msgstr "groupe de permissions"
 
 #: models.py:303
 msgid "contacts"
@@ -671,6 +674,8 @@ msgstr "#val# clics"
 msgid "Historic of %s"
 msgstr "Historique de %s"
 
+#~ msgid "group"
+#~ msgstr "groupe"
 #~ msgid "Connection valid"
 #~ msgstr "Connexion au server"
 #~ msgid "Display clicks"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: emencia.django.newsletter\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-11 17:17+0100\n"
+"POT-Creation-Date: 2010-02-12 17:04+0100\n"
 "PO-Revision-Date: 2010-02-03 15:34+0100\n"
 "Last-Translator: Paolo Martino <martip@gmail.com>\n"
 "Language-Team: martip <martip@gmail.com>\n"
@@ -268,13 +268,18 @@ msgstr "contatto"
 msgid "link"
 msgstr "collegamento"
 
-#: models.py:295 models.py:296
+#: models.py:295
 msgid "Contact Mailing Status"
 msgstr "Stato del contatto"
 
+#: models.py:296
+#, fuzzy
+msgid "Contact Mailing Statuses"
+msgstr "Stato del contatto"
+
 #: models.py:301
-msgid "group"
-msgstr "gruppo"
+msgid "permissions group"
+msgstr ""
 
 #: models.py:303
 msgid "contacts"
@@ -655,6 +660,9 @@ msgstr "Doppi click"
 #, python-format
 msgid "Historic of %s"
 msgstr "Storico di %s"
+
+#~ msgid "group"
+#~ msgstr "gruppo"
 
 #~ msgid "Connection valid"
 #~ msgstr "Connessione valida"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-11 17:17+0100\n"
+"POT-Creation-Date: 2010-02-12 17:04+0100\n"
 "PO-Revision-Date: 2009-12-24 16:22+0100\n"
 "Last-Translator: \n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -264,13 +264,18 @@ msgstr "contacto"
 msgid "link"
 msgstr "enlace"
 
-#: models.py:295 models.py:296
+#: models.py:295
 msgid "Contact Mailing Status"
 msgstr "Estado del envío"
 
+#: models.py:296
+#, fuzzy
+msgid "Contact Mailing Statuses"
+msgstr "Estado del envío"
+
 #: models.py:301
-msgid "group"
-msgstr "grupo"
+msgid "permissions group"
+msgstr ""
 
 #: models.py:303
 msgid "contacts"
@@ -662,6 +667,9 @@ msgstr ""
 #, fuzzy, python-format
 msgid "Historic of %s"
 msgstr "Historial"
+
+#~ msgid "group"
+#~ msgstr "grupo"
 
 #~ msgid "Connection valid"
 #~ msgstr "Conexión valida"

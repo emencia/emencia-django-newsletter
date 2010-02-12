@@ -293,12 +293,12 @@ class ContactMailingStatus(models.Model):
     class Meta:
         ordering = ('creation_date',)
         verbose_name = _('Contact Mailing Status')
-        verbose_name_plural = _('Contact Mailing Status')
+        verbose_name_plural = _('Contact Mailing Statuses')
 
 class WorkGroup(models.Model):
     """Work Group for privatization of the ressources"""
     name = models.CharField(_('name'), max_length=255)
-    group = models.ForeignKey(Group, verbose_name=_('group'))
+    group = models.ForeignKey(Group, verbose_name=_('permissions group'))
 
     contacts = models.ManyToManyField(Contact, verbose_name=_('contacts'),
                                       blank=True, null=True)
