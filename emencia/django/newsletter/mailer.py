@@ -14,6 +14,7 @@ from html2text import html2text
 from django.contrib.sites.models import Site
 from django.template import Context, Template
 from django.template.loader import render_to_string
+from django.utils.encoding import smart_str
 from django.utils.encoding import smart_unicode
 
 from emencia.django.newsletter.models import Newsletter
@@ -74,8 +75,8 @@ class Mailer(object):
         for header, value in self.newsletter.server.custom_headers.items():
             message[header] = value
 
-        message.attach(MIMEText(content_text, 'plain', 'UTF-8'))
-        message.attach(MIMEText(content_html, 'html', 'UTF-8'))
+        message.attach(MIMEText(smart_str(content_text), 'plain', 'UTF-8'))
+        message.attach(MIMEText(smart_str(content_html), 'html', 'UTF-8'))
 
         return message
 
