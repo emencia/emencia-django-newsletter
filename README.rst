@@ -55,8 +55,18 @@ So it is recommanded to create a **cronjob** for launching this command every ho
 
 Installation
 ============
-  
-First of all you need to install emencia.django.newsletter into your *PYTHON_PATH*.
+
+You could retrieve the last sources from http://github.com/Fantomas42/emencia-django-newsletter and running the installation script ::
+    
+  $> python setup.py install
+
+or use pip ::
+
+  $> pip install -e git://github.com/Fantomas42/emencia-django-newsletter.git#egg=emencia.django.newsletter
+
+For the latest stable version use easy_install ::
+
+  $> easy_install emencia.django.newsletter
 
 Applications
 ------------
