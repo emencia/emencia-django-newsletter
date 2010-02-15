@@ -10,11 +10,11 @@ from emencia.django.newsletter.models import Contact
 from emencia.django.newsletter.models import Newsletter
 from emencia.django.newsletter.models import MailingList
 from emencia.django.newsletter.mailer import Mailer
-from emencia.django.newsletter.utils import request_workgroups
-from emencia.django.newsletter.utils import request_workgroups_contacts_pk
-from emencia.django.newsletter.utils import request_workgroups_newsletters_pk
-from emencia.django.newsletter.utils import request_workgroups_mailinglists_pk
-from emencia.django.newsletter.utils import get_webpage_content
+from emencia.django.newsletter.utils.workgroups import request_workgroups
+from emencia.django.newsletter.utils.workgroups import request_workgroups_contacts_pk
+from emencia.django.newsletter.utils.workgroups import request_workgroups_newsletters_pk
+from emencia.django.newsletter.utils.workgroups import request_workgroups_mailinglists_pk
+from emencia.django.newsletter.utils.newsletter import get_webpage_content
 
 class NewsletterAdmin(admin.ModelAdmin):
     date_hierarchy = 'creation_date'

@@ -11,7 +11,7 @@ from django.contrib.auth.decorators import login_required
 
 from emencia.django.newsletter.models import Link
 from emencia.django.newsletter.models import Newsletter
-from emencia.django.newsletter.tokens import untokenize
+from emencia.django.newsletter.utils.tokens import untokenize
 from emencia.django.newsletter.models import ContactMailingStatus
 from emencia.django.newsletter.settings import TRACKING_IMAGE
 

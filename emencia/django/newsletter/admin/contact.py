@@ -11,10 +11,10 @@ from django.utils.translation import ugettext as _
 from emencia.django.newsletter.models import Contact
 from emencia.django.newsletter.models import WorkGroup
 from emencia.django.newsletter.models import MailingList
-from emencia.django.newsletter.utils import request_workgroups
-from emencia.django.newsletter.utils import request_workgroups_contacts_pk
-from emencia.django.newsletter.vcard import vcard_contacts_import
-from emencia.django.newsletter.vcard import vcard_contacts_export_response
+from emencia.django.newsletter.utils.workgroups import request_workgroups
+from emencia.django.newsletter.utils.workgroups import request_workgroups_contacts_pk
+from emencia.django.newsletter.utils.vcard import vcard_contacts_import
+from emencia.django.newsletter.utils.vcard import vcard_contacts_export_response
 
 class ContactAdmin(admin.ModelAdmin):
     date_hierarchy = 'creation_date'

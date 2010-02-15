@@ -12,13 +12,13 @@ from django.shortcuts import render_to_response
 from django.contrib.auth.decorators import login_required
 from django.template.defaultfilters import date
 
-from emencia.django.newsletter.ofc import Chart
+from emencia.django.newsletter.utils.ofc import Chart
 from emencia.django.newsletter.models import Newsletter
 from emencia.django.newsletter.models import ContactMailingStatus
-from emencia.django.newsletter.statistics import get_newsletter_top_links
-from emencia.django.newsletter.statistics import get_newsletter_statistics
-from emencia.django.newsletter.statistics import get_newsletter_opening_statistics
-from emencia.django.newsletter.statistics import get_newsletter_clicked_link_statistics
+from emencia.django.newsletter.utils.statistics import get_newsletter_top_links
+from emencia.django.newsletter.utils.statistics import get_newsletter_statistics
+from emencia.django.newsletter.utils.statistics import get_newsletter_opening_statistics
+from emencia.django.newsletter.utils.statistics import get_newsletter_clicked_link_statistics
 
 BG_COLOR = '#ffffff'
 GRID_COLOR = '#eeeeee'

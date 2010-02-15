@@ -13,10 +13,10 @@ from django.contrib.contenttypes.models import ContentType
 from django.contrib.auth.models import Group
 
 from tagging.fields import TagField
-from emencia.django.newsletter.vcard import vcard_contact_export
 from emencia.django.newsletter.managers import ContactManager
 from emencia.django.newsletter.settings import DEFAULT_HEADER_REPLY
 from emencia.django.newsletter.settings import DEFAULT_HEADER_SENDER
+from emencia.django.newsletter.utils.vcard import vcard_contact_export
 
 # Patch for Python < 2.6
 try:

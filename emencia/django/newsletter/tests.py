@@ -7,8 +7,6 @@ from django.http import Http404
 from django.db import IntegrityError
 from django.contrib.sites.models import Site
 
-from emencia.django.newsletter.tokens import tokenize
-from emencia.django.newsletter.tokens import untokenize
 from emencia.django.newsletter.mailer import Mailer
 from emencia.django.newsletter.models import Link
 from emencia.django.newsletter.models import Contact
@@ -16,12 +14,14 @@ from emencia.django.newsletter.models import MailingList
 from emencia.django.newsletter.models import SMTPServer
 from emencia.django.newsletter.models import Newsletter
 from emencia.django.newsletter.models import ContactMailingStatus
-from emencia.django.newsletter.statistics import get_newsletter_opening_statistics
-from emencia.django.newsletter.statistics import get_newsletter_on_site_opening_statistics
-from emencia.django.newsletter.statistics import get_newsletter_unsubscription_statistics
-from emencia.django.newsletter.statistics import get_newsletter_clicked_link_statistics
-from emencia.django.newsletter.statistics import get_newsletter_top_links
-from emencia.django.newsletter.statistics import get_newsletter_statistics
+from emencia.django.newsletter.utils.tokens import tokenize
+from emencia.django.newsletter.utils.tokens import untokenize
+from emencia.django.newsletter.utils.statistics import get_newsletter_opening_statistics
+from emencia.django.newsletter.utils.statistics import get_newsletter_on_site_opening_statistics
+from emencia.django.newsletter.utils.statistics import get_newsletter_unsubscription_statistics
+from emencia.django.newsletter.utils.statistics import get_newsletter_clicked_link_statistics
+from emencia.django.newsletter.utils.statistics import get_newsletter_top_links
+from emencia.django.newsletter.utils.statistics import get_newsletter_statistics
 
 class FakeSMTP(object):
     mails_sent = 0

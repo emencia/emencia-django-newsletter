@@ -16,11 +16,11 @@ from django.template import Context, Template
 from django.template.loader import render_to_string
 from django.utils.encoding import smart_unicode
 
-from emencia.django.newsletter.utils import track_links
-from emencia.django.newsletter.utils import body_insertion
-from emencia.django.newsletter.tokens import tokenize
 from emencia.django.newsletter.models import Newsletter
 from emencia.django.newsletter.models import ContactMailingStatus
+from emencia.django.newsletter.utils.tokens import tokenize
+from emencia.django.newsletter.utils.newsletter import track_links
+from emencia.django.newsletter.utils.newsletter import body_insertion
 from emencia.django.newsletter.settings import TRACKING_LINKS
 from emencia.django.newsletter.settings import TRACKING_IMAGE
 from emencia.django.newsletter.settings import INCLUDE_UNSUBSCRIPTION

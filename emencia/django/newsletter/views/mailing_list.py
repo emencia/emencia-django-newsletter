@@ -3,7 +3,7 @@ from django.template import RequestContext
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render_to_response
 
-from emencia.django.newsletter.tokens import untokenize
+from emencia.django.newsletter.utils.tokens import untokenize
 from emencia.django.newsletter.models import Newsletter
 from emencia.django.newsletter.models import ContactMailingStatus
 
