@@ -249,6 +249,9 @@ class MailerTestCase(TestCase):
         ContactMailingStatus.objects.create(newsletter=self.newsletter,
                                             contact=self.contacts[1],
                                             status=ContactMailingStatus.SENT)
+        ContactMailingStatus.objects.create(newsletter=self.newsletter,
+                                            contact=self.contacts[1],
+                                            status=ContactMailingStatus.SENT)
         self.assertEquals(len(mailer.get_expedition_list()), 2)
         self.assertFalse(self.contacts[0] in mailer.get_expedition_list())
 

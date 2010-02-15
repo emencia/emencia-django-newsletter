@@ -5,7 +5,7 @@ from datetime import datetime
 try:
     from email.mime.multipart import MIMEMultipart
     from email.mime.text import MIMEText
-except ImportError :  #python 2.4 compatibility
+except ImportError :  # Python 2.4 compatibility
     from email.MIMEMultipart import MIMEMultipart
     from email.MIMEText import MIMEText
 
@@ -90,7 +90,7 @@ class Mailer(object):
             return self.newsletter.test_contacts.all()[:credits]
 
         already_sent = ContactMailingStatus.objects.filter(status=ContactMailingStatus.SENT,
-                                                           newsletter=self.newsletter).values_list('id', flat=True)
+                                                           newsletter=self.newsletter).values_list('contact__id', flat=True)
         expedition_list = self.newsletter.mailing_list.expedition_set().exclude(id__in=already_sent)
         return expedition_list[:credits]
 
