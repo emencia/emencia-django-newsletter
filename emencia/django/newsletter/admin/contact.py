@@ -7,6 +7,7 @@ from django.core.urlresolvers import reverse
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.utils.translation import ugettext as _
+from django.http import HttpResponseRedirect
 
 from emencia.django.newsletter.models import Contact
 from emencia.django.newsletter.models import WorkGroup
@@ -85,6 +86,8 @@ class ContactAdmin(admin.ModelAdmin):
                 workgroup.mailinglists.add(new_mailing)
 
         self.message_user(request, _('%s succesfully created.') % new_mailing)
+        return HttpResponseRedirect(reverse('admin:newsletter_mailinglist_change',
+                                            args=[new_mailing.pk,]))
     create_mailinglist.short_description = _('Create a mailinglist')
 
     def importation(self, request):

@@ -6,6 +6,7 @@ from django.conf.urls.defaults import *
 from django.core.urlresolvers import reverse
 from django.shortcuts import get_object_or_404
 from django.utils.translation import ugettext as _
+from django.http import HttpResponseRedirect
 
 from emencia.django.newsletter.models import Contact
 from emencia.django.newsletter.models import MailingList
@@ -70,6 +71,8 @@ class MailingListAdmin(admin.ModelAdmin):
         new_mailing.subscribers = contacts.keys()
 
         self.message_user(request, _('%s succesfully created by merging.') % new_mailing)
+        return HttpResponseRedirect(reverse('admin:newsletter_mailinglist_change',
+                                            args=[new_mailing.pk,]))
     merge_mailinglist.short_description = _('Merge selected mailinglists')
 
     def exportation_link(self, mailinglist):
