@@ -236,7 +236,7 @@ class Newsletter(models.Model):
         ordering = ('creation_date',)
         verbose_name = _('Newsletter')
         verbose_name_plural = _('Newsletters')
-        permissions = (('can_change_status', _('Can change status')),)
+        permissions = (('can_change_status', ugettext('Can change status')),)
 
 class Link(models.Model):
     """Link sended in a newsletter"""
