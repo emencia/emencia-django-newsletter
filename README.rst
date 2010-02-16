@@ -71,12 +71,13 @@ For the latest stable version use easy_install ::
 Applications
 ------------
 
-Then register **emencia.django.newsletter**, **admin** and **contenttypes** in your INSTALLED_APPS section your project settings. ::
+Then register **emencia.django.newsletter**, **admin** and **contenttypes** and **tagging** in your INSTALLED_APPS section your project settings. ::
 
   >>> INSTALLED_APPS = (
   ...   # Your favorites apps
-  ..    'django.contrib.contenttypes',
+  ...   'django.contrib.contenttypes',
   ...   'django.contrib.admin',
+  ...   'tagging',
   ...   'emencia.django.newsletter',)
 
 

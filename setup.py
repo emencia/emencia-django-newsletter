@@ -31,6 +31,7 @@ setup(name='emencia.django.newsletter',
           'html2text',
           'BeautifulSoup',
           'vobject',
+          'tagging',
       ],
       entry_points="""
       # -*- Entry points: -*-
