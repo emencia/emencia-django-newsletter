@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-12 17:04+0100\n"
+"POT-Creation-Date: 2010-02-24 10:29+0100\n"
 "PO-Revision-Date: 2010-01-21 10:54+0100\n"
 "Last-Translator: Fantomas <Fantomas42@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -56,22 +56,24 @@ msgid "mails per hour"
 msgstr "mails per hour"
 
 #: models.py:88
-msgid "SMTP Server"
+#, fuzzy
+msgid "SMTP server"
 msgstr "SMTP Server"
 
 #: models.py:89
-msgid "SMTP Servers"
+#, fuzzy
+msgid "SMTP servers"
 msgstr "SMTP Servers"
 
-#: models.py:94 views/statistics.py:73
+#: models.py:94 views/statistics.py:74
 msgid "email"
 msgstr "Email"
 
-#: models.py:95 views/statistics.py:72
+#: models.py:95 views/statistics.py:73
 msgid "first name"
 msgstr "First name"
 
-#: models.py:96 views/statistics.py:72
+#: models.py:96 views/statistics.py:73
 msgid "last name"
 msgstr "Last name"
 
@@ -103,13 +105,13 @@ msgstr "Date of modification"
 msgid "mail format"
 msgstr "Mail format"
 
-#: models.py:141 templates/newsletter/newsletter_historic.html:24
-msgid "Contact"
-msgstr "Contact"
+#: models.py:141 models.py:281
+msgid "contact"
+msgstr "contact"
 
-#: models.py:142
-msgid "Contacts"
-msgstr "Contacts"
+#: models.py:142 models.py:303
+msgid "contacts"
+msgstr "contacts"
 
 #: models.py:147
 msgid "description"
@@ -123,13 +125,13 @@ msgstr "Subscribers"
 msgid "unsubscribers"
 msgstr "Unsubscribers"
 
-#: models.py:176
-msgid "Mailing List"
-msgstr "Mailing List"
+#: models.py:176 models.py:199
+msgid "mailing list"
+msgstr "Mailing list"
 
-#: models.py:177
-msgid "Mailing Lists"
-msgstr "Mailing Lists"
+#: models.py:177 models.py:305
+msgid "mailing lists"
+msgstr "mailing lists"
 
 #: models.py:188
 msgid "draft"
@@ -167,10 +169,6 @@ msgstr "Or paste an URL."
 msgid "Edit your newsletter here"
 msgstr "Edit your newsletter here"
 
-#: models.py:199
-msgid "mailing list"
-msgstr "Mailing list"
-
 #: models.py:200
 msgid "test contacts"
 msgstr "Test contacts"
@@ -199,13 +197,13 @@ msgstr "Sending date"
 msgid "Used for displaying the newsletter on the site."
 msgstr "Used for displaying the newsletter on the site."
 
-#: models.py:237
-msgid "Newsletter"
-msgstr "Newsletter"
+#: models.py:237 models.py:280
+msgid "newsletter"
+msgstr "newsletter"
 
-#: models.py:238
-msgid "Newsletters"
-msgstr "Newsletters"
+#: models.py:238 models.py:307
+msgid "newsletters"
+msgstr "newsletters"
 
 #: models.py:239
 msgid "Can change status"
@@ -215,13 +213,14 @@ msgstr "Can change status"
 msgid "url"
 msgstr "url"
 
-#: models.py:256
-msgid "Link"
-msgstr "Link"
+#: models.py:256 models.py:283
+msgid "link"
+msgstr "link"
 
 #: models.py:257
-msgid "Links"
-msgstr "Links"
+#, fuzzy
+msgid "links"
+msgstr "link"
 
 #: models.py:270
 msgid "sent in test"
@@ -252,131 +251,110 @@ msgstr "Link opened"
 msgid "unsubscription"
 msgstr "Unsubscription"
 
-#: models.py:280
-msgid "newsletter"
-msgstr "newsletter"
-
-#: models.py:281
-msgid "contact"
-msgstr "contact"
-
-#: models.py:283
-msgid "link"
-msgstr "link"
-
 #: models.py:295
-msgid "Contact Mailing Status"
+#, fuzzy
+msgid "contact mailing status"
 msgstr "Mailing Status"
 
 #: models.py:296
 #, fuzzy
-msgid "Contact Mailing Statuses"
+msgid "contact mailing statuses"
 msgstr "Mailing Status"
 
 #: models.py:301
 msgid "permissions group"
 msgstr ""
 
-#: models.py:303
-msgid "contacts"
-msgstr "contacts"
-
-#: models.py:305
-msgid "mailing lists"
-msgstr "mailing lists"
-
-#: models.py:307
-msgid "newsletters"
-msgstr "newsletters"
-
 #: models.py:314
-msgid "Work Group"
+#, fuzzy
+msgid "workgroup"
 msgstr "Work Group"
 
 #: models.py:315
-msgid "Work Groups"
+#, fuzzy
+msgid "workgroups"
 msgstr "Work Groups"
 
-#: admin/contact.py:27 templates/newsletter/newsletter_statistics.html:186
+#: admin/contact.py:28 templates/newsletter/newsletter_statistics.html:186
 msgid "Status"
 msgstr "Status"
 
-#: admin/contact.py:28
+#: admin/contact.py:29
 msgid "Advanced"
 msgstr "Advanced"
 
-#: admin/contact.py:59
+#: admin/contact.py:60
 msgid "No relative object"
 msgstr "No relative object"
 
-#: admin/contact.py:61
+#: admin/contact.py:62
 msgid "Related object"
 msgstr "Related object"
 
-#: admin/contact.py:68
+#: admin/contact.py:69
 msgid "Total subscriptions"
 msgstr "Total Subscriptions"
 
-#: admin/contact.py:73
+#: admin/contact.py:74
 msgid "Export contacts as VCard"
 msgstr "Export contacts as VCard"
 
-#: admin/contact.py:78
+#: admin/contact.py:79
 #, python-format
 msgid "New mailinglist at %s"
 msgstr "New mailing list at %s"
 
-#: admin/contact.py:79
+#: admin/contact.py:80
 #, python-format
 msgid "New mailing list created in admin at %s"
 msgstr "New mailing list created in admin at %s"
 
-#: admin/contact.py:87
+#: admin/contact.py:88
 #, python-format
 msgid "%s succesfully created."
 msgstr "%s successfully created."
 
-#: admin/contact.py:88
+#: admin/contact.py:91
 msgid "Create a mailinglist"
 msgstr "Create a mailing list"
 
-#: admin/contact.py:97
+#: admin/contact.py:100
 #, python-format
 msgid "%s contacts succesfully imported."
 msgstr "%s contacts successfully imported."
 
-#: admin/contact.py:99
+#: admin/contact.py:102
 msgid "VCard import"
 msgstr "VCard import"
 
-#: admin/mailinglist.py:58
+#: admin/mailinglist.py:59
 msgid "Please select a least 2 mailing list."
 msgstr "Please select a least 2 mailing list."
 
-#: admin/mailinglist.py:67
+#: admin/mailinglist.py:68
 #, python-format
 msgid "Merging list at %s"
 msgstr "Merging list at %s"
 
-#: admin/mailinglist.py:68
+#: admin/mailinglist.py:69
 #, python-format
 msgid "Mailing list created by merging at %s"
 msgstr "Mailing list created by merging at %s"
 
-#: admin/mailinglist.py:72
+#: admin/mailinglist.py:73
 #, python-format
 msgid "%s succesfully created by merging."
 msgstr "%s successfully created by merging."
 
-#: admin/mailinglist.py:73
+#: admin/mailinglist.py:76
 msgid "Merge selected mailinglists"
 msgstr "Merge selected mailing lists"
 
-#: admin/mailinglist.py:78
+#: admin/mailinglist.py:81
 msgid "Export Subscribers"
 msgstr "Export Subscribers"
 
-#: admin/mailinglist.py:80
+#: admin/mailinglist.py:83
 msgid "Export"
 msgstr "Export"
 
@@ -526,6 +504,10 @@ msgstr ""
 msgid "Date"
 msgstr "Date"
 
+#: templates/newsletter/newsletter_historic.html:24
+msgid "Contact"
+msgstr "Contact"
+
 #: templates/newsletter/newsletter_historic.html:25
 msgid "Action"
 msgstr "Action"
@@ -536,7 +518,7 @@ msgstr "Action"
 msgid "Broadcasting statistics"
 msgstr "View statistics"
 
-#: templates/newsletter/newsletter_statistics.html:83 views/statistics.py:135
+#: templates/newsletter/newsletter_statistics.html:83 views/statistics.py:136
 #, fuzzy
 msgid "Total openings"
 msgstr "Total Subscriptions"
@@ -570,7 +552,7 @@ msgstr "Total Subscriptions"
 msgid "Links statistics"
 msgstr "View statistics"
 
-#: templates/newsletter/newsletter_statistics.html:119 views/statistics.py:139
+#: templates/newsletter/newsletter_statistics.html:119 views/statistics.py:140
 #, fuzzy
 msgid "Total clicked links"
 msgstr "Total Subscriptions"
@@ -588,7 +570,7 @@ msgstr ""
 msgid "Clicked links average"
 msgstr "Total Subscriptions"
 
-#: templates/newsletter/newsletter_statistics.html:146 views/statistics.py:143
+#: templates/newsletter/newsletter_statistics.html:146 views/statistics.py:144
 msgid "Consultation histogram"
 msgstr ""
 
@@ -641,22 +623,22 @@ msgstr ""
 msgid "No Top Links yet."
 msgstr ""
 
-#: views/statistics.py:52
+#: views/statistics.py:53
 #, python-format
 msgid "Statistics of %s"
 msgstr "Statistics of %s"
 
-#: views/statistics.py:73
+#: views/statistics.py:74
 #, fuzzy
 msgid "openings"
 msgstr "Total Subscriptions"
 
-#: views/statistics.py:135
+#: views/statistics.py:136
 #, fuzzy
 msgid "#val# openings"
 msgstr "Total Subscriptions"
 
-#: views/statistics.py:139
+#: views/statistics.py:140
 msgid "#val# clicks"
 msgstr ""
 
@@ -664,6 +646,27 @@ msgstr ""
 #, python-format
 msgid "Historic of %s"
 msgstr "Historic of %s"
+
+#~ msgid "Contacts"
+#~ msgstr "Contacts"
+
+#~ msgid "Mailing List"
+#~ msgstr "Mailing List"
+
+#~ msgid "Mailing Lists"
+#~ msgstr "Mailing Lists"
+
+#~ msgid "Newsletter"
+#~ msgstr "Newsletter"
+
+#~ msgid "Newsletters"
+#~ msgstr "Newsletters"
+
+#~ msgid "Link"
+#~ msgstr "Link"
+
+#~ msgid "Links"
+#~ msgstr "Links"
 
 #~ msgid "group"
 #~ msgstr "group"

@@ -85,8 +85,8 @@ class SMTPServer(models.Model):
         return '%s (%s)' % (self.name, self.host)
 
     class Meta:
-        verbose_name = _('SMTP Server')
-        verbose_name_plural = _('SMTP Servers')
+        verbose_name = _('SMTP server')
+        verbose_name_plural = _('SMTP servers')
 
 
 class Contact(models.Model):
@@ -138,8 +138,8 @@ class Contact(models.Model):
 
     class Meta:
         ordering = ('creation_date',)
-        verbose_name = _('Contact')
-        verbose_name_plural = _('Contacts')
+        verbose_name = _('contact')
+        verbose_name_plural = _('contacts')
 
 class MailingList(models.Model):
     """Mailing list"""
@@ -173,8 +173,8 @@ class MailingList(models.Model):
 
     class Meta:
         ordering = ('creation_date',)
-        verbose_name = _('Mailing List')
-        verbose_name_plural = _('Mailing Lists')
+        verbose_name = _('mailing list')
+        verbose_name_plural = _('mailing lists')
 
 
 class Newsletter(models.Model):
@@ -234,8 +234,8 @@ class Newsletter(models.Model):
 
     class Meta:
         ordering = ('creation_date',)
-        verbose_name = _('Newsletter')
-        verbose_name_plural = _('Newsletters')
+        verbose_name = _('newsletter')
+        verbose_name_plural = _('newsletters')
         permissions = (('can_change_status', ugettext('Can change status')),)
 
 class Link(models.Model):
@@ -253,8 +253,8 @@ class Link(models.Model):
 
     class Meta:
         ordering = ('creation_date',)
-        verbose_name = _('Link')
-        verbose_name_plural = _('Links')
+        verbose_name = _('link')
+        verbose_name_plural = _('links')
 
 class ContactMailingStatus(models.Model):
     """Status of the reception"""
@@ -292,8 +292,8 @@ class ContactMailingStatus(models.Model):
 
     class Meta:
         ordering = ('creation_date',)
-        verbose_name = _('Contact Mailing Status')
-        verbose_name_plural = _('Contact Mailing Statuses')
+        verbose_name = _('contact mailing status')
+        verbose_name_plural = _('contact mailing statuses')
 
 class WorkGroup(models.Model):
     """Work Group for privatization of the ressources"""
@@ -311,5 +311,5 @@ class WorkGroup(models.Model):
         return self.name
 
     class Meta:
-        verbose_name = _('Work Group')
-        verbose_name_plural = _('Work Groups')
+        verbose_name = _('workgroup')
+        verbose_name_plural = _('workgroups')
