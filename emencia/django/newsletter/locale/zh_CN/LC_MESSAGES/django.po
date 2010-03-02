@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-24 10:29+0100\n"
+"POT-Creation-Date: 2010-03-02 15:50+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -268,55 +268,59 @@ msgstr ""
 msgid "workgroups"
 msgstr ""
 
-#: admin/contact.py:28 templates/newsletter/newsletter_statistics.html:186
+#: admin/contact.py:30 templates/newsletter/newsletter_statistics.html:186
 msgid "Status"
 msgstr ""
 
-#: admin/contact.py:29
+#: admin/contact.py:31
 msgid "Advanced"
 msgstr ""
 
-#: admin/contact.py:60
+#: admin/contact.py:62
 msgid "No relative object"
 msgstr ""
 
-#: admin/contact.py:62
+#: admin/contact.py:64
 msgid "Related object"
 msgstr ""
 
-#: admin/contact.py:69
+#: admin/contact.py:71
 msgid "Total subscriptions"
 msgstr ""
 
-#: admin/contact.py:74
+#: admin/contact.py:76
 msgid "Export contacts as VCard"
 msgstr ""
 
-#: admin/contact.py:79
-#, python-format
-msgid "New mailinglist at %s"
-msgstr ""
-
-#: admin/contact.py:80
-#, python-format
-msgid "New mailing list created in admin at %s"
+#: admin/contact.py:83
+msgid "Export contacts in Excel"
 msgstr ""
 
 #: admin/contact.py:88
 #, python-format
+msgid "New mailinglist at %s"
+msgstr ""
+
+#: admin/contact.py:89
+#, python-format
+msgid "New mailing list created in admin at %s"
+msgstr ""
+
+#: admin/contact.py:97
+#, python-format
 msgid "%s succesfully created."
 msgstr ""
 
-#: admin/contact.py:91
+#: admin/contact.py:100
 msgid "Create a mailinglist"
 msgstr ""
 
-#: admin/contact.py:100
+#: admin/contact.py:109
 #, python-format
 msgid "%s contacts succesfully imported."
 msgstr ""
 
-#: admin/contact.py:102
+#: admin/contact.py:111
 msgid "VCard import"
 msgstr ""
 
@@ -459,7 +463,12 @@ msgstr ""
 
 #: templates/admin/newsletter/contact/change_list.html:21
 #, python-format
-msgid "Export %(name)s"
+msgid "Export %(name)s as VCard"
+msgstr ""
+
+#: templates/admin/newsletter/contact/change_list.html:26
+#, python-format
+msgid "Export %(name)s as Excel"
 msgstr ""
 
 #: templates/newsletter/contact_import.html:7

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: emencia.django.newsletter\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-24 10:29+0100\n"
+"POT-Creation-Date: 2010-03-02 15:50+0100\n"
 "PO-Revision-Date: 2010-02-03 15:34+0100\n"
 "Last-Translator: Paolo Martino <martip@gmail.com>\n"
 "Language-Team: martip <martip@gmail.com>\n"
@@ -279,55 +279,60 @@ msgstr "Gruppo di lavoro"
 msgid "workgroups"
 msgstr "Gruppi di lavoro"
 
-#: admin/contact.py:28 templates/newsletter/newsletter_statistics.html:186
+#: admin/contact.py:30 templates/newsletter/newsletter_statistics.html:186
 msgid "Status"
 msgstr "Stato"
 
-#: admin/contact.py:29
+#: admin/contact.py:31
 msgid "Advanced"
 msgstr "Avanzate"
 
-#: admin/contact.py:60
+#: admin/contact.py:62
 msgid "No relative object"
 msgstr "Nessun oggetto collegato"
 
-#: admin/contact.py:62
+#: admin/contact.py:64
 msgid "Related object"
 msgstr "Oggetto collegato"
 
-#: admin/contact.py:69
+#: admin/contact.py:71
 msgid "Total subscriptions"
 msgstr "Sottoscrizioni totali"
 
-#: admin/contact.py:74
+#: admin/contact.py:76
 msgid "Export contacts as VCard"
 msgstr "Esporta i contatti come VCard"
 
-#: admin/contact.py:79
+#: admin/contact.py:83
+#, fuzzy
+msgid "Export contacts in Excel"
+msgstr "Esporta i contatti come VCard"
+
+#: admin/contact.py:88
 #, python-format
 msgid "New mailinglist at %s"
 msgstr "Nuova lista di distribuzione per %s"
 
-#: admin/contact.py:80
+#: admin/contact.py:89
 #, python-format
 msgid "New mailing list created in admin at %s"
 msgstr "Nuova lista di distribuzione creata in amministrazione per %s"
 
-#: admin/contact.py:88
+#: admin/contact.py:97
 #, python-format
 msgid "%s succesfully created."
 msgstr "%s creata con successo."
 
-#: admin/contact.py:91
+#: admin/contact.py:100
 msgid "Create a mailinglist"
 msgstr "Crea una lista di distribuzione"
 
-#: admin/contact.py:100
+#: admin/contact.py:109
 #, python-format
 msgid "%s contacts succesfully imported."
 msgstr "%s contatti importati con successo."
 
-#: admin/contact.py:102
+#: admin/contact.py:111
 msgid "VCard import"
 msgstr "Importa VCard"
 
@@ -470,8 +475,13 @@ msgid "Import %(name)s"
 msgstr "Import %(name)s"
 
 #: templates/admin/newsletter/contact/change_list.html:21
-#, python-format
-msgid "Export %(name)s"
+#, fuzzy, python-format
+msgid "Export %(name)s as VCard"
+msgstr "Esporta i contatti come VCard"
+
+#: templates/admin/newsletter/contact/change_list.html:26
+#, fuzzy, python-format
+msgid "Export %(name)s as Excel"
 msgstr "Esporta %(name)s"
 
 #: templates/newsletter/contact_import.html:7
