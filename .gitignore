@@ -4,9 +4,11 @@
 *.pyc
 .installed.cfg
 emencia.django.newsletter.egg-info/*
+lib/*
 bin/*
 eggs/*
 parts/*
+include/*
 develop-eggs/*
 downloads/*
 src_eggs/*
