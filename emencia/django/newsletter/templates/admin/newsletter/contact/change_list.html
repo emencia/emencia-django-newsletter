@@ -17,7 +17,7 @@
   {% endif %}
   {% if user.is_superuser %}
   <li>
-    <a href="export/" class="viewsitelink">
+    <a href="export/{{ cl.get_query_string }}" class="viewsitelink">
       {% blocktrans with cl.opts.verbose_name as name %}Export {{ name }}{% endblocktrans %}
     </a>
   </li>

@@ -8,6 +8,7 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.utils.translation import ugettext as _
 from django.http import HttpResponseRedirect
+from django.contrib.admin.views.main import ChangeList
 
 from emencia.django.newsletter.models import Contact
 from emencia.django.newsletter.models import WorkGroup
@@ -108,8 +109,14 @@ class ContactAdmin(admin.ModelAdmin):
                                   context, RequestContext(request))
 
     def exportation(self, request):
-        """Export all the contact in VCard"""
-        return self.export_vcard(request, Contact.objects.all(),
+        """Export filtered contacts in VCard"""
+        cl = ChangeList(request, self.model, self.list_display,
+                        self.list_display_links, self.list_filter,
+                        self.date_hierarchy, self.search_fields,
+                        self.list_select_related, self.list_per_page,
+                        self.list_editable, self)
+
+        return self.export_vcard(request, cl.get_query_set(),
                                  'all_contacts_edn_%s' % datetime.now().strftime('%d-%m-%Y'))
 
     def get_urls(self):
