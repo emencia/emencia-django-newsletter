@@ -17,6 +17,7 @@ from emencia.django.newsletter.utils.workgroups import request_workgroups
 from emencia.django.newsletter.utils.workgroups import request_workgroups_contacts_pk
 from emencia.django.newsletter.utils.vcard import vcard_contacts_import
 from emencia.django.newsletter.utils.vcard import vcard_contacts_export_response
+from emencia.django.newsletter.utils.excel import ExcelResponse
 
 class ContactAdmin(admin.ModelAdmin):
     date_hierarchy = 'creation_date'
@@ -30,7 +31,7 @@ class ContactAdmin(admin.ModelAdmin):
                  (_('Advanced'), {'fields': ('object_id', 'content_type'),
                                   'classes': ('collapse',)}),
                  )
-    actions = ['create_mailinglist', 'export_vcard']
+    actions = ['create_mailinglist', 'export_vcard', 'export_excel']
     actions_on_top = False
     actions_on_bottom = True
 
@@ -74,6 +75,13 @@ class ContactAdmin(admin.ModelAdmin):
         return vcard_contacts_export_response(queryset)
     export_vcard.short_description = _('Export contacts as VCard')
 
+    def export_excel(self, request, queryset, export_name=''):
+        """Export selected contact in Excel"""
+        if not export_name:
+            export_name = 'contacts_edn_%s' % datetime.now().strftime('%d-%m-%Y')
+        return ExcelResponse(queryset, export_name)
+    export_excel.short_description = _('Export contacts in Excel')
+
     def create_mailinglist(self, request, queryset):
         """Create a mailing list from selected contact"""
         when = str(datetime.now()).split('.')[0]
@@ -108,23 +116,33 @@ class ContactAdmin(admin.ModelAdmin):
         return render_to_response('newsletter/contact_import.html',
                                   context, RequestContext(request))
 
-    def exportation(self, request):
-        """Export filtered contacts in VCard"""
+    def filtered_request_queryset(self, request):
+        """Return queryset filtered by the admin list view"""
         cl = ChangeList(request, self.model, self.list_display,
                         self.list_display_links, self.list_filter,
                         self.date_hierarchy, self.search_fields,
                         self.list_select_related, self.list_per_page,
                         self.list_editable, self)
+        return cl.get_query_set()
 
-        return self.export_vcard(request, cl.get_query_set(),
-                                 'all_contacts_edn_%s' % datetime.now().strftime('%d-%m-%Y'))
+    def exportation_vcard(self, request):
+        """Export filtered contacts in VCard"""        
+        return self.export_vcard(request, self.filtered_request_queryset(request),
+                                 'contacts_edn_%s' % datetime.now().strftime('%d-%m-%Y'))
+
+    def exportation_excel(self, request):
+        """Export filtered contacts in Excel"""        
+        return self.export_excel(request, self.filtered_request_queryset(request),
+                                 'contacts_edn_%s' % datetime.now().strftime('%d-%m-%Y'))
 
     def get_urls(self):
         urls = super(ContactAdmin, self).get_urls()
         my_urls = patterns('',
                            url(r'^import/$', self.importation,
                                name='newsletter_contact_import'),
-                           url(r'^export/$', self.exportation,
-                               name='newsletter_contact_export'),)
+                           url(r'^export_vcard/$', self.exportation_vcard,
+                               name='newsletter_contact_export_vcard'),
+                           url(r'^export_excel/$', self.exportation_excel,
+                               name='newsletter_contact_export_excel'),)
         return my_urls + urls
 

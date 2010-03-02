@@ -17,8 +17,13 @@
   {% endif %}
   {% if user.is_superuser %}
   <li>
-    <a href="export/{{ cl.get_query_string }}" class="viewsitelink">
-      {% blocktrans with cl.opts.verbose_name as name %}Export {{ name }}{% endblocktrans %}
+    <a href="export_vcard/{{ cl.get_query_string }}" class="viewsitelink">
+      {% blocktrans with cl.opts.verbose_name as name %}Export {{ name }} as VCard{% endblocktrans %}
+    </a>
+  </li>
+  <li>
+    <a href="export_excel/{{ cl.get_query_string }}" class="viewsitelink">
+      {% blocktrans with cl.opts.verbose_name as name %}Export {{ name }} as Excel{% endblocktrans %}
     </a>
   </li>
   {% endif %}
