@@ -125,7 +125,8 @@ class Mailer(object):
         if self.newsletter.status == Newsletter.WAITING:
             self.newsletter.status = Newsletter.SENDING
         if self.newsletter.status == Newsletter.SENDING and \
-           self.newsletter.mails_sent() >= self.expedition_list.count():
+               self.newsletter.mails_sent() >= \
+               self.newsletter.mailing_list.expedition_set().count():
             self.newsletter.status = Newsletter.SENT
         self.newsletter.save()
 

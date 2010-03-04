@@ -324,6 +324,33 @@ class MailerTestCase(TestCase):
         mailer.update_newsletter_status()
         self.assertEquals(self.newsletter.status, Newsletter.SENT)
 
+    def test_update_newsletter_status_advanced(self):
+        self.server.mails_hour = 2
+        self.server.save()
+
+        mailer = Mailer(self.newsletter)
+        mailer.smtp = FakeSMTP()
+        mailer.build_email_content = fake_email_content
+        mailer.run()
+
+        self.assertEquals(mailer.smtp.mails_sent, 2)
+        self.assertEquals(ContactMailingStatus.objects.filter(
+            status=ContactMailingStatus.SENT, newsletter=self.newsletter).count(), 2)
+        self.assertEquals(self.newsletter.status, Newsletter.SENDING)
+
+        self.server.mails_hour = 0
+        self.server.save()
+
+        mailer = Mailer(self.newsletter)
+        mailer.smtp = FakeSMTP()
+        mailer.build_email_content = fake_email_content
+        mailer.run()
+        
+        self.assertEquals(mailer.smtp.mails_sent, 2)
+        self.assertEquals(ContactMailingStatus.objects.filter(
+            status=ContactMailingStatus.SENT, newsletter=self.newsletter).count(), 4)
+        self.assertEquals(self.newsletter.status, Newsletter.SENT)
+
     def test_recipients_refused(self):
         server = SMTPServer.objects.create(name='Local SMTP',
                                            host='localhost')
