@@ -263,7 +263,7 @@ msgstr "Mailing Status"
 
 #: models.py:301
 msgid "permissions group"
-msgstr ""
+msgstr "Permission group"
 
 #: models.py:314
 #, fuzzy
