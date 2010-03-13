@@ -14,6 +14,11 @@
       {% blocktrans with cl.opts.verbose_name as name %}Import {{ name }}{% endblocktrans %}
     </a>
   </li>
+  <li>
+    <a href="create_mailinglist/{{ cl.get_query_string }}" class="viewsitelink">
+      {% blocktrans with cl.opts.verbose_name as name %}Add {{ name }} to a mailing list{% endblocktrans %}
+    </a>
+  </li>
   {% endif %}
   {% if user.is_superuser %}
   <li>

@@ -125,13 +125,17 @@ class ContactAdmin(admin.ModelAdmin):
                         self.list_editable, self)
         return cl.get_query_set()
 
+    def creation_mailinglist(self, request):
+        """Create a mailing list form the filtered contacts"""
+        return self.create_mailinglist(request, self.filtered_request_queryset(request))
+
     def exportation_vcard(self, request):
-        """Export filtered contacts in VCard"""        
+        """Export filtered contacts in VCard"""
         return self.export_vcard(request, self.filtered_request_queryset(request),
                                  'contacts_edn_%s' % datetime.now().strftime('%d-%m-%Y'))
 
     def exportation_excel(self, request):
-        """Export filtered contacts in Excel"""        
+        """Export filtered contacts in Excel"""
         return self.export_excel(request, self.filtered_request_queryset(request),
                                  'contacts_edn_%s' % datetime.now().strftime('%d-%m-%Y'))
 
@@ -140,6 +144,8 @@ class ContactAdmin(admin.ModelAdmin):
         my_urls = patterns('',
                            url(r'^import/$', self.importation,
                                name='newsletter_contact_import'),
+                           url(r'^create_mailinglist/$', self.creation_mailinglist,
+                               name='newsletter_contact_create_mailinglist'),
                            url(r'^export_vcard/$', self.exportation_vcard,
                                name='newsletter_contact_export_vcard'),
                            url(r'^export_excel/$', self.exportation_excel,
