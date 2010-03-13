@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-03-02 15:50+0100\n"
+"POT-Creation-Date: 2010-03-13 12:31+0100\n"
 "PO-Revision-Date: 2009-12-24 16:22+0100\n"
 "Last-Translator: \n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -473,12 +473,17 @@ msgstr "Añadir %(name)s"
 msgid "Import %(name)s"
 msgstr "Importar %(name)s"
 
-#: templates/admin/newsletter/contact/change_list.html:21
+#: templates/admin/newsletter/contact/change_list.html:19
+#, fuzzy
+msgid "Add to a mailing list"
+msgstr "Crear una lista de correo"
+
+#: templates/admin/newsletter/contact/change_list.html:26
 #, fuzzy, python-format
 msgid "Export %(name)s as VCard"
 msgstr "Exportar contactos como VCard"
 
-#: templates/admin/newsletter/contact/change_list.html:26
+#: templates/admin/newsletter/contact/change_list.html:31
 #, fuzzy, python-format
 msgid "Export %(name)s as Excel"
 msgstr "Exportar %(name)s"

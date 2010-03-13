@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: emencia.django.newsletter\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-03-02 15:50+0100\n"
+"POT-Creation-Date: 2010-03-13 12:31+0100\n"
 "PO-Revision-Date: 2010-02-03 15:34+0100\n"
 "Last-Translator: Paolo Martino <martip@gmail.com>\n"
 "Language-Team: martip <martip@gmail.com>\n"
@@ -474,12 +474,17 @@ msgstr "Aggiungi %(name)s"
 msgid "Import %(name)s"
 msgstr "Import %(name)s"
 
-#: templates/admin/newsletter/contact/change_list.html:21
+#: templates/admin/newsletter/contact/change_list.html:19
+#, fuzzy
+msgid "Add to a mailing list"
+msgstr "Crea una lista di distribuzione"
+
+#: templates/admin/newsletter/contact/change_list.html:26
 #, fuzzy, python-format
 msgid "Export %(name)s as VCard"
 msgstr "Esporta i contatti come VCard"
 
-#: templates/admin/newsletter/contact/change_list.html:26
+#: templates/admin/newsletter/contact/change_list.html:31
 #, fuzzy, python-format
 msgid "Export %(name)s as Excel"
 msgstr "Esporta %(name)s"

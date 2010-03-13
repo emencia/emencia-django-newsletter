@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-03-02 15:50+0100\n"
+"POT-Creation-Date: 2010-03-13 12:31+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -461,12 +461,16 @@ msgstr ""
 msgid "Import %(name)s"
 msgstr ""
 
-#: templates/admin/newsletter/contact/change_list.html:21
+#: templates/admin/newsletter/contact/change_list.html:19
+msgid "Add to a mailing list"
+msgstr ""
+
+#: templates/admin/newsletter/contact/change_list.html:26
 #, python-format
 msgid "Export %(name)s as VCard"
 msgstr ""
 
-#: templates/admin/newsletter/contact/change_list.html:26
+#: templates/admin/newsletter/contact/change_list.html:31
 #, python-format
 msgid "Export %(name)s as Excel"
 msgstr ""
