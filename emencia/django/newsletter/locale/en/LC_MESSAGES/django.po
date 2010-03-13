@@ -2,7 +2,7 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
@@ -263,7 +263,7 @@ msgstr "Mailing Status"
 
 #: models.py:301
 msgid "permissions group"
-msgstr ""
+msgstr "Permission group"
 
 #: models.py:314
 #, fuzzy
@@ -389,7 +389,7 @@ msgstr "View historic"
 
 #: admin/newsletter.py:103 admin/newsletter.py:112
 msgid "Not available"
-msgstr ""
+msgstr "Not available"
 
 #: admin/newsletter.py:105
 msgid "Historic"
@@ -513,7 +513,7 @@ msgstr "Unsubscribe"
 #: templates/newsletter/newsletter_historic.html:9
 #: templates/newsletter/newsletter_statistics.html:68
 msgid "Admin."
-msgstr ""
+msgstr "Admin"
 
 #: templates/newsletter/newsletter_historic.html:23
 msgid "Date"
@@ -545,11 +545,11 @@ msgstr "Opened on site"
 
 #: templates/newsletter/newsletter_statistics.html:93
 msgid "Total openings unique"
-msgstr ""
+msgstr "Total single opening"
 
 #: templates/newsletter/newsletter_statistics.html:98
 msgid "Unknow delivery"
-msgstr ""
+msgstr "Unknown delivery"
 
 #: templates/newsletter/newsletter_statistics.html:103
 #, fuzzy
@@ -574,11 +574,11 @@ msgstr "Total Subscriptions"
 
 #: templates/newsletter/newsletter_statistics.html:124
 msgid "Total clicked links unique"
-msgstr ""
+msgstr "Total of single clicked links"
 
 #: templates/newsletter/newsletter_statistics.html:129
 msgid "Clicked links by openings"
-msgstr ""
+msgstr "Clicked links per opening"
 
 #: templates/newsletter/newsletter_statistics.html:134
 #, fuzzy
@@ -587,20 +587,19 @@ msgstr "Total Subscriptions"
 
 #: templates/newsletter/newsletter_statistics.html:146 views/statistics.py:144
 msgid "Consultation histogram"
-msgstr ""
+msgstr "Consultation histogram"
 
 #: templates/newsletter/newsletter_statistics.html:149
 msgid "Period"
-msgstr ""
+msgstr "Period"
 
 #: templates/newsletter/newsletter_statistics.html:176
-#, fuzzy
 msgid "Report"
-msgstr "Export"
+msgstr "Export Report"
 
 #: templates/newsletter/newsletter_statistics.html:178
 msgid "Download CSV report"
-msgstr ""
+msgstr "Download CSV report"
 
 #: templates/newsletter/newsletter_statistics.html:183
 #, fuzzy
@@ -614,7 +613,7 @@ msgstr "Receivers"
 
 #: templates/newsletter/newsletter_statistics.html:185
 msgid "View"
-msgstr ""
+msgstr "View"
 
 #: templates/newsletter/newsletter_statistics.html:188
 #, fuzzy
@@ -623,20 +622,19 @@ msgstr "Sending date"
 
 #: templates/newsletter/newsletter_statistics.html:191
 msgid "Tests sent"
-msgstr ""
+msgstr "Tests sent"
 
 #: templates/newsletter/newsletter_statistics.html:196
-#, fuzzy
 msgid "Top Links"
-msgstr "Links"
+msgstr "Top Links"
 
 #: templates/newsletter/newsletter_statistics.html:197
 msgid "Density map"
-msgstr ""
+msgstr "Density map"
 
 #: templates/newsletter/newsletter_statistics.html:206
 msgid "No Top Links yet."
-msgstr ""
+msgstr "There is no Top links yet available"
 
 #: views/statistics.py:53
 #, python-format
@@ -689,6 +687,5 @@ msgstr "Historic of %s"
 #~ msgid "Connection valid"
 #~ msgstr "Connection valid"
 
-#, fuzzy
 #~ msgid "Double openings"
 #~ msgstr "Total Subscriptions"

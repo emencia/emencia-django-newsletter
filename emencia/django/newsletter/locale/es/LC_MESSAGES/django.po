@@ -2,7 +2,7 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
@@ -389,7 +389,7 @@ msgstr "Ver Historial"
 
 #: admin/newsletter.py:103 admin/newsletter.py:112
 msgid "Not available"
-msgstr ""
+msgstr "No es disponible"
 
 #: admin/newsletter.py:105
 msgid "Historic"
@@ -407,8 +407,7 @@ msgstr "Estadísticas %s"
 
 #: admin/newsletter.py:124
 msgid "Unable send newsletter, due to errors within HTML."
-msgstr ""
-"Imposible enviar el boletin de noticias dado que el HTML contiene errores."
+msgstr "Imposible enviar el boletin de noticias dado que el HTML contiene errores."
 
 #: admin/newsletter.py:126
 #, python-format
@@ -516,7 +515,7 @@ msgstr "Desuscribir"
 #: templates/newsletter/newsletter_historic.html:9
 #: templates/newsletter/newsletter_statistics.html:68
 msgid "Admin."
-msgstr ""
+msgstr "Administración"
 
 #: templates/newsletter/newsletter_historic.html:23
 msgid "Date"
@@ -547,12 +546,13 @@ msgid "Openings on site"
 msgstr "abierto en sitio web"
 
 #: templates/newsletter/newsletter_statistics.html:93
+#, fuzzy
 msgid "Total openings unique"
-msgstr ""
+msgstr "Total de los abrimientos unicos"
 
 #: templates/newsletter/newsletter_statistics.html:98
 msgid "Unknow delivery"
-msgstr ""
+msgstr "Entregas no conocidas"
 
 #: templates/newsletter/newsletter_statistics.html:103
 #, fuzzy
@@ -590,11 +590,11 @@ msgstr "Suscriptores totales"
 
 #: templates/newsletter/newsletter_statistics.html:146 views/statistics.py:144
 msgid "Consultation histogram"
-msgstr ""
+msgstr "Consultación del histograma"
 
 #: templates/newsletter/newsletter_statistics.html:149
 msgid "Period"
-msgstr ""
+msgstr "Período"
 
 #: templates/newsletter/newsletter_statistics.html:176
 #, fuzzy
@@ -603,7 +603,7 @@ msgstr "Exportar"
 
 #: templates/newsletter/newsletter_statistics.html:178
 msgid "Download CSV report"
-msgstr ""
+msgstr "Telecargar el informe en CSV"
 
 #: templates/newsletter/newsletter_statistics.html:183
 #, fuzzy
@@ -617,7 +617,7 @@ msgstr "Receptores"
 
 #: templates/newsletter/newsletter_statistics.html:185
 msgid "View"
-msgstr ""
+msgstr "Ver"
 
 #: templates/newsletter/newsletter_statistics.html:188
 #, fuzzy
@@ -626,7 +626,7 @@ msgstr "fecha de envío"
 
 #: templates/newsletter/newsletter_statistics.html:191
 msgid "Tests sent"
-msgstr ""
+msgstr "Envio de prueba"
 
 #: templates/newsletter/newsletter_statistics.html:196
 #, fuzzy
@@ -635,11 +635,11 @@ msgstr "Enlaces"
 
 #: templates/newsletter/newsletter_statistics.html:197
 msgid "Density map"
-msgstr ""
+msgstr "Mapa de la densidad"
 
 #: templates/newsletter/newsletter_statistics.html:206
 msgid "No Top Links yet."
-msgstr ""
+msgstr "Ninguna tapa liga todavía."
 
 #: views/statistics.py:53
 #, fuzzy, python-format
@@ -692,6 +692,5 @@ msgstr "Historial"
 #~ msgid "Connection valid"
 #~ msgstr "Conexión valida"
 
-#, fuzzy
 #~ msgid "Double openings"
 #~ msgstr "Suscriptores totales"
