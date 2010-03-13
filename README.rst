@@ -87,12 +87,12 @@ Template Context Processors
 Add the following template context processors if not already present. ::
 
   >>> TEMPLATE_CONTEXT_PROCESSORS = (
-  >>>      'django.core.context_processors.auth',
-  >>>      'django.core.context_processors.i18n',
-  >>>      'django.core.context_processors.request',
-  >>>      'django.core.context_processors.media',
-  >>>      'emencia.django.newsletter.context_processors.media',
-  >>>	)
+  ...      'django.core.context_processors.auth',
+  ...      'django.core.context_processors.i18n',
+  ...      'django.core.context_processors.request',
+  ...      'django.core.context_processors.media',
+  ...      'emencia.django.newsletter.context_processors.media',
+  ...	)
 
 Urls
 ----
@@ -111,9 +111,10 @@ Note this urlset is provided for convenient usage, but you can do something like
 Media Files
 -----------
 
-You have to make a symbolic link from  emencia/django/newsletter/media/ directory to your media directory or make a copy named **edn**,
+You have to make a symbolic link from emencia/django/newsletter/media/ directory to your media directory or make a copy named **edn**,
 but if want to change this value, define NEWSLETTER_MEDIA_URL in the settings.py as appropriate.
 
+Don't forget to serve this url.
 
 Synchronization
 ---------------
