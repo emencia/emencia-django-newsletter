@@ -1,14 +1,50 @@
 {% extends "admin/change_list.html" %}
 {% load i18n %}
 
+{% block extrahead %}
+<script type="text/javascript" src="{{ NEWSLETTER_MEDIA_URL }}js/jquery.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+  $('#custom-tools').hide();
+
+  function toggle_main_actions() {
+    $('#main-tools').slideToggle('medium');
+  };
+
+  $('#deploy-actions').click(function() {
+    $('#custom-tools').slideToggle('medium', function () {
+      toggle_main_actions();
+    });
+  });
+
+  $('#unploy-actions').click(function() {
+    $('#custom-tools').slideToggle('medium', function () {
+      toggle_main_actions();
+    });
+  });
+
+});
+</script>
+{% endblock %}
+
 {% block object-tools %}
-<ul class="object-tools">
+<ul class="object-tools" id="main-tools" style="position: bottom;">
   {% if has_add_permission %}
   <li>
     <a href="add/{% if is_popup %}?_popup=1{% endif %}" class="addlink">
       {% blocktrans with cl.opts.verbose_name as name %}Add {{ name }}{% endblocktrans %}
     </a>
   </li>
+  {% endif %}
+  <li>
+    <a href="#" class="addlink" id="deploy-actions">
+      Actions
+    </a>
+  </li>
+</ul>
+
+<ul class="object-tools" id="custom-tools">
+  {% if has_add_permission %}
   <li>
     <a href="import/{% if is_popup %}?_popup=1{% endif %}" class="addlink">
       {% blocktrans with cl.opts.verbose_name as name %}Import {{ name }}{% endblocktrans %}
@@ -32,5 +68,10 @@
     </a>
   </li>
   {% endif %}
+  <li>
+    <a href="#" id="unploy-actions">
+      X
+    </a>
+  </li>
 </ul>
 {% endblock %}
