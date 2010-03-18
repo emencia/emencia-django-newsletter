@@ -145,7 +145,7 @@ def view_newsletter_charts(request, slug):
     chart.title.style = '{font-size: 16px; color: #666666; text-align: center; font-weight: bold;}'
 
     chart.y_axis = {'colour': AXIS_COLOR, 'grid-colour': GRID_COLOR,
-                    'min': 0, 'max': max(openings_by_day) + 2,
+                    'min': 0, 'max': max(openings_by_day + clicks_by_day) + 2,
                     'steps': max(openings_by_day) / 5}
     chart.x_axis = {'colour': AXIS_COLOR, 'grid-colour': GRID_COLOR,
                     '3d': 5, 'labels': {'labels': labels, 'rotate': 60}}
