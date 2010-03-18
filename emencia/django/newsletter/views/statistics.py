@@ -35,12 +35,11 @@ def get_statistics_period(newsletter):
                                                  newsletter=newsletter)
     if not status:
         return []
-    start_date = newsletter.sending_date
-    end_date = status.latest('creation_date').creation_date
+    start_date = newsletter.sending_date.date()
+    end_date = status.latest('creation_date').creation_date.date()
 
     period = []
-    # There is a bug, when a day as not elapsed
-    for i in range((end_date - start_date).days):
+    for i in range((end_date - start_date).days + 1):
         period.append(start_date + timedelta(days=i))
     return period
 
