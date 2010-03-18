@@ -53,6 +53,8 @@ class Mailer(object):
                     status = self.test and ContactMailingStatus.SENT_TEST or ContactMailingStatus.SENT
                 except SMTPRecipientsRefused, e:
                     status = ContactMailingStatus.INVALID
+                    contact.valid = False
+                    contact.save()
                 except:
                     status = ContactMailingStatus.ERROR
 

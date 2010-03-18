@@ -360,6 +360,7 @@ class MailerTestCase(TestCase):
         self.newsletter.server = server
         self.newsletter.save()
 
+        self.assertEquals(contact.valid, True)
         self.assertEquals(ContactMailingStatus.objects.filter(
             status=ContactMailingStatus.INVALID, newsletter=self.newsletter).count(), 0)
 
@@ -367,6 +368,7 @@ class MailerTestCase(TestCase):
         mailer.build_email_content = fake_email_content
         mailer.run()
 
+        self.assertEquals(Contact.objects.get(email='thisisaninvalidemail').valid, False)
         self.assertEquals(ContactMailingStatus.objects.filter(
             status=ContactMailingStatus.INVALID, newsletter=self.newsletter).count(), 1)
 
