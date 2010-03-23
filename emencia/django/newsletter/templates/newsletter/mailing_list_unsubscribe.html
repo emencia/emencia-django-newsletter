@@ -10,7 +10,7 @@
 {% else %}
  <p>{% trans "Validate this form to unsubscribe to this mailing list." %}</p>
  <form action="." method="post">
-   <input type="text" value="{{ email }}" name="email" />
+   <input type="text" value="{{ email }}" name="email" readonly />
    <input type="submit" value="{% trans "Unsubscribe" %}" />
  </form>
 {% endif %}
