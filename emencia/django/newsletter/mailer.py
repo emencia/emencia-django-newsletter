@@ -37,6 +37,7 @@ class Mailer(object):
         self.newsletter = newsletter
         self.expedition_list = self.get_expedition_list()
         self.newsletter_template = Template(self.newsletter.content)
+        self.title_template = Template(self.newsletter.title)
 
     def run(self):
         """Send the mails"""
@@ -69,7 +70,7 @@ class Mailer(object):
         content_text = html2text(content_html)
 
         message = MIMEMultipart('alternative')
-        message['Subject'] = self.newsletter.title
+        message['Subject'] = self.build_title_content(contact)
         message['From'] = self.newsletter.header_sender
         message['Reply-to'] = self.newsletter.header_reply
         message['To'] = contact.mail_format()
@@ -96,6 +97,12 @@ class Mailer(object):
                                                            newsletter=self.newsletter).values_list('contact__id', flat=True)
         expedition_list = self.newsletter.mailing_list.expedition_set().exclude(id__in=already_sent)
         return expedition_list[:credits]
+
+    def build_title_content(self, contact):
+        """Generate the email title for a contact"""
+        context = Context({'contact': contact})
+        title = self.title_template.render(context)
+        return title
 
     def build_email_content(self, contact):
         """Generate the mail for a contact"""
