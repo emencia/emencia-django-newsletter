@@ -6,10 +6,10 @@
     <script type="text/javascript" src="{{ NEWSLETTER_MEDIA_URL }}js/jquery.js"></script>
     <script type="text/javascript" src="{{ NEWSLETTER_MEDIA_URL }}js/jquery.heatcolor.js"></script>
     <script type="text/javascript">
-      var top_links = [{% for tl in top_links %}"{{ tl.link.url }}",{% endfor %}];
+      var top_links = [{% for tl in top_links %}"{{ tl.link.url|safe }}",{% endfor %}];
       var top_links_score = new Array();
       {% for tl in top_links %}
-      top_links_score["{{ tl.link.url }}"] = "{{ tl.total_clicks }}";
+      top_links_score["{{ tl.link.url|safe }}"] = "{{ tl.total_clicks }}";
       {% endfor %}
 
       function create_overlay(top, left, width, height, score) {
