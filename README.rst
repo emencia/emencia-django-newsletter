@@ -84,7 +84,7 @@ Then register **emencia.django.newsletter**, **admin**, **contenttypes** and **t
 Template Context Processors
 ---------------------------
 
-Add the following template context processors if not already present. ::
+Add these following template context processors if not already present. ::
 
   >>> TEMPLATE_CONTEXT_PROCESSORS = (
   ...      'django.core.context_processors.auth',
