@@ -16,7 +16,6 @@ from emencia.django.newsletter.models import ContactMailingStatus
 from emencia.django.newsletter.settings import TRACKING_IMAGE
 
 
-@login_required
 def view_newsletter_tracking(request, slug, uidb36, token):
     """Track the opening of the newsletter by requesting a blank img"""
     newsletter = get_object_or_404(Newsletter, slug=slug)
@@ -37,6 +36,7 @@ def view_newsletter_tracking_link(request, slug, uidb36, token, link_id):
                                               link=link)
     return HttpResponseRedirect(link.url)
 
+@login_required
 def view_newsletter_historic(request, slug):
     """Display the historic of a newsletter"""
     opts = Newsletter._meta
