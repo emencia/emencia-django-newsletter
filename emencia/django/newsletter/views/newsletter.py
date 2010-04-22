@@ -22,6 +22,7 @@ def render_newsletter(request, slug, context):
                     'domain': Site.objects.get_current().domain})
     
     content = render_string(newsletter.content, context)
+    title = render_string(newsletter.title, context)
     if TRACKING_LINKS:
         content = track_links(content, context)
     unsubscription = render_file('newsletter/newsletter_link_unsubscribe.html', context)
@@ -29,6 +30,7 @@ def render_newsletter(request, slug, context):
         
     return render_to_response('newsletter/newsletter_detail.html',
                               {'content': content,
+                               'title': title,
                                'object': newsletter},
                               context_instance=RequestContext(request))
 
