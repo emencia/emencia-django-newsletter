@@ -426,6 +426,9 @@ class StatisticsTestCase(TestCase):
         ContactMailingStatus.objects.create(newsletter=self.newsletter,
                                             contact=self.contacts[2],
                                             status=ContactMailingStatus.OPENED_ON_SITE)
+        ContactMailingStatus.objects.create(newsletter=self.newsletter,
+                                            contact=self.contacts[2],
+                                            status=ContactMailingStatus.LINK_OPENED)
         status = ContactMailingStatus.objects.filter(newsletter=self.newsletter)
 
         stats = get_newsletter_opening_statistics(status, self.recipients)
@@ -436,6 +439,22 @@ class StatisticsTestCase(TestCase):
         self.assertEquals(stats['unknow_openings'], 1)
         self.assertEquals(stats['unknow_openings_percent'], 25.0)
         self.assertEquals(stats['opening_average'], 1.3333333333333333)
+        self.assertEquals(stats['opening_deducted'], 0)
+
+        ContactMailingStatus.objects.create(newsletter=self.newsletter,
+                                            contact=self.contacts[3],
+                                            status=ContactMailingStatus.LINK_OPENED)
+        status = ContactMailingStatus.objects.filter(newsletter=self.newsletter)
+
+        stats = get_newsletter_opening_statistics(status, self.recipients)
+        self.assertEquals(stats['total_openings'], 5)
+        self.assertEquals(stats['unique_openings'], 4)
+        self.assertEquals(stats['double_openings'], 1)
+        self.assertEquals(stats['unique_openings_percent'], 100.0)
+        self.assertEquals(stats['unknow_openings'], 0)
+        self.assertEquals(stats['unknow_openings_percent'], 0.0)
+        self.assertEquals(stats['opening_average'], 1.25)
+        self.assertEquals(stats['opening_deducted'], 1)
 
     def test_get_newsletter_on_site_opening_statistics(self):
         stats = get_newsletter_on_site_opening_statistics(self.status)

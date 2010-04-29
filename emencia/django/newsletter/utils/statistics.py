@@ -6,9 +6,13 @@ from emencia.django.newsletter.models import ContactMailingStatus as Status
 def get_newsletter_opening_statistics(status, recipients):
     """Return opening statistics of a newsletter based on status"""
     openings = status.filter(Q(status=Status.OPENED) | Q(status=Status.OPENED_ON_SITE))
-    total_openings = openings.count()
+
+    openings_by_links_opened = len(status.filter(status=Status.LINK_OPENED).exclude(
+        contact__in=openings.values_list('contact', flat=True)).values_list('contact', flat=True))
+    
+    total_openings = openings.count() + openings_by_links_opened
     if total_openings:
-        unique_openings = len(set(openings.values_list('contact', flat=True)))
+        unique_openings = len(set(openings.values_list('contact', flat=True))) + openings_by_links_opened
         unique_openings_percent = float(unique_openings) / float(recipients) * 100
         unknow_openings = recipients - unique_openings
         unknow_openings_percent = float(unknow_openings) / float(recipients) * 100
@@ -23,7 +27,8 @@ def get_newsletter_opening_statistics(status, recipients):
             'unique_openings_percent': unique_openings_percent,
             'unknow_openings': unknow_openings,
             'unknow_openings_percent': unknow_openings_percent,
-            'opening_average': opening_average}
+            'opening_average': opening_average,
+            'opening_deducted': openings_by_links_opened}
 
 def get_newsletter_on_site_opening_statistics(status):
     """Return on site opening statistics of a newsletter based on status"""
