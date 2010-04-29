@@ -9,15 +9,20 @@ class Command(NoArgsCommand):
     help = 'Send the newsletter in queue'
 
     def handle_noargs(self, **options):
-        print 'Starting sending newsletters...'
+        verbose = int(options['verbosity'])
+
+        if verbose:
+            print 'Starting sending newsletters...'
 
         for newsletter in Newsletter.objects.exclude(
             status=Newsletter.DRAFT).exclude(status=Newsletter.SENT):
             mailer = Mailer(newsletter)
             if mailer.can_send:
-                print 'Start emailing %s' % newsletter.title
+                if verbose:
+                    print 'Start emailing %s' % newsletter.title
                 mailer.run()
 
-        print 'End session sending'
-        
-    
+        if verbose:
+            print 'End session sending'
+
+
