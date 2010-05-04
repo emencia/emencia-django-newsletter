@@ -17,9 +17,10 @@ from emencia.django.newsletter.utils.vcard import vcard_contacts_export_response
 
 class MailingListAdmin(admin.ModelAdmin):
     date_hierarchy = 'creation_date'
-    list_display = ('name', 'description',
+    list_display = ('creation_date', 'name', 'description',
                     'subscribers_count', 'unsubscribers_count',
-                    'creation_date', 'exportation_link')
+                    'exportation_link')
+    list_editable = ('name', 'description')
     list_filter = ('creation_date', 'modification_date')
     search_fields = ('name', 'description',)
     filter_horizontal = ['subscribers', 'unsubscribers']
