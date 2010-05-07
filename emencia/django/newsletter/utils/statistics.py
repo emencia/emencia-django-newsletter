@@ -7,8 +7,8 @@ def get_newsletter_opening_statistics(status, recipients):
     """Return opening statistics of a newsletter based on status"""
     openings = status.filter(Q(status=Status.OPENED) | Q(status=Status.OPENED_ON_SITE))
 
-    openings_by_links_opened = len(status.filter(status=Status.LINK_OPENED).exclude(
-        contact__in=openings.values_list('contact', flat=True)).values_list('contact', flat=True))
+    openings_by_links_opened = len(set(status.filter(status=Status.LINK_OPENED).exclude(
+        contact__in=openings.values_list('contact', flat=True)).values_list('contact', flat=True)))
     
     total_openings = openings.count() + openings_by_links_opened
     if total_openings:

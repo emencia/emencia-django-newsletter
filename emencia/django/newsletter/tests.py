@@ -444,6 +444,9 @@ class StatisticsTestCase(TestCase):
         ContactMailingStatus.objects.create(newsletter=self.newsletter,
                                             contact=self.contacts[3],
                                             status=ContactMailingStatus.LINK_OPENED)
+        ContactMailingStatus.objects.create(newsletter=self.newsletter,
+                                            contact=self.contacts[3],
+                                            status=ContactMailingStatus.LINK_OPENED)
         status = ContactMailingStatus.objects.filter(newsletter=self.newsletter)
 
         stats = get_newsletter_opening_statistics(status, self.recipients)
