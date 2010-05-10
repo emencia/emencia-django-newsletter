@@ -69,7 +69,7 @@ def get_newsletter_clicked_link_statistics(status, recipients, openings):
 def get_newsletter_unsubscription_statistics(status, recipients):
     unsubscriptions = status.filter(status=Status.UNSUBSCRIPTION)
 
-    """Patch: multiple unsubsriptions logs could exist before a typo bug was corrected, a 'set' is needed"""
+    #Patch: multiple unsubsriptions logs could exist before a typo bug was corrected, a 'set' is needed
     total_unsubscriptions = len(set(unsubscriptions.values_list('contact', flat=True)))
     total_unsubscriptions_percent = float(total_unsubscriptions) / float(recipients) * 100
 
