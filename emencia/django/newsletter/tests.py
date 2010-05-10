@@ -543,6 +543,27 @@ class StatisticsTestCase(TestCase):
         self.assertEquals(stats['total_unsubscriptions'], 2)
         self.assertEquals(stats['total_unsubscriptions_percent'], 50.0)
 
+    def test_get_newsletter_unsubscription_statistics_fix_doublon(self):
+        stats = get_newsletter_unsubscription_statistics(self.status, self.recipients)
+        self.assertEquals(stats['total_unsubscriptions'], 0)
+        self.assertEquals(stats['total_unsubscriptions_percent'], 0.0)
+
+        ContactMailingStatus.objects.create(newsletter=self.newsletter,
+                                            contact=self.contacts[0],
+                                            status=ContactMailingStatus.UNSUBSCRIPTION)
+        ContactMailingStatus.objects.create(newsletter=self.newsletter,
+                                            contact=self.contacts[1],
+                                            status=ContactMailingStatus.UNSUBSCRIPTION)
+        ContactMailingStatus.objects.create(newsletter=self.newsletter,
+                                            contact=self.contacts[1],
+                                            status=ContactMailingStatus.UNSUBSCRIPTION)
+
+        status = ContactMailingStatus.objects.filter(newsletter=self.newsletter)
+
+        stats = get_newsletter_unsubscription_statistics(status, self.recipients)
+        self.assertEquals(stats['total_unsubscriptions'], 2)
+        self.assertEquals(stats['total_unsubscriptions_percent'], 50.0)
+
     def test_get_newsletter_top_links(self):
         stats = get_newsletter_top_links(self.status)
         self.assertEquals(stats['top_links'], [])
