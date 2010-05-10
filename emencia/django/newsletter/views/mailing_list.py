@@ -18,7 +18,7 @@ def view_mailinglist_unsubscribe(request, slug, uidb36, token):
     if request.POST.get('email') and not already_unsubscribed:
         newsletter.mailing_list.unsubscribers.add(contact)
         newsletter.mailing_list.save()
-        already_unsubcribed = True
+        already_unsubscribed = True
         log = ContactMailingStatus.objects.create(newsletter=newsletter, contact=contact,
                                                   status=ContactMailingStatus.UNSUBSCRIPTION)
 
