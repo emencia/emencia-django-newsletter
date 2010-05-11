@@ -60,16 +60,20 @@ class MailingListAdmin(admin.ModelAdmin):
             self.message_user(request, _('Please select a least 2 mailing list.'))
             return None
 
-        contacts = {}
+        subscribers = {}
+        unsubscribers = {}
         for ml in queryset:
             for contact in ml.subscribers.all():
-                contacts[contact] = ''
+                subscribers[contact] = ''
+            for contact in ml.unsubscribers.all():
+                unsubscribers[contact] = ''
 
         when = str(datetime.now()).split('.')[0]
         new_mailing = MailingList(name=_('Merging list at %s') % when,
                                   description=_('Mailing list created by merging at %s') % when)
         new_mailing.save()
-        new_mailing.subscribers = contacts.keys()
+        new_mailing.subscribers = subscribers.keys()
+        new_mailing.unsubscribers = unsubscribers.keys()
 
         self.message_user(request, _('%s succesfully created by merging.') % new_mailing)
         return HttpResponseRedirect(reverse('admin:newsletter_mailinglist_change',
