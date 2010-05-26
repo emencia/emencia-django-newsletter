@@ -38,7 +38,7 @@ $(document).ready(function() {
   {% endif %}
   <li>
     <a href="#" class="addlink" id="deploy-actions">
-      Actions
+      {% trans 'Actions' %}
     </a>
   </li>
 </ul>
@@ -52,7 +52,7 @@ $(document).ready(function() {
   </li>
   <li>
     <a href="create_mailinglist/{{ cl.get_query_string }}" class="viewsitelink">
-      {% blocktrans with cl.opts.verbose_name as name %}Add to a mailing list{% endblocktrans %}
+      {% trans 'Add to a mailing list' %}
     </a>
   </li>
   {% endif %}
