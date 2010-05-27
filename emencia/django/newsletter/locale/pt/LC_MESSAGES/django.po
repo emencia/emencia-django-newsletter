@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-03-13 12:31+0100\n"
+"POT-Creation-Date: 2010-05-27 14:40+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -64,15 +64,15 @@ msgstr ""
 msgid "SMTP servers"
 msgstr ""
 
-#: models.py:94 views/statistics.py:74
+#: models.py:94 views/statistics.py:73
 msgid "email"
 msgstr ""
 
-#: models.py:95 views/statistics.py:73
+#: models.py:95 views/statistics.py:72
 msgid "first name"
 msgstr ""
 
-#: models.py:96 views/statistics.py:73
+#: models.py:96 views/statistics.py:72
 msgid "last name"
 msgstr ""
 
@@ -324,34 +324,34 @@ msgstr ""
 msgid "VCard import"
 msgstr ""
 
-#: admin/mailinglist.py:59
+#: admin/mailinglist.py:60
 msgid "Please select a least 2 mailing list."
 msgstr ""
 
-#: admin/mailinglist.py:68
+#: admin/mailinglist.py:72
 #, python-format
 msgid "Merging list at %s"
 msgstr ""
 
-#: admin/mailinglist.py:69
+#: admin/mailinglist.py:73
 #, python-format
 msgid "Mailing list created by merging at %s"
 msgstr ""
 
-#: admin/mailinglist.py:73
+#: admin/mailinglist.py:78
 #, python-format
 msgid "%s succesfully created by merging."
 msgstr ""
 
-#: admin/mailinglist.py:76
+#: admin/mailinglist.py:81
 msgid "Merge selected mailinglists"
 msgstr ""
 
-#: admin/mailinglist.py:81
+#: admin/mailinglist.py:86
 msgid "Export Subscribers"
 msgstr ""
 
-#: admin/mailinglist.py:83
+#: admin/mailinglist.py:88
 msgid "Export"
 msgstr ""
 
@@ -439,38 +439,42 @@ msgstr ""
 msgid "Check connection"
 msgstr ""
 
-#: admin/workgroup.py:19
+#: admin/workgroup.py:18
 msgid "Contacts length"
 msgstr ""
 
-#: admin/workgroup.py:23
+#: admin/workgroup.py:22
 msgid "Mailing List length"
 msgstr ""
 
-#: admin/workgroup.py:27
+#: admin/workgroup.py:26
 msgid "Newsletter length"
 msgstr ""
 
-#: templates/admin/newsletter/contact/change_list.html:9
+#: templates/admin/newsletter/contact/change_list.html:35
 #, python-format
 msgid "Add %(name)s"
 msgstr ""
 
-#: templates/admin/newsletter/contact/change_list.html:14
+#: templates/admin/newsletter/contact/change_list.html:41
+msgid "Actions"
+msgstr ""
+
+#: templates/admin/newsletter/contact/change_list.html:50
 #, python-format
 msgid "Import %(name)s"
 msgstr ""
 
-#: templates/admin/newsletter/contact/change_list.html:19
+#: templates/admin/newsletter/contact/change_list.html:55
 msgid "Add to a mailing list"
 msgstr ""
 
-#: templates/admin/newsletter/contact/change_list.html:26
+#: templates/admin/newsletter/contact/change_list.html:62
 #, python-format
 msgid "Export %(name)s as VCard"
 msgstr ""
 
-#: templates/admin/newsletter/contact/change_list.html:31
+#: templates/admin/newsletter/contact/change_list.html:67
 #, python-format
 msgid "Export %(name)s as Excel"
 msgstr ""
@@ -522,7 +526,7 @@ msgstr ""
 msgid "Broadcasting statistics"
 msgstr ""
 
-#: templates/newsletter/newsletter_statistics.html:83 views/statistics.py:136
+#: templates/newsletter/newsletter_statistics.html:83 views/statistics.py:135
 msgid "Total openings"
 msgstr ""
 
@@ -551,7 +555,7 @@ msgstr ""
 msgid "Links statistics"
 msgstr ""
 
-#: templates/newsletter/newsletter_statistics.html:119 views/statistics.py:140
+#: templates/newsletter/newsletter_statistics.html:119 views/statistics.py:139
 msgid "Total clicked links"
 msgstr ""
 
@@ -567,7 +571,7 @@ msgstr ""
 msgid "Clicked links average"
 msgstr ""
 
-#: templates/newsletter/newsletter_statistics.html:146 views/statistics.py:144
+#: templates/newsletter/newsletter_statistics.html:146 views/statistics.py:143
 msgid "Consultation histogram"
 msgstr ""
 
@@ -615,20 +619,20 @@ msgstr ""
 msgid "No Top Links yet."
 msgstr ""
 
-#: views/statistics.py:53
+#: views/statistics.py:52
 #, python-format
 msgid "Statistics of %s"
 msgstr ""
 
-#: views/statistics.py:74
+#: views/statistics.py:73
 msgid "openings"
 msgstr ""
 
-#: views/statistics.py:136
+#: views/statistics.py:135
 msgid "#val# openings"
 msgstr ""
 
-#: views/statistics.py:140
+#: views/statistics.py:139
 msgid "#val# clicks"
 msgstr ""
 

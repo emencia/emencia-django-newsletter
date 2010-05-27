@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: emencia.django.newsletter\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-03-13 12:31+0100\n"
-"PO-Revision-Date: 2010-02-03 15:34+0100\n"
+"POT-Creation-Date: 2010-05-27 14:40+0200\n"
+"PO-Revision-Date: 2010-05-26 19:00+0200\n"
 "Last-Translator: Paolo Martino <martip@gmail.com>\n"
 "Language-Team: martip <martip@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -60,24 +60,22 @@ msgid "mails per hour"
 msgstr "mail all'ora"
 
 #: models.py:88
-#, fuzzy
 msgid "SMTP server"
 msgstr "Server SMTP"
 
 #: models.py:89
-#, fuzzy
 msgid "SMTP servers"
 msgstr "Server SMTP"
 
-#: models.py:94 views/statistics.py:74
+#: models.py:94 views/statistics.py:73
 msgid "email"
 msgstr "email"
 
-#: models.py:95 views/statistics.py:73
+#: models.py:95 views/statistics.py:72
 msgid "first name"
 msgstr "nome"
 
-#: models.py:96 views/statistics.py:73
+#: models.py:96 views/statistics.py:72
 msgid "last name"
 msgstr "cognome"
 
@@ -222,9 +220,8 @@ msgid "link"
 msgstr "collegamento"
 
 #: models.py:257
-#, fuzzy
 msgid "links"
-msgstr "collegamento"
+msgstr "collegamenti"
 
 #: models.py:270
 msgid "sent in test"
@@ -251,33 +248,28 @@ msgid "link opened"
 msgstr "collegamento seguito"
 
 #: models.py:277
-#, fuzzy
 msgid "unsubscription"
-msgstr "Annullamento sottoscrizione"
+msgstr "annullamento sottoscrizione"
 
 #: models.py:295
-#, fuzzy
 msgid "contact mailing status"
-msgstr "Stato del contatto"
+msgstr "stato del contatto"
 
 #: models.py:296
-#, fuzzy
 msgid "contact mailing statuses"
-msgstr "Stato del contatto"
+msgstr "stati del contatto"
 
 #: models.py:301
 msgid "permissions group"
-msgstr ""
+msgstr "permessi del gruppo"
 
 #: models.py:314
-#, fuzzy
 msgid "workgroup"
-msgstr "Gruppo di lavoro"
+msgstr "gruppo di lavoro"
 
 #: models.py:315
-#, fuzzy
 msgid "workgroups"
-msgstr "Gruppi di lavoro"
+msgstr "gruppi di lavoro"
 
 #: admin/contact.py:30 templates/newsletter/newsletter_statistics.html:186
 msgid "Status"
@@ -289,11 +281,11 @@ msgstr "Avanzate"
 
 #: admin/contact.py:62
 msgid "No relative object"
-msgstr "Nessun oggetto collegato"
+msgstr "Nessun oggetto correlato"
 
 #: admin/contact.py:64
 msgid "Related object"
-msgstr "Oggetto collegato"
+msgstr "Oggetto correlato"
 
 #: admin/contact.py:71
 msgid "Total subscriptions"
@@ -304,9 +296,8 @@ msgid "Export contacts as VCard"
 msgstr "Esporta i contatti come VCard"
 
 #: admin/contact.py:83
-#, fuzzy
 msgid "Export contacts in Excel"
-msgstr "Esporta i contatti come VCard"
+msgstr "Esporta i contatti come Excel"
 
 #: admin/contact.py:88
 #, python-format
@@ -336,34 +327,34 @@ msgstr "%s contatti importati con successo."
 msgid "VCard import"
 msgstr "Importa VCard"
 
-#: admin/mailinglist.py:59
+#: admin/mailinglist.py:60
 msgid "Please select a least 2 mailing list."
 msgstr "Seleziona almento 2 liste di distribuzione."
 
-#: admin/mailinglist.py:68
+#: admin/mailinglist.py:72
 #, python-format
 msgid "Merging list at %s"
 msgstr "Unione delle liste per %s"
 
-#: admin/mailinglist.py:69
+#: admin/mailinglist.py:73
 #, python-format
 msgid "Mailing list created by merging at %s"
 msgstr "Lista di distribuzione creata per unione per %s"
 
-#: admin/mailinglist.py:73
+#: admin/mailinglist.py:78
 #, python-format
 msgid "%s succesfully created by merging."
 msgstr "%s creata con successo per unione."
 
-#: admin/mailinglist.py:76
+#: admin/mailinglist.py:81
 msgid "Merge selected mailinglists"
 msgstr "Unisci le liste di distribuzione selezionate"
 
-#: admin/mailinglist.py:81
+#: admin/mailinglist.py:86
 msgid "Export Subscribers"
 msgstr "Esporta i sottoscrittori"
 
-#: admin/mailinglist.py:83
+#: admin/mailinglist.py:88
 msgid "Export"
 msgstr "Esporta"
 
@@ -448,46 +439,48 @@ msgid "Configuration"
 msgstr "Configurazione"
 
 #: admin/smtpserver.py:33
-#, fuzzy
 msgid "Check connection"
-msgstr "Connessione valida"
+msgstr "Verifica connessione"
 
-#: admin/workgroup.py:19
+#: admin/workgroup.py:18
 msgid "Contacts length"
 msgstr "Lunghezza contatti"
 
-#: admin/workgroup.py:23
+#: admin/workgroup.py:22
 msgid "Mailing List length"
 msgstr "Lunghezza lista di distribuzione"
 
-#: admin/workgroup.py:27
+#: admin/workgroup.py:26
 msgid "Newsletter length"
 msgstr "Lunghezza newsletter"
 
-#: templates/admin/newsletter/contact/change_list.html:9
+#: templates/admin/newsletter/contact/change_list.html:35
 #, python-format
 msgid "Add %(name)s"
 msgstr "Aggiungi %(name)s"
 
-#: templates/admin/newsletter/contact/change_list.html:14
+#: templates/admin/newsletter/contact/change_list.html:41
+msgid "Actions"
+msgstr "Azioni"
+
+#: templates/admin/newsletter/contact/change_list.html:50
 #, python-format
 msgid "Import %(name)s"
-msgstr "Import %(name)s"
+msgstr "Importa %(name)s"
 
-#: templates/admin/newsletter/contact/change_list.html:19
-#, fuzzy
+#: templates/admin/newsletter/contact/change_list.html:55
 msgid "Add to a mailing list"
-msgstr "Crea una lista di distribuzione"
+msgstr "Aggiungi ad una lista"
 
-#: templates/admin/newsletter/contact/change_list.html:26
-#, fuzzy, python-format
+#: templates/admin/newsletter/contact/change_list.html:62
+#, python-format
 msgid "Export %(name)s as VCard"
-msgstr "Esporta i contatti come VCard"
+msgstr "Esporta %(name)s come VCard"
 
-#: templates/admin/newsletter/contact/change_list.html:31
-#, fuzzy, python-format
+#: templates/admin/newsletter/contact/change_list.html:67
+#, python-format
 msgid "Export %(name)s as Excel"
-msgstr "Esporta %(name)s"
+msgstr "Esporta %(name)s come Excel"
 
 #: templates/newsletter/contact_import.html:7
 msgid "Home"
@@ -538,7 +531,7 @@ msgstr "Azione"
 msgid "Broadcasting statistics"
 msgstr "Statistiche di diffusione"
 
-#: templates/newsletter/newsletter_statistics.html:83 views/statistics.py:136
+#: templates/newsletter/newsletter_statistics.html:83 views/statistics.py:135
 msgid "Total openings"
 msgstr "Totale aperture"
 
@@ -555,9 +548,8 @@ msgid "Unknow delivery"
 msgstr "Stato di recapito sconosciuto"
 
 #: templates/newsletter/newsletter_statistics.html:103
-#, fuzzy
 msgid "Unsubscriptions"
-msgstr "Annullamento sottoscrizione"
+msgstr "Annullamento sottoscrizioni"
 
 #: templates/newsletter/newsletter_statistics.html:108
 msgid "Openings average"
@@ -568,7 +560,7 @@ msgstr "Media aperture"
 msgid "Links statistics"
 msgstr "Statistiche collegamenti"
 
-#: templates/newsletter/newsletter_statistics.html:119 views/statistics.py:140
+#: templates/newsletter/newsletter_statistics.html:119 views/statistics.py:139
 msgid "Total clicked links"
 msgstr "Totale collegamenti seguiti"
 
@@ -584,7 +576,7 @@ msgstr "Collegamenti seguiti per apertura"
 msgid "Clicked links average"
 msgstr "Media collegamenti seguiti"
 
-#: templates/newsletter/newsletter_statistics.html:146 views/statistics.py:144
+#: templates/newsletter/newsletter_statistics.html:146 views/statistics.py:143
 msgid "Consultation histogram"
 msgstr "Grafico consultazione"
 
@@ -593,13 +585,12 @@ msgid "Period"
 msgstr "Periodo"
 
 #: templates/newsletter/newsletter_statistics.html:176
-#, fuzzy
 msgid "Report"
-msgstr "Esporta"
+msgstr "Report"
 
 #: templates/newsletter/newsletter_statistics.html:178
 msgid "Download CSV report"
-msgstr ""
+msgstr "Scarica report in CSV"
 
 #: templates/newsletter/newsletter_statistics.html:183
 msgid "Informations"
@@ -627,31 +618,28 @@ msgstr "Collegamenti popolari"
 
 #: templates/newsletter/newsletter_statistics.html:197
 msgid "Density map"
-msgstr ""
+msgstr "Mappa densità"
 
 #: templates/newsletter/newsletter_statistics.html:206
 msgid "No Top Links yet."
 msgstr "Nessun collegamento popolare."
 
-#: views/statistics.py:53
+#: views/statistics.py:52
 #, python-format
 msgid "Statistics of %s"
 msgstr "Statistiche di %s"
 
-#: views/statistics.py:74
-#, fuzzy
+#: views/statistics.py:73
 msgid "openings"
-msgstr "Totale aperture"
+msgstr "aperture"
 
-#: views/statistics.py:136
-#, fuzzy
+#: views/statistics.py:135
 msgid "#val# openings"
-msgstr "Totale aperture"
+msgstr "#val# aperture"
 
-#: views/statistics.py:140
-#, fuzzy
+#: views/statistics.py:139
 msgid "#val# clicks"
-msgstr "Doppi click"
+msgstr "#val# click"
 
 #: views/tracking.py:45
 #, python-format

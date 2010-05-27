@@ -2,12 +2,12 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: emencia.django.newsletter\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-03-13 12:31+0100\n"
+"POT-Creation-Date: 2010-05-27 14:41+0200\n"
 "PO-Revision-Date: 2010-03-13 12:31+0100\n"
 "Last-Translator: Fantomas <Fantomas42@gmail.com>\n"
 "Language-Team: fr <jfache@emencia.com>\n"
@@ -66,15 +66,15 @@ msgstr "serveur SMTP"
 msgid "SMTP servers"
 msgstr "serveurs SMTP"
 
-#: models.py:94 views/statistics.py:74
+#: models.py:94 views/statistics.py:73
 msgid "email"
 msgstr "Email"
 
-#: models.py:95 views/statistics.py:73
+#: models.py:95 views/statistics.py:72
 msgid "first name"
 msgstr "Prénom"
 
-#: models.py:96 views/statistics.py:73
+#: models.py:96 views/statistics.py:72
 msgid "last name"
 msgstr "Nom"
 
@@ -326,34 +326,34 @@ msgstr "%s contacts importés avec succès."
 msgid "VCard import"
 msgstr "Importation VCard"
 
-#: admin/mailinglist.py:59
+#: admin/mailinglist.py:60
 msgid "Please select a least 2 mailing list."
 msgstr "Veuillez sélectionner au moins 2 listes de diffusions."
 
-#: admin/mailinglist.py:68
+#: admin/mailinglist.py:72
 #, python-format
 msgid "Merging list at %s"
 msgstr "Liste de diffusion fusionnée du %s"
 
-#: admin/mailinglist.py:69
+#: admin/mailinglist.py:73
 #, python-format
 msgid "Mailing list created by merging at %s"
 msgstr "Liste de diffusion créée par fusion le %s"
 
-#: admin/mailinglist.py:73
+#: admin/mailinglist.py:78
 #, python-format
 msgid "%s succesfully created by merging."
 msgstr "%s créée avec succès."
 
-#: admin/mailinglist.py:76
+#: admin/mailinglist.py:81
 msgid "Merge selected mailinglists"
 msgstr "Fusionner les listes de diffusions sélectionnées."
 
-#: admin/mailinglist.py:81
+#: admin/mailinglist.py:86
 msgid "Export Subscribers"
 msgstr "Export des inscrits"
 
-#: admin/mailinglist.py:83
+#: admin/mailinglist.py:88
 msgid "Export"
 msgstr "Exportation"
 
@@ -441,38 +441,43 @@ msgstr "Configuration"
 msgid "Check connection"
 msgstr "Tester la connection"
 
-#: admin/workgroup.py:19
+#: admin/workgroup.py:18
 msgid "Contacts length"
 msgstr "Nombre de contacts"
 
-#: admin/workgroup.py:23
+#: admin/workgroup.py:22
 msgid "Mailing List length"
 msgstr "Nombre de listes de diffusion"
 
-#: admin/workgroup.py:27
+#: admin/workgroup.py:26
 msgid "Newsletter length"
 msgstr "Nombre de newsletters"
 
-#: templates/admin/newsletter/contact/change_list.html:9
+#: templates/admin/newsletter/contact/change_list.html:35
 #, python-format
 msgid "Add %(name)s"
 msgstr "Ajouter %(name)s"
 
-#: templates/admin/newsletter/contact/change_list.html:14
+#: templates/admin/newsletter/contact/change_list.html:41
+#, fuzzy
+msgid "Actions"
+msgstr "Action"
+
+#: templates/admin/newsletter/contact/change_list.html:50
 #, python-format
 msgid "Import %(name)s"
 msgstr "Importer %(name)s"
 
-#: templates/admin/newsletter/contact/change_list.html:19
+#: templates/admin/newsletter/contact/change_list.html:55
 msgid "Add to a mailing list"
 msgstr "Ajouter à une liste de diffusion"
 
-#: templates/admin/newsletter/contact/change_list.html:26
+#: templates/admin/newsletter/contact/change_list.html:62
 #, python-format
 msgid "Export %(name)s as VCard"
 msgstr "Exporter %(name)s en VCard"
 
-#: templates/admin/newsletter/contact/change_list.html:31
+#: templates/admin/newsletter/contact/change_list.html:67
 #, python-format
 msgid "Export %(name)s as Excel"
 msgstr "Exporter %(name)s dans Excel"
@@ -524,7 +529,7 @@ msgstr "Action"
 msgid "Broadcasting statistics"
 msgstr "Statistiques de diffusion"
 
-#: templates/newsletter/newsletter_statistics.html:83 views/statistics.py:136
+#: templates/newsletter/newsletter_statistics.html:83 views/statistics.py:135
 msgid "Total openings"
 msgstr "Ouvertures"
 
@@ -553,7 +558,7 @@ msgstr "Nombre moyen d'ouvertures"
 msgid "Links statistics"
 msgstr "Statistiques sur les liens"
 
-#: templates/newsletter/newsletter_statistics.html:119 views/statistics.py:140
+#: templates/newsletter/newsletter_statistics.html:119 views/statistics.py:139
 msgid "Total clicked links"
 msgstr "Clics"
 
@@ -569,7 +574,7 @@ msgstr "Taux de réactivité (clics/ouvertures)"
 msgid "Clicked links average"
 msgstr "Nombre moyen de clics"
 
-#: templates/newsletter/newsletter_statistics.html:146 views/statistics.py:144
+#: templates/newsletter/newsletter_statistics.html:146 views/statistics.py:143
 msgid "Consultation histogram"
 msgstr "Histogramme des consultations"
 
@@ -617,20 +622,20 @@ msgstr "Carte de densité"
 msgid "No Top Links yet."
 msgstr "Pas de Top Liens pour l'instant."
 
-#: views/statistics.py:53
+#: views/statistics.py:52
 #, python-format
 msgid "Statistics of %s"
 msgstr "Statistiques de %s"
 
-#: views/statistics.py:74
+#: views/statistics.py:73
 msgid "openings"
 msgstr "Ouvertures"
 
-#: views/statistics.py:136
+#: views/statistics.py:135
 msgid "#val# openings"
 msgstr "#val# ouvertures"
 
-#: views/statistics.py:140
+#: views/statistics.py:139
 msgid "#val# clicks"
 msgstr "#val# clics"
 

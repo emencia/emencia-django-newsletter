@@ -2,12 +2,12 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-03-13 12:31+0100\n"
+"POT-Creation-Date: 2010-05-27 14:40+0200\n"
 "PO-Revision-Date: 2010-01-21 10:54+0100\n"
 "Last-Translator: Fantomas <Fantomas42@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -65,15 +65,15 @@ msgstr "SMTP Server"
 msgid "SMTP servers"
 msgstr "SMTP Servers"
 
-#: models.py:94 views/statistics.py:74
+#: models.py:94 views/statistics.py:73
 msgid "email"
 msgstr "Email"
 
-#: models.py:95 views/statistics.py:73
+#: models.py:95 views/statistics.py:72
 msgid "first name"
 msgstr "First name"
 
-#: models.py:96 views/statistics.py:73
+#: models.py:96 views/statistics.py:72
 msgid "last name"
 msgstr "Last name"
 
@@ -332,34 +332,34 @@ msgstr "%s contacts successfully imported."
 msgid "VCard import"
 msgstr "VCard import"
 
-#: admin/mailinglist.py:59
+#: admin/mailinglist.py:60
 msgid "Please select a least 2 mailing list."
 msgstr "Please select a least 2 mailing list."
 
-#: admin/mailinglist.py:68
+#: admin/mailinglist.py:72
 #, python-format
 msgid "Merging list at %s"
 msgstr "Merging list at %s"
 
-#: admin/mailinglist.py:69
+#: admin/mailinglist.py:73
 #, python-format
 msgid "Mailing list created by merging at %s"
 msgstr "Mailing list created by merging at %s"
 
-#: admin/mailinglist.py:73
+#: admin/mailinglist.py:78
 #, python-format
 msgid "%s succesfully created by merging."
 msgstr "%s successfully created by merging."
 
-#: admin/mailinglist.py:76
+#: admin/mailinglist.py:81
 msgid "Merge selected mailinglists"
 msgstr "Merge selected mailing lists"
 
-#: admin/mailinglist.py:81
+#: admin/mailinglist.py:86
 msgid "Export Subscribers"
 msgstr "Export Subscribers"
 
-#: admin/mailinglist.py:83
+#: admin/mailinglist.py:88
 msgid "Export"
 msgstr "Export"
 
@@ -448,39 +448,44 @@ msgstr "Configuration"
 msgid "Check connection"
 msgstr "Connection valid"
 
-#: admin/workgroup.py:19
+#: admin/workgroup.py:18
 msgid "Contacts length"
 msgstr "Number of contacts"
 
-#: admin/workgroup.py:23
+#: admin/workgroup.py:22
 msgid "Mailing List length"
 msgstr "Number of mailing List "
 
-#: admin/workgroup.py:27
+#: admin/workgroup.py:26
 msgid "Newsletter length"
 msgstr "Number of newsletter "
 
-#: templates/admin/newsletter/contact/change_list.html:9
+#: templates/admin/newsletter/contact/change_list.html:35
 #, python-format
 msgid "Add %(name)s"
 msgstr "Add %(name)s"
 
-#: templates/admin/newsletter/contact/change_list.html:14
+#: templates/admin/newsletter/contact/change_list.html:41
+#, fuzzy
+msgid "Actions"
+msgstr "Action"
+
+#: templates/admin/newsletter/contact/change_list.html:50
 #, python-format
 msgid "Import %(name)s"
 msgstr "Import %(name)s"
 
-#: templates/admin/newsletter/contact/change_list.html:19
+#: templates/admin/newsletter/contact/change_list.html:55
 #, fuzzy
 msgid "Add to a mailing list"
 msgstr "Create a mailing list"
 
-#: templates/admin/newsletter/contact/change_list.html:26
+#: templates/admin/newsletter/contact/change_list.html:62
 #, fuzzy, python-format
 msgid "Export %(name)s as VCard"
 msgstr "Export contacts as VCard"
 
-#: templates/admin/newsletter/contact/change_list.html:31
+#: templates/admin/newsletter/contact/change_list.html:67
 #, fuzzy, python-format
 msgid "Export %(name)s as Excel"
 msgstr "Export %(name)s"
@@ -533,7 +538,7 @@ msgstr "Action"
 msgid "Broadcasting statistics"
 msgstr "View statistics"
 
-#: templates/newsletter/newsletter_statistics.html:83 views/statistics.py:136
+#: templates/newsletter/newsletter_statistics.html:83 views/statistics.py:135
 #, fuzzy
 msgid "Total openings"
 msgstr "Total Subscriptions"
@@ -567,7 +572,7 @@ msgstr "Total Subscriptions"
 msgid "Links statistics"
 msgstr "View statistics"
 
-#: templates/newsletter/newsletter_statistics.html:119 views/statistics.py:140
+#: templates/newsletter/newsletter_statistics.html:119 views/statistics.py:139
 #, fuzzy
 msgid "Total clicked links"
 msgstr "Total Subscriptions"
@@ -585,7 +590,7 @@ msgstr "Clicked links per opening"
 msgid "Clicked links average"
 msgstr "Total Subscriptions"
 
-#: templates/newsletter/newsletter_statistics.html:146 views/statistics.py:144
+#: templates/newsletter/newsletter_statistics.html:146 views/statistics.py:143
 msgid "Consultation histogram"
 msgstr "Consultation histogram"
 
@@ -636,22 +641,22 @@ msgstr "Density map"
 msgid "No Top Links yet."
 msgstr "There is no Top links yet available"
 
-#: views/statistics.py:53
+#: views/statistics.py:52
 #, python-format
 msgid "Statistics of %s"
 msgstr "Statistics of %s"
 
-#: views/statistics.py:74
+#: views/statistics.py:73
 #, fuzzy
 msgid "openings"
 msgstr "Total Subscriptions"
 
-#: views/statistics.py:136
+#: views/statistics.py:135
 #, fuzzy
 msgid "#val# openings"
 msgstr "Total Subscriptions"
 
-#: views/statistics.py:140
+#: views/statistics.py:139
 msgid "#val# clicks"
 msgstr ""
 
