@@ -7,7 +7,7 @@ from django.conf.urls.defaults import *
 from django.utils.translation import ugettext as _
 
 from emencia.django.newsletter.models import Contact
-from emencia.django.newsletter.models import Newsletter
+from emencia.django.newsletter.models import Newsletter, Attachment
 from emencia.django.newsletter.models import MailingList
 from emencia.django.newsletter.mailer import Mailer
 from emencia.django.newsletter.utils.workgroups import request_workgroups
@@ -15,6 +15,16 @@ from emencia.django.newsletter.utils.workgroups import request_workgroups_contac
 from emencia.django.newsletter.utils.workgroups import request_workgroups_newsletters_pk
 from emencia.django.newsletter.utils.workgroups import request_workgroups_mailinglists_pk
 from emencia.django.newsletter.utils.newsletter import get_webpage_content
+
+
+class AttachmentAdminInline(admin.TabularInline):
+    model = Attachment
+    extra = 1
+    fieldsets = (
+        (None,
+            {'fields': (('summary', 'file'))}),
+    )
+
 
 class NewsletterAdmin(admin.ModelAdmin):
     date_hierarchy = 'creation_date'
@@ -32,6 +42,7 @@ class NewsletterAdmin(admin.ModelAdmin):
                                        'classes': ('collapse',)}),
                  )
     prepopulated_fields = {'slug': ('title',)}
+    inlines = (AttachmentAdminInline,)
     actions = ['send_mail_test', 'make_ready_to_send', 'make_cancel_sending']
     actions_on_top = False
     actions_on_bottom = True
@@ -107,7 +118,7 @@ class NewsletterAdmin(admin.ModelAdmin):
     def statistics_link(self, newsletter):
         """Display link for statistics"""
         if newsletter.status == Newsletter.SENDING or \
-           newsletter.status == Newsletter.SENT:            
+           newsletter.status == Newsletter.SENT:
             return '<a href="%s">%s</a>' % (newsletter.get_statistics_url(), _('View statistics'))
         return _('Not available')
     statistics_link.allow_tags = True

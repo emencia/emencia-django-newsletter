@@ -11,11 +11,13 @@ from django.utils.translation import ugettext_lazy as _
 from django.contrib.contenttypes import generic
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.auth.models import Group
+from django.utils.encoding import force_unicode
 
 from tagging.fields import TagField
 from emencia.django.newsletter.managers import ContactManager
 from emencia.django.newsletter.settings import DEFAULT_HEADER_REPLY
 from emencia.django.newsletter.settings import DEFAULT_HEADER_SENDER
+from emencia.django.newsletter.settings import NEWSLETTER_BASE_PATH
 from emencia.django.newsletter.utils.vcard import vcard_contact_export
 
 # Patch for Python < 2.6
@@ -29,6 +31,17 @@ except AttributeError:
                 if not (200 <= code <= 299):
                     raise SMTPHeloError(code, resp)
     SMTP.ehlo_or_helo_if_needed = ehlo_or_helo_if_needed
+
+# Get the storage path for attachments upload
+def get_newsletter_storage_path(instance, filename):
+    filename = force_unicode(filename)
+    try:
+        newsletter = instance.slug
+    except AttributeError:
+        newsletter = instance.newsletter.slug
+
+    return NEWSLETTER_BASE_PATH + '/' + newsletter + '/' + filename
+
 
 class SMTPServer(models.Model):
     """Configuration of a SMTP server"""
@@ -46,13 +59,13 @@ class SMTPServer(models.Model):
     mails_hour = models.IntegerField(_('mails per hour'), default=0)
 
     def connect(self):
-        """Connect the SMTP Server"""        
+        """Connect the SMTP Server"""
         smtp = SMTP(smart_str(self.host), int(self.port))
         smtp.ehlo_or_helo_if_needed()
         if self.tls:
             smtp.starttls()
             smtp.ehlo_or_helo_if_needed()
-        
+
         if self.user or self.password:
             smtp.login(smart_str(self.user), smart_str(self.password))
         return smtp
@@ -238,6 +251,7 @@ class Newsletter(models.Model):
         verbose_name_plural = _('newsletters')
         permissions = (('can_change_status', ugettext('Can change status')),)
 
+
 class Link(models.Model):
     """Link sended in a newsletter"""
     title = models.CharField(_('title'), max_length=255)
@@ -255,6 +269,36 @@ class Link(models.Model):
         ordering = ('creation_date',)
         verbose_name = _('link')
         verbose_name_plural = _('links')
+
+
+class Attachment(models.Model):
+    """Model for an attachment file."""
+
+    newsletter = models.ForeignKey(Newsletter)
+    summary = models.CharField(
+        _('Summary'),
+        max_length=100,
+        blank=True,
+        null=True)
+    file = models.FileField(
+        upload_to=get_newsletter_storage_path,
+        blank=True,
+        null=True)
+
+
+    class Meta:
+        verbose_name = _('attachment')
+        verbose_name_plural = _('attachments')
+
+
+    def __unicode__(self):
+        if self.summary:
+            return self.summary
+        return self.file.name.split("/")[-1]
+
+    def get_absolute_url(self):
+        return self.file.url
+
 
 class ContactMailingStatus(models.Model):
     """Status of the reception"""
