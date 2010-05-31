@@ -1,14 +1,25 @@
 """Mailer for emencia.django.newsletter"""
+import mimetypes
+
 from smtplib import SMTP
 from smtplib import SMTPRecipientsRefused
 from datetime import datetime
+
 try:
     from email.mime.multipart import MIMEMultipart
     from email.mime.text import MIMEText
+    from email.mime.Encoders import encode_base64
+    from email.mime.MIMEAudio import MIMEAudio
+    from email.mime.MIMEBase import MIMEBase
+    from email.mime.MIMEImage import MIMEImage
+
 except ImportError :  # Python 2.4 compatibility
     from email.MIMEMultipart import MIMEMultipart
     from email.MIMEText import MIMEText
-
+    from email.Encoders import encode_base64
+    from email.MIMEAudio import MIMEAudio
+    from email.MIMEBase import MIMEBase
+    from email.MIMEImage import MIMEImage
 
 from html2text import html2text
 from django.contrib.sites.models import Site
@@ -25,6 +36,36 @@ from emencia.django.newsletter.utils.newsletter import body_insertion
 from emencia.django.newsletter.settings import TRACKING_LINKS
 from emencia.django.newsletter.settings import TRACKING_IMAGE
 from emencia.django.newsletter.settings import INCLUDE_UNSUBSCRIPTION
+
+
+def get_attachment(path, filename):
+    ctype, encoding = mimetypes.guess_type(path)
+
+    if ctype is None or encoding is not None:
+        ctype = 'application/octet-stream'
+
+    maintype, subtype = ctype.split('/', 1)
+
+    fp = open(path, 'rb')
+    if maintype == 'text':
+        attachment = MIMEText(fp.read(),_subtype=subtype)
+    elif maintype == 'message':
+        attachment = email.message_from_file(fp)
+    elif maintype == 'image':
+        attachment = MIMEImage(fp.read(),_subtype=subtype)
+    elif maintype == 'audio':
+        attachment = MIMEAudio(fp.read(),_subtype=subtype)
+    else:
+        attachment = MIMEBase(maintype, subtype)
+        attachment.set_payload(fp.read())
+        encode_base64(attachment)
+    fp.close
+
+    attachment.add_header(
+        'Content-Disposition',
+        'attachmentment',
+        filename=filename)
+    return attachment
 
 
 class Mailer(object):
@@ -65,21 +106,35 @@ class Mailer(object):
             self.update_newsletter_status()
 
     def build_message(self, contact):
-        """Build the email"""
+        """
+        Build the email as a multipart message containing
+        a multipart alternative for text (plain, HTML) plus
+        all the attached files.
+        """
         content_html = self.build_email_content(contact)
         content_text = html2text(content_html)
 
-        message = MIMEMultipart('alternative')
+        message = MIMEMultipart()
+
         message['Subject'] = self.build_title_content(contact)
         message['From'] = self.newsletter.header_sender
         message['Reply-to'] = self.newsletter.header_reply
         message['To'] = contact.mail_format()
 
+        message_alt = MIMEMultipart('alternative')
+        message_alt.attach(MIMEText(smart_str(content_text), 'plain', 'UTF-8'))
+        message_alt.attach(MIMEText(smart_str(content_html), 'html', 'UTF-8'))
+        message.attach(message_alt)
+
         for header, value in self.newsletter.server.custom_headers.items():
             message[header] = value
 
-        message.attach(MIMEText(smart_str(content_text), 'plain', 'UTF-8'))
-        message.attach(MIMEText(smart_str(content_html), 'html', 'UTF-8'))
+        # Add attachments
+        for f in self.newsletter.attachment_set.all():
+            path = f.file.path
+            filename = f.file.name.split('/')[-1]
+            attachment = get_attachment(path, filename)
+            message.attach(attachment)
 
         return message
 
