@@ -59,7 +59,7 @@ def get_attachment(path, filename):
         attachment = MIMEBase(maintype, subtype)
         attachment.set_payload(fp.read())
         encode_base64(attachment)
-    fp.close
+    fp.close()
 
     attachment.add_header(
         'Content-Disposition',
