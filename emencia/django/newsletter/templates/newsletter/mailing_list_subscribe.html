@@ -6,17 +6,14 @@
 {% block content %}
 <h2>{% trans "Subscription" %}</h2>
 
-{% if form.errors %}
- {{ form.errors }}
-{% endif %}
-
 {% if subscribed %}
- <p>{% trans "Thanks for your sbscription!" %}</p>
+<p>{% trans "Thanks for your subscription!" %}</p>
 {% else %}
- <p>{% trans "Validate this form to subscribe to the mailing lists." %}</p>
+<p>{% trans "Validate this form to subscribe to the mailing lists." %}</p>
 <form action="." method="post">
-{{ form.as_p }}
-<input type="submit" value="Subscribe" />
+  {% csrf_token %}
+  {{ form.as_p }}
+  <input type="submit" value="Subscribe" />
 </form>
 {% endif %}
 

@@ -4,7 +4,8 @@ from django.shortcuts import get_object_or_404
 from django.shortcuts import render_to_response
 
 from emencia.django.newsletter.utils.tokens import untokenize
-from emencia.django.newsletter.models import Newsletter, Contact
+from emencia.django.newsletter.models import Contact
+from emencia.django.newsletter.models import Newsletter
 from emencia.django.newsletter.models import ContactMailingStatus
 from emencia.django.newsletter.forms import SubscriptionForm
 
@@ -28,18 +29,18 @@ def view_mailinglist_unsubscribe(request, slug, uidb36, token):
                                'already_unsubscribed': already_unsubscribed},
                               context_instance=RequestContext(request))
 
-def view_mailinglist_subscribe(request, template="newsletter/mailing_list_subscribe.html"):
+
+def view_mailinglist_subscribe(request):
     """
     A simple view that shows a form for subscription
     on one or more mailing-lists at the same time.
     """
-
     subscribed = False
 
-    if request.method == 'POST' and not subscribed:
+    if request.POST and not subscribed:
         form = SubscriptionForm(request.POST)
         if form.is_valid():
-            contact, generated = Contact.objects.get_or_create(
+            contact, created = Contact.objects.get_or_create(
                 first_name=form.cleaned_data['first_name'],
                 last_name=form.cleaned_data['last_name'],
                 email=form.cleaned_data['email'])
@@ -51,11 +52,9 @@ def view_mailinglist_subscribe(request, template="newsletter/mailing_list_subscr
     else:
         form = SubscriptionForm()
 
-    return render_to_response(
-        template,
-        {'subscribed': subscribed,
-         'form': form },
-        context_instance=RequestContext(request)
-    )
+    return render_to_response('newsletter/mailing_list_subscribe.html',
+                              {'subscribed': subscribed,
+                               'form': form },
+                              context_instance=RequestContext(request))
 
 
