@@ -5,13 +5,8 @@ from django.utils.translation import ugettext_lazy as _
 from emencia.django.newsletter.models import Contact
 from emencia.django.newsletter.models import MailingList
 
-
-class SubscriptionForm(forms.ModelForm):
-    """Form for subscribe to a mailing list"""
-    mailing_lists = forms.ModelMultipleChoiceField(
-        queryset=MailingList.objects.all(),
-        initial=[obj.id for obj in MailingList.objects.all()],
-        widget=forms.CheckboxSelectMultiple())
+class MailingListSubscriptionForm(forms.ModelForm):
+    """Form for subscribing to a mailing list"""
 
     class Meta:
         model = Contact
@@ -25,3 +20,12 @@ class SubscriptionForm(forms.ModelForm):
             raise forms.ValidationError(_("This email address already exists in our database!"))
 
         return data
+
+class AllMailingListSubscriptionForm(MailingListSubscriptionForm):
+    """Form for subscribing to all mailing list"""
+
+    mailing_lists = forms.ModelMultipleChoiceField(
+        queryset=MailingList.objects.all(),
+        initial=[obj.id for obj in MailingList.objects.all()],
+        widget=forms.CheckboxSelectMultiple())
+    
