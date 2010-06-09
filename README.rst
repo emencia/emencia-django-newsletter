@@ -22,7 +22,7 @@ More than a long speech, here the list of the main features :
   * Configurable SMTP servers with flow limit management.
   * Working groups.
   * Can send newsletter previews.
-  * Unsubscriptions to mailing list.
+  * Subscriptions and unsubscriptions to mailing list.
   * Unique urls for an user.
   * Tracking statistics.
 
