@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: emencia.django.newsletter\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-27 14:40+0200\n"
+"POT-Creation-Date: 2010-06-09 20:30+0200\n"
 "PO-Revision-Date: 2010-05-26 19:00+0200\n"
 "Last-Translator: Paolo Martino <martip@gmail.com>\n"
 "Language-Team: martip <martip@gmail.com>\n"
@@ -18,6 +18,11 @@ msgstr ""
 "X-Poedit-Language: Italian\n"
 "X-Poedit-Country: ITALY\n"
 "X-Poedit-SourceCharset: utf-8\n"
+
+#: forms.py:33
+#, fuzzy
+msgid "Mailing lists"
+msgstr "liste di distribuzione"
 
 #: models.py:35 models.py:146 models.py:300
 msgid "name"
@@ -490,6 +495,29 @@ msgstr "Pagina iniziale"
 msgid "Importation"
 msgstr "Importazione"
 
+#: templates/newsletter/mailing_list_subscribe.html:4
+#: templates/newsletter/mailing_list_subscribe.html:7
+#, fuzzy
+msgid "Subscription to mailing list"
+msgstr "Aggiungi ad una lista"
+
+#: templates/newsletter/mailing_list_subscribe.html:10
+#, fuzzy
+msgid "Thanks for your subscription!"
+msgstr "Sottoscrizioni totali"
+
+#: templates/newsletter/mailing_list_subscribe.html:16
+#, fuzzy
+msgid "Validate this form to subscribe to the mailing lists."
+msgstr ""
+"Conferma questo indirizzo per rimuovere la sottoscrizione a questa lista di "
+"distribuzione."
+
+#: templates/newsletter/mailing_list_subscribe.html:21
+#, fuzzy
+msgid "Subscribe"
+msgstr "sottoscrittore"
+
 #: templates/newsletter/mailing_list_unsubscribe.html:4
 #: templates/newsletter/mailing_list_unsubscribe.html:7
 msgid "Unsubscription"
@@ -645,6 +673,10 @@ msgstr "#val# click"
 #, python-format
 msgid "Historic of %s"
 msgstr "Storico di %s"
+
+#, fuzzy
+#~ msgid "Subscription"
+#~ msgstr "annullamento sottoscrizione"
 
 #~ msgid "Contacts"
 #~ msgstr "Contatti"

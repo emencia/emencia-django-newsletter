@@ -7,13 +7,18 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-27 14:40+0200\n"
+"POT-Creation-Date: 2010-06-09 20:30+0200\n"
 "PO-Revision-Date: 2010-01-21 10:54+0100\n"
 "Last-Translator: Fantomas <Fantomas42@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: forms.py:33
+#, fuzzy
+msgid "Mailing lists"
+msgstr "mailing lists"
 
 #: models.py:35 models.py:146 models.py:300
 msgid "name"
@@ -498,6 +503,27 @@ msgstr "Home"
 msgid "Importation"
 msgstr "Import"
 
+#: templates/newsletter/mailing_list_subscribe.html:4
+#: templates/newsletter/mailing_list_subscribe.html:7
+#, fuzzy
+msgid "Subscription to mailing list"
+msgstr "Create a mailing list"
+
+#: templates/newsletter/mailing_list_subscribe.html:10
+#, fuzzy
+msgid "Thanks for your subscription!"
+msgstr "Total Subscriptions"
+
+#: templates/newsletter/mailing_list_subscribe.html:16
+#, fuzzy
+msgid "Validate this form to subscribe to the mailing lists."
+msgstr "Validate this form to unsubscribe to this mailing list."
+
+#: templates/newsletter/mailing_list_subscribe.html:21
+#, fuzzy
+msgid "Subscribe"
+msgstr "Subscriber"
+
 #: templates/newsletter/mailing_list_unsubscribe.html:4
 #: templates/newsletter/mailing_list_unsubscribe.html:7
 msgid "Unsubscription"
@@ -664,6 +690,10 @@ msgstr ""
 #, python-format
 msgid "Historic of %s"
 msgstr "Historic of %s"
+
+#, fuzzy
+#~ msgid "Subscription"
+#~ msgstr "Unsubscription"
 
 #~ msgid "Contacts"
 #~ msgstr "Contacts"
