@@ -7,7 +7,8 @@ from django.conf.urls.defaults import *
 from django.utils.translation import ugettext as _
 
 from emencia.django.newsletter.models import Contact
-from emencia.django.newsletter.models import Newsletter, Attachment
+from emencia.django.newsletter.models import Newsletter
+from emencia.django.newsletter.models import Attachment
 from emencia.django.newsletter.models import MailingList
 from emencia.django.newsletter.mailer import Mailer
 from emencia.django.newsletter.utils.workgroups import request_workgroups
@@ -20,10 +21,7 @@ from emencia.django.newsletter.utils.newsletter import get_webpage_content
 class AttachmentAdminInline(admin.TabularInline):
     model = Attachment
     extra = 1
-    fieldsets = (
-        (None,
-            {'fields': (('summary', 'file'))}),
-    )
+    fieldsets = ((None, {'fields': (('title', 'file_attachment'))}),)
 
 
 class NewsletterAdmin(admin.ModelAdmin):

@@ -12,8 +12,8 @@ class Migration(SchemaMigration):
         db.create_table('newsletter_attachment', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('newsletter', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['newsletter.Newsletter'])),
-            ('summary', self.gf('django.db.models.fields.CharField')(max_length=100, null=True, blank=True)),
-            ('file', self.gf('django.db.models.fields.files.FileField')(max_length=100, null=True, blank=True)),
+            ('title', self.gf('django.db.models.fields.CharField')(max_length=255)),
+            ('file_attachment', self.gf('django.db.models.fields.files.FileField')(max_length=100)),
         ))
         db.send_create_signal('newsletter', ['Attachment'])
 
@@ -47,10 +47,10 @@ class Migration(SchemaMigration):
         },
         'newsletter.attachment': {
             'Meta': {'object_name': 'Attachment'},
-            'file': ('django.db.models.fields.files.FileField', [], {'max_length': '100', 'null': 'True', 'blank': 'True'}),
+            'file_attachment': ('django.db.models.fields.files.FileField', [], {'max_length': '100'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'newsletter': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['newsletter.Newsletter']"}),
-            'summary': ('django.db.models.fields.CharField', [], {'max_length': '100', 'null': 'True', 'blank': 'True'})
+            'title': ('django.db.models.fields.CharField', [], {'max_length': '255'})
         },
         'newsletter.contact': {
             'Meta': {'object_name': 'Contact'},
