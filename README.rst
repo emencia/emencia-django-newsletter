@@ -167,6 +167,35 @@ This action will create or retrieve all the **Contact** instances needed for the
 
 After this you can send a newsletter to this mailing list.
 
+Development
+===========
+
+A `Buildout 
+<http://pypi.python.org/pypi/zc.buildout>`_ script is provided to properly initialize the project 
+for anybody who wants to contribute.
+
+First of all, please use `VirtualEnv
+<http://pypi.python.org/pypi/virtualenv>`_ to protect your system.
+
+Follow these steps to start the development : ::
+
+  $> git clone git://github.com/Fantomas42/emencia-django-newsletter.git
+  $> virtualenv --no-site-packages emencia-django-newsletter
+  $> cd emencia-django-newsletter
+  $> source ./bin/activate
+  $> python bootstrap.py
+  $> ./bin/buildout
+
+The buildout script will resolve all the dependancies needed to develop the application.
+
+Once these operations are done, you are ready to develop on the project.
+
+Run this command to launch the tests. ::
+
+  $> ./bin/test
+
+Pretty easy no ?
+
 Database Representation
 =======================
 
