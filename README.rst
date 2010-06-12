@@ -23,6 +23,7 @@ More than a long speech, here the list of the main features :
   * Working groups.
   * Can send newsletter previews.
   * Subscriptions and unsubscriptions to mailing list.
+  * Attachments in newsletters.
   * Unique urls for an user.
   * Tracking statistics.
 
