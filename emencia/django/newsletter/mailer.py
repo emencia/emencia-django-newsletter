@@ -12,7 +12,6 @@ try:
     from email.mime.MIMEAudio import MIMEAudio
     from email.mime.MIMEBase import MIMEBase
     from email.mime.MIMEImage import MIMEImage
-
 except ImportError :  # Python 2.4 compatibility
     from email.MIMEMultipart import MIMEMultipart
     from email.MIMEText import MIMEText
@@ -38,36 +37,6 @@ from emencia.django.newsletter.settings import TRACKING_IMAGE
 from emencia.django.newsletter.settings import INCLUDE_UNSUBSCRIPTION
 
 
-def get_attachment(path, filename):
-    ctype, encoding = mimetypes.guess_type(path)
-
-    if ctype is None or encoding is not None:
-        ctype = 'application/octet-stream'
-
-    maintype, subtype = ctype.split('/', 1)
-
-    fp = open(path, 'rb')
-    if maintype == 'text':
-        attachment = MIMEText(fp.read(),_subtype=subtype)
-    elif maintype == 'message':
-        attachment = email.message_from_file(fp)
-    elif maintype == 'image':
-        attachment = MIMEImage(fp.read(),_subtype=subtype)
-    elif maintype == 'audio':
-        attachment = MIMEAudio(fp.read(),_subtype=subtype)
-    else:
-        attachment = MIMEBase(maintype, subtype)
-        attachment.set_payload(fp.read())
-        encode_base64(attachment)
-    fp.close()
-
-    attachment.add_header(
-        'Content-Disposition',
-        'attachmentment',
-        filename=filename)
-    return attachment
-
-
 class Mailer(object):
     """Mailer for generating and sending newsletters
     In test mode the mailer always send mails but do not log it"""
@@ -82,28 +51,33 @@ class Mailer(object):
 
     def run(self):
         """Send the mails"""
-        if self.can_send:
-            if not self.smtp:
-                self.smtp_connect()
+        if not self.can_send:
+            return
+        
+        if not self.smtp:
+            self.smtp_connect()
 
-            for contact in self.expedition_list:
-                message = self.build_message(contact)
-                try:
-                    self.smtp.sendmail(self.newsletter.header_sender,
-                                                 contact.email,
-                                                 message.as_string())
-                    status = self.test and ContactMailingStatus.SENT_TEST or ContactMailingStatus.SENT
-                except SMTPRecipientsRefused, e:
-                    status = ContactMailingStatus.INVALID
-                    contact.valid = False
-                    contact.save()
-                except:
-                    status = ContactMailingStatus.ERROR
+        self.attachments = self.build_attachments()
 
-                ContactMailingStatus.objects.create(newsletter=self.newsletter,
-                                                    contact=contact, status=status)
-            self.smtp.quit()
-            self.update_newsletter_status()
+        for contact in self.expedition_list:
+            message = self.build_message(contact)
+            try:
+                self.smtp.sendmail(self.newsletter.header_sender,
+                                   contact.email,
+                                   message.as_string())
+                status = self.test and ContactMailingStatus.SENT_TEST \
+                         or ContactMailingStatus.SENT
+            except SMTPRecipientsRefused, e:
+                status = ContactMailingStatus.INVALID
+                contact.valid = False
+                contact.save()
+            except:
+                status = ContactMailingStatus.ERROR
+
+            ContactMailingStatus.objects.create(newsletter=self.newsletter,
+                                                contact=contact, status=status)
+        self.smtp.quit()
+        self.update_newsletter_status()
 
     def build_message(self, contact):
         """
@@ -126,18 +100,46 @@ class Mailer(object):
         message_alt.attach(MIMEText(smart_str(content_html), 'html', 'UTF-8'))
         message.attach(message_alt)
 
+        for attachment in self.attachments:
+            message.attach(attachment)
+
         for header, value in self.newsletter.server.custom_headers.items():
             message[header] = value
 
-        # Add attachments
-        for f in self.newsletter.attachment_set.all():
-            path = f.file.path
-            filename = f.file.name.split('/')[-1]
-            attachment = get_attachment(path, filename)
-            message.attach(attachment)
-
         return message
 
+    def build_attachments(self):
+        """Build email's attachment messages"""
+        attachments = []
+        
+        for attachment in self.newsletter.attachment_set.all():
+            ctype, encoding = mimetypes.guess_type(attachment.file_attachment.path)
+
+            if ctype is None or encoding is not None:
+                ctype = 'application/octet-stream'
+
+            maintype, subtype = ctype.split('/', 1)
+            
+            fd = open(attachment.file_attachment.path, 'rb')
+            if maintype == 'text':
+                message_attachment = MIMEText(fd.read(), _subtype=subtype)
+            elif maintype == 'message':
+                message_attachment = email.message_from_file(fd)
+            elif maintype == 'image':
+                message_attachment = MIMEImage(fd.read(), _subtype=subtype)
+            elif maintype == 'audio':
+                message_attachment = MIMEAudio(fd.read(), _subtype=subtype)
+            else:
+                message_attachment = MIMEBase(maintype, subtype)
+                message_attachment.set_payload(fd.read())
+                encode_base64(message_attachment)
+            fd.close()
+            message_attachment.add_header('Content-Disposition', 'attachment',
+                                          filename=attachment.title)
+            attachments.append(message_attachment)
+            
+        return attachments
+            
     def smtp_connect(self):
         """Make a connection to the SMTP"""
         self.smtp = self.newsletter.server.connect()
