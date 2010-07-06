@@ -1,11 +1,12 @@
 """Unit tests for emencia.django.newsletter"""
 from datetime import datetime
 from datetime import timedelta
+from tempfile import NamedTemporaryFile
 
 from django.test import TestCase
 from django.http import Http404
 from django.db import IntegrityError
-from django.contrib.sites.models import Site
+from django.core.files import File
 
 from emencia.django.newsletter.mailer import Mailer
 from emencia.django.newsletter.models import Link
@@ -13,6 +14,7 @@ from emencia.django.newsletter.models import Contact
 from emencia.django.newsletter.models import MailingList
 from emencia.django.newsletter.models import SMTPServer
 from emencia.django.newsletter.models import Newsletter
+from emencia.django.newsletter.models import Attachment
 from emencia.django.newsletter.models import ContactMailingStatus
 from emencia.django.newsletter.utils.tokens import tokenize
 from emencia.django.newsletter.utils.tokens import untokenize
@@ -31,9 +33,6 @@ class FakeSMTP(object):
 
     def quit(*ka, **kw):
         pass
-
-def fake_email_content(*ka, **kw):
-    return ''
 
 class SMTPServerTestCase(TestCase):
     """Tests for the SMTPServer model"""
@@ -224,11 +223,15 @@ class MailerTestCase(TestCase):
         self.mailinglist.subscribers.add(*self.contacts)
         self.newsletter = Newsletter.objects.create(title='Test Newsletter',
                                                     content='Test Newsletter Content',
+                                                    slug='test-newsletter',
                                                     mailing_list=self.mailinglist,
                                                     server=self.server,
                                                     status=Newsletter.WAITING)
-        self.newsletter.test_contacts.add(*self.contacts[:2])
-
+        self.newsletter.test_contacts.add(*self.contacts[:2])        
+        self.attachment = Attachment.objects.create(newsletter=self.newsletter,
+                                                    title='Test attachment',
+                                                    file_attachment=File(NamedTemporaryFile()))
+        
 
     def test_expedition_list(self):
         mailer = Mailer(self.newsletter, test=True)
@@ -289,7 +292,6 @@ class MailerTestCase(TestCase):
     def test_run(self):
         mailer = Mailer(self.newsletter)
         mailer.smtp = FakeSMTP()
-        mailer.build_email_content = fake_email_content
         mailer.run()
         self.assertEquals(mailer.smtp.mails_sent, 4)
         self.assertEquals(ContactMailingStatus.objects.filter(
@@ -297,7 +299,6 @@ class MailerTestCase(TestCase):
 
         mailer = Mailer(self.newsletter, test=True)
         mailer.smtp = FakeSMTP()
-        mailer.build_email_content = fake_email_content
 
         mailer.run()
         self.assertEquals(mailer.smtp.mails_sent, 2)
@@ -330,7 +331,6 @@ class MailerTestCase(TestCase):
 
         mailer = Mailer(self.newsletter)
         mailer.smtp = FakeSMTP()
-        mailer.build_email_content = fake_email_content
         mailer.run()
 
         self.assertEquals(mailer.smtp.mails_sent, 2)
@@ -343,7 +343,6 @@ class MailerTestCase(TestCase):
 
         mailer = Mailer(self.newsletter)
         mailer.smtp = FakeSMTP()
-        mailer.build_email_content = fake_email_content
         mailer.run()
         
         self.assertEquals(mailer.smtp.mails_sent, 2)
@@ -365,7 +364,6 @@ class MailerTestCase(TestCase):
             status=ContactMailingStatus.INVALID, newsletter=self.newsletter).count(), 0)
 
         mailer = Mailer(self.newsletter, test=True)
-        mailer.build_email_content = fake_email_content
         mailer.run()
 
         self.assertEquals(Contact.objects.get(email='thisisaninvalidemail').valid, False)
@@ -691,3 +689,15 @@ class StatisticsTestCase(TestCase):
         self.assertEquals(stats['unique_openings_percent'], 75)
         self.assertEquals(stats['unknow_openings'], 1)
         self.assertEquals(stats['unknow_openings_percent'], 25.0)
+
+    def test_get_newsletter_statistics_division_by_zero(self):
+        """Try to have a ZeroDivisionError by unsubscribing all contacts,
+        and creating a ContactMailingStatus for more code coverage.
+        Bug : http://github.com/Fantomas42/emencia-django-newsletter/issues#issue/9"""
+        stats = get_newsletter_statistics(self.newsletter)
+        
+        self.mailinglist.unsubscribers.add(*self.contacts)
+        ContactMailingStatus.objects.create(newsletter=self.newsletter,
+                                            contact=self.contacts[0],
+                                            status=ContactMailingStatus.OPENED)
+        stats = get_newsletter_statistics(self.newsletter)
