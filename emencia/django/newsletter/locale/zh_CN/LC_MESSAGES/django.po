@@ -177,83 +177,83 @@ msgstr "在这里编辑你的简报"
 
 #: models.py:203
 msgid "test contacts"
-msgstr ""
+msgstr "测试接触"
 
 #: models.py:206
 msgid "smtp server"
-msgstr ""
+msgstr "邮件传输协议服务"
 
 #: models.py:208
 msgid "sender"
-msgstr ""
+msgstr "发送人"
 
 #: models.py:210
 msgid "reply to"
-msgstr ""
+msgstr "回复"
 
 #: models.py:213 models.py:310
 msgid "status"
-msgstr ""
+msgstr "状态"
 
 #: models.py:214
 msgid "sending date"
-msgstr ""
+msgstr "发送日期"
 
 #: models.py:216
 msgid "Used for displaying the newsletter on the site."
-msgstr ""
+msgstr "用于在这个位置显示简报"
 
 #: models.py:240 models.py:271 models.py:308
 msgid "newsletter"
-msgstr ""
+msgstr "通迅;简报"
 
 #: models.py:241 models.py:335
 msgid "newsletters"
-msgstr ""
+msgstr "通迅;简报"
 
 #: models.py:242
 msgid "Can change status"
-msgstr ""
+msgstr "能改变状态"
 
 #: models.py:248
 msgid "url"
-msgstr ""
+msgstr "互联网地址"
 
 #: models.py:260 models.py:311
 msgid "link"
-msgstr ""
+msgstr "连接"
 
 #: models.py:261
 msgid "links"
-msgstr ""
+msgstr "链接"
 
 #: models.py:273
 msgid "file to attach"
-msgstr ""
+msgstr "附上文件"
 
 #: models.py:277
 msgid "attachment"
-msgstr ""
+msgstr "附件"
 
 #: models.py:278
 msgid "attachments"
-msgstr ""
+msgstr "附件"
 
 #: models.py:298
 msgid "sent in test"
-msgstr ""
+msgstr "发送试验"
 
 #: models.py:300
 msgid "error"
-msgstr ""
+msgstr "错误"
 
 #: models.py:301
 msgid "invalid email"
-msgstr ""
+msgstr "无效邮件"
 
 #: models.py:302
 msgid "opened"
-msgstr ""
+msgstr "已打开的"
 
 #: models.py:303
 msgid "opened on site"
