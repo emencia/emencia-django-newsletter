@@ -2,8 +2,7 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-#, fuzzy
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
@@ -18,83 +17,83 @@ msgstr ""
 
 #: forms.py:18
 msgid "Email"
-msgstr ""
+msgstr "电子邮件"
 
 #: forms.py:41
 msgid "Mailing lists"
-msgstr ""
+msgstr "邮件表"
 
 #: models.py:38 models.py:149 models.py:328
 msgid "name"
-msgstr ""
+msgstr "姓名"
 
 #: models.py:39
 msgid "server host"
-msgstr ""
+msgstr "服务器主机"
 
 #: models.py:40
 msgid "server user"
-msgstr ""
+msgstr "服务器用户"
 
 #: models.py:41 models.py:43
 msgid "Leave it empty if the host is public."
-msgstr ""
+msgstr "如果主机是公用的则清空"
 
 #: models.py:42
 msgid "server password"
-msgstr ""
+msgstr "服务器密码"
 
 #: models.py:44
 msgid "server port"
-msgstr ""
+msgstr "服务器端口"
 
 #: models.py:45
 msgid "server use TLS"
-msgstr ""
+msgstr "服务器使用的传输层协议"
 
 #: models.py:47
 msgid "custom headers"
-msgstr ""
+msgstr "自定义页头"
 
 #: models.py:48
 msgid "key1: value1 key2: value2, splitted by return line."
-msgstr ""
+msgstr "键1:值1:键2:值2:按行均分"
 
 #: models.py:49
 msgid "mails per hour"
-msgstr ""
+msgstr "每小时邮件数"
 
 #: models.py:91
 msgid "SMTP server"
-msgstr ""
+msgstr "电子邮件传输服务器"
 
 #: models.py:92
 msgid "SMTP servers"
-msgstr ""
+msgstr "电子邮件传输服务器群"
 
 #: models.py:97 views/statistics.py:73
 msgid "email"
-msgstr ""
+msgstr "电子邮件"
 
 #: models.py:98 views/statistics.py:72
 msgid "first name"
-msgstr ""
+msgstr "名"
 
 #: models.py:99 views/statistics.py:72
 msgid "last name"
-msgstr ""
+msgstr "姓"
 
 #: models.py:101
 msgid "subscriber"
-msgstr ""
+msgstr "用户"
 
 #: models.py:102
 msgid "valid email"
-msgstr ""
+msgstr "有效的电子邮件"
 
 #: models.py:103
 msgid "contact tester"
-msgstr ""
+msgstr "接触试验"
 
 #: models.py:104
 msgid "tags"
