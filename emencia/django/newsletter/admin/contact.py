@@ -91,7 +91,7 @@ class ContactAdmin(admin.ModelAdmin):
         new_mailing.subscribers = queryset.all()
 
         if not request.user.is_superuser:
-            for workgroup in request_workgroup(request):
+            for workgroup in request_workgroups(request):
                 workgroup.mailinglists.add(new_mailing)
 
         self.message_user(request, _('%s succesfully created.') % new_mailing)
