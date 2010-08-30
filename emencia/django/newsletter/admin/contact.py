@@ -13,6 +13,7 @@ from django.contrib.admin.views.main import ChangeList
 from emencia.django.newsletter.models import Contact
 from emencia.django.newsletter.models import WorkGroup
 from emencia.django.newsletter.models import MailingList
+from emencia.django.newsletter.settings import USE_WORKGROUPS
 from emencia.django.newsletter.utils.workgroups import request_workgroups
 from emencia.django.newsletter.utils.workgroups import request_workgroups_contacts_pk
 from emencia.django.newsletter.utils.vcard import vcard_contacts_import
@@ -37,7 +38,7 @@ class ContactAdmin(admin.ModelAdmin):
 
     def queryset(self, request):
         queryset = super(ContactAdmin, self).queryset(request)
-        if not request.user.is_superuser:
+        if not request.user.is_superuser and USE_WORKGROUPS:
             contacts_pk = request_workgroups_contacts_pk(request)
             queryset = queryset.filter(pk__in=contacts_pk)
         return queryset

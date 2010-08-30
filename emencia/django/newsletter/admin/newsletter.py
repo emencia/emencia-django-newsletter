@@ -11,6 +11,7 @@ from emencia.django.newsletter.models import Newsletter
 from emencia.django.newsletter.models import Attachment
 from emencia.django.newsletter.models import MailingList
 from emencia.django.newsletter.mailer import Mailer
+from emencia.django.newsletter.settings import USE_WORKGROUPS
 from emencia.django.newsletter.utils.workgroups import request_workgroups
 from emencia.django.newsletter.utils.workgroups import request_workgroups_contacts_pk
 from emencia.django.newsletter.utils.workgroups import request_workgroups_newsletters_pk
@@ -54,7 +55,7 @@ class NewsletterAdmin(admin.ModelAdmin):
 
     def queryset(self, request):
         queryset = super(NewsletterAdmin, self).queryset(request)
-        if not request.user.is_superuser:
+        if not request.user.is_superuser and USE_WORKGROUPS:
             newsletters_pk = request_workgroups_newsletters_pk(request)
             queryset = queryset.filter(pk__in=newsletters_pk)
         return queryset

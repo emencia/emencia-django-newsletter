@@ -10,6 +10,7 @@ from django.http import HttpResponseRedirect
 
 from emencia.django.newsletter.models import Contact
 from emencia.django.newsletter.models import MailingList
+from emencia.django.newsletter.settings import USE_WORKGROUPS
 from emencia.django.newsletter.utils.workgroups import request_workgroups
 from emencia.django.newsletter.utils.workgroups import request_workgroups_contacts_pk
 from emencia.django.newsletter.utils.workgroups import request_workgroups_mailinglists_pk
@@ -34,7 +35,7 @@ class MailingListAdmin(admin.ModelAdmin):
 
     def queryset(self, request):
         queryset = super(MailingListAdmin, self).queryset(request)
-        if not request.user.is_superuser:
+        if not request.user.is_superuser and USE_WORKGROUPS:
             mailinglists_pk = request_workgroups_mailinglists_pk(request)
             queryset = queryset.filter(pk__in=mailinglists_pk)
         return queryset
