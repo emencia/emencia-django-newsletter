@@ -68,7 +68,7 @@ def view_newsletter_report(request, slug):
     links = set([s.link for s in status.exclude(link=None)])
 
     def header_line(links):
-        link_cols = [link.title for link in links]
+        link_cols = [smart_str(link.title) for link in links]
         return [smart_str(_('first name')), smart_str(_('last name')),
                 smart_str(_('email')), smart_str(_('openings'))] + link_cols
 
