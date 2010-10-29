@@ -16,21 +16,72 @@
 
 {% block content %}
 <div id="content-main">
-  <p>Importez les contacts de votre client mail favoris, en fournissant un fichier VCard.</p>
-    <form action="." method="post" enctype="multipart/form-data">
+
+  <form action="." method="post" enctype="multipart/form-data">
+    {% csrf_token %}
     <div>
       <fieldset class="module aligned">
+        <h2>{% trans "Excel" %}</h2>
         <div class="form-row source">
           <div>
-            <label for="id_source" class="required">Fichier VCard (.cvf) :</label>
+            <label for="id_source" class="required">{% trans "Excel file (.xls)" %} :</label>
+            <input name="type" value="excel" type="hidden" />
             <input name="source" id="id_source" type="file" class="vTextField" />
           </div>
+          <p class="help">{% trans "Import contacts from a Excel file." %}<br />
+            {% trans "Columns are [email][last name][first name][tags]." %}<br />
+            {% trans "All columns are optionnal excepting the email." %}
+          </p>
         </div>
       </fieldset>
       <div class="submit-row">
-        <input type="submit" class="default" value="Importation" />
+        <input type="submit" class="default" value="{% trans "Import" %}" />
       </div>
     </div>
   </form>
+
+  <form action="." method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div>
+      <fieldset class="module aligned">
+        <h2>{% trans "Text" %}</h2>
+        <div class="form-row source">
+          <div>
+            <label for="id_source" class="required">{% trans "Text file (.txt, .csv)" %} :</label>
+            <input name="type" value="text" type="hidden" />
+            <input name="source" id="id_source" type="file" class="vTextField" />
+          </div>
+          <p class="help">{% trans "Import contacts from a text file, or a CSV file." %}<br />
+            {% trans "Columns are [email][last name][first name][tags], splitted by a dot coma." %}<br />
+            {% trans "All columns are optionnal excepting the email." %}
+          </p>
+        </div>
+      </fieldset>
+      <div class="submit-row">
+        <input type="submit" class="default" value="{% trans "Import" %}" />
+      </div>
+    </div>
+  </form>
+
+  <form action="." method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div>
+      <fieldset class="module aligned">
+        <h2>{% trans "VCard" %}</h2>
+        <div class="form-row source">
+          <div>
+            <label for="id_source" class="required">{% trans "VCard file (.cvf)" %} :</label>
+            <input name="type" value="vcard" type="hidden" />
+            <input name="source" id="id_source" type="file" class="vTextField" />
+          </div>
+          <p class="help">{% trans "Import contacts from your favorite mail client, by providing a VCard file." %}</p>
+        </div>
+      </fieldset>
+      <div class="submit-row">
+        <input type="submit" class="default" value="{% trans "Import" %}" />
+      </div>
+    </div>
+  </form>
+
 </div>
 {% endblock %}

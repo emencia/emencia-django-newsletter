@@ -47,7 +47,7 @@ $(document).ready(function() {
   {% if has_add_permission %}
   <li>
     <a href="import/{% if is_popup %}?_popup=1{% endif %}" class="addlink">
-      {% blocktrans with cl.opts.verbose_name as name %}Import {{ name }}{% endblocktrans %}
+      {% blocktrans with cl.opts.verbose_name as name %}Import {{ name }}s{% endblocktrans %}
     </a>
   </li>
   <li>

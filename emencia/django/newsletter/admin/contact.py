@@ -14,9 +14,9 @@ from emencia.django.newsletter.models import Contact
 from emencia.django.newsletter.models import WorkGroup
 from emencia.django.newsletter.models import MailingList
 from emencia.django.newsletter.settings import USE_WORKGROUPS
+from emencia.django.newsletter.utils.importation import import_dispatcher
 from emencia.django.newsletter.utils.workgroups import request_workgroups
 from emencia.django.newsletter.utils.workgroups import request_workgroups_contacts_pk
-from emencia.django.newsletter.utils.vcard import vcard_contacts_import
 from emencia.django.newsletter.utils.vcard import vcard_contacts_export_response
 from emencia.django.newsletter.utils.excel import ExcelResponse
 
@@ -106,10 +106,10 @@ class ContactAdmin(admin.ModelAdmin):
 
         if request.FILES:
             source = request.FILES.get('source')
-            inserted = vcard_contacts_import(source, request_workgroups(request))
+            inserted = import_dispatcher(source, request.POST['type'], request_workgroups(request))
             self.message_user(request, _('%s contacts succesfully imported.') % inserted)
 
-        context = {'title': _('VCard import'),
+        context = {'title': _('Contact importation'),
                    'opts': opts,
                    'root_path': self.admin_site.root_path,
                    'app_label': opts.app_label}
