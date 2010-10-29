@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-06-13 11:51+0200\n"
+"POT-Creation-Date: 2010-10-29 14:37+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -289,166 +289,166 @@ msgstr ""
 msgid "workgroups"
 msgstr ""
 
-#: admin/contact.py:30 templates/newsletter/newsletter_statistics.html:186
+#: admin/contact.py:31 templates/newsletter/newsletter_statistics.html:186
 msgid "Status"
 msgstr ""
 
-#: admin/contact.py:31
+#: admin/contact.py:32
 msgid "Advanced"
 msgstr ""
 
-#: admin/contact.py:62
+#: admin/contact.py:63
 msgid "No relative object"
 msgstr ""
 
-#: admin/contact.py:64
+#: admin/contact.py:65
 msgid "Related object"
 msgstr ""
 
-#: admin/contact.py:71
+#: admin/contact.py:72
 msgid "Total subscriptions"
 msgstr ""
 
-#: admin/contact.py:76
+#: admin/contact.py:77
 msgid "Export contacts as VCard"
 msgstr ""
 
-#: admin/contact.py:83
+#: admin/contact.py:84
 msgid "Export contacts in Excel"
-msgstr ""
-
-#: admin/contact.py:88
-#, python-format
-msgid "New mailinglist at %s"
 msgstr ""
 
 #: admin/contact.py:89
 #, python-format
+msgid "New mailinglist at %s"
+msgstr ""
+
+#: admin/contact.py:90
+#, python-format
 msgid "New mailing list created in admin at %s"
 msgstr ""
 
-#: admin/contact.py:97
+#: admin/contact.py:98
 #, python-format
 msgid "%s succesfully created."
 msgstr ""
 
-#: admin/contact.py:100
+#: admin/contact.py:101
 msgid "Create a mailinglist"
 msgstr ""
 
-#: admin/contact.py:109
+#: admin/contact.py:110
 #, python-format
 msgid "%s contacts succesfully imported."
 msgstr ""
 
-#: admin/contact.py:111
-msgid "VCard import"
+#: admin/contact.py:112
+msgid "Contact importation"
 msgstr ""
 
-#: admin/mailinglist.py:60
+#: admin/mailinglist.py:61
 msgid "Please select a least 2 mailing list."
-msgstr ""
-
-#: admin/mailinglist.py:72
-#, python-format
-msgid "Merging list at %s"
 msgstr ""
 
 #: admin/mailinglist.py:73
 #, python-format
+msgid "Merging list at %s"
+msgstr ""
+
+#: admin/mailinglist.py:74
+#, python-format
 msgid "Mailing list created by merging at %s"
 msgstr ""
 
-#: admin/mailinglist.py:78
+#: admin/mailinglist.py:79
 #, python-format
 msgid "%s succesfully created by merging."
 msgstr ""
 
-#: admin/mailinglist.py:81
+#: admin/mailinglist.py:82
 msgid "Merge selected mailinglists"
 msgstr ""
 
-#: admin/mailinglist.py:86
+#: admin/mailinglist.py:87
 msgid "Export Subscribers"
 msgstr ""
 
-#: admin/mailinglist.py:88
+#: admin/mailinglist.py:89
 msgid "Export"
 msgstr ""
 
-#: admin/newsletter.py:36
+#: admin/newsletter.py:37
 msgid "Receivers"
 msgstr ""
 
-#: admin/newsletter.py:37
+#: admin/newsletter.py:38
 msgid "Sending"
 msgstr ""
 
-#: admin/newsletter.py:38 admin/smtpserver.py:12
+#: admin/newsletter.py:39 admin/smtpserver.py:12
 msgid "Miscellaneous"
 msgstr ""
 
-#: admin/newsletter.py:74
+#: admin/newsletter.py:75
 msgid "Default"
 msgstr ""
 
-#: admin/newsletter.py:98
+#: admin/newsletter.py:99
 msgid "Unable to download HTML, due to errors within."
 msgstr ""
 
-#: admin/newsletter.py:111
+#: admin/newsletter.py:112
 msgid "View historic"
 msgstr ""
 
-#: admin/newsletter.py:112 admin/newsletter.py:121
+#: admin/newsletter.py:113 admin/newsletter.py:122
 msgid "Not available"
 msgstr ""
 
-#: admin/newsletter.py:114
+#: admin/newsletter.py:115
 msgid "Historic"
 msgstr ""
 
-#: admin/newsletter.py:120
+#: admin/newsletter.py:121
 msgid "View statistics"
 msgstr ""
 
-#: admin/newsletter.py:123
+#: admin/newsletter.py:124
 msgid "Statistics"
 msgstr ""
 
-#: admin/newsletter.py:133
+#: admin/newsletter.py:134
 msgid "Unable send newsletter, due to errors within HTML."
 msgstr ""
 
-#: admin/newsletter.py:135
+#: admin/newsletter.py:136
 #, python-format
 msgid "%s succesfully sent."
 msgstr ""
 
-#: admin/newsletter.py:137
+#: admin/newsletter.py:138
 #, python-format
 msgid "No test contacts assigned for %s."
 msgstr ""
 
-#: admin/newsletter.py:138
+#: admin/newsletter.py:139
 msgid "Send test email"
 msgstr ""
 
-#: admin/newsletter.py:146
+#: admin/newsletter.py:147
 #, python-format
 msgid "%s newletters are ready to send"
 msgstr ""
 
-#: admin/newsletter.py:147
+#: admin/newsletter.py:148
 msgid "Make ready to send"
 msgstr ""
 
-#: admin/newsletter.py:156
+#: admin/newsletter.py:157
 #, python-format
 msgid "%s newletters are cancelled"
 msgstr ""
 
-#: admin/newsletter.py:157
+#: admin/newsletter.py:158
 msgid "Cancel the sending"
 msgstr ""
 
@@ -483,7 +483,7 @@ msgstr ""
 
 #: templates/admin/newsletter/contact/change_list.html:50
 #, python-format
-msgid "Import %(name)s"
+msgid "Import %(name)ss"
 msgstr ""
 
 #: templates/admin/newsletter/contact/change_list.html:55
@@ -506,6 +506,63 @@ msgstr ""
 
 #: templates/newsletter/contact_import.html:10
 msgid "Importation"
+msgstr ""
+
+#: templates/newsletter/contact_import.html:24
+msgid "Excel"
+msgstr ""
+
+#: templates/newsletter/contact_import.html:27
+msgid "Excel file (.xls)"
+msgstr ""
+
+#: templates/newsletter/contact_import.html:31
+msgid "Import contacts from a Excel file."
+msgstr ""
+
+#: templates/newsletter/contact_import.html:32
+msgid "Columns are [email][last name][first name][tags]."
+msgstr ""
+
+#: templates/newsletter/contact_import.html:33
+#: templates/newsletter/contact_import.html:56
+msgid "All columns are optionnal excepting the email."
+msgstr ""
+
+#: templates/newsletter/contact_import.html:38
+#: templates/newsletter/contact_import.html:61
+#: templates/newsletter/contact_import.html:81
+msgid "Import"
+msgstr ""
+
+#: templates/newsletter/contact_import.html:47
+msgid "Text"
+msgstr ""
+
+#: templates/newsletter/contact_import.html:50
+msgid "Text file (.txt, .csv)"
+msgstr ""
+
+#: templates/newsletter/contact_import.html:54
+msgid "Import contacts from a text file, or a CSV file."
+msgstr ""
+
+#: templates/newsletter/contact_import.html:55
+msgid ""
+"Columns are [email][last name][first name][tags], splitted by a dot coma."
+msgstr ""
+
+#: templates/newsletter/contact_import.html:70
+msgid "VCard"
+msgstr ""
+
+#: templates/newsletter/contact_import.html:73
+msgid "VCard file (.cvf)"
+msgstr ""
+
+#: templates/newsletter/contact_import.html:77
+msgid ""
+"Import contacts from your favorite mail client, by providing a VCard file."
 msgstr ""
 
 #: templates/newsletter/mailing_list_subscribe.html:4

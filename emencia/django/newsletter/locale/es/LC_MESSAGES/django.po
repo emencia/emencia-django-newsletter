@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: emencia-django-newsletter\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-09-28 11:57+0200\n"
+"POT-Creation-Date: 2010-10-29 14:37+0200\n"
 "PO-Revision-Date: 2010-09-28 13:06+0100\n"
 "Last-Translator: aaloy <aaloy@apsl.net>\n"
 "Language-Team: apsl <aaloy@apsl.net>\n"
@@ -24,9 +24,7 @@ msgstr "Correo"
 msgid "Mailing lists"
 msgstr "Listas de correo"
 
-#: models.py:38
-#: models.py:149
-#: models.py:328
+#: models.py:38 models.py:149 models.py:328
 msgid "name"
 msgstr "nombre"
 
@@ -38,8 +36,7 @@ msgstr "dirección del servidor"
 msgid "server user"
 msgstr "usuario del servidor"
 
-#: models.py:41
-#: models.py:43
+#: models.py:41 models.py:43
 msgid "Leave it empty if the host is public."
 msgstr "Dejar en blanco si el servidor es público"
 
@@ -75,18 +72,15 @@ msgstr "Servidor SMTP"
 msgid "SMTP servers"
 msgstr "Servidores SMTP"
 
-#: models.py:97
-#: views/statistics.py:73
+#: models.py:97 views/statistics.py:73
 msgid "email"
 msgstr "email"
 
-#: models.py:98
-#: views/statistics.py:72
+#: models.py:98 views/statistics.py:72
 msgid "first name"
 msgstr "nombre"
 
-#: models.py:99
-#: views/statistics.py:72
+#: models.py:99 views/statistics.py:72
 msgid "last name"
 msgstr "apellido"
 
@@ -106,17 +100,11 @@ msgstr "contacto de prueba"
 msgid "tags"
 msgstr "etiquetas"
 
-#: models.py:110
-#: models.py:158
-#: models.py:217
-#: models.py:250
-#: models.py:314
+#: models.py:110 models.py:158 models.py:217 models.py:250 models.py:314
 msgid "creation date"
 msgstr "fecha de creación"
 
-#: models.py:111
-#: models.py:159
-#: models.py:218
+#: models.py:111 models.py:159 models.py:218
 msgid "modification date"
 msgstr "fecha de modificación"
 
@@ -124,13 +112,11 @@ msgstr "fecha de modificación"
 msgid "mail format"
 msgstr "formato de email"
 
-#: models.py:144
-#: models.py:309
+#: models.py:144 models.py:309
 msgid "contact"
 msgstr "contacto"
 
-#: models.py:145
-#: models.py:331
+#: models.py:145 models.py:331
 msgid "contacts"
 msgstr "contactos"
 
@@ -138,23 +124,19 @@ msgstr "contactos"
 msgid "description"
 msgstr "descripción"
 
-#: models.py:152
-#: models.py:163
+#: models.py:152 models.py:163
 msgid "subscribers"
 msgstr "suscriptores"
 
-#: models.py:154
-#: models.py:167
+#: models.py:154 models.py:167
 msgid "unsubscribers"
 msgstr "desuscritos"
 
-#: models.py:179
-#: models.py:202
+#: models.py:179 models.py:202
 msgid "mailing list"
 msgstr "lista de correo"
 
-#: models.py:180
-#: models.py:333
+#: models.py:180 models.py:333
 msgid "mailing lists"
 msgstr "listas de correo"
 
@@ -170,8 +152,7 @@ msgstr "espere, enviando"
 msgid "sending"
 msgstr "enviando"
 
-#: models.py:194
-#: models.py:299
+#: models.py:194 models.py:299
 msgid "sent"
 msgstr "enviado"
 
@@ -179,9 +160,7 @@ msgstr "enviado"
 msgid "canceled"
 msgstr "cancelado"
 
-#: models.py:198
-#: models.py:247
-#: models.py:272
+#: models.py:198 models.py:247 models.py:272
 msgid "title"
 msgstr "titulo"
 
@@ -213,8 +192,7 @@ msgstr "emisor"
 msgid "reply to"
 msgstr "responder a"
 
-#: models.py:213
-#: models.py:310
+#: models.py:213 models.py:310
 msgid "status"
 msgstr "estado"
 
@@ -226,14 +204,11 @@ msgstr "fecha de envío"
 msgid "Used for displaying the newsletter on the site."
 msgstr "Utilizado para mostrar el boletín de noticias en el sitio web."
 
-#: models.py:240
-#: models.py:271
-#: models.py:308
+#: models.py:240 models.py:271 models.py:308
 msgid "newsletter"
 msgstr "boletín de noticias"
 
-#: models.py:241
-#: models.py:335
+#: models.py:241 models.py:335
 msgid "newsletters"
 msgstr "boletines de noticias"
 
@@ -245,8 +220,7 @@ msgstr "Puede cambiar el estado"
 msgid "url"
 msgstr "url"
 
-#: models.py:260
-#: models.py:311
+#: models.py:260 models.py:311
 msgid "link"
 msgstr "enlace"
 
@@ -314,8 +288,7 @@ msgstr "Grupo de Trabajo"
 msgid "workgroups"
 msgstr "Grupos de Trabajo"
 
-#: admin/contact.py:31
-#: templates/newsletter/newsletter_statistics.html:186
+#: admin/contact.py:31 templates/newsletter/newsletter_statistics.html:186
 msgid "Status"
 msgstr "Estado"
 
@@ -368,8 +341,9 @@ msgid "%s contacts succesfully imported."
 msgstr "%s contactos importados satisfactoriamente."
 
 #: admin/contact.py:112
-msgid "VCard import"
-msgstr "Importar VCard"
+#, fuzzy
+msgid "Contact importation"
+msgstr "Importación"
 
 #: admin/mailinglist.py:61
 msgid "Please select a least 2 mailing list."
@@ -410,8 +384,7 @@ msgstr "Receptores"
 msgid "Sending"
 msgstr "Enviando"
 
-#: admin/newsletter.py:39
-#: admin/smtpserver.py:12
+#: admin/newsletter.py:39 admin/smtpserver.py:12
 msgid "Miscellaneous"
 msgstr "Miscelánea"
 
@@ -427,8 +400,7 @@ msgstr "Imposible descargar el HTML dado que contiene errores."
 msgid "View historic"
 msgstr "Ver Historial"
 
-#: admin/newsletter.py:113
-#: admin/newsletter.py:122
+#: admin/newsletter.py:113 admin/newsletter.py:122
 msgid "Not available"
 msgstr "No están disponibles"
 
@@ -446,7 +418,8 @@ msgstr "Estadísticas"
 
 #: admin/newsletter.py:134
 msgid "Unable send newsletter, due to errors within HTML."
-msgstr "Imposible enviar el boletin de noticias dado que el HTML contiene errores."
+msgstr ""
+"Imposible enviar el boletin de noticias dado que el HTML contiene errores."
 
 #: admin/newsletter.py:136
 #, python-format
@@ -510,8 +483,8 @@ msgid "Actions"
 msgstr "Acciones"
 
 #: templates/admin/newsletter/contact/change_list.html:50
-#, python-format
-msgid "Import %(name)s"
+#, fuzzy, python-format
+msgid "Import %(name)ss"
 msgstr "Importar %(name)s"
 
 #: templates/admin/newsletter/contact/change_list.html:55
@@ -535,6 +508,65 @@ msgstr "Inicio"
 #: templates/newsletter/contact_import.html:10
 msgid "Importation"
 msgstr "Importación"
+
+#: templates/newsletter/contact_import.html:24
+msgid "Excel"
+msgstr ""
+
+#: templates/newsletter/contact_import.html:27
+msgid "Excel file (.xls)"
+msgstr ""
+
+#: templates/newsletter/contact_import.html:31
+#, fuzzy
+msgid "Import contacts from a Excel file."
+msgstr "Exportar contactos a Excel"
+
+#: templates/newsletter/contact_import.html:32
+msgid "Columns are [email][last name][first name][tags]."
+msgstr ""
+
+#: templates/newsletter/contact_import.html:33
+#: templates/newsletter/contact_import.html:56
+msgid "All columns are optionnal excepting the email."
+msgstr ""
+
+#: templates/newsletter/contact_import.html:38
+#: templates/newsletter/contact_import.html:61
+#: templates/newsletter/contact_import.html:81
+#, fuzzy
+msgid "Import"
+msgstr "Importación"
+
+#: templates/newsletter/contact_import.html:47
+msgid "Text"
+msgstr ""
+
+#: templates/newsletter/contact_import.html:50
+msgid "Text file (.txt, .csv)"
+msgstr ""
+
+#: templates/newsletter/contact_import.html:54
+msgid "Import contacts from a text file, or a CSV file."
+msgstr ""
+
+#: templates/newsletter/contact_import.html:55
+msgid ""
+"Columns are [email][last name][first name][tags], splitted by a dot coma."
+msgstr ""
+
+#: templates/newsletter/contact_import.html:70
+msgid "VCard"
+msgstr ""
+
+#: templates/newsletter/contact_import.html:73
+msgid "VCard file (.cvf)"
+msgstr ""
+
+#: templates/newsletter/contact_import.html:77
+msgid ""
+"Import contacts from your favorite mail client, by providing a VCard file."
+msgstr ""
 
 #: templates/newsletter/mailing_list_subscribe.html:4
 #: templates/newsletter/mailing_list_subscribe.html:7
@@ -592,8 +624,7 @@ msgstr "Acción"
 msgid "Broadcasting statistics"
 msgstr "Estadísticas de difusión"
 
-#: templates/newsletter/newsletter_statistics.html:83
-#: views/statistics.py:135
+#: templates/newsletter/newsletter_statistics.html:83 views/statistics.py:135
 msgid "Total openings"
 msgstr "Total abiertos"
 
@@ -622,8 +653,7 @@ msgstr "Operturas medias"
 msgid "Links statistics"
 msgstr "Estadísticas de Links"
 
-#: templates/newsletter/newsletter_statistics.html:119
-#: views/statistics.py:139
+#: templates/newsletter/newsletter_statistics.html:119 views/statistics.py:139
 msgid "Total clicked links"
 msgstr "Total de enlaces pulsados"
 
@@ -639,8 +669,7 @@ msgstr "Links pulsados por apertura"
 msgid "Clicked links average"
 msgstr "Media de enlaces pulsados"
 
-#: templates/newsletter/newsletter_statistics.html:146
-#: views/statistics.py:143
+#: templates/newsletter/newsletter_statistics.html:146 views/statistics.py:143
 msgid "Consultation histogram"
 msgstr "Consultación del histograma"
 
@@ -710,27 +739,39 @@ msgstr "#val# clicks"
 msgid "Historic of %s"
 msgstr "Historial de %s"
 
+#~ msgid "VCard import"
+#~ msgstr "Importar VCard"
+
 #, fuzzy
 #~ msgid "Subscription"
 #~ msgstr "desuscripción"
+
 #~ msgid "Contacts"
 #~ msgstr "Contactos"
+
 #~ msgid "Mailing List"
 #~ msgstr "Lista de Correo"
+
 #~ msgid "Mailing Lists"
 #~ msgstr "Listas de Correo"
+
 #~ msgid "Newsletter"
 #~ msgstr "Boletin de noticias"
+
 #~ msgid "Newsletters"
 #~ msgstr "Boletines de noticias"
+
 #~ msgid "Link"
 #~ msgstr "Enlace"
+
 #~ msgid "Links"
 #~ msgstr "Enlaces"
+
 #~ msgid "group"
 #~ msgstr "grupo"
+
 #~ msgid "Connection valid"
 #~ msgstr "Conexión valida"
+
 #~ msgid "Double openings"
 #~ msgstr "Suscriptores totales"
-
