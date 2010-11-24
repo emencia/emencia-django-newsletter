@@ -7,8 +7,10 @@ emencia.django.newsletter.egg-info/*
 lib/*
 bin/*
 eggs/*
+dist/*
 parts/*
 include/*
+uploads/*
 develop-eggs/*
 downloads/*
 src_eggs/*
