@@ -9,6 +9,7 @@ from django.template import RequestContext
 from django.utils.translation import ugettext as _
 from django.http import HttpResponseRedirect
 from django.contrib.admin.views.main import ChangeList
+import django.dispatch
 
 from emencia.django.newsletter.models import Contact
 from emencia.django.newsletter.models import WorkGroup
@@ -19,6 +20,10 @@ from emencia.django.newsletter.utils.workgroups import request_workgroups
 from emencia.django.newsletter.utils.workgroups import request_workgroups_contacts_pk
 from emencia.django.newsletter.utils.vcard import vcard_contacts_export_response
 from emencia.django.newsletter.utils.excel import ExcelResponse
+
+
+# Signal definition.
+contact_added = django.dispatch.Signal(providing_args=["source", "type"])
 
 class ContactAdmin(admin.ModelAdmin):
     date_hierarchy = 'creation_date'
@@ -107,6 +112,11 @@ class ContactAdmin(admin.ModelAdmin):
         if request.FILES:
             source = request.FILES.get('source')
             inserted = import_dispatcher(source, request.POST['type'], request_workgroups(request))
+
+            if inserted is not 0:
+                # Send the signal, only if some contacts have been added.
+                contact_added.send(sender=self, source=source, type=request.POST['type'])
+
             self.message_user(request, _('%s contacts succesfully imported.') % inserted)
 
         context = {'title': _('Contact importation'),
