@@ -48,16 +48,16 @@ class SMTPServerTestCase(TestCase):
         self.newsletter = Newsletter.objects.create(title='Test Newsletter',
                                                     content='Test Newsletter Content',
                                                     mailing_list=self.mailinglist,
-                                                    server=self.server)
+                                                    server=self.server, slug='test-nl')
 
         self.newsletter_2 = Newsletter.objects.create(title='Test Newsletter 2',
                                                       content='Test Newsletter 2 Content',
                                                       mailing_list=self.mailinglist,
-                                                      server=self.server)
+                                                      server=self.server, slug='test-nl-2')
         self.newsletter_3 = Newsletter.objects.create(title='Test Newsletter 2',
                                                       content='Test Newsletter 2 Content',
                                                       mailing_list=self.mailinglist,
-                                                      server=self.server_2)
+                                                      server=self.server_2, slug='test-nl-3')
 
     def test_credits(self):
         # Testing unlimited account
