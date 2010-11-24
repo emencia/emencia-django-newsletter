@@ -36,8 +36,11 @@ def excel_contacts_import(stream, workgroups=[]):
     for row in range(sh.nrows):
         defaults = {}
         for i in range(len(COLUMNS)):
-            value = sh.cell(row, i).value
-            defaults[COLUMNS[i]] = value
+            try:
+                value = sh.cell(row, i).value
+                defaults[COLUMNS[i]] = value
+            except IndexError:
+                break
         contact, created = Contact.objects.get_or_create(
             email=defaults['email'],
             defaults=defaults)
