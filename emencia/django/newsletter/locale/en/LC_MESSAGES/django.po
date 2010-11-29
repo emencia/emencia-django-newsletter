@@ -165,7 +165,7 @@ msgstr "Canceled"
 
 #: models.py:198 models.py:247 models.py:272
 msgid "title"
-msgstr "Ttitle"
+msgstr "Title"
 
 #: models.py:199
 msgid "content"
