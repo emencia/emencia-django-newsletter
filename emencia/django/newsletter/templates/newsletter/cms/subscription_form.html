@@ -1,0 +1,22 @@
+{% load i18n %}
+{% if object.title %}
+<h2>{{ object.title }}</h2>
+{% endif %}
+{% if form.saved %}
+<p>
+	{% trans "You have successfully subscribed to the mailing list!" %}
+</p>
+{% else %}
+{% if object.show_description and object.mailing_list.description %}
+<p class="mailingListDescription">
+	{{ object.mailing_list.description }}
+</p>
+{% endif %}
+<form action="{{ request.path }}" method="post" id="NewsletterForm">
+	{% csrf_token %}
+	{{ form.as_p }}
+	<input type="hidden" name="{{ form_name }}" value="1" />
+	<input type="submit" name="submit" value="{% trans 'Subscribe' %}" />  
+</form>
+{% endif %}
+
