@@ -275,7 +275,7 @@ class Attachment(models.Model):
 
     newsletter = models.ForeignKey(Newsletter, verbose_name=_('newsletter'))
     title = models.CharField(_('title'), max_length=255)
-    file_attachment = models.FileField(_('file to attach'),
+    file_attachment = models.FileField(_('file to attach'), max_length=255,
                                        upload_to=get_newsletter_storage_path)
 
     class Meta:
