@@ -71,6 +71,9 @@ class Mailer(object):
                 status = ContactMailingStatus.INVALID
                 contact.valid = False
                 contact.save()
+            except SMTPServerDisconnected, e:
+                self.smtp_connect()
+                status = ContactMailingStatus.ERROR
             except:
                 status = ContactMailingStatus.ERROR
 
