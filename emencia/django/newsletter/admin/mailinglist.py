@@ -97,6 +97,7 @@ class MailingListAdmin(admin.ModelAdmin):
     def get_urls(self):
         urls = super(MailingListAdmin, self).get_urls()
         my_urls = patterns('',
-                           url(r'^export/(?P<mailinglist_id>\d+)/$', self.export_subscribers,
+                           url(r'^export/(?P<mailinglist_id>\d+)/$',
+                               self.admin_site.admin_view(self.export_subscribers),
                                name='newsletter_mailinglist_export'),)
         return my_urls + urls
