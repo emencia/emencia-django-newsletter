@@ -63,7 +63,7 @@ class SMTPServer(models.Model):
     def credits(self):
         """Return how many mails the server can send"""
         if not self.mails_hour:
-            return 1000 # Arbitrary value
+            return 10000 # Arbitrary value
 
         last_hour = datetime.now() - timedelta(hours=1)
         sent_last_hour = ContactMailingStatus.objects.filter(
