@@ -28,6 +28,7 @@ BAR_COLOR_2 = '#ff3333'
 BAR_COLOR_3 = '#9459b4'
 BAR_COLOR_4 = '#5eca71'
 
+
 def get_statistics_period(newsletter):
     status = ContactMailingStatus.objects.filter(Q(status=ContactMailingStatus.OPENED) |
                                                  Q(status=ContactMailingStatus.OPENED_ON_SITE) |
@@ -43,6 +44,7 @@ def get_statistics_period(newsletter):
         period.append(start_date + timedelta(days=i))
     return period
 
+
 @login_required
 def view_newsletter_statistics(request, slug):
     """Display the statistics of a newsletters"""
@@ -55,10 +57,11 @@ def view_newsletter_statistics(request, slug):
                'object_id': newsletter.pk,
                'app_label': opts.app_label,
                'stats': get_newsletter_statistics(newsletter),
-               'period': get_statistics_period(newsletter),}
+               'period': get_statistics_period(newsletter)}
 
     return render_to_response('newsletter/newsletter_statistics.html',
                               context, context_instance=RequestContext(request))
+
 
 @login_required
 def view_newsletter_report(request, slug):
@@ -92,6 +95,7 @@ def view_newsletter_report(request, slug):
 
     return response
 
+
 @login_required
 def view_newsletter_density(request, slug):
     newsletter = get_object_or_404(Newsletter, slug=slug)
@@ -102,6 +106,7 @@ def view_newsletter_density(request, slug):
 
     return render_to_response('newsletter/newsletter_density.html',
                               context, context_instance=RequestContext(request))
+
 
 @login_required
 def view_newsletter_charts(request, slug):
@@ -129,7 +134,6 @@ def view_newsletter_charts(request, slug):
         # Values
         openings_by_day.append(opening_stats['total_openings'])
         clicks_by_day.append(click_stats['total_clicked_links'])
-
 
     b1 = Chart(type='bar_3d', colour=BAR_COLOR_1,
                text=_('Total openings'), tip=_('#val# openings'),

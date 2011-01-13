@@ -3,7 +3,6 @@ from HTMLParser import HTMLParseError
 
 from django.db.models import Q
 from django.contrib import admin
-from django.conf.urls.defaults import *
 from django.utils.translation import ugettext as _
 
 from emencia.django.newsletter.models import Contact
@@ -61,21 +60,21 @@ class NewsletterAdmin(admin.ModelAdmin):
         return queryset
 
     def formfield_for_foreignkey(self, db_field, request, **kwargs):
-       if db_field.name == 'mailing_list' and \
-              not request.user.is_superuser:
-           mailinglists_pk = request_workgroups_mailinglists_pk(request)
-           kwargs['queryset'] = MailingList.objects.filter(pk__in=mailinglists_pk)
-           return db_field.formfield(**kwargs)
-       return super(NewsletterAdmin, self).formfield_for_foreignkey(
-           db_field, request, **kwargs)
+        if db_field.name == 'mailing_list' and \
+               not request.user.is_superuser:
+            mailinglists_pk = request_workgroups_mailinglists_pk(request)
+            kwargs['queryset'] = MailingList.objects.filter(pk__in=mailinglists_pk)
+            return db_field.formfield(**kwargs)
+        return super(NewsletterAdmin, self).formfield_for_foreignkey(
+            db_field, request, **kwargs)
 
     def formfield_for_choice_field(self, db_field, request, **kwargs):
-       if db_field.name == 'status' and \
-              not request.user.has_perm('newsletter.can_change_status'):
-           kwargs['choices'] = ((Newsletter.DRAFT, _('Default')),)
-           return db_field.formfield(**kwargs)
-       return super(NewsletterAdmin, self).formfield_for_choice_field(
-           db_field, request, **kwargs)
+        if db_field.name == 'status' and \
+               not request.user.has_perm('newsletter.can_change_status'):
+            kwargs['choices'] = ((Newsletter.DRAFT, _('Default')),)
+            return db_field.formfield(**kwargs)
+        return super(NewsletterAdmin, self).formfield_for_choice_field(
+            db_field, request, **kwargs)
 
     def formfield_for_manytomany(self, db_field, request, **kwargs):
         if db_field.name == 'test_contacts':
@@ -156,4 +155,3 @@ class NewsletterAdmin(admin.ModelAdmin):
             newsletter.save()
         self.message_user(request, _('%s newletters are cancelled') % queryset.count())
     make_cancel_sending.short_description = _('Cancel the sending')
-

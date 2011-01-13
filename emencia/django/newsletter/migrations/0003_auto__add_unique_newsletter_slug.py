@@ -4,19 +4,16 @@ from south.db import db
 from south.v2 import SchemaMigration
 from django.db import models
 
+
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
-        
         # Adding unique constraint on 'Newsletter', fields ['slug']
         db.create_unique('newsletter_newsletter', ['slug'])
 
-
     def backwards(self, orm):
-        
         # Removing unique constraint on 'Newsletter', fields ['slug']
         db.delete_unique('newsletter_newsletter', ['slug'])
-
 
     models = {
         'auth.group': {

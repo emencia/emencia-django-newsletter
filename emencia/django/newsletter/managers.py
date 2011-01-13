@@ -1,6 +1,7 @@
 """Managers for emencia.django.newsletter"""
 from django.db import models
 
+
 class ContactManager(models.Manager):
     """Manager for the contacts"""
 
@@ -19,4 +20,3 @@ class ContactManager(models.Manager):
     def valid_subscribers(self):
         """Return only valid subscribers"""
         return self.subscribers().filter(valid=True)
-

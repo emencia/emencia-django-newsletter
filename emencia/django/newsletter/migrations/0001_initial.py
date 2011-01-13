@@ -1,12 +1,12 @@
-
 from south.db import db
 from django.db import models
 from emencia.django.newsletter.models import *
 
+
 class Migration:
-    
+
     def forwards(self, orm):
-        
+
         # Adding model 'MailingList'
         db.create_table('newsletter_mailinglist', (
             ('id', orm['newsletter.MailingList:id']),
@@ -16,7 +16,7 @@ class Migration:
             ('modification_date', orm['newsletter.MailingList:modification_date']),
         ))
         db.send_create_signal('newsletter', ['MailingList'])
-        
+
         # Adding model 'ContactMailingStatus'
         db.create_table('newsletter_contactmailingstatus', (
             ('id', orm['newsletter.ContactMailingStatus:id']),
@@ -27,7 +27,7 @@ class Migration:
             ('creation_date', orm['newsletter.ContactMailingStatus:creation_date']),
         ))
         db.send_create_signal('newsletter', ['ContactMailingStatus'])
-        
+
         # Adding model 'WorkGroup'
         db.create_table('newsletter_workgroup', (
             ('id', orm['newsletter.WorkGroup:id']),
@@ -35,7 +35,7 @@ class Migration:
             ('group', orm['newsletter.WorkGroup:group']),
         ))
         db.send_create_signal('newsletter', ['WorkGroup'])
-        
+
         # Adding model 'Link'
         db.create_table('newsletter_link', (
             ('id', orm['newsletter.Link:id']),
@@ -44,7 +44,7 @@ class Migration:
             ('creation_date', orm['newsletter.Link:creation_date']),
         ))
         db.send_create_signal('newsletter', ['Link'])
-        
+
         # Adding model 'Newsletter'
         db.create_table('newsletter_newsletter', (
             ('id', orm['newsletter.Newsletter:id']),
@@ -61,7 +61,7 @@ class Migration:
             ('modification_date', orm['newsletter.Newsletter:modification_date']),
         ))
         db.send_create_signal('newsletter', ['Newsletter'])
-        
+
         # Adding model 'SMTPServer'
         db.create_table('newsletter_smtpserver', (
             ('id', orm['newsletter.SMTPServer:id']),
@@ -75,7 +75,7 @@ class Migration:
             ('mails_hour', orm['newsletter.SMTPServer:mails_hour']),
         ))
         db.send_create_signal('newsletter', ['SMTPServer'])
-        
+
         # Adding model 'Contact'
         db.create_table('newsletter_contact', (
             ('id', orm['newsletter.Contact:id']),
@@ -92,94 +92,90 @@ class Migration:
             ('modification_date', orm['newsletter.Contact:modification_date']),
         ))
         db.send_create_signal('newsletter', ['Contact'])
-        
+
         # Adding ManyToManyField 'WorkGroup.mailinglists'
         db.create_table('newsletter_workgroup_mailinglists', (
             ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True)),
             ('workgroup', models.ForeignKey(orm.WorkGroup, null=False)),
             ('mailinglist', models.ForeignKey(orm.MailingList, null=False))
         ))
-        
+
         # Adding ManyToManyField 'MailingList.subscribers'
         db.create_table('newsletter_mailinglist_subscribers', (
             ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True)),
             ('mailinglist', models.ForeignKey(orm.MailingList, null=False)),
             ('contact', models.ForeignKey(orm.Contact, null=False))
         ))
-        
+
         # Adding ManyToManyField 'WorkGroup.contacts'
         db.create_table('newsletter_workgroup_contacts', (
             ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True)),
             ('workgroup', models.ForeignKey(orm.WorkGroup, null=False)),
             ('contact', models.ForeignKey(orm.Contact, null=False))
         ))
-        
+
         # Adding ManyToManyField 'WorkGroup.newsletters'
         db.create_table('newsletter_workgroup_newsletters', (
             ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True)),
             ('workgroup', models.ForeignKey(orm.WorkGroup, null=False)),
             ('newsletter', models.ForeignKey(orm.Newsletter, null=False))
         ))
-        
+
         # Adding ManyToManyField 'MailingList.unsubscribers'
         db.create_table('newsletter_mailinglist_unsubscribers', (
             ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True)),
             ('mailinglist', models.ForeignKey(orm.MailingList, null=False)),
             ('contact', models.ForeignKey(orm.Contact, null=False))
         ))
-        
+
         # Adding ManyToManyField 'Newsletter.test_contacts'
         db.create_table('newsletter_newsletter_test_contacts', (
             ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True)),
             ('newsletter', models.ForeignKey(orm.Newsletter, null=False)),
             ('contact', models.ForeignKey(orm.Contact, null=False))
         ))
-        
-    
-    
+
     def backwards(self, orm):
-        
+
         # Deleting model 'MailingList'
         db.delete_table('newsletter_mailinglist')
-        
+
         # Deleting model 'ContactMailingStatus'
         db.delete_table('newsletter_contactmailingstatus')
-        
+
         # Deleting model 'WorkGroup'
         db.delete_table('newsletter_workgroup')
-        
+
         # Deleting model 'Link'
         db.delete_table('newsletter_link')
-        
+
         # Deleting model 'Newsletter'
         db.delete_table('newsletter_newsletter')
-        
+
         # Deleting model 'SMTPServer'
         db.delete_table('newsletter_smtpserver')
-        
+
         # Deleting model 'Contact'
         db.delete_table('newsletter_contact')
-        
+
         # Dropping ManyToManyField 'WorkGroup.mailinglists'
         db.delete_table('newsletter_workgroup_mailinglists')
-        
+
         # Dropping ManyToManyField 'MailingList.subscribers'
         db.delete_table('newsletter_mailinglist_subscribers')
-        
+
         # Dropping ManyToManyField 'WorkGroup.contacts'
         db.delete_table('newsletter_workgroup_contacts')
-        
+
         # Dropping ManyToManyField 'WorkGroup.newsletters'
         db.delete_table('newsletter_workgroup_newsletters')
-        
+
         # Dropping ManyToManyField 'MailingList.unsubscribers'
         db.delete_table('newsletter_mailinglist_unsubscribers')
-        
+
         # Dropping ManyToManyField 'Newsletter.test_contacts'
         db.delete_table('newsletter_newsletter_test_contacts')
-        
-    
-    
+
     models = {
         'auth.group': {
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
@@ -272,5 +268,5 @@ class Migration:
             'newsletters': ('django.db.models.fields.related.ManyToManyField', [], {'to': "orm['newsletter.Newsletter']", 'null': 'True', 'blank': 'True'})
         }
     }
-    
+
     complete_apps = ['newsletter']

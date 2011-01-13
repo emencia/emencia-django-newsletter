@@ -2,7 +2,8 @@
 from datetime import datetime
 
 from django.contrib import admin
-from django.conf.urls.defaults import *
+from django.conf.urls.defaults import url
+from django.conf.urls.defaults import patterns
 from django.core.urlresolvers import reverse
 from django.shortcuts import get_object_or_404
 from django.utils.translation import ugettext as _
@@ -15,6 +16,7 @@ from emencia.django.newsletter.utils.workgroups import request_workgroups
 from emencia.django.newsletter.utils.workgroups import request_workgroups_contacts_pk
 from emencia.django.newsletter.utils.workgroups import request_workgroups_mailinglists_pk
 from emencia.django.newsletter.utils.vcard import vcard_contacts_export_response
+
 
 class MailingListAdmin(admin.ModelAdmin):
     date_hierarchy = 'creation_date'
@@ -29,7 +31,7 @@ class MailingListAdmin(admin.ModelAdmin):
                  (None, {'fields': ('subscribers',)}),
                  (None, {'fields': ('unsubscribers',)}),
                  )
-    actions = ['merge_mailinglist',]
+    actions = ['merge_mailinglist']
     actions_on_top = False
     actions_on_bottom = True
 
@@ -78,12 +80,13 @@ class MailingListAdmin(admin.ModelAdmin):
 
         self.message_user(request, _('%s succesfully created by merging.') % new_mailing)
         return HttpResponseRedirect(reverse('admin:newsletter_mailinglist_change',
-                                            args=[new_mailing.pk,]))
+                                            args=[new_mailing.pk]))
     merge_mailinglist.short_description = _('Merge selected mailinglists')
 
     def exportation_link(self, mailinglist):
         """Display link for exportation"""
-        return '<a href="%s">%s</a>' % (reverse('admin:newsletter_mailinglist_export', args=[mailinglist.pk,]),
+        return '<a href="%s">%s</a>' % (reverse('admin:newsletter_mailinglist_export',
+                                                args=[mailinglist.pk]),
                                         _('Export Subscribers'))
     exportation_link.allow_tags = True
     exportation_link.short_description = _('Export')

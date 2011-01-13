@@ -20,13 +20,14 @@ def view_mailinglist_unsubscribe(request, slug, uidb36, token):
         newsletter.mailing_list.unsubscribers.add(contact)
         newsletter.mailing_list.save()
         already_unsubscribed = True
-        log = ContactMailingStatus.objects.create(newsletter=newsletter, contact=contact,
-                                                  status=ContactMailingStatus.UNSUBSCRIPTION)
+        ContactMailingStatus.objects.create(newsletter=newsletter, contact=contact,
+                                            status=ContactMailingStatus.UNSUBSCRIPTION)
 
     return render_to_response('newsletter/mailing_list_unsubscribe.html',
                               {'email': contact.email,
                                'already_unsubscribed': already_unsubscribed},
                               context_instance=RequestContext(request))
+
 
 def view_mailinglist_subscribe(request, form_class, mailing_list_id=None):
     """
@@ -51,4 +52,3 @@ def view_mailinglist_subscribe(request, form_class, mailing_list_id=None):
                                'mailing_list': mailing_list,
                                'form': form},
                               context_instance=RequestContext(request))
-

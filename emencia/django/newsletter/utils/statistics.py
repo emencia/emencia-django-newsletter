@@ -3,6 +3,7 @@ from django.db.models import Q
 
 from emencia.django.newsletter.models import ContactMailingStatus as Status
 
+
 def smart_division(a, b):
     """Not a really smart division, but avoid
     to have ZeroDivisionError"""
@@ -11,13 +12,14 @@ def smart_division(a, b):
     except ZeroDivisionError:
         return 0.0
 
+
 def get_newsletter_opening_statistics(status, recipients):
     """Return opening statistics of a newsletter based on status"""
     openings = status.filter(Q(status=Status.OPENED) | Q(status=Status.OPENED_ON_SITE))
 
     openings_by_links_opened = len(set(status.filter(status=Status.LINK_OPENED).exclude(
         contact__in=openings.values_list('contact', flat=True)).values_list('contact', flat=True)))
-    
+
     total_openings = openings.count() + openings_by_links_opened
     if total_openings:
         unique_openings = len(set(openings.values_list('contact', flat=True))) + openings_by_links_opened
@@ -37,6 +39,7 @@ def get_newsletter_opening_statistics(status, recipients):
             'unknow_openings_percent': unknow_openings_percent,
             'opening_average': opening_average,
             'opening_deducted': openings_by_links_opened}
+
 
 def get_newsletter_on_site_opening_statistics(status):
     """Return on site opening statistics of a newsletter based on status"""
@@ -74,6 +77,7 @@ def get_newsletter_clicked_link_statistics(status, recipients, openings):
             'clicked_links_by_openings': clicked_links_by_openings,
             'clicked_links_average': clicked_links_average}
 
+
 def get_newsletter_unsubscription_statistics(status, recipients):
     unsubscriptions = status.filter(status=Status.UNSUBSCRIPTION)
 
@@ -84,23 +88,25 @@ def get_newsletter_unsubscription_statistics(status, recipients):
     return {'total_unsubscriptions': total_unsubscriptions,
             'total_unsubscriptions_percent': total_unsubscriptions_percent}
 
+
 def get_newsletter_top_links(status):
     """Return the most clicked links"""
     links = {}
     clicked_links = status.filter(status=Status.LINK_OPENED)
-    
+
     for cl in clicked_links:
         links.setdefault(cl.link, 0)
         links[cl.link] += 1
 
     top_links = []
-    for link, score in sorted(links.iteritems(), key=lambda (k,v): (v,k), reverse=True):
+    for link, score in sorted(links.iteritems(), key=lambda (k, v): (v, k), reverse=True):
         unique_clicks = len(set(clicked_links.filter(link=link).values_list('contact', flat=True)))
         top_links.append({'link': link,
                           'total_clicks': score,
                           'unique_clicks': unique_clicks})
-        
+
     return {'top_links': top_links}
+
 
 def get_newsletter_statistics(newsletter):
     """Return the statistics of a newsletter"""
@@ -122,5 +128,3 @@ def get_newsletter_statistics(newsletter):
     statistics.update(get_newsletter_top_links(post_sending_status))
 
     return statistics
-
-

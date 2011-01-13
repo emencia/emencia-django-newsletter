@@ -1,10 +1,11 @@
 """Utils for newsletter"""
 import urllib2
 
-from BeautifulSoup import BeautifulSoup, Tag
+from BeautifulSoup import BeautifulSoup
 from django.core.urlresolvers import reverse
 
 from emencia.django.newsletter.models import Link
+
 
 def get_webpage_content(url):
     """Return the content of the website
@@ -14,6 +15,7 @@ def get_webpage_content(url):
     soup = BeautifulSoup(page)
 
     return soup.body.prettify()
+
 
 def body_insertion(content, insertion, end=False):
     """Insert an HTML content into the body HTML node"""
@@ -26,6 +28,7 @@ def body_insertion(content, insertion, end=False):
     else:
         soup.body.insert(0, insertion)
     return soup.prettify()
+
 
 def track_links(content, context):
     """Convert all links in the template for the user
@@ -45,4 +48,3 @@ def track_links(content, context):
                                                                                     context['uidb36'], context['token'],
                                                                                     link.pk]))
     return soup.prettify()
-

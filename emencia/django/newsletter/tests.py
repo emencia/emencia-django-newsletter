@@ -25,14 +25,17 @@ from emencia.django.newsletter.utils.statistics import get_newsletter_clicked_li
 from emencia.django.newsletter.utils.statistics import get_newsletter_top_links
 from emencia.django.newsletter.utils.statistics import get_newsletter_statistics
 
+
 class FakeSMTP(object):
     mails_sent = 0
+
     def sendmail(self, *ka, **kw):
         self.mails_sent += 1
         return {}
 
     def quit(*ka, **kw):
         pass
+
 
 class SMTPServerTestCase(TestCase):
     """Tests for the SMTPServer model"""
@@ -61,7 +64,7 @@ class SMTPServerTestCase(TestCase):
 
     def test_credits(self):
         # Testing unlimited account
-        self.assertEquals(self.server.credits(), 1000)
+        self.assertEquals(self.server.credits(), 10000)
         # Testing default limit
         self.server.mails_hour = 42
         self.assertEquals(self.server.credits(), 42)
@@ -96,6 +99,7 @@ class SMTPServerTestCase(TestCase):
         self.server.headers = 'key_1: val_1\r\nkey_2   :   val_2'
         self.assertEquals(len(self.server.custom_headers), 2)
 
+
 class ContactTestCase(TestCase):
     """Tests for the Contact model"""
 
@@ -104,7 +108,7 @@ class ContactTestCase(TestCase):
         self.mailinglist_2 = MailingList.objects.create(name='Test MailingList 2')
 
     def test_unique(self):
-        contact = Contact(email='test@domain.com').save()
+        Contact(email='test@domain.com').save()
         self.assertRaises(IntegrityError, Contact(email='test@domain.com').save)
 
     def test_mail_format(self):
@@ -185,6 +189,7 @@ class NewsletterTestCase(TestCase):
                                                     content='Test Newsletter Content',
                                                     mailing_list=self.mailinglist,
                                                     server=self.server)
+
     def test_mails_sent(self):
         self.assertEquals(self.newsletter.mails_sent(), 0)
         ContactMailingStatus.objects.create(newsletter=self.newsletter,
@@ -208,6 +213,7 @@ class TokenizationTestCase(TestCase):
         self.assertRaises(Http404, untokenize, 'toto', token)
         self.assertRaises(Http404, untokenize, uidb36, 'toto')
 
+
 class MailerTestCase(TestCase):
     """Tests for the Mailer object"""
 
@@ -218,7 +224,7 @@ class MailerTestCase(TestCase):
         self.contacts = [Contact.objects.create(email='test1@domain.com'),
                          Contact.objects.create(email='test2@domain.com'),
                          Contact.objects.create(email='test3@domain.com'),
-                         Contact.objects.create(email='test4@domain.com'),]
+                         Contact.objects.create(email='test4@domain.com')]
         self.mailinglist = MailingList.objects.create(name='Test MailingList')
         self.mailinglist.subscribers.add(*self.contacts)
         self.newsletter = Newsletter.objects.create(title='Test Newsletter',
@@ -227,11 +233,10 @@ class MailerTestCase(TestCase):
                                                     mailing_list=self.mailinglist,
                                                     server=self.server,
                                                     status=Newsletter.WAITING)
-        self.newsletter.test_contacts.add(*self.contacts[:2])        
+        self.newsletter.test_contacts.add(*self.contacts[:2])
         self.attachment = Attachment.objects.create(newsletter=self.newsletter,
                                                     title='Test attachment',
                                                     file_attachment=File(NamedTemporaryFile()))
-        
 
     def test_expedition_list(self):
         mailer = Mailer(self.newsletter, test=True)
@@ -344,7 +349,7 @@ class MailerTestCase(TestCase):
         mailer = Mailer(self.newsletter)
         mailer.smtp = FakeSMTP()
         mailer.run()
-        
+
         self.assertEquals(mailer.smtp.mails_sent, 2)
         self.assertEquals(ContactMailingStatus.objects.filter(
             status=ContactMailingStatus.SENT, newsletter=self.newsletter).count(), 4)
@@ -370,6 +375,7 @@ class MailerTestCase(TestCase):
         self.assertEquals(ContactMailingStatus.objects.filter(
             status=ContactMailingStatus.INVALID, newsletter=self.newsletter).count(), 1)
 
+
 class StatisticsTestCase(TestCase):
     """Tests for the statistics functions"""
 
@@ -379,7 +385,7 @@ class StatisticsTestCase(TestCase):
         self.contacts = [Contact.objects.create(email='test1@domain.com'),
                          Contact.objects.create(email='test2@domain.com'),
                          Contact.objects.create(email='test3@domain.com'),
-                         Contact.objects.create(email='test4@domain.com'),]
+                         Contact.objects.create(email='test4@domain.com')]
         self.mailinglist = MailingList.objects.create(name='Test MailingList')
         self.mailinglist.subscribers.add(*self.contacts)
         self.newsletter = Newsletter.objects.create(title='Test Newsletter',
@@ -388,7 +394,7 @@ class StatisticsTestCase(TestCase):
                                                     server=self.server,
                                                     status=Newsletter.SENT)
         self.links = [Link.objects.create(title='link 1', url='htt://link.1'),
-                      Link.objects.create(title='link 2', url='htt://link.2'),]
+                      Link.objects.create(title='link 2', url='htt://link.2')]
 
         for contact in self.contacts:
             ContactMailingStatus.objects.create(newsletter=self.newsletter,
@@ -400,7 +406,6 @@ class StatisticsTestCase(TestCase):
 
         self.recipients = len(self.contacts)
         self.status = ContactMailingStatus.objects.filter(newsletter=self.newsletter)
-
 
     def test_get_newsletter_opening_statistics(self):
         stats = get_newsletter_opening_statistics(self.status, self.recipients)
@@ -694,10 +699,10 @@ class StatisticsTestCase(TestCase):
         """Try to have a ZeroDivisionError by unsubscribing all contacts,
         and creating a ContactMailingStatus for more code coverage.
         Bug : http://github.com/Fantomas42/emencia-django-newsletter/issues#issue/9"""
-        stats = get_newsletter_statistics(self.newsletter)
-        
+        get_newsletter_statistics(self.newsletter)
+
         self.mailinglist.unsubscribers.add(*self.contacts)
         ContactMailingStatus.objects.create(newsletter=self.newsletter,
                                             contact=self.contacts[0],
                                             status=ContactMailingStatus.OPENED)
-        stats = get_newsletter_statistics(self.newsletter)
+        get_newsletter_statistics(self.newsletter)

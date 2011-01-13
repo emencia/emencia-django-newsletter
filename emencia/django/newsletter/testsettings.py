@@ -1,4 +1,4 @@
-import os
+"""Settings for testing emencia.django.newsletter"""
 
 SITE_ID = 1
 
@@ -9,20 +9,18 @@ DATABASE_NAME = '/tmp/newsletter.db'
 INSTALLED_APPS = ['django.contrib.contenttypes',
                   'django.contrib.sites',
                   'tagging',
-                  'emencia.django.newsletter',]
+                  'emencia.django.newsletter']
+
 ROOT_URLCONF = 'emencia.django.newsletter.urls'
 
 LANGUAGE_CODE = 'fr'
 
-LANGUAGES = (
-    ('fr', 'French'),
-    ('en', 'English'),
-    )
+LANGUAGES = (('fr', 'French'),
+             ('en', 'English'),)
 
-MIDDLEWARE_CLASSES = (
+MIDDLEWARE_CLASSES = [
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.middleware.doc.XViewMiddleware',
-    'django.middleware.locale.LocaleMiddleware',
-    )
+    'django.middleware.locale.LocaleMiddleware']

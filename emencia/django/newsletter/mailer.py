@@ -1,7 +1,6 @@
 """Mailer for emencia.django.newsletter"""
 import mimetypes
 
-from smtplib import SMTP
 from smtplib import SMTPRecipientsRefused
 from datetime import datetime
 
@@ -12,14 +11,14 @@ try:
     from email.mime.MIMEAudio import MIMEAudio
     from email.mime.MIMEBase import MIMEBase
     from email.mime.MIMEImage import MIMEImage
-except ImportError :  # Python 2.4 compatibility
+except ImportError:  # Python 2.4 compatibility
     from email.MIMEMultipart import MIMEMultipart
     from email.MIMEText import MIMEText
     from email.Encoders import encode_base64
     from email.MIMEAudio import MIMEAudio
     from email.MIMEBase import MIMEBase
     from email.MIMEImage import MIMEImage
-
+from email import message_from_file
 from html2text import html2text
 from django.contrib.sites.models import Site
 from django.template import Context, Template
@@ -53,7 +52,7 @@ class Mailer(object):
         """Send the mails"""
         if not self.can_send:
             return
-        
+
         if not self.smtp:
             self.smtp_connect()
 
@@ -67,7 +66,7 @@ class Mailer(object):
                                    message.as_string())
                 status = self.test and ContactMailingStatus.SENT_TEST \
                          or ContactMailingStatus.SENT
-            except SMTPRecipientsRefused, e:
+            except SMTPRecipientsRefused:
                 status = ContactMailingStatus.INVALID
                 contact.valid = False
                 contact.save()
@@ -111,7 +110,7 @@ class Mailer(object):
     def build_attachments(self):
         """Build email's attachment messages"""
         attachments = []
-        
+
         for attachment in self.newsletter.attachment_set.all():
             ctype, encoding = mimetypes.guess_type(attachment.file_attachment.path)
 
@@ -119,12 +118,12 @@ class Mailer(object):
                 ctype = 'application/octet-stream'
 
             maintype, subtype = ctype.split('/', 1)
-            
+
             fd = open(attachment.file_attachment.path, 'rb')
             if maintype == 'text':
                 message_attachment = MIMEText(fd.read(), _subtype=subtype)
             elif maintype == 'message':
-                message_attachment = email.message_from_file(fd)
+                message_attachment = message_from_file(fd)
             elif maintype == 'image':
                 message_attachment = MIMEImage(fd.read(), _subtype=subtype)
             elif maintype == 'audio':
@@ -137,9 +136,9 @@ class Mailer(object):
             message_attachment.add_header('Content-Disposition', 'attachment',
                                           filename=attachment.title)
             attachments.append(message_attachment)
-            
+
         return attachments
-            
+
     def smtp_connect(self):
         """Make a connection to the SMTP"""
         self.smtp = self.newsletter.server.connect()
@@ -211,4 +210,3 @@ class Mailer(object):
             return True
 
         return False
-

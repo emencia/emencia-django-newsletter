@@ -1,5 +1,6 @@
 """Models for emencia.django.newsletter"""
 from smtplib import SMTP
+from smtplib import SMTPHeloError
 from datetime import datetime
 from datetime import timedelta
 
@@ -63,7 +64,7 @@ class SMTPServer(models.Model):
     def credits(self):
         """Return how many mails the server can send"""
         if not self.mails_hour:
-            return 10000 # Arbitrary value
+            return 10000  # Arbitrary value
 
         last_hour = datetime.now() - timedelta(hours=1)
         sent_last_hour = ContactMailingStatus.objects.filter(
@@ -148,6 +149,7 @@ class Contact(models.Model):
         verbose_name = _('contact')
         verbose_name_plural = _('contacts')
 
+
 class MailingList(models.Model):
     """Mailing list"""
     name = models.CharField(_('name'), max_length=255)
@@ -186,8 +188,8 @@ class MailingList(models.Model):
 
 class Newsletter(models.Model):
     """Newsletter to be sended to contacts"""
-    DRAFT  = 0
-    WAITING  = 1
+    DRAFT = 0
+    WAITING = 1
     SENDING = 2
     SENT = 4
     CANCELED = 5
@@ -327,6 +329,7 @@ class ContactMailingStatus(models.Model):
         ordering = ('creation_date',)
         verbose_name = _('contact mailing status')
         verbose_name_plural = _('contact mailing statuses')
+
 
 class WorkGroup(models.Model):
     """Work Group for privatization of the ressources"""

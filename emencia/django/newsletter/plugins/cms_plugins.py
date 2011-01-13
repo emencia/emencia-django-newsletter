@@ -4,10 +4,10 @@ from django.utils.translation import ugettext_lazy as _
 from cms.plugin_base import CMSPluginBase
 from cms.plugin_pool import plugin_pool
 
+from emencia.django.newsletter.plugins import settings
 from emencia.django.newsletter.plugins.models import SubscriptionFormPlugin
 from emencia.django.newsletter.forms import MailingListSubscriptionForm
 
-import settings
 
 class CMSSubscriptionFormPlugin(CMSPluginBase):
     module = _('newsletter')
@@ -27,13 +27,12 @@ class CMSSubscriptionFormPlugin(CMSPluginBase):
         else:
             form = MailingListSubscriptionForm()
         context.update({
-            'object': instance, 
+            'object': instance,
             'form': form,
             'form_name': settings.FORM_NAME,
             'placeholder': placeholder,
         })
-        return context 
+        return context
 
 
 plugin_pool.register_plugin(CMSSubscriptionFormPlugin)
-

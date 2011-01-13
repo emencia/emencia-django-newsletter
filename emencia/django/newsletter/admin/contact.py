@@ -3,7 +3,8 @@ from datetime import datetime
 
 from django.contrib import admin
 from django.dispatch import Signal
-from django.conf.urls.defaults import *
+from django.conf.urls.defaults import url
+from django.conf.urls.defaults import patterns
 from django.core.urlresolvers import reverse
 from django.shortcuts import render_to_response
 from django.template import RequestContext
@@ -11,8 +12,6 @@ from django.utils.translation import ugettext as _
 from django.http import HttpResponseRedirect
 from django.contrib.admin.views.main import ChangeList
 
-from emencia.django.newsletter.models import Contact
-from emencia.django.newsletter.models import WorkGroup
 from emencia.django.newsletter.models import MailingList
 from emencia.django.newsletter.settings import USE_WORKGROUPS
 from emencia.django.newsletter.utils.importation import import_dispatcher
@@ -102,7 +101,7 @@ class ContactAdmin(admin.ModelAdmin):
 
         self.message_user(request, _('%s succesfully created.') % new_mailing)
         return HttpResponseRedirect(reverse('admin:newsletter_mailinglist_change',
-                                            args=[new_mailing.pk,]))
+                                            args=[new_mailing.pk]))
     create_mailinglist.short_description = _('Create a mailinglist')
 
     def importation(self, request):
@@ -166,4 +165,3 @@ class ContactAdmin(admin.ModelAdmin):
                                self.admin_site.admin_view(self.exportation_excel),
                                name='newsletter_contact_export_excel'),)
         return my_urls + urls
-

@@ -2,15 +2,16 @@
 from django.contrib import admin
 from django.utils.translation import ugettext as _
 
+
 class SMTPServerAdmin(admin.ModelAdmin):
     list_display = ('name', 'host', 'port', 'user', 'tls', 'mails_hour',)
     list_filter = ('tls',)
-    search_fields = ('name', 'host', 'user',)
-    fieldsets = ((None, {'fields': ('name',),}),
+    search_fields = ('name', 'host', 'user')
+    fieldsets = ((None, {'fields': ('name', )}),
                  (_('Configuration'), {'fields': ('host', 'port',
-                                                  'user', 'password', 'tls'),}),
+                                                  'user', 'password', 'tls')}),
                  (_('Miscellaneous'), {'fields': ('mails_hour', 'headers'),
-                                       'classes': ('collapse',)}),
+                                       'classes': ('collapse', )}),
                  )
     actions = ['check_connections']
     actions_on_top = False

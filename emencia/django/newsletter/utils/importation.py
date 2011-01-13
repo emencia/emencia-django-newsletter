@@ -10,6 +10,7 @@ from emencia.django.newsletter.utils.vcard import vcard_contacts_import
 COLUMNS = ['email', 'first_name', 'last_name', 'tags']
 csv.register_dialect('edn', delimiter=';')
 
+
 def text_contacts_import(stream, workgroups=[]):
     """Import contact from a plaintext file, like CSV"""
     inserted = 0
@@ -27,6 +28,7 @@ def text_contacts_import(stream, workgroups=[]):
         inserted += int(created)
 
     return inserted
+
 
 def excel_contacts_import(stream, workgroups=[]):
     inserted = 0
@@ -49,6 +51,7 @@ def excel_contacts_import(stream, workgroups=[]):
         inserted += int(created)
 
     return inserted
+
 
 def import_dispatcher(source, type_, workgroups):
     """Select importer and import contacts"""
