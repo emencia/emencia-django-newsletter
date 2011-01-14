@@ -46,7 +46,7 @@ Cronjob/Command
 
 The emencia.django.newsletter application will never send the newsletters registered in the site until you launch the **send_newsletter** command. ::
 
-  $> python manage.py send_newsletter
+  $ python manage.py send_newsletter
 
 This command will launch the newsletters who need to be launched accordingly to the credits of the SMTP server of the newsletter. 
 That's mean that not all newsletters will be expedied at the end of the command because if you use a public SMTP server you can be banished temporarly if you reach the sending limit.
@@ -59,27 +59,27 @@ Installation
 
 You could retrieve the last sources from http://github.com/Fantomas42/emencia-django-newsletter and running the installation script ::
     
-  $> python setup.py install
+  $ python setup.py install
 
 or use pip ::
 
-  $> pip install -e git://github.com/Fantomas42/emencia-django-newsletter.git#egg=emencia.django.newsletter
+  $ pip install -e git://github.com/Fantomas42/emencia-django-newsletter.git#egg=emencia.django.newsletter
 
 For the latest stable version use easy_install ::
 
-  $> easy_install emencia.django.newsletter
+  $ easy_install emencia.django.newsletter
 
 Applications
 ------------
 
 Then register **emencia.django.newsletter**, **admin**, **contenttypes** and **tagging** in the INSTALLED_APPS section of your project's settings. ::
 
-  >>> INSTALLED_APPS = (
-  ...   # Your favorites apps
-  ...   'django.contrib.contenttypes',
-  ...   'django.contrib.admin',
-  ...   'tagging',
-  ...   'emencia.django.newsletter',)
+  INSTALLED_APPS = (
+    # Your favorites apps
+    'django.contrib.contenttypes',
+    'django.contrib.admin',
+    'tagging',
+    'emencia.django.newsletter',)
 
 
 Template Context Processors
@@ -87,27 +87,26 @@ Template Context Processors
 
 Add these following template context processors if not already present. ::
 
-  >>> TEMPLATE_CONTEXT_PROCESSORS = (
-  ...      'django.core.context_processors.auth',
-  ...      'django.core.context_processors.i18n',
-  ...      'django.core.context_processors.request',
-  ...      'django.core.context_processors.media',
-  ...      'emencia.django.newsletter.context_processors.media',
-  ...	)
+  TEMPLATE_CONTEXT_PROCESSORS = (
+       'django.core.context_processors.auth',
+       'django.core.context_processors.i18n',
+       'django.core.context_processors.request',
+       'django.core.context_processors.media',
+       'emencia.django.newsletter.context_processors.media',)
 
 Urls
 ----
 
 In your project urls.py adding this following line to include the newsletter's urls for serving the newsletters in HTML. ::
 
-  >>> url(r'^newsletters/', include('emencia.django.newsletter.urls')),
+  url(r'^newsletters/', include('emencia.django.newsletter.urls')),
 
 Note this urlset is provided for convenient usage, but you can do something like that if you want to customize your urls : ::
 
-  >>> url(r'^newsletters/', include('emencia.django.newsletter.urls.newsletter')),
-  >>> url(r'^mailing/', include('emencia.django.newsletter.urls.mailing_list')),
-  >>> url(r'^tracking/', include('emencia.django.newsletter.urls.tracking')),
-  >>> url(r'^statistics/', include('emencia.django.newsletter.urls.statistics')),
+  url(r'^newsletters/', include('emencia.django.newsletter.urls.newsletter')),
+  url(r'^mailing/', include('emencia.django.newsletter.urls.mailing_list')),
+  url(r'^tracking/', include('emencia.django.newsletter.urls.tracking')),
+  url(r'^statistics/', include('emencia.django.newsletter.urls.statistics')),
 
 Media Files
 -----------
@@ -141,28 +140,28 @@ We suppose that we have the fields *email*, *first_name* and *last_name* in a mo
 
 In his AdminModel definition add this method and register it into the *actions* property. ::
 
-  >>> class ProfileAdmin(admin.ModelAdmin):
-  ...
-  ...   def make_mailing_list(self, request, queryset):
-  ...     from emencia.django.newsletter.models import Contact
-  ...     from emencia.django.newsletter.models import MailingList
-  ...
-  ...     subscribers = []
-  ...     for profile in queryset:
-  ...       contact, created = Contact.objects.get_or_create(email=profile.mail,
-  ...                                                        defaults={'first_name': profile.first_name,
-  ...                                                                  'last_name': profile.last_name,
-  ...                                                                  'content_object': profile})
-  ...     subscribers.append(contact)
-  ...     new_mailing = MailingList(name='New mailing list',
-  ...                               description='New mailing list created from admin/profile')
-  ...     new_mailing.save()
-  ...     new_mailing.subscribers.add(*subscribers)
-  ...     new_mailing.save()
-  ...     self.message_user(request, '%s succesfully created.' % new_mailing)
-  ...   make_mailing_list.short_description = 'Create a mailing list'
-  ...
-  ...   actions = ['make_mailing_list',]
+  class ProfileAdmin(admin.ModelAdmin):
+  
+      def make_mailing_list(self, request, queryset):
+          from emencia.django.newsletter.models import Contact
+          from emencia.django.newsletter.models import MailingList
+  
+          subscribers = []
+          for profile in queryset:
+            contact, created = Contact.objects.get_or_create(email=profile.mail,
+                                                             defaults={'first_name': profile.first_name,
+                                                                       'last_name': profile.last_name,
+                                                                       'content_object': profile})
+          subscribers.append(contact)
+          new_mailing = MailingList(name='New mailing list',
+                                    description='New mailing list created from admin/profile')
+          new_mailing.save()
+          new_mailing.subscribers.add(*subscribers)
+          new_mailing.save()
+          self.message_user(request, '%s succesfully created.' % new_mailing)
+      make_mailing_list.short_description = 'Create a mailing list'
+  
+      actions = ['make_mailing_list',]
 
 This action will create or retrieve all the **Contact** instances needed for the mailing list creation.
 
@@ -180,12 +179,12 @@ First of all, please use `VirtualEnv
 
 Follow these steps to start the development : ::
 
-  $> git clone git://github.com/Fantomas42/emencia-django-newsletter.git
-  $> virtualenv --no-site-packages emencia-django-newsletter
-  $> cd emencia-django-newsletter
-  $> source ./bin/activate
-  $> python bootstrap.py
-  $> ./bin/buildout
+  $ git clone git://github.com/Fantomas42/emencia-django-newsletter.git
+  $ virtualenv --no-site-packages emencia-django-newsletter
+  $ cd emencia-django-newsletter
+  $ source ./bin/activate
+  $ python bootstrap.py
+  $ ./bin/buildout
 
 The buildout script will resolve all the dependancies needed to develop the application.
 
@@ -193,7 +192,7 @@ Once these operations are done, you are ready to develop on the project.
 
 Run this command to launch the tests. ::
 
-  $> ./bin/test
+  $ ./bin/test
 
 Pretty easy no ?
 
@@ -202,4 +201,3 @@ Database Representation
 
 .. image:: http://github.com/Fantomas42/emencia-django-newsletter/raw/master/docs/graph_model.png
   
-
