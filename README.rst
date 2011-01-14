@@ -36,7 +36,7 @@ At the level of the application architecture, we can see 2 originalities who nee
 Content types
 -------------
 
-The **content types** application is used to link any *Contact* model instance to another model instance. 
+The **content types** application is used to link any *Contact* model instance to another model instance.
 This allow you to create different kinds of contact linked to differents application, and retrieve the association at anytime.
 
 This is particulary usefull with the templates variables if certain informations are located in the model instance linked.
@@ -48,7 +48,7 @@ The emencia.django.newsletter application will never send the newsletters regist
 
   $ python manage.py send_newsletter
 
-This command will launch the newsletters who need to be launched accordingly to the credits of the SMTP server of the newsletter. 
+This command will launch the newsletters who need to be launched accordingly to the credits of the SMTP server of the newsletter.
 That's mean that not all newsletters will be expedied at the end of the command because if you use a public SMTP server you can be banished temporarly if you reach the sending limit.
 To avoid banishment all the newsletters are not sended in the same time and immediately.
 
@@ -58,7 +58,7 @@ Installation
 ============
 
 You could retrieve the last sources from http://github.com/Fantomas42/emencia-django-newsletter and running the installation script ::
-    
+
   $ python setup.py install
 
 or use pip ::
@@ -130,10 +130,56 @@ variables into a SQL query, you can not create a Mailing List greater than this 
 in the Django's admin modules. Prefer MySQL ou PgSQL.
 
 
+HOWTO use TinyMCE for editing the newsletters
+=============================================
+
+It can be usefull for the end user to have a WYSIWYG editor for the
+creation of the newsletter. The choice of the WYSIWYG editor is free and
+the described method can be applied for anything, but we will focus on
+TinyMCE because he has many features and a usefull plugin for loading
+templates within it.
+
+First of all install the `django-tinymce
+<http://code.google.com/p/django-tinymce/>`_ application into your project.
+
+Now you will write a module called admin.py into the root directory of your
+project. This module will override the NewsletterAdmin class provided by
+emencia.django.newsletter with the TinyMCE editor and register the
+overrided class into the admin site. ::
+
+  from django import forms
+  from django.contrib import admin
+
+  from tinymce.widgets import TinyMCE
+  from emencia.django.newsletter.models import Newsletter
+  from emencia.django.newsletter.admin import NewsletterAdmin
+
+
+  class NewsletterTinyMCEForm(forms.ModelForm):
+      content = forms.CharField(widget=TinyMCE(attrs={'cols': 150, 'rows': 80}))
+
+      class Meta:
+          model = Newsletter
+
+  class NewsletterTinyMCEAdmin(NewsletterAdmin):
+      form = NewsletterTinyMCEForm
+
+  admin.site.unregister(Newsletter)
+  admin.site.register(Newsletter, NewsletterTinyMCEAdmin)
+
+The last step is to make a call to your module to load the code. A good
+solution is to import the admin.py module in the urls.py file of your
+project. ::
+
+  import yourproject.admin
+
+Enjoy !
+
+
 HOWTO couple your profile application with emencia.django.newsletter
 ====================================================================
 
-If you wan to quickly import your contacts into a mailing list for example, 
+If you wan to quickly import your contacts into a mailing list for example,
 you can write an admin's action for your model.
 
 We suppose that we have the fields *email*, *first_name* and *last_name* in a models name **Profile**.
@@ -141,11 +187,11 @@ We suppose that we have the fields *email*, *first_name* and *last_name* in a mo
 In his AdminModel definition add this method and register it into the *actions* property. ::
 
   class ProfileAdmin(admin.ModelAdmin):
-  
+
       def make_mailing_list(self, request, queryset):
           from emencia.django.newsletter.models import Contact
           from emencia.django.newsletter.models import MailingList
-  
+
           subscribers = []
           for profile in queryset:
             contact, created = Contact.objects.get_or_create(email=profile.mail,
@@ -160,7 +206,7 @@ In his AdminModel definition add this method and register it into the *actions* 
           new_mailing.save()
           self.message_user(request, '%s succesfully created.' % new_mailing)
       make_mailing_list.short_description = 'Create a mailing list'
-  
+
       actions = ['make_mailing_list',]
 
 This action will create or retrieve all the **Contact** instances needed for the mailing list creation.
@@ -170,8 +216,8 @@ After this you can send a newsletter to this mailing list.
 Development
 ===========
 
-A `Buildout 
-<http://pypi.python.org/pypi/zc.buildout>`_ script is provided to properly initialize the project 
+A `Buildout
+<http://pypi.python.org/pypi/zc.buildout>`_ script is provided to properly initialize the project
 for anybody who wants to contribute.
 
 First of all, please use `VirtualEnv
