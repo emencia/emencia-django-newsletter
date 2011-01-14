@@ -13,7 +13,7 @@
 <script type="text/javascript" src="{{ NEWSLETTER_MEDIA_URL }}js/swfobject/swfobject.js"></script>
 <script type="text/javascript">
 OFC = {};
- 
+
 OFC.jquery = {
     name: "jQuery",
     version: function(src) { return $('#'+ src)[0].get_version() },
@@ -33,7 +33,7 @@ if (typeof(Control == "undefined")) {var Control = {OFC: OFC.jquery}}
 function save_image() { OFC.jquery.popup('charts_view'); }
 
 $(document).ready(function(){
-  swfobject.embedSWF("{{ NEWSLETTER_MEDIA_URL }}swf/open-flash-chart.swf", "charts_view", "498", "350", "9.0.0", 
+  swfobject.embedSWF("{{ NEWSLETTER_MEDIA_URL }}swf/open-flash-chart.swf", "charts_view", "498", "350", "9.0.0",
                      "{{ NEWSLETTER_MEDIA_URL }}js/swfobject/expressInstall.swf",
                      {"data-file": "{% url newsletter_newsletter_charts object.slug %}"});
 
@@ -41,14 +41,14 @@ $(document).ready(function(){
     swfobject.getObjectById("charts_view").load(charts_data);
   };
 
-  function validate(formData, jqForm, options) { 
-    for (var i=0; i < formData.length; i++) { 
-        if (formData[i].name == 'start') { 
+  function validate(formData, jqForm, options) {
+    for (var i=0; i < formData.length; i++) {
+        if (formData[i].name == 'start') {
 	  var start = parseInt(formData[i].value);
-        } 
-        if (formData[i].name == 'end') { 
+        }
+        if (formData[i].name == 'end') {
 	  var end = parseInt(formData[i].value);
-        } 
+        }
     }
     if (start > end) {
       return false;
@@ -56,7 +56,7 @@ $(document).ready(function(){
   };
 
   var options = {success: reload_charts,
-                 beforeSubmit: validate}; 
+                 beforeSubmit: validate};
   $("#period_selector").ajaxForm(options);
 });
 </script>
@@ -66,8 +66,8 @@ $(document).ready(function(){
 {% if not is_popup %}
 <div class="breadcrumbs">
      <a href="{% url admin:index %}">{% trans "Admin." %}</a> &rsaquo;
-     <a href="{% url admin:app_list "newsletter" %}">{{ app_label|capfirst|escape }}</a> &rsaquo; 
-     <a href="{% url admin:newsletter_newsletter_changelist %}">{{ opts.verbose_name_plural|capfirst }}</a> &rsaquo; 
+     <a href="{% url admin:app_list "newsletter" %}">{{ app_label|capfirst|escape }}</a> &rsaquo;
+     <a href="{% url admin:newsletter_newsletter_changelist %}">{{ opts.verbose_name_plural|capfirst }}</a> &rsaquo;
      {{ title }}
 </div>
 {% endif %}
@@ -143,6 +143,7 @@ $(document).ready(function(){
   </div>
   <div class="module" id="charts_options">
     <form id="period_selector" action="{% url newsletter_newsletter_charts object.slug %}" method="post">
+      {% csrf_token %}
       <table summary="{% trans "Consultation histogram" %}">
 	<tr>
 	  <th scope="row" style="vertical-align: middle;">
@@ -198,7 +199,7 @@ $(document).ready(function(){
 	</h2>
 	<ul class="actionlist">
 	{% for top_link in stats.top_links %}
-	<li><a href="{{ top_link.link.url }}" title="{{ top_link.link.title }}" target="blank">{{ top_link.link.title|slice:":23" }}</a> 
+	<li><a href="{{ top_link.link.url }}" title="{{ top_link.link.title }}" target="blank">{{ top_link.link.title|slice:":23" }}</a>
 	  <span class="quiet">({{ top_link.total_clicks }})</span>
 	  <span class="mini quiet">({{ top_link.unique_clicks }})</span>
 	</li>
