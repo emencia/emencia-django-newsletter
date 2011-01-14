@@ -1,3 +1,4 @@
+
 """Forms for emencia.django.newsletter"""
 from django import forms
 from django.utils.translation import ugettext_lazy as _
@@ -26,6 +27,7 @@ class MailingListSubscriptionForm(forms.ModelForm):
                       'last_name': data['last_name']})
 
         mailing_list.subscribers.add(contact)
+        mailing_list.unsubscribers.remove(contact)
 
     class Meta:
         model = Contact
@@ -51,3 +53,4 @@ class AllMailingListSubscriptionForm(MailingListSubscriptionForm):
 
         for mailing_list in data['mailing_lists']:
             mailing_list.subscribers.add(contact)
+            mailing_list.unsubscribers.remove(contact)
