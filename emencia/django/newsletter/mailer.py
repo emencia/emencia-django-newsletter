@@ -61,7 +61,7 @@ class Mailer(object):
         for contact in self.expedition_list:
             message = self.build_message(contact)
             try:
-                self.smtp.sendmail(self.newsletter.header_sender,
+                self.smtp.sendmail(smart_str(self.newsletter.header_sender),
                                    contact.email,
                                    message.as_string())
                 status = self.test and ContactMailingStatus.SENT_TEST \
@@ -90,8 +90,8 @@ class Mailer(object):
         message = MIMEMultipart()
 
         message['Subject'] = self.build_title_content(contact)
-        message['From'] = self.newsletter.header_sender
-        message['Reply-to'] = self.newsletter.header_reply
+        message['From'] = smart_str(self.newsletter.header_sender)
+        message['Reply-to'] = smart_str(self.newsletter.header_reply)
         message['To'] = contact.mail_format()
 
         message_alt = MIMEMultipart('alternative')
