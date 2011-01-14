@@ -88,11 +88,11 @@ Template Context Processors
 Add these following template context processors if not already present. ::
 
   TEMPLATE_CONTEXT_PROCESSORS = (
-       'django.core.context_processors.auth',
-       'django.core.context_processors.i18n',
-       'django.core.context_processors.request',
-       'django.core.context_processors.media',
-       'emencia.django.newsletter.context_processors.media',)
+    'django.core.context_processors.auth',
+    'django.core.context_processors.i18n',
+    'django.core.context_processors.request',
+    'django.core.context_processors.media',
+    'emencia.django.newsletter.context_processors.media',)
 
 Urls
 ----
@@ -199,5 +199,5 @@ Pretty easy no ?
 Database Representation
 =======================
 
-.. image:: http://github.com/Fantomas42/emencia-django-newsletter/raw/master/docs/graph_model.png
-  
+.. image:: https://github.com/Fantomas42/emencia-django-newsletter/raw/master/docs/graph_model.png
+
