@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import os
 
-version = '0.1'
+version = '0.2'
 
 setup(name='emencia.django.newsletter',
       version=version,
@@ -21,7 +21,7 @@ setup(name='emencia.django.newsletter',
       author='Fantomas42',
       author_email='fantomas42@gmail.com',
       url='http://emencia.fr',
-      
+
       license='BSD License',
       packages=find_packages(exclude=['ez_setup']),
       namespace_packages=['emencia', 'emencia.django'],
