@@ -1,6 +1,15 @@
 Changelog
 =========
 
+0.2
+---
+
+- Plugin for django-cms
+- Multiple importation format
+- Compatibility with django 1.2
+- A lot of bug fixes
+
+
 0.1dev (unreleased)
 -------------------
 
