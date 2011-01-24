@@ -34,7 +34,7 @@ from emencia.django.newsletter.utils.newsletter import body_insertion
 from emencia.django.newsletter.settings import TRACKING_LINKS
 from emencia.django.newsletter.settings import TRACKING_IMAGE
 from emencia.django.newsletter.settings import INCLUDE_UNSUBSCRIPTION
-
+from emencia.django.newsletter.settings import UNIQUE_PREFIX_LENGTH
 
 class Mailer(object):
     """Mailer for generating and sending newsletters
@@ -42,6 +42,8 @@ class Mailer(object):
     smtp = None
 
     def __init__(self, newsletter, test=False):
+        self.unique_header = newsletter.unique_header
+        self.unique_prefix = newsletter.unique_prefix
         self.test = test
         self.newsletter = newsletter
         self.expedition_list = self.get_expedition_list()
@@ -158,6 +160,15 @@ class Mailer(object):
         """Generate the email title for a contact"""
         context = Context({'contact': contact})
         title = self.title_template.render(context)
+        letter_id = ''
+        if self.unique_header:
+            import random
+            for y in range(UNIQUE_PREFIX_LENGTH):
+                letter_id += str(random.randint(0,9))
+            title += ' ('
+            if self.unique_prefix:
+                title += self.unique_prefix + '-'
+            title += letter_id + ')'
         return title
 
     def build_email_content(self, contact):

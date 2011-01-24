@@ -36,7 +36,8 @@ class NewsletterAdmin(admin.ModelAdmin):
                  (_('Receivers'), {'fields': ('mailing_list', 'test_contacts',)}),
                  (_('Sending'), {'fields': ('sending_date', 'status',)}),
                  (_('Miscellaneous'), {'fields': ('server', 'header_sender',
-                                                  'header_reply', 'slug'),
+                                                  'header_reply', 'slug',
+                                                  'unique_header', 'unique_prefix',),
                                        'classes': ('collapse',)}),
                  )
     prepopulated_fields = {'slug': ('title',)}

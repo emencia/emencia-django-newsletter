@@ -223,7 +223,9 @@ class Newsletter(models.Model):
                             unique=True)
     creation_date = models.DateTimeField(_('creation date'), auto_now_add=True)
     modification_date = models.DateTimeField(_('modification date'), auto_now=True)
-
+    unique_prefix = models.CharField(_('unique prefix'), max_length=15, blank=True)
+    unique_header = models.BooleanField(_('unique header'), default=False)
+    
     def mails_sent(self):
         return self.contactmailingstatus_set.filter(status=ContactMailingStatus.SENT).count()
 
