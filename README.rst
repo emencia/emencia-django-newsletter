@@ -242,6 +242,21 @@ Run this command to launch the tests. ::
 
 Pretty easy no ?
 
+Translations
+------------
+
+If you want to contribute by updating a translation or adding a translation
+in your language, it's simple: create a account on Transifex.net and you
+will be able to edit the translations at this URL :
+
+http://www.transifex.net/projects/p/emencia-django-newsletter/resource/djangopo/
+
+.. image:: http://www.transifex.net/projects/p/emencia-django-newsletter/resource/djangopo/chart/image_png
+
+The translations hosted on Transifex.net will be pulled periodically in the
+repository, but if you are in a hurry, `send me a message
+<https://github.com/inbox/new/Fantomas42>`_.
+
 Database Representation
 =======================
 
