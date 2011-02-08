@@ -1,5 +1,5 @@
-from setuptools import setup, find_packages
 import os
+from setuptools import setup, find_packages
 
 version = '0.2'
 
@@ -10,33 +10,27 @@ setup(name='emencia.django.newsletter',
                        open(os.path.join("docs", "HISTORY.txt")).read(),
       keywords='django, newsletter, mailing',
       classifiers=[
+          'Framework :: Django',
+          'Programming Language :: Python',
+          'Environment :: Web Environment',
           'Intended Audience :: Developers',
           'Operating System :: OS Independent',
-          'Programming Language :: Python',
-          'Topic :: Software Development :: Libraries :: Python Modules',
           'License :: OSI Approved :: BSD License',
-          'Framework :: Django',
-          ],
+          'Development Status :: 5 - Production/Stable',
+          'Topic :: Software Development :: Libraries :: Python Modules',],
 
       author='Fantomas42',
       author_email='fantomas42@gmail.com',
       url='http://emencia.fr',
 
       license='BSD License',
-      packages=find_packages(exclude=['ez_setup']),
+      packages=find_packages(exclude=['demo']),
       namespace_packages=['emencia', 'emencia.django'],
       include_package_data=True,
       zip_safe=False,
-      install_requires=[
-          'setuptools',
-          'html2text',
-          'BeautifulSoup',
-          'vobject',
-          'xlwt',
-          'xlrd',
-          'tagging',
-      ],
-      entry_points="""
-      # -*- Entry points: -*-
-      """,
-      )
+      install_requires=['html2text',
+                        'BeautifulSoup',
+                        'vobject',
+                        'xlwt',
+                        'xlrd',
+                        'tagging'])

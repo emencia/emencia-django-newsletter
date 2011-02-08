@@ -1,6 +1,14 @@
 Changelog
 =========
 
+0.3
+---
+
+- Demo in the package
+- Improving importation
+- A lot of bug fixes
+
+
 0.2
 ---
 

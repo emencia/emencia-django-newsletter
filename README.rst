@@ -77,7 +77,9 @@ Then register **emencia.django.newsletter**, **admin**, **contenttypes** and **t
   INSTALLED_APPS = (
     # Your favorites apps
     'django.contrib.contenttypes',
+    'django.contrib.sites',
     'django.contrib.admin',
+    'django.contrib.sessions',
     'tagging',
     'emencia.django.newsletter',)
 
@@ -239,6 +241,11 @@ Once these operations are done, you are ready to develop on the project.
 Run this command to launch the tests. ::
 
   $ ./bin/test
+
+Or you can also launch the demo. ::
+
+  $ ./bin/demo syncdb
+  $ ./bin/demo runserver
 
 Pretty easy no ?
 
