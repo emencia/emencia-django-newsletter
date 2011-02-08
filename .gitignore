@@ -3,7 +3,9 @@
 *~
 *.pyc
 .tx
+.tox
 .installed.cfg
+TODO
 emencia.django.newsletter.egg-info/*
 lib/*
 bin/*
