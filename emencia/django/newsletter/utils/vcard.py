@@ -1,7 +1,8 @@
-"""VCard system for importing/exporting Contact models"""
+"""VCard system for exporting Contact models"""
 from datetime import datetime
 
 import vobject
+
 from django.http import HttpResponse
 
 
@@ -39,25 +40,3 @@ def vcard_contacts_export_response(contacts, filename=''):
                             mimetype='text/x-vcard')
     response['Content-Disposition'] = 'attachment; filename=%s.vcf' % filename
     return response
-
-
-def vcard_contact_import(vcard, workgroups=[]):
-    from emencia.django.newsletter.models import Contact
-
-    defaults = {'email': vcard.email.value,
-                'first_name': vcard.n.value.given,
-                'last_name': vcard.n.value.family}
-
-    contact, created = Contact.objects.get_or_create(email=defaults['email'],
-                                                     defaults=defaults)
-    for workgroup in workgroups:
-        workgroup.contacts.add(contact)
-    return int(created)  # TODO rewrite this
-
-
-def vcard_contacts_import(stream, workgroups=[]):
-    vcards = vobject.readComponents(stream)
-    inserted = 0
-    for vcard in vcards:
-        inserted += vcard_contact_import(vcard, workgroups)
-    return inserted

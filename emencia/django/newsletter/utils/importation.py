@@ -2,13 +2,49 @@
 import csv
 
 import xlrd
+import vobject
+
+from django.core.validators import validate_email
+from django.core.exceptions import ValidationError
 
 from emencia.django.newsletter.models import Contact
-from emencia.django.newsletter.utils.vcard import vcard_contacts_import
 
 
 COLUMNS = ['email', 'first_name', 'last_name', 'tags']
 csv.register_dialect('edn', delimiter=';')
+
+
+def create_contact(contact_dict, workgroups=[]):
+    """Create a contact and validate the mail"""
+    contact_dict['email'] = contact_dict['email'].strip()
+    try:
+        validate_email(contact_dict['email'])
+        contact_dict['valid'] = True
+    except ValidationError:
+        contact_dict['valid'] = False
+
+    contact, created = Contact.objects.get_or_create(
+        email=contact_dict['email'],
+        defaults=contact_dict)
+
+    for workgroup in workgroups:
+        workgroup.contacts.add(contact)
+
+    return contact, created
+
+
+def vcard_contacts_import(stream, workgroups=[]):
+    inserted = 0
+    vcards = vobject.readComponents(stream)
+
+    for vcard in vcards:
+        defaults = {'email': vcard.email.value,
+                    'first_name': vcard.n.value.given,
+                    'last_name': vcard.n.value.family}
+        contact, created = create_contact(defaults, workgroups)
+        inserted += int(created)
+
+    return inserted
 
 
 def text_contacts_import(stream, workgroups=[]):
@@ -20,11 +56,7 @@ def text_contacts_import(stream, workgroups=[]):
         defaults = {}
         for i in range(len(contact_row)):
             defaults[COLUMNS[i]] = contact_row[i]
-        contact, created = Contact.objects.get_or_create(
-            email=defaults['email'],
-            defaults=defaults)
-        for workgroup in workgroups:
-            workgroup.contacts.add(contact)
+        contact, created = create_contact(defaults, workgroups)
         inserted += int(created)
 
     return inserted
@@ -43,11 +75,7 @@ def excel_contacts_import(stream, workgroups=[]):
                 defaults[COLUMNS[i]] = value
             except IndexError:
                 break
-        contact, created = Contact.objects.get_or_create(
-            email=defaults['email'],
-            defaults=defaults)
-        for workgroup in workgroups:
-            workgroup.contacts.add(contact)
+        contact, created = create_contact(defaults, workgroups)
         inserted += int(created)
 
     return inserted
