@@ -6,6 +6,7 @@
 .tox
 .installed.cfg
 TODO
+demo/demo.db
 emencia.django.newsletter.egg-info/*
 lib/*
 bin/*
