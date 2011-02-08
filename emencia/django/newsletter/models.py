@@ -7,7 +7,6 @@ from datetime import timedelta
 from django.db import models
 from django.utils.encoding import smart_str
 from django.core.urlresolvers import reverse
-from django.utils.translation import ugettext
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.contenttypes import generic
 from django.contrib.contenttypes.models import ContentType
@@ -46,7 +45,8 @@ class SMTPServer(models.Model):
     tls = models.BooleanField(_('server use TLS'))
 
     headers = models.TextField(_('custom headers'), blank=True,
-                               help_text=_('key1: value1 key2: value2, splitted by return line.'))
+                               help_text=_('key1: value1 key2: value2, splitted by return line.\n'\
+                                           'Useful for passing some tracking headers if your provider allows it.'))
     mails_hour = models.IntegerField(_('mails per hour'), default=0)
 
     def connect(self):
@@ -203,7 +203,7 @@ class Newsletter(models.Model):
 
     title = models.CharField(_('title'), max_length=255)
     content = models.TextField(_('content'), help_text=_('Or paste an URL.'),
-                               default='<body>\n<!-- %s -->\n</body>' % ugettext('Edit your newsletter here'))
+                               default=_('<body>\n<!-- Edit your newsletter here -->\n</body>'))
 
     mailing_list = models.ForeignKey(MailingList, verbose_name=_('mailing list'))
     test_contacts = models.ManyToManyField(Contact, verbose_name=_('test contacts'),
@@ -246,7 +246,7 @@ class Newsletter(models.Model):
         ordering = ('-creation_date',)
         verbose_name = _('newsletter')
         verbose_name_plural = _('newsletters')
-        permissions = (('can_change_status', ugettext('Can change status')),)
+        permissions = (('can_change_status', 'Can change status'),)
 
 
 class Link(models.Model):

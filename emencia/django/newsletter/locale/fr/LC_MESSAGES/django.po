@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Emencia Django Newsletter\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-02-08 07:33-0600\n"
-"PO-Revision-Date: 2011-02-08 14:41+0100\n"
+"POT-Creation-Date: 2011-02-08 15:33+0100\n"
+"PO-Revision-Date: 2011-02-08 15:35+0100\n"
 "Last-Translator: Fantomas <Fantomas42@gmail.com>\n"
 "Language-Team: Fantomas42 <fantomas42@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -28,44 +28,48 @@ msgstr "Email"
 msgid "Mailing lists"
 msgstr "Listes de diffusion"
 
-#: models.py:39
+#: models.py:38
 #: models.py:155
 #: models.py:336
 msgid "name"
 msgstr "Nom"
 
-#: models.py:40
+#: models.py:39
 msgid "server host"
 msgstr "Hôte"
 
-#: models.py:41
+#: models.py:40
 msgid "server user"
 msgstr "Utilisateur"
 
-#: models.py:42
-#: models.py:44
+#: models.py:41
+#: models.py:43
 msgid "Leave it empty if the host is public."
 msgstr "Laissez ce champs vide, si aucune authentification n'est nécessaire."
 
-#: models.py:43
+#: models.py:42
 msgid "server password"
 msgstr "Mot de passe"
 
-#: models.py:45
+#: models.py:44
 msgid "server port"
 msgstr "Port"
 
-#: models.py:46
+#: models.py:45
 msgid "server use TLS"
 msgstr "Chiffrement TLS"
 
-#: models.py:48
+#: models.py:47
 msgid "custom headers"
 msgstr "Entêtes personnalisées "
 
-#: models.py:49
-msgid "key1: value1 key2: value2, splitted by return line."
-msgstr "clef_1: valeur_1 clef_2: valeur_2, séparés par des retours à la ligne."
+#: models.py:48
+msgid ""
+"key1: value1 key2: value2, splitted by return line.\n"
+"Useful for passing some tracking headers if your provider allows it."
+msgstr ""
+"clef1: valeur1 clef2: valeur2, séparés par un retour à la ligne.\n"
+"Utile pour passer des en-têtes de suivi si votre fournisseur le permet."
 
 #: models.py:50
 msgid "mails per hour"
@@ -200,8 +204,14 @@ msgid "Or paste an URL."
 msgstr "Ou collez simplement une URL."
 
 #: models.py:206
-msgid "Edit your newsletter here"
-msgstr "Editez votre Newsletter ici"
+msgid ""
+"<body>\n"
+"<!-- Edit your newsletter here -->\n"
+"</body>"
+msgstr ""
+"<body>\n"
+"<!-- Editez votre newsletter ici -->\n"
+"</body>"
 
 #: models.py:209
 msgid "test contacts"
@@ -243,10 +253,6 @@ msgstr "Newsletter"
 #: models.py:343
 msgid "newsletters"
 msgstr "newsletters"
-
-#: models.py:249
-msgid "Can change status"
-msgstr "Changement de statut"
 
 #: models.py:255
 msgid "url"
@@ -806,6 +812,11 @@ msgstr "#val# clics"
 msgid "Historic of %s"
 msgstr "Historique de %s"
 
+#~ msgid "key1: value1 key2: value2, splitted by return line."
+#~ msgstr ""
+#~ "clef_1: valeur_1 clef_2: valeur_2, séparés par des retours à la ligne."
+#~ msgid "Can change status"
+#~ msgstr "Changement de statut"
 #~ msgid "VCard import"
 #~ msgstr "Importation VCard"
 #~ msgid "Contacts"
