@@ -4,8 +4,9 @@ SITE_ID = 1
 
 ROOT_URLCONF = 'emencia.django.newsletter.urls'
 
-DATABASE_ENGINE = 'sqlite3'
-DATABASE_NAME = '/tmp/newsletter.db'
+DATABASES = {'default': {'NAME': 'newsletter_tests.db',
+                         'ENGINE': 'django.db.backends.sqlite3'}}
+
 INSTALLED_APPS = ['django.contrib.contenttypes',
                   'django.contrib.sites',
                   'tagging',
