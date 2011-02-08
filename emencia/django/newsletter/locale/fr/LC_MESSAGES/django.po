@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Emencia Django Newsletter\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-02-08 15:33+0100\n"
-"PO-Revision-Date: 2011-02-08 15:35+0100\n"
+"POT-Creation-Date: 2011-02-08 17:41+0100\n"
+"PO-Revision-Date: 2011-02-08 17:41+0100\n"
 "Last-Translator: Fantomas <Fantomas42@gmail.com>\n"
 "Language-Team: Fantomas42 <fantomas42@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -789,6 +789,16 @@ msgstr "Pas de Top Liens pour l'instant."
 #: templates/newsletter/cms/subscription_form.html:8
 msgid "You have successfully subscribed to the mailing list!"
 msgstr "Vous êtes inscrit avec succès à cette liste de diffusion."
+
+#: utils/importation.py:45
+#, python-format
+msgid "Mailing list created by importation at %s"
+msgstr "Liste de diffusion créée par importation le %s"
+
+#: utils/importation.py:46
+#, python-format
+msgid "Contacts imported by %s."
+msgstr "Contacts importés par %s."
 
 #: views/statistics.py:54
 #, python-format
