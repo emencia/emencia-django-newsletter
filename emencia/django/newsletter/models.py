@@ -181,7 +181,7 @@ class MailingList(models.Model):
         return self.name
 
     class Meta:
-        ordering = ('creation_date',)
+        ordering = ('-creation_date',)
         verbose_name = _('mailing list')
         verbose_name_plural = _('mailing lists')
 
@@ -243,7 +243,7 @@ class Newsletter(models.Model):
         return self.title
 
     class Meta:
-        ordering = ('creation_date',)
+        ordering = ('-creation_date',)
         verbose_name = _('newsletter')
         verbose_name_plural = _('newsletters')
         permissions = (('can_change_status', ugettext('Can change status')),)
@@ -263,7 +263,7 @@ class Link(models.Model):
         return self.title
 
     class Meta:
-        ordering = ('creation_date',)
+        ordering = ('-creation_date',)
         verbose_name = _('link')
         verbose_name_plural = _('links')
 
@@ -326,7 +326,7 @@ class ContactMailingStatus(models.Model):
                                  self.get_status_display())
 
     class Meta:
-        ordering = ('creation_date',)
+        ordering = ('-creation_date',)
         verbose_name = _('contact mailing status')
         verbose_name_plural = _('contact mailing statuses')
 
