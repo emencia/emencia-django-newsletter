@@ -4,6 +4,7 @@ Changelog
 0.3
 ---
 
+- Use UTM Tags
 - Demo in the package
 - Improving importation
 - A lot of bug fixes

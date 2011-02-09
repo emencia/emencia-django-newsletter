@@ -1,5 +1,9 @@
 """Views for emencia.django.newsletter Tracking"""
 import base64
+from urllib import urlencode
+from urlparse import urlparse
+from urlparse import parse_qs
+from urlparse import urlunparse
 
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
@@ -13,6 +17,7 @@ from emencia.django.newsletter.models import Link
 from emencia.django.newsletter.models import Newsletter
 from emencia.django.newsletter.utils.tokens import untokenize
 from emencia.django.newsletter.models import ContactMailingStatus
+from emencia.django.newsletter.settings import USE_UTM_TAGS
 from emencia.django.newsletter.settings import TRACKING_IMAGE
 
 
@@ -35,7 +40,17 @@ def view_newsletter_tracking_link(request, slug, uidb36, token, link_id):
                                         contact=contact,
                                         status=ContactMailingStatus.LINK_OPENED,
                                         link=link)
-    return HttpResponseRedirect(link.url)
+    if not USE_UTM_TAGS:
+        return HttpResponseRedirect(link.url)
+
+    url_parts = urlparse(link.url)
+    query_dict = parse_qs(url_parts.query)
+    query_dict.update({'utm_source': 'newsletter_%s' % newsletter.pk,
+                       'utm_medium': 'mail',
+                       'utm_campaign': newsletter.title})
+    url = urlunparse((url_parts.scheme, url_parts.netloc, url_parts.path,
+                      url_parts.params, urlencode(query_dict), url_parts.fragment))
+    return HttpResponseRedirect(url)
 
 
 @login_required
