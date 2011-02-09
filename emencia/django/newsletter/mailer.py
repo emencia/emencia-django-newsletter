@@ -41,8 +41,9 @@ class Mailer(object):
     In test mode the mailer always send mails but do not log it"""
     smtp = None
 
-    def __init__(self, newsletter, test=False):
+    def __init__(self, newsletter, test=False, verbose=0):
         self.test = test
+        self.verbose = verbose
         self.newsletter = newsletter
         self.expedition_list = self.get_expedition_list()
         self.newsletter_template = Template(self.newsletter.content)
@@ -58,7 +59,13 @@ class Mailer(object):
 
         self.attachments = self.build_attachments()
 
+        if self.verbose:
+            print '%i emails will be sent' % len(self.expedition_list)
+
         for contact in self.expedition_list:
+            if self.verbose:
+                print '- Processing %s' % contact.__unicode__()
+
             message = self.build_message(contact)
             try:
                 self.smtp.sendmail(smart_str(self.newsletter.header_sender),

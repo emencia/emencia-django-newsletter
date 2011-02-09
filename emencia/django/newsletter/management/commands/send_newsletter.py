@@ -21,7 +21,7 @@ class Command(NoArgsCommand):
 
         for newsletter in Newsletter.objects.exclude(
             status=Newsletter.DRAFT).exclude(status=Newsletter.SENT):
-            mailer = Mailer(newsletter)
+            mailer = Mailer(newsletter, verbose=verbose)
             if mailer.can_send:
                 if verbose:
                     print 'Start emailing %s' % newsletter.title
