@@ -57,6 +57,26 @@ So it is recommanded to create a **cronjob** for launching this command every ho
 Installation
 ============
 
+Dependencies
+------------
+
+Make sure to install these packages prior to installation :
+
+ * Django >= 1.2
+ * html2text
+ * BeautifulSoup
+ * vobject
+ * xlwt
+ * xlrd
+ * tagging
+
+The package below is optionnal but handy for rendering a webpage in your newsletter.
+
+ * premailer
+
+Getting the code
+----------------
+
 You could retrieve the last sources from http://github.com/Fantomas42/emencia-django-newsletter and running the installation script ::
 
   $ python setup.py install
