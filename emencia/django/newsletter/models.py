@@ -15,6 +15,7 @@ from django.utils.encoding import force_unicode
 
 from tagging.fields import TagField
 from emencia.django.newsletter.managers import ContactManager
+from emencia.django.newsletter.settings import MAILER_HARD_LIMIT
 from emencia.django.newsletter.settings import DEFAULT_HEADER_REPLY
 from emencia.django.newsletter.settings import DEFAULT_HEADER_SENDER
 from emencia.django.newsletter.settings import NEWSLETTER_BASE_PATH
@@ -64,7 +65,7 @@ class SMTPServer(models.Model):
     def credits(self):
         """Return how many mails the server can send"""
         if not self.mails_hour:
-            return 10000  # Arbitrary value
+            return MAILER_HARD_LIMIT
 
         last_hour = datetime.now() - timedelta(hours=1)
         sent_last_hour = ContactMailingStatus.objects.filter(
