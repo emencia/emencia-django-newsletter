@@ -133,7 +133,7 @@ Note this urlset is provided for convenient usage, but you can do something like
 Media Files
 -----------
 
-You have to make a symbolic link from emencia/django/newsletter/media/ directory to your media directory or make a copy named **edn**,
+You have to make a symbolic link from emencia/django/newsletter/media/edn/ directory to your media directory or make a copy named **edn**,
 but if want to change this value, define NEWSLETTER_MEDIA_URL in the settings.py as appropriate.
 
 Don't forget to serve this url.
