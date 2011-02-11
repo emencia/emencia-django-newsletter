@@ -1,12 +1,14 @@
 Changelog
 =========
 
+
 0.3
 ---
-
 - Use UTM Tags
 - Demo in the package
 - Improving importation
+- Premailer for HTML page.
+- Unique key variable for newsletter's title
 - A lot of bug fixes
 
 
