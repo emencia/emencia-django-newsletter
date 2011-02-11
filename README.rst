@@ -72,7 +72,7 @@ Make sure to install these packages prior to installation :
 
 The package below is optionnal but handy for rendering a webpage in your newsletter.
 
- * premailer
+ * lxml
 
 Getting the code
 ----------------

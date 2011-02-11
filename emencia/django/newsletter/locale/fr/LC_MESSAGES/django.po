@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Emencia Django Newsletter\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-02-08 17:41+0100\n"
-"PO-Revision-Date: 2011-02-08 17:41+0100\n"
+"POT-Creation-Date: 2011-02-11 16:18+0100\n"
+"PO-Revision-Date: 2011-02-11 16:21+0100\n"
 "Last-Translator: Fantomas <Fantomas42@gmail.com>\n"
 "Language-Team: Fantomas42 <fantomas42@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -28,42 +28,42 @@ msgstr "Email"
 msgid "Mailing lists"
 msgstr "Listes de diffusion"
 
-#: models.py:38
-#: models.py:155
-#: models.py:336
+#: models.py:39
+#: models.py:156
+#: models.py:337
 msgid "name"
 msgstr "Nom"
 
-#: models.py:39
+#: models.py:40
 msgid "server host"
 msgstr "Hôte"
 
-#: models.py:40
+#: models.py:41
 msgid "server user"
 msgstr "Utilisateur"
 
-#: models.py:41
-#: models.py:43
+#: models.py:42
+#: models.py:44
 msgid "Leave it empty if the host is public."
 msgstr "Laissez ce champs vide, si aucune authentification n'est nécessaire."
 
-#: models.py:42
+#: models.py:43
 msgid "server password"
 msgstr "Mot de passe"
 
-#: models.py:44
+#: models.py:45
 msgid "server port"
 msgstr "Port"
 
-#: models.py:45
+#: models.py:46
 msgid "server use TLS"
 msgstr "Chiffrement TLS"
 
-#: models.py:47
+#: models.py:48
 msgid "custom headers"
 msgstr "Entêtes personnalisées "
 
-#: models.py:48
+#: models.py:49
 msgid ""
 "key1: value1 key2: value2, splitted by return line.\n"
 "Useful for passing some tracking headers if your provider allows it."
@@ -71,139 +71,139 @@ msgstr ""
 "clef1: valeur1 clef2: valeur2, séparés par un retour à la ligne.\n"
 "Utile pour passer des en-têtes de suivi si votre fournisseur le permet."
 
-#: models.py:50
+#: models.py:51
 msgid "mails per hour"
 msgstr "Envois/Heure"
 
-#: models.py:92
+#: models.py:93
 msgid "SMTP server"
 msgstr "serveur SMTP"
 
-#: models.py:93
+#: models.py:94
 msgid "SMTP servers"
 msgstr "serveurs SMTP"
 
-#: models.py:98
+#: models.py:99
 #: views/statistics.py:76
 msgid "email"
 msgstr "Email"
 
-#: models.py:99
+#: models.py:100
 #: views/statistics.py:75
 msgid "first name"
 msgstr "Prénom"
 
-#: models.py:100
+#: models.py:101
 #: views/statistics.py:75
 msgid "last name"
 msgstr "Nom"
 
-#: models.py:102
+#: models.py:103
 msgid "subscriber"
 msgstr "Opt-in Newsletter"
 
-#: models.py:103
+#: models.py:104
 msgid "valid email"
 msgstr "Email valide"
 
-#: models.py:104
+#: models.py:105
 msgid "contact tester"
 msgstr "Testeur"
 
-#: models.py:105
+#: models.py:106
 msgid "tags"
 msgstr "Tags"
-
-#: models.py:111
-#: models.py:164
-#: models.py:224
-#: models.py:257
-#: models.py:321
-msgid "creation date"
-msgstr "Date de création"
 
 #: models.py:112
 #: models.py:165
 #: models.py:225
+#: models.py:258
+#: models.py:322
+msgid "creation date"
+msgstr "Date de création"
+
+#: models.py:113
+#: models.py:166
+#: models.py:226
 msgid "modification date"
 msgstr "Date de modification"
 
-#: models.py:131
+#: models.py:132
 msgid "mail format"
 msgstr "Contact"
 
-#: models.py:149
-#: models.py:316
+#: models.py:150
+#: models.py:317
 msgid "contact"
 msgstr "contact"
 
-#: models.py:150
-#: models.py:339
+#: models.py:151
+#: models.py:340
 msgid "contacts"
 msgstr "contacts"
 
-#: models.py:156
+#: models.py:157
 msgid "description"
 msgstr "Description"
 
-#: models.py:158
-#: models.py:169
+#: models.py:159
+#: models.py:170
 msgid "subscribers"
 msgstr "Inscrits"
 
-#: models.py:160
-#: models.py:173
+#: models.py:161
+#: models.py:174
 msgid "unsubscribers"
 msgstr "Désinscrits"
 
-#: models.py:185
-#: models.py:208
+#: models.py:186
+#: models.py:209
 #: plugins/models.py:15
 msgid "mailing list"
 msgstr "Liste de diffusion"
 
-#: models.py:186
-#: models.py:341
+#: models.py:187
+#: models.py:342
 msgid "mailing lists"
 msgstr "listes de diffusion"
 
-#: models.py:197
+#: models.py:198
 msgid "draft"
 msgstr "Brouillon"
 
-#: models.py:198
+#: models.py:199
 msgid "waiting sending"
 msgstr "Prête à envoyer"
 
-#: models.py:199
+#: models.py:200
 msgid "sending"
 msgstr "En cours d'envois"
 
-#: models.py:200
-#: models.py:306
+#: models.py:201
+#: models.py:307
 msgid "sent"
 msgstr "Envoyée"
 
-#: models.py:201
+#: models.py:202
 msgid "canceled"
 msgstr "Annulée"
 
-#: models.py:204
-#: models.py:254
-#: models.py:279
+#: models.py:205
+#: models.py:255
+#: models.py:280
 #: plugins/models.py:12
 msgid "title"
 msgstr "Titre"
 
-#: models.py:205
+#: models.py:206
 msgid "content"
 msgstr "Contenu"
 
-#: models.py:205
+#: models.py:206
 msgid "Or paste an URL."
 msgstr "Ou collez simplement une URL."
 
-#: models.py:206
+#: models.py:207
 msgid ""
 "<body>\n"
 "<!-- Edit your newsletter here -->\n"
@@ -213,117 +213,117 @@ msgstr ""
 "<!-- Editez votre newsletter ici -->\n"
 "</body>"
 
-#: models.py:209
+#: models.py:210
 msgid "test contacts"
 msgstr "Contacts de test"
 
-#: models.py:212
+#: models.py:213
 msgid "smtp server"
 msgstr "Serveur d'envois"
 
-#: models.py:214
+#: models.py:215
 msgid "sender"
 msgstr "Expéditeur"
 
-#: models.py:216
+#: models.py:217
 msgid "reply to"
 msgstr "Répondre à"
 
-#: models.py:219
-#: models.py:317
+#: models.py:220
+#: models.py:318
 msgid "status"
 msgstr "Statut"
 
-#: models.py:220
+#: models.py:221
 msgid "sending date"
 msgstr "Date d'envois"
 
-#: models.py:222
+#: models.py:223
 msgid "Used for displaying the newsletter on the site."
 msgstr "Utilisé pour construire le lien vers le site."
 
-#: models.py:247
-#: models.py:278
-#: models.py:315
+#: models.py:248
+#: models.py:279
+#: models.py:316
 #: plugins/cms_plugins.py:13
 msgid "newsletter"
 msgstr "Newsletter"
 
-#: models.py:248
-#: models.py:343
+#: models.py:249
+#: models.py:344
 msgid "newsletters"
 msgstr "newsletters"
 
-#: models.py:255
+#: models.py:256
 msgid "url"
 msgstr "url"
 
-#: models.py:267
-#: models.py:318
+#: models.py:268
+#: models.py:319
 msgid "link"
 msgstr "lien"
 
-#: models.py:268
+#: models.py:269
 msgid "links"
 msgstr "liens"
 
-#: models.py:280
+#: models.py:281
 msgid "file to attach"
 msgstr "fichier à attacher"
 
-#: models.py:284
+#: models.py:285
 msgid "attachment"
 msgstr "pièce jointe"
 
-#: models.py:285
+#: models.py:286
 msgid "attachments"
 msgstr "pièces jointes"
 
-#: models.py:305
+#: models.py:306
 msgid "sent in test"
 msgstr "Envois en test"
 
-#: models.py:307
+#: models.py:308
 msgid "error"
 msgstr "Erreur lors de l'envois"
 
-#: models.py:308
+#: models.py:309
 msgid "invalid email"
 msgstr "Email Invalide"
 
-#: models.py:309
+#: models.py:310
 msgid "opened"
 msgstr "Réception OK"
 
-#: models.py:310
+#: models.py:311
 msgid "opened on site"
 msgstr "Ouvert sur le site"
 
-#: models.py:311
+#: models.py:312
 msgid "link opened"
 msgstr "Lien ouvert"
 
-#: models.py:312
+#: models.py:313
 msgid "unsubscription"
 msgstr "désabonnement"
 
-#: models.py:330
+#: models.py:331
 msgid "contact mailing status"
 msgstr "statut d'envoi"
 
-#: models.py:331
+#: models.py:332
 msgid "contact mailing statuses"
 msgstr "statuts d'envoi"
 
-#: models.py:337
+#: models.py:338
 msgid "permissions group"
 msgstr "groupe de permissions"
 
-#: models.py:350
+#: models.py:351
 msgid "workgroup"
 msgstr "groupe de travail"
 
-#: models.py:351
+#: models.py:352
 msgid "workgroups"
 msgstr "groupes de travail"
 
@@ -415,81 +415,85 @@ msgstr "Export des inscrits"
 msgid "Export"
 msgstr "Exportation"
 
-#: admin/newsletter.py:36
+#: admin/newsletter.py:41
 msgid "Receivers"
 msgstr "Destinataires"
 
-#: admin/newsletter.py:37
+#: admin/newsletter.py:42
 msgid "Sending"
 msgstr "Expédition"
 
-#: admin/newsletter.py:38
+#: admin/newsletter.py:43
 #: admin/smtpserver.py:13
 msgid "Miscellaneous"
 msgstr "Divers"
 
-#: admin/newsletter.py:74
+#: admin/newsletter.py:79
 msgid "Default"
 msgstr "Par défault"
 
-#: admin/newsletter.py:98
+#: admin/newsletter.py:105
 msgid "Unable to download HTML, due to errors within."
 msgstr "Impossible de télécharger le HTML, il contient des erreurs."
 
-#: admin/newsletter.py:111
+#: admin/newsletter.py:107
+msgid "Please install lxml for parsing an URL."
+msgstr "Veuillez installer lxml pour récupérer une URL."
+
+#: admin/newsletter.py:119
 msgid "View historic"
 msgstr "Historique d'envois"
 
-#: admin/newsletter.py:112
-#: admin/newsletter.py:121
+#: admin/newsletter.py:120
+#: admin/newsletter.py:129
 msgid "Not available"
 msgstr "Non disponible"
 
-#: admin/newsletter.py:114
+#: admin/newsletter.py:122
 msgid "Historic"
 msgstr "Historique"
 
-#: admin/newsletter.py:120
+#: admin/newsletter.py:128
 msgid "View statistics"
 msgstr "Statistiques"
 
-#: admin/newsletter.py:123
+#: admin/newsletter.py:131
 msgid "Statistics"
 msgstr "Statistiques"
 
-#: admin/newsletter.py:133
+#: admin/newsletter.py:141
 msgid "Unable send newsletter, due to errors within HTML."
 msgstr "Impossible d'envoyer la newsletter, le HTML est mal formaté."
 
-#: admin/newsletter.py:135
+#: admin/newsletter.py:143
 #, python-format
 msgid "%s succesfully sent."
 msgstr "%s envoyée en test avec succès."
 
-#: admin/newsletter.py:137
+#: admin/newsletter.py:145
 #, python-format
 msgid "No test contacts assigned for %s."
 msgstr "Pas de contacts de test assignés pour %s."
 
-#: admin/newsletter.py:138
+#: admin/newsletter.py:146
 msgid "Send test email"
 msgstr "Effectuer un test d'envois"
 
-#: admin/newsletter.py:146
+#: admin/newsletter.py:154
 #, python-format
 msgid "%s newletters are ready to send"
 msgstr "%s newsletters sont prêtes à être envoyées."
 
-#: admin/newsletter.py:147
+#: admin/newsletter.py:155
 msgid "Make ready to send"
 msgstr "Passer en attente d'expédition"
 
-#: admin/newsletter.py:156
+#: admin/newsletter.py:164
 #, python-format
 msgid "%s newletters are cancelled"
 msgstr "%s newsletters ont été annulées."
 
-#: admin/newsletter.py:157
+#: admin/newsletter.py:165
 msgid "Cancel the sending"
 msgstr "Annuler les envois"
 
@@ -817,7 +821,7 @@ msgstr "#val# ouvertures"
 msgid "#val# clicks"
 msgstr "#val# clics"
 
-#: views/tracking.py:47
+#: views/tracking.py:62
 #, python-format
 msgid "Historic of %s"
 msgstr "Historique de %s"
