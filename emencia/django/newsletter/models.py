@@ -202,7 +202,9 @@ class Newsletter(models.Model):
                       (CANCELED, _('canceled')),
                       )
 
-    title = models.CharField(_('title'), max_length=255)
+    title = models.CharField(_('title'), max_length=255,
+                             help_text=_('You can use the "{{ UNIQUE_KEY }}" variable ' \
+                                         'for unique identifier within the newsletter\'s title.'))
     content = models.TextField(_('content'), help_text=_('Or paste an URL.'),
                                default=_('<body>\n<!-- Edit your newsletter here -->\n</body>'))
 

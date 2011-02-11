@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Emencia Django Newsletter\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-02-11 16:18+0100\n"
-"PO-Revision-Date: 2011-02-11 16:21+0100\n"
+"POT-Creation-Date: 2011-02-11 19:36+0100\n"
+"PO-Revision-Date: 2011-02-11 19:38+0100\n"
 "Last-Translator: Fantomas <Fantomas42@gmail.com>\n"
 "Language-Team: Fantomas42 <fantomas42@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -30,7 +30,7 @@ msgstr "Listes de diffusion"
 
 #: models.py:39
 #: models.py:156
-#: models.py:337
+#: models.py:339
 msgid "name"
 msgstr "Nom"
 
@@ -116,15 +116,15 @@ msgstr "Tags"
 
 #: models.py:112
 #: models.py:165
-#: models.py:225
-#: models.py:258
-#: models.py:322
+#: models.py:227
+#: models.py:260
+#: models.py:324
 msgid "creation date"
 msgstr "Date de création"
 
 #: models.py:113
 #: models.py:166
-#: models.py:226
+#: models.py:228
 msgid "modification date"
 msgstr "Date de modification"
 
@@ -133,12 +133,12 @@ msgid "mail format"
 msgstr "Contact"
 
 #: models.py:150
-#: models.py:317
+#: models.py:319
 msgid "contact"
 msgstr "contact"
 
 #: models.py:151
-#: models.py:340
+#: models.py:342
 msgid "contacts"
 msgstr "contacts"
 
@@ -157,13 +157,13 @@ msgid "unsubscribers"
 msgstr "Désinscrits"
 
 #: models.py:186
-#: models.py:209
+#: models.py:211
 #: plugins/models.py:15
 msgid "mailing list"
 msgstr "Liste de diffusion"
 
 #: models.py:187
-#: models.py:342
+#: models.py:344
 msgid "mailing lists"
 msgstr "listes de diffusion"
 
@@ -180,7 +180,7 @@ msgid "sending"
 msgstr "En cours d'envois"
 
 #: models.py:201
-#: models.py:307
+#: models.py:309
 msgid "sent"
 msgstr "Envoyée"
 
@@ -189,21 +189,25 @@ msgid "canceled"
 msgstr "Annulée"
 
 #: models.py:205
-#: models.py:255
-#: models.py:280
+#: models.py:257
+#: models.py:282
 #: plugins/models.py:12
 msgid "title"
 msgstr "Titre"
 
 #: models.py:206
+msgid "You can use the \"{{ UNIQUE_KEY }}\" variable for unique identifier within the newsletter's title."
+msgstr "Vous pouvez utiliser la variable \"{{ UNIQUE_KEY }}\" pour avoir un identifiant unique dans le titre de la newsletter."
+
+#: models.py:208
 msgid "content"
 msgstr "Contenu"
 
-#: models.py:206
+#: models.py:208
 msgid "Or paste an URL."
 msgstr "Ou collez simplement une URL."
 
-#: models.py:207
+#: models.py:209
 msgid ""
 "<body>\n"
 "<!-- Edit your newsletter here -->\n"
@@ -213,117 +217,117 @@ msgstr ""
 "<!-- Editez votre newsletter ici -->\n"
 "</body>"
 
-#: models.py:210
+#: models.py:212
 msgid "test contacts"
 msgstr "Contacts de test"
 
-#: models.py:213
+#: models.py:215
 msgid "smtp server"
 msgstr "Serveur d'envois"
 
-#: models.py:215
+#: models.py:217
 msgid "sender"
 msgstr "Expéditeur"
 
-#: models.py:217
+#: models.py:219
 msgid "reply to"
 msgstr "Répondre à"
 
-#: models.py:220
-#: models.py:318
+#: models.py:222
+#: models.py:320
 msgid "status"
 msgstr "Statut"
 
-#: models.py:221
+#: models.py:223
 msgid "sending date"
 msgstr "Date d'envois"
 
-#: models.py:223
+#: models.py:225
 msgid "Used for displaying the newsletter on the site."
 msgstr "Utilisé pour construire le lien vers le site."
 
-#: models.py:248
-#: models.py:279
-#: models.py:316
+#: models.py:250
+#: models.py:281
+#: models.py:318
 #: plugins/cms_plugins.py:13
 msgid "newsletter"
 msgstr "Newsletter"
 
-#: models.py:249
-#: models.py:344
+#: models.py:251
+#: models.py:346
 msgid "newsletters"
 msgstr "newsletters"
 
-#: models.py:256
+#: models.py:258
 msgid "url"
 msgstr "url"
 
-#: models.py:268
-#: models.py:319
+#: models.py:270
+#: models.py:321
 msgid "link"
 msgstr "lien"
 
-#: models.py:269
+#: models.py:271
 msgid "links"
 msgstr "liens"
 
-#: models.py:281
+#: models.py:283
 msgid "file to attach"
 msgstr "fichier à attacher"
 
-#: models.py:285
+#: models.py:287
 msgid "attachment"
 msgstr "pièce jointe"
 
-#: models.py:286
+#: models.py:288
 msgid "attachments"
 msgstr "pièces jointes"
 
-#: models.py:306
+#: models.py:308
 msgid "sent in test"
 msgstr "Envois en test"
 
-#: models.py:308
+#: models.py:310
 msgid "error"
 msgstr "Erreur lors de l'envois"
 
-#: models.py:309
+#: models.py:311
 msgid "invalid email"
 msgstr "Email Invalide"
 
-#: models.py:310
+#: models.py:312
 msgid "opened"
 msgstr "Réception OK"
 
-#: models.py:311
+#: models.py:313
 msgid "opened on site"
 msgstr "Ouvert sur le site"
 
-#: models.py:312
+#: models.py:314
 msgid "link opened"
 msgstr "Lien ouvert"
 
-#: models.py:313
+#: models.py:315
 msgid "unsubscription"
 msgstr "désabonnement"
 
-#: models.py:331
+#: models.py:333
 msgid "contact mailing status"
 msgstr "statut d'envoi"
 
-#: models.py:332
+#: models.py:334
 msgid "contact mailing statuses"
 msgstr "statuts d'envoi"
 
-#: models.py:338
+#: models.py:340
 msgid "permissions group"
 msgstr "groupe de permissions"
 
-#: models.py:351
+#: models.py:353
 msgid "workgroup"
 msgstr "groupe de travail"
 
-#: models.py:352
+#: models.py:354
 msgid "workgroups"
 msgstr "groupes de travail"
 

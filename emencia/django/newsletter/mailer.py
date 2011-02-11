@@ -1,6 +1,7 @@
 """Mailer for emencia.django.newsletter"""
 import mimetypes
 
+from random import sample
 from smtplib import SMTPRecipientsRefused
 from datetime import datetime
 
@@ -33,6 +34,8 @@ from emencia.django.newsletter.utils.newsletter import track_links
 from emencia.django.newsletter.utils.newsletter import body_insertion
 from emencia.django.newsletter.settings import TRACKING_LINKS
 from emencia.django.newsletter.settings import TRACKING_IMAGE
+from emencia.django.newsletter.settings import UNIQUE_KEY_LENGTH
+from emencia.django.newsletter.settings import UNIQUE_KEY_CHAR_SET
 from emencia.django.newsletter.settings import INCLUDE_UNSUBSCRIPTION
 
 
@@ -163,7 +166,9 @@ class Mailer(object):
 
     def build_title_content(self, contact):
         """Generate the email title for a contact"""
-        context = Context({'contact': contact})
+        context = Context({'contact': contact,
+                           'UNIQUE_KEY': ''.join(sample(UNIQUE_KEY_CHAR_SET,
+                                                        UNIQUE_KEY_LENGTH))})
         title = self.title_template.render(context)
         return title
 
