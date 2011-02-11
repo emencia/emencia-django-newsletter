@@ -22,4 +22,4 @@ urlpatterns += patterns('django.views.static',
                         url(r'^edn/(?P<path>.*)$', 'serve',
                             {'document_root': os.path.join(os.path.dirname(__file__),
                                                            '..', 'emencia', 'django',
-                                                           'newsletter', 'media')}),)
+                                                           'newsletter', 'media', 'edn')}),)
