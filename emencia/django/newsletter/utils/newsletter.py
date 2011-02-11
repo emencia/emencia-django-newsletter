@@ -1,51 +1,8 @@
 """Utils for newsletter"""
-import urllib2
-from urlparse import urljoin
-from urlparse import urlparse
-
 from BeautifulSoup import BeautifulSoup
 from django.core.urlresolvers import reverse
 
 from emencia.django.newsletter.models import Link
-
-
-def get_external_styles(soup, base_url):
-    """Return a list of external styles"""
-    styles = []
-
-    for link in soup('link'):
-        if link.get('rel', '').lower() == 'stylesheet' and link.get('href'):
-            media = link.get('media', '')
-            for media_type in ('all', 'screen', 'projection'):
-                if media_type in media:
-                    media_url = link['href']
-                    media_url_components = urlparse(media_url)
-                    if not media_url_components.netloc:
-                        styles.append(urljoin(base_url, media_url))
-                    else:
-                        styles.append(media_url)
-                    break
-    return styles
-
-
-def get_webpage_content(url):
-    """Using premailer lib for rendering well the page,
-    else fallback to BeautifulSoup"""
-    request = urllib2.Request(url)
-    page_content = '\n'.join(urllib2.urlopen(request).readlines())
-
-    try:
-        from premailer import Premailer
-        pm = Premailer(page_content,
-                       base_url=urljoin(url, '/'),
-                       external_styles=get_external_styles(
-                           BeautifulSoup(page_content), url))
-        page_content = pm.transform()
-    except (ImportError, AssertionError):
-        pass
-
-    soup = BeautifulSoup(page_content)
-    return soup.body.prettify()
 
 
 def body_insertion(content, insertion, end=False):

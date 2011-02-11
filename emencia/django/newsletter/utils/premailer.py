@@ -2,9 +2,9 @@
 Used for converting a page with CSS inline and links corrected.
 Based on http://www.peterbe.com/plog/premailer.py"""
 import re
+from urllib2 import urlopen
 from lxml.html import parse
 from lxml.html import tostring
-from urllib2 import urlopen
 
 
 _css_comments = re.compile(r'/\*.*?\*/', re.MULTILINE | re.DOTALL)
@@ -78,25 +78,27 @@ class Premailer(object):
     """Premailer for converting a webpage
     to be e-mail ready"""
 
-    def __init__(self, url, exclude_pseudoclasses=False,
-                 keep_style_tags=False, include_star_selectors=False):
+    def __init__(self, url, include_star_selectors=False):
         self.url = url
-        self.page = parse(self.url).getroot()
-        if self.page is None:
+        try:
+            self.page = parse(self.url).getroot()
+        except:
             raise PremailerError('Could not parse the html')
 
-        self.exclude_pseudoclasses = exclude_pseudoclasses
-        # Whether to delete the <style> tag once it's been processed
-        self.keep_style_tags = keep_style_tags
-        # Whether to process or ignore selectors like '* { foo:bar; }'
         self.include_star_selectors = include_star_selectors
 
     def transform(self):
         """Do some transformations to self.page
         for being e-mail compliant"""
         self.page.make_links_absolute(self.url)
+
         self.inline_rules(self.get_page_rules())
         self.clean_page()
+        # Do it a second time for correcting
+        # ressources added by inlining.
+        # Will not work as expected if medias
+        # are located in other domain.
+        self.page.make_links_absolute(self.url)
 
         return tostring(self.page.body)
 
@@ -109,13 +111,6 @@ class Premailer(object):
             css_body = css_body.split('>')[1].split('</')[0]
             these_rules, these_leftover = self._parse_style_rules(css_body)
             rules.extend(these_rules)
-
-            parent_of_style = style.getparent()
-            if these_leftover:
-                style.text = '\n'.join(['%s {%s}' % (k, v)
-                                        for (k, v) in these_leftover])
-            elif not self.keep_style_tags:  # TO BE REMOVED with the option
-                parent_of_style.remove(style)
 
         for external_css in self.page.cssselect('link'):
             attr = external_css.attrib
@@ -145,11 +140,14 @@ class Premailer(object):
                 self._style_to_basic_html_attributes(item, new_style)
 
     def clean_page(self):
-        """Clean the page of useless parts, class attributes"""
-        # + STYLE + SCRIPT
-        for item in self.page.xpath('//@class'):
-            parent = item.getparent()
+        """Clean the page of useless parts"""
+        for elem in self.page.xpath('//@class'):
+            parent = elem.getparent()
             del parent.attrib['class']
+        for elem in self.page.cssselect('style'):
+            elem.getparent().remove(elem)
+        for elem in self.page.cssselect('script'):
+            elem.getparent().remove(elem)
 
     def _parse_style_rules(self, css_body):
         leftover = []
@@ -157,14 +155,13 @@ class Premailer(object):
         css_body = _css_comments.sub('', css_body)
         for each in _regex.findall(css_body.strip()):
             __, selectors, bulk = each
-
             bulk = _semicolon_regex.sub(';', bulk.strip())
             bulk = _colon_regex.sub(':', bulk.strip())
             if bulk.endswith(';'):
                 bulk = bulk[:-1]
             for selector in [x.strip()
                              for x in selectors.split(',') if x.strip()]:
-                if ':' in selector and self.exclude_pseudoclasses:
+                if ':' in selector:
                     # A pseudoclass
                     leftover.append((selector, bulk))
                     continue
