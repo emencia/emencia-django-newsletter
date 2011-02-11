@@ -1,20 +1,10 @@
 """Premailer for emencia.django.newsletter
 Used for converting a page with CSS inline and links corrected.
 Based on http://www.peterbe.com/plog/premailer.py"""
-import os
 import re
-import codecs
-from lxml import etree
-from lxml.cssselect import CSSSelector
+from lxml.html import parse
+from lxml.html import tostring
 from urllib2 import urlopen
-from urlparse import urljoin
-
-
-__all__ = ['PremailerError', 'Premailer']
-
-
-class PremailerError(Exception):
-    pass
 
 
 _css_comments = re.compile(r'/\*.*?\*/', re.MULTILINE | re.DOTALL)
@@ -80,26 +70,86 @@ def _merge_styles(old, new, class_=''):
         return ' '.join([x for x in all if x != '{}'])
 
 
+class PremailerError(Exception):
+    pass
+
+
 class Premailer(object):
+    """Premailer for converting a webpage
+    to be e-mail ready"""
 
-    def __init__(self, url,
-                 preserve_internal_links=False,
-                 exclude_pseudoclasses=False,
-                 keep_style_tags=False,
-                 include_star_selectors=False,
-                 external_styles=None):
-
+    def __init__(self, url, exclude_pseudoclasses=False,
+                 keep_style_tags=False, include_star_selectors=False):
         self.url = url
-        self.html = urlopen(self.url).read()
-        self.preserve_internal_links = preserve_internal_links
+        self.page = parse(self.url).getroot()
+        if self.page is None:
+            raise PremailerError('Could not parse the html')
+
         self.exclude_pseudoclasses = exclude_pseudoclasses
         # Whether to delete the <style> tag once it's been processed
         self.keep_style_tags = keep_style_tags
         # Whether to process or ignore selectors like '* { foo:bar; }'
         self.include_star_selectors = include_star_selectors
-        if isinstance(external_styles, basestring):
-            external_styles = [external_styles]
-        self.external_styles = external_styles
+
+    def transform(self):
+        """Do some transformations to self.page
+        for being e-mail compliant"""
+        self.page.make_links_absolute(self.url)
+        self.inline_rules(self.get_page_rules())
+        self.clean_page()
+
+        return tostring(self.page.body)
+
+    def get_page_rules(self):
+        """Retrieve CSS rules in the <style> markups
+        and in the external CSS files"""
+        rules = []
+        for style in self.page.cssselect('style'):
+            css_body = tostring(style)
+            css_body = css_body.split('>')[1].split('</')[0]
+            these_rules, these_leftover = self._parse_style_rules(css_body)
+            rules.extend(these_rules)
+
+            parent_of_style = style.getparent()
+            if these_leftover:
+                style.text = '\n'.join(['%s {%s}' % (k, v)
+                                        for (k, v) in these_leftover])
+            elif not self.keep_style_tags:  # TO BE REMOVED with the option
+                parent_of_style.remove(style)
+
+        for external_css in self.page.cssselect('link'):
+            attr = external_css.attrib
+            if attr.get('rel', '').lower() == 'stylesheet' and \
+                   attr.get('href'):
+                media = attr.get('media', 'screen')
+                for media_allowed in ('all', 'screen', 'projection'):
+                    if media_allowed in media:
+                        css = urlopen(attr['href']).read()
+                        rules.extend(self._parse_style_rules(css)[0])
+                        break
+
+        return rules
+
+    def inline_rules(self, rules):
+        """Apply in the page inline the CSS rules"""
+        for selector, style in rules:
+            class_ = ''
+            if ':' in selector:
+                selector, class_ = re.split(':', selector, 1)
+                class_ = ':%s' % class_
+
+            for item in self.page.cssselect(selector):
+                old_style = item.attrib.get('style', '')
+                new_style = _merge_styles(old_style, style, class_)
+                item.attrib['style'] = new_style
+                self._style_to_basic_html_attributes(item, new_style)
+
+    def clean_page(self):
+        """Clean the page of useless parts, class attributes"""
+        # + STYLE + SCRIPT
+        for item in self.page.xpath('//@class'):
+            parent = item.getparent()
+            del parent.attrib['class']
 
     def _parse_style_rules(self, css_body):
         leftover = []
@@ -124,85 +174,6 @@ class Premailer(object):
                 rules.append((selector, bulk))
 
         return rules, leftover
-
-    def transform(self, pretty_print=True):
-        """Change the self.html and return it with CSS turned
-        into style attributes """
-        if etree is None:
-            return self.html
-
-        parser = etree.HTMLParser()
-        tree = etree.fromstring(self.html.strip(), parser).getroottree()
-        page = tree.getroot()
-
-        if page is None:
-            raise PremailerError('Could not parse the html')
-        assert page is not None
-
-        ##
-        ## Style selectors
-        ##
-        rules = []
-        for style in CSSSelector('style')(page):
-            css_body = etree.tostring(style)
-            css_body = css_body.split('>')[1].split('</')[0]
-            these_rules, these_leftover = self._parse_style_rules(css_body)
-            rules.extend(these_rules)
-
-            parent_of_style = style.getparent()
-            if these_leftover:
-                style.text = '\n'.join(['%s {%s}' % (k, v)
-                                        for (k, v) in these_leftover])
-            elif not self.keep_style_tags:
-                parent_of_style.remove(style)
-
-        if self.external_styles:
-            for stylefile in self.external_styles:
-                print stylefile
-                if stylefile.startswith('http://'):
-                    css_body = urlopen(stylefile).read()
-                elif os.path.exists(stylefile):
-                    try:
-                        f = codecs.open(stylefile)
-                        css_body = f.read()
-                    finally:
-                        f.close()
-                else:
-                    raise PremailerError('Could not find external style: %s' % stylefile)
-                these_rules, these_leftover = self._parse_style_rules(css_body)
-                rules.extend(these_rules)
-
-        for selector, style in rules:
-            class_ = ''
-            if ':' in selector:
-                selector, class_ = re.split(':', selector, 1)
-                class_ = ':%s' % class_
-
-            sel = CSSSelector(selector)
-            for item in sel(page):
-                old_style = item.attrib.get('style', '')
-                new_style = _merge_styles(old_style, style, class_)
-                item.attrib['style'] = new_style
-                self._style_to_basic_html_attributes(item, new_style)
-
-        # Now we can delete all 'class' attributes
-        for item in page.xpath('//@class'):
-            parent = item.getparent()
-            del parent.attrib['class']
-        ##
-        ## URLs
-        ##
-        for attr in ('href', 'src'):
-            for item in page.xpath('//@%s' % attr):
-                parent = item.getparent()
-                if attr == 'href' and self.preserve_internal_links \
-                       and parent.attrib[attr].startswith('#'):
-                    continue
-                parent.attrib[attr] = urljoin(self.url,
-                                              parent.attrib[attr])
-                
-        return etree.tostring(page, pretty_print=pretty_print).replace(
-            '<head/>', '<head></head>')
 
     def _style_to_basic_html_attributes(self, element, style_content):
         """Given an element and styles like
