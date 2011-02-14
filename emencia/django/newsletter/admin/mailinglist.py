@@ -78,6 +78,10 @@ class MailingListAdmin(admin.ModelAdmin):
         new_mailing.subscribers = subscribers.keys()
         new_mailing.unsubscribers = unsubscribers.keys()
 
+        if not request.user.is_superuser:
+            for workgroup in request_workgroups(request):
+                workgroup.mailinglists.add(new_mailing)
+
         self.message_user(request, _('%s succesfully created by merging.') % new_mailing)
         return HttpResponseRedirect(reverse('admin:newsletter_mailinglist_change',
                                             args=[new_mailing.pk]))
