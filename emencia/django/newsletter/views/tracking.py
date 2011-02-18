@@ -2,8 +2,12 @@
 import base64
 from urllib import urlencode
 from urlparse import urlparse
-from urlparse import parse_qs
 from urlparse import urlunparse
+# For Python < 2.6
+try:
+    from urlparse import parse_qs
+except ImportError:
+    from cgi import parse_qs
 
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
