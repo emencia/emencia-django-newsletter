@@ -89,7 +89,7 @@ class MailingListAdmin(admin.ModelAdmin):
 
     def exportation_link(self, mailinglist):
         """Display link for exportation"""
-        return '<a href="%s">%s</a>' % (reverse('admin:newsletter_mailinglist_export',
+        return u'<a href="%s">%s</a>' % (reverse('admin:newsletter_mailinglist_export',
                                                 args=[mailinglist.pk]),
                                         _('Export Subscribers'))
     exportation_link.allow_tags = True
