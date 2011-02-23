@@ -65,10 +65,10 @@ Make sure to install these packages prior to installation :
  * Django >= 1.2
  * html2text
  * BeautifulSoup
+ * django-tagging
  * vobject
  * xlwt
  * xlrd
- * tagging
 
 The package below is optionnal but handy for rendering a webpage in your newsletter.
 
