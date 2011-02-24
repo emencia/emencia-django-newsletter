@@ -30,7 +30,7 @@ setup(name='emencia.django.newsletter',
       zip_safe=False,
       install_requires=['html2text',
                         'BeautifulSoup',
-                        'django-tagging'
+                        'django-tagging',
                         'vobject',
                         'xlwt',
                         'xlrd'])
