@@ -2,23 +2,20 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: Emencia Django Newsletter\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-02-11 19:36+0100\n"
-"PO-Revision-Date: 2011-02-11 19:38+0100\n"
-"Last-Translator: Fantomas <Fantomas42@gmail.com>\n"
-"Language-Team: Fantomas42 <fantomas42@gmail.com>\n"
+"POT-Creation-Date: 2011-02-28 16:25+0100\n"
+"PO-Revision-Date: 2011-02-28 15:28+0000\n"
+"Last-Translator: Fantomas42 <fantomas42@gmail.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: fr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1)\n"
-"X-Poedit-Language: French\n"
-"X-Poedit-Country: FRANCE\n"
-"X-Poedit-SourceCharset: utf-8\n"
 
 #: forms.py:20
 msgid "Email"
@@ -28,9 +25,7 @@ msgstr "Email"
 msgid "Mailing lists"
 msgstr "Listes de diffusion"
 
-#: models.py:39
-#: models.py:156
-#: models.py:339
+#: models.py:39 models.py:156 models.py:339
 msgid "name"
 msgstr "Nom"
 
@@ -42,8 +37,7 @@ msgstr "Hôte"
 msgid "server user"
 msgstr "Utilisateur"
 
-#: models.py:42
-#: models.py:44
+#: models.py:42 models.py:44
 msgid "Leave it empty if the host is public."
 msgstr "Laissez ce champs vide, si aucune authentification n'est nécessaire."
 
@@ -83,18 +77,15 @@ msgstr "serveur SMTP"
 msgid "SMTP servers"
 msgstr "serveurs SMTP"
 
-#: models.py:99
-#: views/statistics.py:76
+#: models.py:99 views/statistics.py:76
 msgid "email"
 msgstr "Email"
 
-#: models.py:100
-#: views/statistics.py:75
+#: models.py:100 views/statistics.py:75
 msgid "first name"
 msgstr "Prénom"
 
-#: models.py:101
-#: views/statistics.py:75
+#: models.py:101 views/statistics.py:75
 msgid "last name"
 msgstr "Nom"
 
@@ -114,17 +105,11 @@ msgstr "Testeur"
 msgid "tags"
 msgstr "Tags"
 
-#: models.py:112
-#: models.py:165
-#: models.py:227
-#: models.py:260
-#: models.py:324
+#: models.py:112 models.py:165 models.py:227 models.py:260 models.py:324
 msgid "creation date"
 msgstr "Date de création"
 
-#: models.py:113
-#: models.py:166
-#: models.py:228
+#: models.py:113 models.py:166 models.py:228
 msgid "modification date"
 msgstr "Date de modification"
 
@@ -132,13 +117,11 @@ msgstr "Date de modification"
 msgid "mail format"
 msgstr "Contact"
 
-#: models.py:150
-#: models.py:319
+#: models.py:150 models.py:319
 msgid "contact"
 msgstr "contact"
 
-#: models.py:151
-#: models.py:342
+#: models.py:151 models.py:342
 msgid "contacts"
 msgstr "contacts"
 
@@ -146,24 +129,19 @@ msgstr "contacts"
 msgid "description"
 msgstr "Description"
 
-#: models.py:159
-#: models.py:170
+#: models.py:159 models.py:170
 msgid "subscribers"
 msgstr "Inscrits"
 
-#: models.py:161
-#: models.py:174
+#: models.py:161 models.py:174
 msgid "unsubscribers"
 msgstr "Désinscrits"
 
-#: models.py:186
-#: models.py:211
-#: plugins/models.py:15
+#: models.py:186 models.py:211 plugins/models.py:15
 msgid "mailing list"
 msgstr "Liste de diffusion"
 
-#: models.py:187
-#: models.py:344
+#: models.py:187 models.py:344
 msgid "mailing lists"
 msgstr "listes de diffusion"
 
@@ -179,8 +157,7 @@ msgstr "Prête à envoyer"
 msgid "sending"
 msgstr "En cours d'envois"
 
-#: models.py:201
-#: models.py:309
+#: models.py:201 models.py:309
 msgid "sent"
 msgstr "Envoyée"
 
@@ -188,16 +165,17 @@ msgstr "Envoyée"
 msgid "canceled"
 msgstr "Annulée"
 
-#: models.py:205
-#: models.py:257
-#: models.py:282
-#: plugins/models.py:12
+#: models.py:205 models.py:257 models.py:282 plugins/models.py:12
 msgid "title"
 msgstr "Titre"
 
 #: models.py:206
-msgid "You can use the \"{{ UNIQUE_KEY }}\" variable for unique identifier within the newsletter's title."
-msgstr "Vous pouvez utiliser la variable \"{{ UNIQUE_KEY }}\" pour avoir un identifiant unique dans le titre de la newsletter."
+msgid ""
+"You can use the \"{{ UNIQUE_KEY }}\" variable for unique identifier within "
+"the newsletter's title."
+msgstr ""
+"Vous pouvez utiliser la variable \"{{ UNIQUE_KEY }}\" pour avoir un "
+"identifiant unique dans le titre de la newsletter."
 
 #: models.py:208
 msgid "content"
@@ -233,8 +211,7 @@ msgstr "Expéditeur"
 msgid "reply to"
 msgstr "Répondre à"
 
-#: models.py:222
-#: models.py:320
+#: models.py:222 models.py:320
 msgid "status"
 msgstr "Statut"
 
@@ -246,15 +223,11 @@ msgstr "Date d'envois"
 msgid "Used for displaying the newsletter on the site."
 msgstr "Utilisé pour construire le lien vers le site."
 
-#: models.py:250
-#: models.py:281
-#: models.py:318
-#: plugins/cms_plugins.py:13
+#: models.py:250 models.py:281 models.py:318 plugins/cms_plugins.py:13
 msgid "newsletter"
 msgstr "Newsletter"
 
-#: models.py:251
-#: models.py:346
+#: models.py:251 models.py:346
 msgid "newsletters"
 msgstr "newsletters"
 
@@ -262,8 +235,7 @@ msgstr "newsletters"
 msgid "url"
 msgstr "url"
 
-#: models.py:270
-#: models.py:321
+#: models.py:270 models.py:321
 msgid "link"
 msgstr "lien"
 
@@ -331,8 +303,7 @@ msgstr "groupe de travail"
 msgid "workgroups"
 msgstr "groupes de travail"
 
-#: admin/contact.py:35
-#: templates/newsletter/newsletter_statistics.html:187
+#: admin/contact.py:35 templates/newsletter/newsletter_statistics.html:187
 msgid "Status"
 msgstr "Statut"
 
@@ -402,20 +373,20 @@ msgstr "Liste de diffusion fusionnée du %s"
 msgid "Mailing list created by merging at %s"
 msgstr "Liste de diffusion créée par fusion le %s"
 
-#: admin/mailinglist.py:81
+#: admin/mailinglist.py:85
 #, python-format
 msgid "%s succesfully created by merging."
 msgstr "%s créée avec succès."
 
-#: admin/mailinglist.py:84
+#: admin/mailinglist.py:88
 msgid "Merge selected mailinglists"
 msgstr "Fusionner les listes de diffusions sélectionnées."
 
-#: admin/mailinglist.py:90
+#: admin/mailinglist.py:94
 msgid "Export Subscribers"
 msgstr "Export des inscrits"
 
-#: admin/mailinglist.py:92
+#: admin/mailinglist.py:96
 msgid "Export"
 msgstr "Exportation"
 
@@ -427,8 +398,7 @@ msgstr "Destinataires"
 msgid "Sending"
 msgstr "Expédition"
 
-#: admin/newsletter.py:43
-#: admin/smtpserver.py:13
+#: admin/newsletter.py:43 admin/smtpserver.py:36
 msgid "Miscellaneous"
 msgstr "Divers"
 
@@ -448,8 +418,7 @@ msgstr "Veuillez installer lxml pour récupérer une URL."
 msgid "View historic"
 msgstr "Historique d'envois"
 
-#: admin/newsletter.py:120
-#: admin/newsletter.py:129
+#: admin/newsletter.py:120 admin/newsletter.py:129
 msgid "Not available"
 msgstr "Non disponible"
 
@@ -501,11 +470,19 @@ msgstr "%s newsletters ont été annulées."
 msgid "Cancel the sending"
 msgstr "Annuler les envois"
 
-#: admin/smtpserver.py:11
+#: admin/smtpserver.py:18
+msgid "Invalid syntax, do not forget the \":\"."
+msgstr "Syntaxe invalide, n'oubliez pas les \":\"."
+
+#: admin/smtpserver.py:20
+msgid "Invalid syntax, several assignments by line."
+msgstr "Syntaxe invalide, plusieurs assignations par ligne."
+
+#: admin/smtpserver.py:34
 msgid "Configuration"
 msgstr "Configuration"
 
-#: admin/smtpserver.py:34
+#: admin/smtpserver.py:57
 msgid "Check connection"
 msgstr "Tester la connection"
 
@@ -613,8 +590,10 @@ msgid "Import contacts from a text file, or a CSV file."
 msgstr "Importez vos contacts depuis un fichier texte ou un fichier CSV."
 
 #: templates/newsletter/contact_import.html:55
-msgid "Columns are [email][last name][first name][tags], splitted by a dot coma."
-msgstr "Les colonnes sont [email][prénom][nom][tags], séparées par un point virgule."
+msgid ""
+"Columns are [email][last name][first name][tags], splitted by a dot coma."
+msgstr ""
+"Les colonnes sont [email][prénom][nom][tags], séparées par un point virgule."
 
 #: templates/newsletter/contact_import.html:70
 msgid "VCard"
@@ -625,8 +604,11 @@ msgid "VCard file (.cvf)"
 msgstr "Fichier VCard (.cvf)"
 
 #: templates/newsletter/contact_import.html:77
-msgid "Import contacts from your favorite mail client, by providing a VCard file."
-msgstr "Importez vos contacts depuis votre client mail favoris en fournissant un fichier VCard."
+msgid ""
+"Import contacts from your favorite mail client, by providing a VCard file."
+msgstr ""
+"Importez vos contacts depuis votre client mail favoris en fournissant un "
+"fichier VCard."
 
 #: templates/newsletter/mailing_list_subscribe.html:4
 #: templates/newsletter/mailing_list_subscribe.html:7
@@ -698,8 +680,7 @@ msgstr "Pour vous désincrire de cette liste de diffusion,"
 msgid "Broadcasting statistics"
 msgstr "Statistiques de diffusion"
 
-#: templates/newsletter/newsletter_statistics.html:83
-#: views/statistics.py:139
+#: templates/newsletter/newsletter_statistics.html:83 views/statistics.py:139
 msgid "Total openings"
 msgstr "Ouvertures"
 
@@ -728,8 +709,7 @@ msgstr "Nombre moyen d'ouvertures"
 msgid "Links statistics"
 msgstr "Statistiques sur les liens"
 
-#: templates/newsletter/newsletter_statistics.html:119
-#: views/statistics.py:143
+#: templates/newsletter/newsletter_statistics.html:119 views/statistics.py:143
 msgid "Total clicked links"
 msgstr "Clics"
 
@@ -745,8 +725,7 @@ msgstr "Taux de réactivité (clics/ouvertures)"
 msgid "Clicked links average"
 msgstr "Nombre moyen de clics"
 
-#: templates/newsletter/newsletter_statistics.html:147
-#: views/statistics.py:147
+#: templates/newsletter/newsletter_statistics.html:147 views/statistics.py:147
 msgid "Consultation histogram"
 msgstr "Histogramme des consultations"
 
@@ -798,12 +777,12 @@ msgstr "Pas de Top Liens pour l'instant."
 msgid "You have successfully subscribed to the mailing list!"
 msgstr "Vous êtes inscrit avec succès à cette liste de diffusion."
 
-#: utils/importation.py:45
+#: utils/importation.py:52
 #, python-format
 msgid "Mailing list created by importation at %s"
 msgstr "Liste de diffusion créée par importation le %s"
 
-#: utils/importation.py:46
+#: utils/importation.py:53
 #, python-format
 msgid "Contacts imported by %s."
 msgstr "Contacts importés par %s."
@@ -825,7 +804,7 @@ msgstr "#val# ouvertures"
 msgid "#val# clicks"
 msgstr "#val# clics"
 
-#: views/tracking.py:62
+#: views/tracking.py:66
 #, python-format
 msgid "Historic of %s"
 msgstr "Historique de %s"
@@ -833,28 +812,39 @@ msgstr "Historique de %s"
 #~ msgid "key1: value1 key2: value2, splitted by return line."
 #~ msgstr ""
 #~ "clef_1: valeur_1 clef_2: valeur_2, séparés par des retours à la ligne."
+
 #~ msgid "Can change status"
 #~ msgstr "Changement de statut"
+
 #~ msgid "VCard import"
 #~ msgstr "Importation VCard"
+
 #~ msgid "Contacts"
 #~ msgstr "Contacts"
+
 #~ msgid "Mailing List"
 #~ msgstr "Liste de diffusion"
+
 #~ msgid "Mailing Lists"
 #~ msgstr "Listes de diffusion"
+
 #~ msgid "Newsletter"
 #~ msgstr "Newsletter"
+
 #~ msgid "Newsletters"
 #~ msgstr "Newsletters"
+
 #~ msgid "Link"
 #~ msgstr "Lien monitoré"
+
 #~ msgid "Links"
 #~ msgstr "Liens monitorés"
+
 #~ msgid "group"
 #~ msgstr "groupe"
+
 #~ msgid "Connection valid"
 #~ msgstr "Connexion au server"
+
 #~ msgid "Double openings"
 #~ msgstr "Ouvertures doublées"
-
