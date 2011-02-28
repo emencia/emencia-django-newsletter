@@ -79,7 +79,7 @@ class SMTPServer(models.Model):
     def custom_headers(self):
         if self.headers:
             headers = {}
-            for header in self.headers.split('\r\n'):
+            for header in self.headers.splitlines():
                 if header:
                     key, value = header.split(':')
                     headers[key.strip()] = value.strip()

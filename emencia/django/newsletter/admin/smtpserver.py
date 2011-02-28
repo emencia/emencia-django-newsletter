@@ -1,9 +1,32 @@
 """ModelAdmin for SMTPServer"""
+from django import forms
 from django.contrib import admin
+from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
+
+from emencia.django.newsletter.models import SMTPServer
+
+
+class SMTPServerAdminForm(forms.ModelForm):
+    """Form ofr SMTPServer with custom validation"""
+
+    def clean_headers(self):
+        """Check if the headers are well formated"""
+        for line in self.cleaned_data['headers'].splitlines():
+            elems = line.split(':')
+            if len(elems) < 2:
+                raise ValidationError(_('Invalid syntax, do not forget the ":".'))
+            if len(elems) > 2:
+                raise ValidationError(_('Invalid syntax, several assignments by line.'))
+
+        return self.cleaned_data['headers']
+
+    class Meta:
+        model = SMTPServer
 
 
 class SMTPServerAdmin(admin.ModelAdmin):
+    form = SMTPServerAdminForm
     list_display = ('name', 'host', 'port', 'user', 'tls', 'mails_hour',)
     list_filter = ('tls',)
     search_fields = ('name', 'host', 'user')
