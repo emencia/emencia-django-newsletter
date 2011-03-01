@@ -13,6 +13,7 @@ from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.template import RequestContext
+from django.utils.encoding import smart_str
 from django.utils.translation import ugettext as _
 from django.shortcuts import render_to_response
 from django.contrib.auth.decorators import login_required
@@ -51,7 +52,7 @@ def view_newsletter_tracking_link(request, slug, uidb36, token, link_id):
     query_dict = parse_qs(url_parts.query)
     query_dict.update({'utm_source': 'newsletter_%s' % newsletter.pk,
                        'utm_medium': 'mail',
-                       'utm_campaign': newsletter.title})
+                       'utm_campaign': smart_str(newsletter.title)})
     url = urlunparse((url_parts.scheme, url_parts.netloc, url_parts.path,
                       url_parts.params, urlencode(query_dict), url_parts.fragment))
     return HttpResponseRedirect(url)
