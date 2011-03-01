@@ -1,2 +1,17 @@
-{% extends "base.html" %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xml:lang="{{ LANGUAGE_CODE }}" lang="{{ LANGUAGE_CODE }}" version="-//W3C//DTD XHTML 1.1//EN" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="language" content="{{ LANGUAGE_CODE }}" />
+    <meta name="description" content="{% block meta-description %}Emencia Django Newsletter for sending newsletter.{% endblock %}" />
+    <meta name="author" content="Fantomas42" />
+    <title>Emencia Django Newsletter - {% block title %}{% endblock %}</title>
+  </head>
+  <body>
+    <h1>Emencia Django Newsletter</h1>
+    {% block content %}
+    {% endblock %}
+  </body>
+</html>
+
 
