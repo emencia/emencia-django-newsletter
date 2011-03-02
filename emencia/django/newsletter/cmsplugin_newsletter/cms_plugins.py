@@ -4,8 +4,8 @@ from django.utils.translation import ugettext_lazy as _
 from cms.plugin_base import CMSPluginBase
 from cms.plugin_pool import plugin_pool
 
-from emencia.django.newsletter.plugins import settings
-from emencia.django.newsletter.plugins.models import SubscriptionFormPlugin
+from emencia.django.newsletter.cmsplugin_newsletter import settings
+from emencia.django.newsletter.cmsplugin_newsletter.models import SubscriptionFormPlugin
 from emencia.django.newsletter.forms import MailingListSubscriptionForm
 
 
