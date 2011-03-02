@@ -66,7 +66,7 @@ class NewsletterAdmin(admin.ModelAdmin):
 
     def formfield_for_foreignkey(self, db_field, request, **kwargs):
         if db_field.name == 'mailing_list' and \
-               not request.user.is_superuser:
+               not request.user.is_superuser and USE_WORKGROUPS:
             mailinglists_pk = request_workgroups_mailinglists_pk(request)
             kwargs['queryset'] = MailingList.objects.filter(pk__in=mailinglists_pk)
             return db_field.formfield(**kwargs)
@@ -84,7 +84,7 @@ class NewsletterAdmin(admin.ModelAdmin):
     def formfield_for_manytomany(self, db_field, request, **kwargs):
         if db_field.name == 'test_contacts':
             queryset = Contact.objects.filter(tester=True)
-            if not request.user.is_superuser:
+            if not request.user.is_superuser and USE_WORKGROUPS:
                 contacts_pk = request_workgroups_contacts_pk(request)
                 queryset = queryset.filter(pk__in=contacts_pk)
             kwargs['queryset'] = queryset
@@ -93,7 +93,8 @@ class NewsletterAdmin(admin.ModelAdmin):
 
     def save_model(self, request, newsletter, form, change):
         workgroups = []
-        if not newsletter.pk and not request.user.is_superuser:
+        if not newsletter.pk and not request.user.is_superuser \
+               and USE_WORKGROUPS:
             workgroups = request_workgroups(request)
 
         if newsletter.content.startswith('http://'):

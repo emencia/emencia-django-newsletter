@@ -44,14 +44,16 @@ class MailingListAdmin(admin.ModelAdmin):
 
     def save_model(self, request, mailinglist, form, change):
         workgroups = []
-        if not mailinglist.pk and not request.user.is_superuser:
+        if not mailinglist.pk and not request.user.is_superuser \
+               and USE_WORKGROUPS:
             workgroups = request_workgroups(request)
         mailinglist.save()
         for workgroup in workgroups:
             workgroup.mailinglists.add(mailinglist)
 
     def formfield_for_manytomany(self, db_field, request, **kwargs):
-        if 'subscribers' in db_field.name and not request.user.is_superuser:
+        if 'subscribers' in db_field.name and not request.user.is_superuser \
+               and USE_WORKGROUPS:
             contacts_pk = request_workgroups_contacts_pk(request)
             kwargs['queryset'] = Contact.objects.filter(pk__in=contacts_pk)
         return super(MailingListAdmin, self).formfield_for_manytomany(
@@ -78,7 +80,7 @@ class MailingListAdmin(admin.ModelAdmin):
         new_mailing.subscribers = subscribers.keys()
         new_mailing.unsubscribers = unsubscribers.keys()
 
-        if not request.user.is_superuser:
+        if not request.user.is_superuser and USE_WORKGROUPS:
             for workgroup in request_workgroups(request):
                 workgroup.mailinglists.add(new_mailing)
 

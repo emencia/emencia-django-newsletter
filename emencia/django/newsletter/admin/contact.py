@@ -49,7 +49,8 @@ class ContactAdmin(admin.ModelAdmin):
 
     def save_model(self, request, contact, form, change):
         workgroups = []
-        if not contact.pk and not request.user.is_superuser:
+        if not contact.pk and not request.user.is_superuser \
+               and USE_WORKGROUPS:
             workgroups = request_workgroups(request)
         contact.save()
         for workgroup in workgroups:
@@ -95,7 +96,7 @@ class ContactAdmin(admin.ModelAdmin):
         new_mailing.save()
         new_mailing.subscribers = queryset.all()
 
-        if not request.user.is_superuser:
+        if not request.user.is_superuser and USE_WORKGROUPS:
             for workgroup in request_workgroups(request):
                 workgroup.mailinglists.add(new_mailing)
 
@@ -110,8 +111,12 @@ class ContactAdmin(admin.ModelAdmin):
 
         if request.FILES:
             source = request.FILES.get('source')
+            if not request.user.is_superuser and USE_WORKGROUPS:
+                workgroups = request_workgroups(request)
+            else:
+                workgroups = []
             inserted = import_dispatcher(source, request.POST['type'],
-                                         request_workgroups(request))
+                                         workgroups)
             if inserted:
                 contacts_imported.send(sender=self, source=source,
                                        type=request.POST['type'])
