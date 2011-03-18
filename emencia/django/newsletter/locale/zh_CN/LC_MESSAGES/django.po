@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: Emencia Django Newsletter\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-02-28 16:25+0100\n"
-"PO-Revision-Date: 2011-02-28 15:27+0000\n"
-"Last-Translator: Fantomas42 <fantomas42@gmail.com>\n"
+"PO-Revision-Date: 2011-03-18 03:21+0000\n"
+"Last-Translator: aaffdd11 <chenyuan328@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -61,7 +61,7 @@ msgstr "自定义页头"
 msgid ""
 "key1: value1 key2: value2, splitted by return line.\n"
 "Useful for passing some tracking headers if your provider allows it."
-msgstr ""
+msgstr "键1:值1 键2:值2，通过换行分隔。提供商允许的话可以用于传递一些有用的跟踪头。"
 
 #: models.py:51
 msgid "mails per hour"
@@ -171,7 +171,7 @@ msgstr "标题"
 msgid ""
 "You can use the \"{{ UNIQUE_KEY }}\" variable for unique identifier within "
 "the newsletter's title."
-msgstr ""
+msgstr "你可以在简讯标题种使用{{UNIQUE_KEY}}来确保唯一性。"
 
 #: models.py:208
 msgid "content"
@@ -186,7 +186,7 @@ msgid ""
 "<body>\n"
 "<!-- Edit your newsletter here -->\n"
 "</body>"
-msgstr ""
+msgstr "在这里编辑您的简讯"
 
 #: models.py:212
 msgid "test contacts"
@@ -266,538 +266,538 @@ msgstr "已打开的"
 
 #: models.py:313
 msgid "opened on site"
-msgstr ""
+msgstr "访问于"
 
 #: models.py:314
 msgid "link opened"
-msgstr ""
+msgstr "打开的链接"
 
 #: models.py:315
 msgid "unsubscription"
-msgstr ""
+msgstr "取消订阅"
 
 #: models.py:333
 msgid "contact mailing status"
-msgstr ""
+msgstr "邮件状态"
 
 #: models.py:334
 msgid "contact mailing statuses"
-msgstr ""
+msgstr "邮件状态"
 
 #: models.py:340
 msgid "permissions group"
-msgstr ""
+msgstr "权限组"
 
 #: models.py:353
 msgid "workgroup"
-msgstr ""
+msgstr "工作组"
 
 #: models.py:354
 msgid "workgroups"
-msgstr ""
+msgstr "工作组"
 
 #: admin/contact.py:35 templates/newsletter/newsletter_statistics.html:187
 msgid "Status"
-msgstr ""
+msgstr "状态"
 
 #: admin/contact.py:36
 msgid "Advanced"
-msgstr ""
+msgstr "高级的"
 
 #: admin/contact.py:67
 msgid "No relative object"
-msgstr ""
+msgstr "没有相关对象"
 
 #: admin/contact.py:69
 msgid "Related object"
-msgstr ""
+msgstr "相关对象"
 
 #: admin/contact.py:76
 msgid "Total subscriptions"
-msgstr ""
+msgstr "总订阅数"
 
 #: admin/contact.py:81
 msgid "Export contacts as VCard"
-msgstr ""
+msgstr "以VCard导出联系人"
 
 #: admin/contact.py:88
 msgid "Export contacts in Excel"
-msgstr ""
+msgstr "以VCard导出联系人"
 
 #: admin/contact.py:93
 #, python-format
 msgid "New mailinglist at %s"
-msgstr ""
+msgstr "于%s创建的新邮件列表"
 
 #: admin/contact.py:94
 #, python-format
 msgid "New mailing list created in admin at %s"
-msgstr ""
+msgstr "于%s创建的新邮件列表"
 
 #: admin/contact.py:102
 #, python-format
 msgid "%s succesfully created."
-msgstr ""
+msgstr "%s发送成功."
 
 #: admin/contact.py:105
 msgid "Create a mailinglist"
-msgstr ""
+msgstr "创建一个邮件列表"
 
 #: admin/contact.py:119
 #, python-format
 msgid "%s contacts succesfully imported."
-msgstr ""
+msgstr "%s联系人成功导入。"
 
 #: admin/contact.py:121
 msgid "Contact importation"
-msgstr ""
+msgstr "导入"
 
 #: admin/mailinglist.py:63
 msgid "Please select a least 2 mailing list."
-msgstr ""
+msgstr "请至少选择2个邮件列表。"
 
 #: admin/mailinglist.py:75
 #, python-format
 msgid "Merging list at %s"
-msgstr ""
+msgstr "于%s创建的合并列表"
 
 #: admin/mailinglist.py:76
 #, python-format
 msgid "Mailing list created by merging at %s"
-msgstr ""
+msgstr "于%s合并创建的邮件列表"
 
 #: admin/mailinglist.py:85
 #, python-format
 msgid "%s succesfully created by merging."
-msgstr ""
+msgstr "%s创建成功"
 
 #: admin/mailinglist.py:88
 msgid "Merge selected mailinglists"
-msgstr ""
+msgstr "选择合并的邮件列表"
 
 #: admin/mailinglist.py:94
 msgid "Export Subscribers"
-msgstr ""
+msgstr "导出订阅人"
 
 #: admin/mailinglist.py:96
 msgid "Export"
-msgstr ""
+msgstr "导出"
 
 #: admin/newsletter.py:41
 msgid "Receivers"
-msgstr ""
+msgstr "接收人"
 
 #: admin/newsletter.py:42
 msgid "Sending"
-msgstr ""
+msgstr "正在发送"
 
 #: admin/newsletter.py:43 admin/smtpserver.py:36
 msgid "Miscellaneous"
-msgstr ""
+msgstr "杂项"
 
 #: admin/newsletter.py:79
 msgid "Default"
-msgstr ""
+msgstr "默认"
 
 #: admin/newsletter.py:105
 msgid "Unable to download HTML, due to errors within."
-msgstr ""
+msgstr "由于内部HTML错误无法发送的新闻"
 
 #: admin/newsletter.py:107
 msgid "Please install lxml for parsing an URL."
-msgstr ""
+msgstr "请安装用于解析URL的lxml。"
 
 #: admin/newsletter.py:119
 msgid "View historic"
-msgstr ""
+msgstr "查看历史"
 
 #: admin/newsletter.py:120 admin/newsletter.py:129
 msgid "Not available"
-msgstr ""
+msgstr "不可用"
 
 #: admin/newsletter.py:122
 msgid "Historic"
-msgstr ""
+msgstr "历史"
 
 #: admin/newsletter.py:128
 msgid "View statistics"
-msgstr ""
+msgstr "查看统计"
 
 #: admin/newsletter.py:131
 msgid "Statistics"
-msgstr ""
+msgstr "统计"
 
 #: admin/newsletter.py:141
 msgid "Unable send newsletter, due to errors within HTML."
-msgstr ""
+msgstr "由于内部HTML错误无法发送的新闻。"
 
 #: admin/newsletter.py:143
 #, python-format
 msgid "%s succesfully sent."
-msgstr ""
+msgstr "%s发送成功."
 
 #: admin/newsletter.py:145
 #, python-format
 msgid "No test contacts assigned for %s."
-msgstr ""
+msgstr "%s没有测试人。"
 
 #: admin/newsletter.py:146
 msgid "Send test email"
-msgstr ""
+msgstr "发送邮件测试"
 
 #: admin/newsletter.py:154
 #, python-format
 msgid "%s newletters are ready to send"
-msgstr ""
+msgstr "%s简讯已准备好发送"
 
 #: admin/newsletter.py:155
 msgid "Make ready to send"
-msgstr ""
+msgstr "设为“准备发送”"
 
 #: admin/newsletter.py:164
 #, python-format
 msgid "%s newletters are cancelled"
-msgstr ""
+msgstr "%s通讯被取消"
 
 #: admin/newsletter.py:165
 msgid "Cancel the sending"
-msgstr ""
+msgstr "取消发送"
 
 #: admin/smtpserver.py:18
 msgid "Invalid syntax, do not forget the \":\"."
-msgstr ""
+msgstr "无效的语法，不要忘了“：”。"
 
 #: admin/smtpserver.py:20
 msgid "Invalid syntax, several assignments by line."
-msgstr ""
+msgstr "无效的语法，一行有太多的赋值。"
 
 #: admin/smtpserver.py:34
 msgid "Configuration"
-msgstr ""
+msgstr "配置"
 
 #: admin/smtpserver.py:57
 msgid "Check connection"
-msgstr ""
+msgstr "有效的连接"
 
 #: admin/workgroup.py:18
 msgid "Contacts length"
-msgstr ""
+msgstr "联系人数量"
 
 #: admin/workgroup.py:22
 msgid "Mailing List length"
-msgstr ""
+msgstr "邮件列表数量"
 
 #: admin/workgroup.py:26
 msgid "Newsletter length"
-msgstr ""
+msgstr "读物数量"
 
 #: plugins/cms_plugins.py:15
 msgid "Subscription Form"
-msgstr ""
+msgstr "取消订阅"
 
 #: plugins/models.py:13
 msgid "show description"
-msgstr ""
+msgstr "介绍"
 
 #: plugins/models.py:14
 msgid "Show the mailing list's description."
-msgstr ""
+msgstr "显示邮件列表的描述。"
 
 #: plugins/models.py:16
 msgid "Mailing List to subscribe to."
-msgstr ""
+msgstr "邮件列表数量"
 
 #: templates/admin/newsletter/contact/change_list.html:36
 #, python-format
 msgid "Add %(name)s"
-msgstr ""
+msgstr "添加%(name)s"
 
 #: templates/admin/newsletter/contact/change_list.html:42
 msgid "Actions"
-msgstr ""
+msgstr "行为"
 
 #: templates/admin/newsletter/contact/change_list.html:51
 #, python-format
 msgid "Import %(name)ss"
-msgstr ""
+msgstr "导入%(name)s"
 
 #: templates/admin/newsletter/contact/change_list.html:56
 msgid "Add to a mailing list"
-msgstr ""
+msgstr "创建一个邮件列表"
 
 #: templates/admin/newsletter/contact/change_list.html:63
 #, python-format
 msgid "Export %(name)s as VCard"
-msgstr ""
+msgstr "以VCard导出联系人%(name)s"
 
 #: templates/admin/newsletter/contact/change_list.html:68
 #, python-format
 msgid "Export %(name)s as Excel"
-msgstr ""
+msgstr "导出%(name)s"
 
 #: templates/newsletter/contact_import.html:7
 msgid "Home"
-msgstr ""
+msgstr "首页"
 
 #: templates/newsletter/contact_import.html:10
 msgid "Importation"
-msgstr ""
+msgstr "导入"
 
 #: templates/newsletter/contact_import.html:24
 msgid "Excel"
-msgstr ""
+msgstr "Excel"
 
 #: templates/newsletter/contact_import.html:27
 msgid "Excel file (.xls)"
-msgstr ""
+msgstr "导出文件(.xls)"
 
 #: templates/newsletter/contact_import.html:31
 msgid "Import contacts from a Excel file."
-msgstr ""
+msgstr "以VCard导出联系人"
 
 #: templates/newsletter/contact_import.html:32
 msgid "Columns are [email][last name][first name][tags]."
-msgstr ""
+msgstr "列表含[电子邮件] [姓氏] [名字] [标签]。"
 
 #: templates/newsletter/contact_import.html:33
 #: templates/newsletter/contact_import.html:56
 msgid "All columns are optionnal excepting the email."
-msgstr ""
+msgstr "除电子邮件外所有列皆为可选。"
 
 #: templates/newsletter/contact_import.html:38
 #: templates/newsletter/contact_import.html:61
 #: templates/newsletter/contact_import.html:81
 msgid "Import"
-msgstr ""
+msgstr "导入"
 
 #: templates/newsletter/contact_import.html:47
 msgid "Text"
-msgstr ""
+msgstr "文本"
 
 #: templates/newsletter/contact_import.html:50
 msgid "Text file (.txt, .csv)"
-msgstr ""
+msgstr "文本文件（.txt,.csv格式）"
 
 #: templates/newsletter/contact_import.html:54
 msgid "Import contacts from a text file, or a CSV file."
-msgstr ""
+msgstr "从文本文件或CSV文件导入联系人。"
 
 #: templates/newsletter/contact_import.html:55
 msgid ""
 "Columns are [email][last name][first name][tags], splitted by a dot coma."
-msgstr ""
+msgstr "列表含[电子邮件] [姓氏] [名字] [标签]，由逗号分隔。"
 
 #: templates/newsletter/contact_import.html:70
 msgid "VCard"
-msgstr ""
+msgstr "VCard"
 
 #: templates/newsletter/contact_import.html:73
 msgid "VCard file (.cvf)"
-msgstr ""
+msgstr "VCard文件(.cvf)"
 
 #: templates/newsletter/contact_import.html:77
 msgid ""
 "Import contacts from your favorite mail client, by providing a VCard file."
-msgstr ""
+msgstr "用VCard文件导入您最喜欢的邮件客户端联系人。"
 
 #: templates/newsletter/mailing_list_subscribe.html:4
 #: templates/newsletter/mailing_list_subscribe.html:7
 msgid "Subscription to mailing list"
-msgstr ""
+msgstr "创建一个邮件列表"
 
 #: templates/newsletter/mailing_list_subscribe.html:10
 msgid "Thanks for your subscription!"
-msgstr ""
+msgstr "总订阅数"
 
 #: templates/newsletter/mailing_list_subscribe.html:16
 msgid "Validate this form to subscribe to the mailing lists."
-msgstr ""
+msgstr "验证此表以取消订阅本邮件列表。"
 
 #: templates/newsletter/mailing_list_subscribe.html:21
 #: templates/newsletter/cms/subscription_form.html:20
 msgid "Subscribe"
-msgstr ""
+msgstr "订户"
 
 #: templates/newsletter/mailing_list_unsubscribe.html:4
 #: templates/newsletter/mailing_list_unsubscribe.html:7
 msgid "Unsubscription"
-msgstr ""
+msgstr "取消订阅"
 
 #: templates/newsletter/mailing_list_unsubscribe.html:9
 msgid "You are unsubscribed for this mailing list."
-msgstr ""
+msgstr "你已退订这个邮件列表。"
 
 #: templates/newsletter/mailing_list_unsubscribe.html:11
 msgid "Validate this form to unsubscribe to this mailing list."
-msgstr ""
+msgstr "验证此表以取消订阅本邮件列表。"
 
 #: templates/newsletter/mailing_list_unsubscribe.html:15
 msgid "Unsubscribe"
-msgstr ""
+msgstr "取消订阅"
 
 #: templates/newsletter/newsletter_historic.html:9
 #: templates/newsletter/newsletter_statistics.html:68
 msgid "Admin."
-msgstr ""
+msgstr "管理"
 
 #: templates/newsletter/newsletter_historic.html:23
 msgid "Date"
-msgstr ""
+msgstr "日期"
 
 #: templates/newsletter/newsletter_historic.html:24
 msgid "Contact"
-msgstr ""
+msgstr "联系"
 
 #: templates/newsletter/newsletter_historic.html:25
 msgid "Action"
-msgstr ""
+msgstr "行为"
 
 #: templates/newsletter/newsletter_link_site.html:5
 msgid "If you cannot see this email,"
-msgstr ""
+msgstr "如果你不能看到这封电子邮件，"
 
 #: templates/newsletter/newsletter_link_site.html:6
 #: templates/newsletter/newsletter_link_unsubscribe.html:6
 msgid "click here"
-msgstr ""
+msgstr "点击这里"
 
 #: templates/newsletter/newsletter_link_unsubscribe.html:5
 msgid "For unsubscribing to this mailing list,"
-msgstr ""
+msgstr "你已退订这个邮件列表。"
 
 #: templates/newsletter/newsletter_statistics.html:80
 #: templates/newsletter/newsletter_statistics.html:81
 msgid "Broadcasting statistics"
-msgstr ""
+msgstr "查看统计"
 
 #: templates/newsletter/newsletter_statistics.html:83 views/statistics.py:139
 msgid "Total openings"
-msgstr ""
+msgstr "总订阅数"
 
 #: templates/newsletter/newsletter_statistics.html:88
 msgid "Openings on site"
-msgstr ""
+msgstr "访问于"
 
 #: templates/newsletter/newsletter_statistics.html:93
 msgid "Total openings unique"
-msgstr ""
+msgstr "总访问数"
 
 #: templates/newsletter/newsletter_statistics.html:98
 msgid "Unknow delivery"
-msgstr ""
+msgstr "未知邮件"
 
 #: templates/newsletter/newsletter_statistics.html:103
 msgid "Unsubscriptions"
-msgstr ""
+msgstr "取消订阅"
 
 #: templates/newsletter/newsletter_statistics.html:108
 msgid "Openings average"
-msgstr ""
+msgstr "总订阅数"
 
 #: templates/newsletter/newsletter_statistics.html:116
 #: templates/newsletter/newsletter_statistics.html:117
 msgid "Links statistics"
-msgstr ""
+msgstr "查看统计"
 
 #: templates/newsletter/newsletter_statistics.html:119 views/statistics.py:143
 msgid "Total clicked links"
-msgstr ""
+msgstr "总订阅数"
 
 #: templates/newsletter/newsletter_statistics.html:124
 msgid "Total clicked links unique"
-msgstr ""
+msgstr "总点击次数"
 
 #: templates/newsletter/newsletter_statistics.html:129
 msgid "Clicked links by openings"
-msgstr ""
+msgstr "每次访问的点击数"
 
 #: templates/newsletter/newsletter_statistics.html:134
 msgid "Clicked links average"
-msgstr ""
+msgstr "总订阅数"
 
 #: templates/newsletter/newsletter_statistics.html:147 views/statistics.py:147
 msgid "Consultation histogram"
-msgstr ""
+msgstr "参考直方图"
 
 #: templates/newsletter/newsletter_statistics.html:150
 msgid "Period"
-msgstr ""
+msgstr "周期"
 
 #: templates/newsletter/newsletter_statistics.html:177
 msgid "Report"
-msgstr ""
+msgstr "导出报告"
 
 #: templates/newsletter/newsletter_statistics.html:179
 msgid "Download CSV report"
-msgstr ""
+msgstr "下载CSV报告"
 
 #: templates/newsletter/newsletter_statistics.html:184
 msgid "Informations"
-msgstr ""
+msgstr "导入"
 
 #: templates/newsletter/newsletter_statistics.html:185
 msgid "Recipients"
-msgstr ""
+msgstr "接收人"
 
 #: templates/newsletter/newsletter_statistics.html:186
 msgid "View"
-msgstr ""
+msgstr "查看"
 
 #: templates/newsletter/newsletter_statistics.html:189
 msgid "Sending date"
-msgstr ""
+msgstr "发送日期"
 
 #: templates/newsletter/newsletter_statistics.html:192
 msgid "Tests sent"
-msgstr ""
+msgstr "发送测试"
 
 #: templates/newsletter/newsletter_statistics.html:197
 msgid "Top Links"
-msgstr ""
+msgstr "受欢迎的链接"
 
 #: templates/newsletter/newsletter_statistics.html:198
 msgid "Density map"
-msgstr ""
+msgstr "密度图"
 
 #: templates/newsletter/newsletter_statistics.html:207
 msgid "No Top Links yet."
-msgstr ""
+msgstr "目前尚未有任何的受欢迎链接"
 
 #: templates/newsletter/cms/subscription_form.html:8
 msgid "You have successfully subscribed to the mailing list!"
-msgstr ""
+msgstr "你已退订这个邮件列表。"
 
 #: utils/importation.py:52
 #, python-format
 msgid "Mailing list created by importation at %s"
-msgstr ""
+msgstr "于%s合并创建的邮件列表"
 
 #: utils/importation.py:53
 #, python-format
 msgid "Contacts imported by %s."
-msgstr ""
+msgstr "联系人由%s导入。"
 
 #: views/statistics.py:54
 #, python-format
 msgid "Statistics of %s"
-msgstr ""
+msgstr "%s统计"
 
 #: views/statistics.py:76
 msgid "openings"
-msgstr ""
+msgstr "总订阅数"
 
 #: views/statistics.py:139
 msgid "#val# openings"
-msgstr ""
+msgstr "总订阅数"
 
 #: views/statistics.py:143
 msgid "#val# clicks"
-msgstr ""
+msgstr "点击数"
 
 #: views/tracking.py:66
 #, python-format
 msgid "Historic of %s"
-msgstr ""
+msgstr "%s的历史"
 
 #~ msgid "key1: value1 key2: value2, splitted by return line."
 #~ msgstr "键1:值1:键2:值2:按行均分"
@@ -806,34 +806,34 @@ msgstr ""
 #~ msgstr "能改变状态"
 
 #~ msgid "VCard import"
-#~ msgstr ""
+#~ msgstr "VCard导出"
 
 #~ msgid "Contacts"
-#~ msgstr ""
+#~ msgstr "联系人"
 
 #~ msgid "Mailing List"
-#~ msgstr ""
+#~ msgstr "邮件列表"
 
 #~ msgid "Mailing Lists"
-#~ msgstr ""
+#~ msgstr "邮件列表"
 
 #~ msgid "Newsletter"
-#~ msgstr ""
+#~ msgstr "通讯"
 
 #~ msgid "Newsletters"
-#~ msgstr ""
+#~ msgstr "简讯"
 
 #~ msgid "Link"
-#~ msgstr ""
+#~ msgstr "链接"
 
 #~ msgid "Links"
-#~ msgstr ""
+#~ msgstr "链接"
 
 #~ msgid "group"
-#~ msgstr ""
+#~ msgstr "组"
 
 #~ msgid "Connection valid"
-#~ msgstr ""
+#~ msgstr "有效的连接"
 
 #~ msgid "Double openings"
-#~ msgstr ""
+#~ msgstr "总订阅数"
