@@ -673,7 +673,7 @@ msgstr "cliquez ici"
 
 #: templates/newsletter/newsletter_link_unsubscribe.html:5
 msgid "For unsubscribing to this mailing list,"
-msgstr "Pour vous désincrire de cette liste de diffusion,"
+msgstr "Pour vous désinscrire de cette liste de diffusion,"
 
 #: templates/newsletter/newsletter_statistics.html:80
 #: templates/newsletter/newsletter_statistics.html:81
