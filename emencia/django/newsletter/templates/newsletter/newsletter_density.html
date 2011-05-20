@@ -3,8 +3,8 @@
     <style type="text/css">
      .link_layout{ filter : alpha(opacity=70); -moz-opacity : 0.7; opacity : 0.7; border: 1px solid red;}
     </style>
-    <script type="text/javascript" src="{{ NEWSLETTER_MEDIA_URL }}js/jquery.js"></script>
-    <script type="text/javascript" src="{{ NEWSLETTER_MEDIA_URL }}js/jquery.heatcolor.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}edn/js/jquery.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}edn/js/jquery.heatcolor.js"></script>
     <script type="text/javascript">
       var top_links = [{% for tl in top_links %}"{{ tl.link.url|safe }}",{% endfor %}];
       var top_links_score = new Array();

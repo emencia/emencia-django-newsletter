@@ -9,6 +9,7 @@ DATABASES = {'default':
              }
 
 MEDIA_URL = 'http://localhost:8000/'
+STATIC_URL = '/static/'
 
 SECRET_KEY = 'jkjf7878fsdok-|767sjdvjsm_qcskhvs$:?shf67dd66%&sfj'
 
@@ -53,7 +54,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.i18n',
     'django.core.context_processors.request',
     'django.core.context_processors.media',
-    'emencia.django.newsletter.context_processors.media',
+    'django.core.context_processors.static',
     )
 
 INSTALLED_APPS = (
@@ -61,6 +62,7 @@ INSTALLED_APPS = (
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.sites',
+    'django.contrib.staticfiles',
     'django.contrib.admin',
     'tagging',
     'emencia.django.newsletter',

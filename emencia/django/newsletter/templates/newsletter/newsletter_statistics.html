@@ -8,9 +8,9 @@
 {% block extrastyle %}{{ block.super }}<link rel="stylesheet" type="text/css" href="{% load adminmedia %}{% admin_media_prefix %}css/dashboard.css" />{% endblock %}
 
 {% block extrahead %}
-<script type="text/javascript" src="{{ NEWSLETTER_MEDIA_URL }}js/jquery.js"></script>
-<script type="text/javascript" src="{{ NEWSLETTER_MEDIA_URL }}js/jquery.form.js"></script>
-<script type="text/javascript" src="{{ NEWSLETTER_MEDIA_URL }}js/swfobject/swfobject.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}edn/js/jquery.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}edn/js/jquery.form.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}edn/js/swfobject/swfobject.js"></script>
 <script type="text/javascript">
 OFC = {};
 
@@ -33,8 +33,8 @@ if (typeof(Control == "undefined")) {var Control = {OFC: OFC.jquery}}
 function save_image() { OFC.jquery.popup('charts_view'); }
 
 $(document).ready(function(){
-  swfobject.embedSWF("{{ NEWSLETTER_MEDIA_URL }}swf/open-flash-chart.swf", "charts_view", "498", "350", "9.0.0",
-                     "{{ NEWSLETTER_MEDIA_URL }}js/swfobject/expressInstall.swf",
+  swfobject.embedSWF("{{ STATIC_URL }}edn/swf/open-flash-chart.swf", "charts_view", "498", "350", "9.0.0",
+                     "{{ STATIC_URL }}edn/js/swfobject/expressInstall.swf",
                      {"data-file": "{% url newsletter_newsletter_charts object.slug %}"});
 
   function reload_charts(charts_data) {
