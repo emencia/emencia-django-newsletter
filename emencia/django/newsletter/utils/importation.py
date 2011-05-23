@@ -53,6 +53,9 @@ def create_contacts(contact_dicts, importer_name, workgroups=[]):
         description=_('Contacts imported by %s.') % importer_name)
     mailing_list.save()
 
+    for workgroup in workgroups:
+        workgroup.mailinglists.add(mailing_list)
+
     for contact_dict in contact_dicts:
         contact, created = create_contact(contact_dict, workgroups)
         mailing_list.subscribers.add(contact)
@@ -62,6 +65,7 @@ def create_contacts(contact_dicts, importer_name, workgroups=[]):
 
 
 def vcard_contacts_import(stream, workgroups=[]):
+    """Import contacts from a VCard file"""
     contacts = []
     vcards = vobject.readComponents(stream)
 
@@ -89,6 +93,7 @@ def text_contacts_import(stream, workgroups=[]):
 
 
 def excel_contacts_import(stream, workgroups=[]):
+    """Import contacts from an Excel file"""
     contacts = []
     wb = xlrd.open_workbook(file_contents=stream.read())
     sh = wb.sheet_by_index(0)
