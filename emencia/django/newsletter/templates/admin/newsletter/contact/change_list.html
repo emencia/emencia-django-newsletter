@@ -51,6 +51,8 @@ $(document).ready(function() {
       {% blocktrans with cl.opts.verbose_name as name %}Import {{ name }}s{% endblocktrans %}
     </a>
   </li>
+  {% endif %}
+  {% if perms.newsletter.add_mailinglist %}
   <li>
     <a href="create_mailinglist/{{ cl.get_query_string }}" class="viewsitelink">
       {% trans 'Add to a mailing list' %}
