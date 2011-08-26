@@ -4,13 +4,14 @@ from HTMLParser import HTMLParseError
 from django.db.models import Q
 from django.contrib import admin
 from django.utils.translation import ugettext_lazy as _
+from django import forms
 
 from emencia.django.newsletter.models import Contact
 from emencia.django.newsletter.models import Newsletter
 from emencia.django.newsletter.models import Attachment
 from emencia.django.newsletter.models import MailingList
 from emencia.django.newsletter.mailer import Mailer
-from emencia.django.newsletter.settings import USE_WORKGROUPS
+from emencia.django.newsletter.settings import USE_WORKGROUPS, USE_TINYMCE
 try:
     CAN_USE_PREMAILER = True
     from emencia.django.newsletter.utils.premailer import Premailer
@@ -164,3 +165,14 @@ class NewsletterAdmin(admin.ModelAdmin):
             newsletter.save()
         self.message_user(request, _('%s newletters are cancelled') % queryset.count())
     make_cancel_sending.short_description = _('Cancel the sending')
+
+if USE_TINYMCE:
+  from tinymce.widgets import TinyMCE
+  class NewsletterTinyMCEForm(forms.ModelForm):
+    content = forms.CharField(widget=TinyMCE(attrs={'cols': 150, 'rows': 80}))
+
+    class Meta:
+        model = Newsletter
+
+  class NewsletterTinyMCEAdmin(NewsletterAdmin):
+    form = NewsletterTinyMCEForm

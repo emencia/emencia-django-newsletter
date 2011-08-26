@@ -10,7 +10,7 @@ from emencia.django.newsletter.models import Newsletter
 from emencia.django.newsletter.models import MailingList
 from emencia.django.newsletter.models import ContactMailingStatus
 
-from emencia.django.newsletter.settings import USE_WORKGROUPS
+from emencia.django.newsletter.settings import USE_WORKGROUPS, USE_TINYMCE
 from emencia.django.newsletter.admin.contact import ContactAdmin
 from emencia.django.newsletter.admin.workgroup import WorkGroupAdmin
 from emencia.django.newsletter.admin.newsletter import NewsletterAdmin
@@ -20,8 +20,14 @@ from emencia.django.newsletter.admin.mailinglist import MailingListAdmin
 
 admin.site.register(Contact, ContactAdmin)
 admin.site.register(SMTPServer, SMTPServerAdmin)
-admin.site.register(Newsletter, NewsletterAdmin)
 admin.site.register(MailingList, MailingListAdmin)
+
+if USE_TINYMCE:
+  from emencia.django.newsletter.admin.newsletter import NewsletterTinyMCEAdmin
+  admin.site.register(Newsletter, NewsletterTinyMCEAdmin)
+else:
+  admin.site.register(Newsletter, NewsletterAdmin)
+  
 
 if USE_WORKGROUPS:
     admin.site.register(WorkGroup, WorkGroupAdmin)
