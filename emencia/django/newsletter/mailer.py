@@ -1,5 +1,6 @@
 """Mailer for emencia.django.newsletter"""
 import re
+import time 
 import mimetypes
 from random import sample
 from StringIO import StringIO
@@ -38,6 +39,9 @@ from emencia.django.newsletter.settings import TRACKING_IMAGE
 from emencia.django.newsletter.settings import UNIQUE_KEY_LENGTH
 from emencia.django.newsletter.settings import UNIQUE_KEY_CHAR_SET
 from emencia.django.newsletter.settings import INCLUDE_UNSUBSCRIPTION
+from emencia.django.newsletter.settings import SLEEP_BETWEEN_SENDING
+from emencia.django.newsletter.settings import \
+     RESTART_CONNECTION_BETWEEN_SEDNING
 
 
 LINK_RE = re.compile(r"https?://([^ \n]+\n)+[^ \n]+", re.MULTILINE)
@@ -105,6 +109,11 @@ class Mailer(object):
 
             ContactMailingStatus.objects.create(newsletter=self.newsletter,
                                                 contact=contact, status=status)
+            if SLEEP_BETWEEN_SENDING:
+                time.sleep(SLEEP_BETWEEN_SENDING)
+            if RESTART_CONNECTION_BETWEEN_SEDNING:
+                self.smtp.quit()
+                self.smtp_connect()
         self.smtp.quit()
         self.update_newsletter_status()
 
