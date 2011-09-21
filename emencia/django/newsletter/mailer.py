@@ -82,12 +82,15 @@ class Mailer(object):
 
         self.attachments = self.build_attachments()
 
+        number_of_recipients = len(self.expedition_list)
         if self.verbose:
-            print '%i emails will be sent' % len(self.expedition_list)
+            print '%i emails will be sent' % number_of_recipients
 
+        i = 1
         for contact in self.expedition_list:
             if self.verbose:
-                print '- Processing %s' % contact.__unicode__()
+                print '- Processing %s/%s (%s)' % (
+                    i, number_of_recipients, contact.pk)
 
             message = self.build_message(contact)
             try:
@@ -105,6 +108,7 @@ class Mailer(object):
 
             ContactMailingStatus.objects.create(newsletter=self.newsletter,
                                                 contact=contact, status=status)
+            i += 1
         self.smtp.quit()
         self.update_newsletter_status()
 
