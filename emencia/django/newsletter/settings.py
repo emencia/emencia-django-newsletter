@@ -22,4 +22,4 @@ TRACKING_IMAGE = 'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAAXNSR0IArs4c6Q
 MEDIA_URL = getattr(settings, 'NEWSLETTER_MEDIA_URL',
                     os.path.join(settings.MEDIA_URL, 'edn/'))
 
-NEWSLETTER_BASE_PATH = getattr(settings, 'NEWSLETTER_BASE_PATH', 'uploads/newsletter')
+BASE_PATH = getattr(settings, 'NEWSLETTER_BASE_PATH', 'uploads/newsletter')

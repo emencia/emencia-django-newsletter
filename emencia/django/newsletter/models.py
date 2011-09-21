@@ -15,10 +15,10 @@ from django.utils.encoding import force_unicode
 
 from tagging.fields import TagField
 from emencia.django.newsletter.managers import ContactManager
+from emencia.django.newsletter.settings import BASE_PATH
 from emencia.django.newsletter.settings import MAILER_HARD_LIMIT
 from emencia.django.newsletter.settings import DEFAULT_HEADER_REPLY
 from emencia.django.newsletter.settings import DEFAULT_HEADER_SENDER
-from emencia.django.newsletter.settings import NEWSLETTER_BASE_PATH
 from emencia.django.newsletter.utils.vcard import vcard_contact_export
 
 # Patch for Python < 2.6
@@ -276,7 +276,7 @@ class Attachment(models.Model):
 
     def get_newsletter_storage_path(self, filename):
         filename = force_unicode(filename)
-        return '/'.join([NEWSLETTER_BASE_PATH, self.newsletter.slug, filename])
+        return '/'.join([BASE_PATH, self.newsletter.slug, filename])
 
     newsletter = models.ForeignKey(Newsletter, verbose_name=_('newsletter'))
     title = models.CharField(_('title'), max_length=255)
