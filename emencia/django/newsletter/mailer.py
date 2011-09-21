@@ -92,14 +92,14 @@ class Mailer(object):
                 print '- Processing %s/%s (%s)' % (
                     i, number_of_recipients, contact.pk)
 
-            message = self.build_message(contact)
             try:
+                message = self.build_message(contact)
                 self.smtp.sendmail(smart_str(self.newsletter.header_sender),
                                    contact.email,
                                    message.as_string())
                 status = self.test and ContactMailingStatus.SENT_TEST \
                          or ContactMailingStatus.SENT
-            except SMTPRecipientsRefused:
+            except (UnicodeError, SMTPRecipientsRefused):
                 status = ContactMailingStatus.INVALID
                 contact.valid = False
                 contact.save()
