@@ -1,4 +1,5 @@
 """ModelAdmin for Contact"""
+import StringIO
 from datetime import datetime
 
 from django.contrib import admin
@@ -109,8 +110,9 @@ class ContactAdmin(admin.ModelAdmin):
         """Import contacts from a VCard"""
         opts = self.model._meta
 
-        if request.FILES:
-            source = request.FILES.get('source')
+        if request.POST:
+            source = request.FILES.get('source') or \
+                     StringIO.StringIO(request.POST.get('source', ''))
             if not request.user.is_superuser and USE_WORKGROUPS:
                 workgroups = request_workgroups(request)
             else:

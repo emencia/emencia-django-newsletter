@@ -83,5 +83,27 @@
     </div>
   </form>
 
+  <form action="." method="post">
+    {% csrf_token %}
+    <div>
+      <fieldset class="module aligned">
+        <h2>{% trans "Raw text" %}</h2>
+        <div class="form-row source">
+          <div>
+            <label for="id_source" class="required">{% trans "Raw text" %} :</label>
+            <input name="type" value="text" type="hidden" />
+            <textarea name="source" id="id_source" class="vLargeTextField" cols="40" rows="15" /></textarea>
+          </div>
+          <p class="help">{% trans "Columns are [email][last name][first name][tags], splitted by a dot coma." %}<br />
+            {% trans "All columns are optionnal excepting the email." %}
+          </p>
+        </div>
+      </fieldset>
+      <div class="submit-row">
+        <input type="submit" class="default" value="{% trans "Import" %}" />
+      </div>
+    </div>
+  </form>
+
 </div>
 {% endblock %}
