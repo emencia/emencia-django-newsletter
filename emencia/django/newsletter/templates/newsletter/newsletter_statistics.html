@@ -75,6 +75,38 @@ $(document).ready(function(){
 
 {% block content %}
 <div id="content-main">
+  {% if period %}
+  <!-- Graph -->
+  <div class="module" id="charts">
+      <div id="charts_view"></div>
+  </div>
+  <div class="module" id="charts_options">
+    <form id="period_selector" action="{% url newsletter_newsletter_charts object.slug %}" method="post">
+      {% csrf_token %}
+      <table summary="{% trans "Consultation histogram" %}">
+	<tr>
+	  <th scope="row" style="vertical-align: middle;">
+	    {% trans "Period" %} :
+	  </th>
+	  <td>
+	    <select name="start">
+	      {% for date in period %}
+	      <option value="{{ forloop.counter0 }}" {% ifequal forloop.counter0 0 %}selected="selected"{% endifequal %}>{{ date|date:"d M Y" }}</option>
+	      {% endfor %}
+	    </select>
+	    <span>-></span>
+	    <select name="end">
+	      {% for date in period %}
+	      <option value="{{ forloop.counter0 }}" {% ifequal forloop.counter0 6 %}selected="selected"{% endifequal %}>{{ date|date:"d M Y" }}</option>
+	      {% endfor %}
+	    </select>
+	  </td>
+	  <td><input type="submit" value="OK" /></td>
+	</tr>
+      </table>
+    </form>
+  </div>
+  {% endif %}
   <!-- Receptions -->
   <div class="module" id="reception">
     <table summary="{% trans "Broadcasting statistics" %}">
@@ -137,37 +169,6 @@ $(document).ready(function(){
       </tr>
     </table>
   </div>
-  {% if period %}
-  <div class="module" id="charts">
-      <div id="charts_view"></div>
-  </div>
-  <div class="module" id="charts_options">
-    <form id="period_selector" action="{% url newsletter_newsletter_charts object.slug %}" method="post">
-      {% csrf_token %}
-      <table summary="{% trans "Consultation histogram" %}">
-	<tr>
-	  <th scope="row" style="vertical-align: middle;">
-	    {% trans "Period" %} :
-	  </th>
-	  <td>
-	    <select name="start">
-	      {% for date in period %}
-	      <option value="{{ forloop.counter0 }}" {% ifequal forloop.counter0 0 %}selected="selected"{% endifequal %}>{{ date|date:"d M Y" }}</option>
-	      {% endfor %}
-	    </select>
-	    <span>-></span>
-	    <select name="end">
-	      {% for date in period %}
-	      <option value="{{ forloop.counter0 }}" {% ifequal forloop.counter0 6 %}selected="selected"{% endifequal %}>{{ date|date:"d M Y" }}</option>
-	      {% endfor %}
-	    </select>
-	  </td>
-	  <td><input type="submit" value="OK" /></td>
-	</tr>
-      </table>
-    </form>
-  </div>
-  {% endif %}
 </div>
 {% endblock %}
 
