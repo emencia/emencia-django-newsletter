@@ -22,13 +22,17 @@ LANGUAGE_CODE = 'en'
 LANGUAGES = (('en', gettext('English')),
              ('fr', gettext('French')),
              ('de', gettext('German')),
-             ('es', gettext('Spanish')),
+             ('es', gettext('Spanish'))
+             ('es_DO', gettext('Spanish (Dominican Republic)')),
              ('it', gettext('Italian')),
              ('pt', gettext('Portuguese')),
+             ('pt_BR', gettext('Portuguese (Brazilian)')),
              ('nl', gettext('Dutch')),
              ('fo', gettext('Faroese')),
              ('ja', gettext('Japanese')),
-             ('zh_CN', gettext('Simplified Chinese')),)
+             ('sk_SK', gettext('Slovak (Slovakia)')),
+             ('sl', gettext('Slovenian')),
+             ('zh_CN', gettext('Chinese (China)')),)
 
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
