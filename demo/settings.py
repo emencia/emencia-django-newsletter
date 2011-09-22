@@ -22,7 +22,7 @@ LANGUAGE_CODE = 'en'
 LANGUAGES = (('en', gettext('English')),
              ('fr', gettext('French')),
              ('de', gettext('German')),
-             ('es', gettext('Spanish'))
+             ('es', gettext('Spanish')),
              ('es_DO', gettext('Spanish (Dominican Republic)')),
              ('it', gettext('Italian')),
              ('pt', gettext('Portuguese')),
