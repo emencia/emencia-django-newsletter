@@ -31,6 +31,11 @@ TRACKING_IMAGE_FORMAT = getattr(settings, 'NEWSLETTER_TRACKING_IMAGE_FORMAT', 'j
 TRACKING_IMAGE = getattr(settings, 'NEWSLETTER_TRACKING_IMAGE',
                          BASE64_IMAGES[TRACKING_IMAGE_FORMAT])
 
+SLEEP_BETWEEN_SENDING = getattr(
+    settings, 'NEWSLETTER_SLEEP_BETWEEN_SENDING', 0)
+RESTART_CONNECTION_BETWEEN_SENDING = getattr(
+    settings, 'NEWSLETTER_RESTART_CONNECTION_BETWEEN_SENDING', False)
+
 MEDIA_URL = getattr(settings, 'NEWSLETTER_MEDIA_URL',
                     os.path.join(settings.MEDIA_URL, 'edn/'))
 
