@@ -164,38 +164,7 @@ templates within it.
 First of all install the `django-tinymce
 <http://code.google.com/p/django-tinymce/>`_ application into your project.
 
-Now you will write a module called admin.py into the root directory of your
-project. This module will override the NewsletterAdmin class provided by
-emencia.django.newsletter with the TinyMCE editor and register the
-overrided class into the admin site. ::
-
-  from django import forms
-  from django.contrib import admin
-
-  from tinymce.widgets import TinyMCE
-  from emencia.django.newsletter.models import Newsletter
-  from emencia.django.newsletter.admin import NewsletterAdmin
-
-
-  class NewsletterTinyMCEForm(forms.ModelForm):
-      content = forms.CharField(widget=TinyMCE(attrs={'cols': 150, 'rows': 80}))
-
-      class Meta:
-          model = Newsletter
-
-  class NewsletterTinyMCEAdmin(NewsletterAdmin):
-      form = NewsletterTinyMCEForm
-
-  admin.site.unregister(Newsletter)
-  admin.site.register(Newsletter, NewsletterTinyMCEAdmin)
-
-The last step is to make a call to your module to load the code. A good
-solution is to import the admin.py module in the urls.py file of your
-project. ::
-
-  import yourproject.admin
-
-Enjoy !
+That's done, enjoy !
 
 
 HOWTO couple your profile application with emencia.django.newsletter

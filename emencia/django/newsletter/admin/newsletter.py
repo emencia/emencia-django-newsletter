@@ -1,6 +1,7 @@
 """ModelAdmin for Newsletter"""
 from HTMLParser import HTMLParseError
 
+from django import forms
 from django.db.models import Q
 from django.contrib import admin
 from django.utils.translation import ugettext_lazy as _
@@ -10,6 +11,7 @@ from emencia.django.newsletter.models import Newsletter
 from emencia.django.newsletter.models import Attachment
 from emencia.django.newsletter.models import MailingList
 from emencia.django.newsletter.mailer import Mailer
+from emencia.django.newsletter.settings import USE_TINYMCE
 from emencia.django.newsletter.settings import USE_WORKGROUPS
 try:
     CAN_USE_PREMAILER = True
@@ -29,7 +31,7 @@ class AttachmentAdminInline(admin.TabularInline):
     fieldsets = ((None, {'fields': (('title', 'file_attachment'))}),)
 
 
-class NewsletterAdmin(admin.ModelAdmin):
+class BaseNewsletterAdmin(admin.ModelAdmin):
     date_hierarchy = 'creation_date'
     list_display = ('title', 'mailing_list', 'server', 'status',
                     'sending_date', 'creation_date', 'modification_date',
@@ -51,14 +53,14 @@ class NewsletterAdmin(admin.ModelAdmin):
     actions_on_bottom = True
 
     def get_actions(self, request):
-        actions = super(NewsletterAdmin, self).get_actions(request)
+        actions = super(BaseNewsletterAdmin, self).get_actions(request)
         if not request.user.has_perm('newsletter.can_change_status'):
             del actions['make_ready_to_send']
             del actions['make_cancel_sending']
         return actions
 
     def queryset(self, request):
-        queryset = super(NewsletterAdmin, self).queryset(request)
+        queryset = super(BaseNewsletterAdmin, self).queryset(request)
         if not request.user.is_superuser and USE_WORKGROUPS:
             newsletters_pk = request_workgroups_newsletters_pk(request)
             queryset = queryset.filter(pk__in=newsletters_pk)
@@ -70,7 +72,7 @@ class NewsletterAdmin(admin.ModelAdmin):
             mailinglists_pk = request_workgroups_mailinglists_pk(request)
             kwargs['queryset'] = MailingList.objects.filter(pk__in=mailinglists_pk)
             return db_field.formfield(**kwargs)
-        return super(NewsletterAdmin, self).formfield_for_foreignkey(
+        return super(BaseNewsletterAdmin, self).formfield_for_foreignkey(
             db_field, request, **kwargs)
 
     def formfield_for_choice_field(self, db_field, request, **kwargs):
@@ -78,7 +80,7 @@ class NewsletterAdmin(admin.ModelAdmin):
                not request.user.has_perm('newsletter.can_change_status'):
             kwargs['choices'] = ((Newsletter.DRAFT, _('Default')),)
             return db_field.formfield(**kwargs)
-        return super(NewsletterAdmin, self).formfield_for_choice_field(
+        return super(BaseNewsletterAdmin, self).formfield_for_choice_field(
             db_field, request, **kwargs)
 
     def formfield_for_manytomany(self, db_field, request, **kwargs):
@@ -88,7 +90,7 @@ class NewsletterAdmin(admin.ModelAdmin):
                 contacts_pk = request_workgroups_contacts_pk(request)
                 queryset = queryset.filter(pk__in=contacts_pk)
             kwargs['queryset'] = queryset
-        return super(NewsletterAdmin, self).formfield_for_manytomany(
+        return super(BaseNewsletterAdmin, self).formfield_for_manytomany(
             db_field, request, **kwargs)
 
     def save_model(self, request, newsletter, form, change):
@@ -164,3 +166,20 @@ class NewsletterAdmin(admin.ModelAdmin):
             newsletter.save()
         self.message_user(request, _('%s newletters are cancelled') % queryset.count())
     make_cancel_sending.short_description = _('Cancel the sending')
+
+
+if USE_TINYMCE:
+    from tinymce.widgets import TinyMCE
+
+    class NewsletterTinyMCEForm(forms.ModelForm):
+        content = forms.CharField(
+            widget=TinyMCE(attrs={'cols': 150, 'rows': 80}))
+
+        class Meta:
+            model = Newsletter
+
+    class NewsletterAdmin(BaseNewsletterAdmin):
+        form = NewsletterTinyMCEForm
+else:
+    class NewsletterAdmin(BaseNewsletterAdmin):
+        pass
