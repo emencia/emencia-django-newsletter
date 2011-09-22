@@ -35,6 +35,7 @@ from emencia.django.newsletter.utils.newsletter import track_links
 from emencia.django.newsletter.utils.newsletter import body_insertion
 from emencia.django.newsletter.settings import TRACKING_LINKS
 from emencia.django.newsletter.settings import TRACKING_IMAGE
+from emencia.django.newsletter.settings import TRACKING_IMAGE_FORMAT
 from emencia.django.newsletter.settings import UNIQUE_KEY_LENGTH
 from emencia.django.newsletter.settings import UNIQUE_KEY_CHAR_SET
 from emencia.django.newsletter.settings import INCLUDE_UNSUBSCRIPTION
@@ -202,8 +203,8 @@ class Mailer(object):
         context = Context({'contact': contact,
                            'domain': Site.objects.get_current().domain,
                            'newsletter': self.newsletter,
+                           'tracking_image_format': TRACKING_IMAGE_FORMAT,
                            'uidb36': uidb36, 'token': token})
-
         content = self.newsletter_template.render(context)
         if TRACKING_LINKS:
             content = track_links(content, context)
