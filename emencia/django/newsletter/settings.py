@@ -36,7 +36,4 @@ SLEEP_BETWEEN_SENDING = getattr(
 RESTART_CONNECTION_BETWEEN_SENDING = getattr(
     settings, 'NEWSLETTER_RESTART_CONNECTION_BETWEEN_SENDING', False)
 
-MEDIA_URL = getattr(settings, 'NEWSLETTER_MEDIA_URL',
-                    os.path.join(settings.MEDIA_URL, 'edn/'))
-
 BASE_PATH = getattr(settings, 'NEWSLETTER_BASE_PATH', 'uploads/newsletter')

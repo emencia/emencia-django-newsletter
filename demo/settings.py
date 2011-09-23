@@ -3,10 +3,14 @@ import os
 
 gettext = lambda s: s
 
+DEBUG = True
+
 DATABASES = {'default':
              {'ENGINE': 'django.db.backends.sqlite3',
               'NAME': os.path.join(os.path.dirname(__file__), 'demo.db')}
              }
+
+STATIC_URL = '/static/'
 
 MEDIA_URL = 'http://localhost:8000/'
 
@@ -57,7 +61,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.i18n',
     'django.core.context_processors.request',
     'django.core.context_processors.media',
-    'emencia.django.newsletter.context_processors.media',
+    'django.core.context_processors.static',
     )
 
 INSTALLED_APPS = (
@@ -66,6 +70,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.admin',
+    'django.contrib.staticfiles',
     'tagging',
     'emencia.django.newsletter',
     )
