@@ -134,7 +134,7 @@ Now you can run a *syncdb* for installing the models into your database.
 Settings
 --------
 
-You have to add in your settings the email address used to send the newsletter:
+You have to add in your settings the email address used to send the newsletter : ::
   NEWSLETTER_DEFAULT_HEADER_SENDER = 'My NewsLetter <newsletter@myhost.com>'
   
 
