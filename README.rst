@@ -135,6 +135,7 @@ Settings
 --------
 
 You have to add in your settings the email address used to send the newsletter : ::
+
   NEWSLETTER_DEFAULT_HEADER_SENDER = 'My NewsLetter <newsletter@myhost.com>'
   
 
