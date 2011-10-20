@@ -104,18 +104,6 @@ Then register **emencia.django.newsletter**, **admin**, **contenttypes** and **t
     'emencia.django.newsletter',)
 
 
-Template Context Processors
----------------------------
-
-Add these following template context processors if not already present. ::
-
-  TEMPLATE_CONTEXT_PROCESSORS = (
-    'django.core.context_processors.auth',
-    'django.core.context_processors.i18n',
-    'django.core.context_processors.request',
-    'django.core.context_processors.media',
-    'emencia.django.newsletter.context_processors.media',)
-
 Urls
 ----
 
@@ -143,6 +131,13 @@ Synchronization
 
 Now you can run a *syncdb* for installing the models into your database.
 
+Settings
+--------
+
+You have to add in your settings the email address used to send the newsletter : ::
+
+  NEWSLETTER_DEFAULT_HEADER_SENDER = 'My NewsLetter <newsletter@myhost.com>'
+  
 
 DBMS considerations
 ===================
