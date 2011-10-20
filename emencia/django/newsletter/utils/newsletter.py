@@ -3,7 +3,7 @@ from BeautifulSoup import BeautifulSoup
 from django.core.urlresolvers import reverse
 
 from emencia.django.newsletter.models import Link
-
+from emencia.django.newsletter.settings import USE_PRETTIFY
 
 def body_insertion(content, insertion, end=False):
     """Insert an HTML content into the body HTML node"""
@@ -15,7 +15,11 @@ def body_insertion(content, insertion, end=False):
         soup.body.append(insertion)
     else:
         soup.body.insert(0, insertion)
-    return soup.prettify()
+
+    if USE_PRETTIFY:
+        return soup.prettify()
+    else:
+        return soup.renderContents()
 
 
 def track_links(content, context):
@@ -36,4 +40,7 @@ def track_links(content, context):
                                                                               args=[context['newsletter'].slug,
                                                                                     context['uidb36'], context['token'],
                                                                                     link.pk]))
-    return soup.prettify()
+    if USE_PRETTIFY:
+        return soup.prettify()
+    else:
+        return soup.renderContents()

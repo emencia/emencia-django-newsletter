@@ -14,6 +14,8 @@ USE_UTM_TAGS = getattr(settings, 'NEWSLETTER_USE_UTM_TAGS', True)
 USE_TINYMCE = getattr(settings, 'NEWSLETTER_USE_TINYMCE',
                       'tinymce' in settings.INSTALLED_APPS)
 
+USE_PRETTIFY = getattr(settings, 'NEWSLETTER_USE_PRETTIFY', True)
+
 MAILER_HARD_LIMIT = getattr(settings, 'NEWSLETTER_MAILER_HARD_LIMIT', 10000)
 
 INCLUDE_UNSUBSCRIPTION = getattr(settings, 'NEWSLETTER_INCLUDE_UNSUBSCRIPTION', True)
