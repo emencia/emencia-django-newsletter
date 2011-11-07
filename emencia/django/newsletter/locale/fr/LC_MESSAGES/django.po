@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Emencia Django Newsletter\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-09-22 06:00-0500\n"
-"PO-Revision-Date: 2011-09-22 11:05+0000\n"
+"PO-Revision-Date: 2011-09-23 15:07+0000\n"
 "Last-Translator: Fantomas42 <fantomas42@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -683,7 +683,7 @@ msgstr "cliquez ici"
 
 #: templates/newsletter/newsletter_link_unsubscribe.html:5
 msgid "For unsubscribing to this mailing list,"
-msgstr "Pour vous désincrire de cette liste de diffusion,"
+msgstr "Pour vous désinscrire de cette liste de diffusion,"
 
 #: templates/newsletter/newsletter_statistics.html:86 views/statistics.py:147
 msgid "Consultation histogram"

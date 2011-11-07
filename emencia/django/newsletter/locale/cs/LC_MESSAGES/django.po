@@ -3,810 +3,816 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+#   <xaralis@centrum.cz>, 2011.
 msgid ""
 msgstr ""
 "Project-Id-Version: Emencia Django Newsletter\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-09-22 06:00-0500\n"
-"PO-Revision-Date: 2010-11-30 00:55+0000\n"
-"Last-Translator: Fantomas <Fantomas42@gmail.com>\n"
+"PO-Revision-Date: 2011-10-24 14:24+0000\n"
+"Last-Translator: xaralis <xaralis@centrum.cz>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: ja\n"
-"Plural-Forms: nplurals=1; plural=0\n"
+"Language: cs\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2\n"
 
 #: forms.py:20
 msgid "Email"
-msgstr ""
+msgstr "Email"
 
 #: forms.py:44
 msgid "Mailing lists"
-msgstr ""
+msgstr "Mailing listy"
 
 #: models.py:39 models.py:156 models.py:339
 msgid "name"
-msgstr ""
+msgstr "Jméno"
 
 #: models.py:40
 msgid "server host"
-msgstr ""
+msgstr "Server"
 
 #: models.py:41
 msgid "server user"
-msgstr ""
+msgstr "Uživatelské jméno"
 
 #: models.py:42 models.py:44
 msgid "Leave it empty if the host is public."
-msgstr ""
+msgstr "Pokud je server veřejný, ponechte prázdné."
 
 #: models.py:43
 msgid "server password"
-msgstr ""
+msgstr "Heslo"
 
 #: models.py:45
 msgid "server port"
-msgstr ""
+msgstr "Port"
 
 #: models.py:46
 msgid "server use TLS"
-msgstr ""
+msgstr "Server používá TLS"
 
 #: models.py:48
 msgid "custom headers"
-msgstr ""
+msgstr "vlastní hlavičky"
 
 #: models.py:49
 msgid ""
 "key1: value1 key2: value2, splitted by return line.\n"
 "Useful for passing some tracking headers if your provider allows it."
 msgstr ""
+"klíč1:hodnota1, klíč2:hodnota2, odděleno novým řádkem.\n"
+"Užitečné pro trackovací hlavičky, pokud to umožňuje váš provider."
 
 #: models.py:51
 msgid "mails per hour"
-msgstr ""
+msgstr "počet emailů za hodinu"
 
 #: models.py:93
 msgid "SMTP server"
-msgstr ""
+msgstr "SMTP server"
 
 #: models.py:94
 msgid "SMTP servers"
-msgstr ""
+msgstr "SMTP servery"
 
 #: models.py:99 views/statistics.py:76
 msgid "email"
-msgstr ""
+msgstr "E-mail"
 
 #: models.py:100 views/statistics.py:75
 msgid "first name"
-msgstr ""
+msgstr "Křestní jméno"
 
 #: models.py:101 views/statistics.py:75
 msgid "last name"
-msgstr ""
+msgstr "Příjmení"
 
 #: models.py:103
 msgid "subscriber"
-msgstr ""
+msgstr "Přihláška k odběru"
 
 #: models.py:104
 msgid "valid email"
-msgstr ""
+msgstr "Platný e-mail"
 
 #: models.py:105
 msgid "contact tester"
-msgstr ""
+msgstr "Testovací kontakt"
 
 #: models.py:106
 msgid "tags"
-msgstr ""
+msgstr "Tagy"
 
 #: models.py:112 models.py:165 models.py:227 models.py:260 models.py:324
 msgid "creation date"
-msgstr ""
+msgstr "Datum vytvoření"
 
 #: models.py:113 models.py:166 models.py:228
 msgid "modification date"
-msgstr ""
+msgstr "Datum úpravy"
 
 #: models.py:132
 msgid "mail format"
-msgstr ""
+msgstr "Formát e-mailu"
 
 #: models.py:150 models.py:319
 msgid "contact"
-msgstr ""
+msgstr "kontakt"
 
 #: models.py:151 models.py:342
 msgid "contacts"
-msgstr ""
+msgstr "kontakty"
 
 #: models.py:157
 msgid "description"
-msgstr ""
+msgstr "Popis"
 
 #: models.py:159 models.py:170
 msgid "subscribers"
-msgstr ""
+msgstr "Přilhášky k odběru"
 
 #: models.py:161 models.py:174
 msgid "unsubscribers"
-msgstr ""
+msgstr "Odhlášení od odběru"
 
 #: models.py:186 models.py:211 cmsplugin_newsletter/models.py:15
 msgid "mailing list"
-msgstr ""
+msgstr "Mailing list"
 
 #: models.py:187 models.py:344
 msgid "mailing lists"
-msgstr ""
+msgstr "mailing listy"
 
 #: models.py:198
 msgid "draft"
-msgstr ""
+msgstr "Návrh"
 
 #: models.py:199
 msgid "waiting sending"
-msgstr ""
+msgstr "Čeká na odeslání"
 
 #: models.py:200
 msgid "sending"
-msgstr ""
+msgstr "Odesílá se"
 
 #: models.py:201 models.py:309
 msgid "sent"
-msgstr ""
+msgstr "Odesláno"
 
 #: models.py:202
 msgid "canceled"
-msgstr ""
+msgstr "Zrušeno"
 
 #: models.py:205 models.py:257 models.py:282 cmsplugin_newsletter/models.py:12
 msgid "title"
-msgstr ""
+msgstr "Titulek"
 
 #: models.py:206
 msgid ""
 "You can use the \"{{ UNIQUE_KEY }}\" variable for unique identifier within "
 "the newsletter's title."
-msgstr ""
+msgstr "V titulku můžete použít proměnnou \"{{ UNIQUE_KEY }}\""
 
 #: models.py:208
 msgid "content"
-msgstr ""
+msgstr "Obsah"
 
 #: models.py:208
 msgid "Or paste an URL."
-msgstr ""
+msgstr "Nebo vložte URL."
 
 #: models.py:209
 msgid ""
 "<body>\n"
 "<!-- Edit your newsletter here -->\n"
 "</body>"
-msgstr ""
+msgstr "Zde upravte svůj newsletter:"
 
 #: models.py:212
 msgid "test contacts"
-msgstr ""
+msgstr "Testovací kontakty"
 
 #: models.py:215
 msgid "smtp server"
-msgstr ""
+msgstr "SMTP server"
 
 #: models.py:217
 msgid "sender"
-msgstr ""
+msgstr "Odesílatel"
 
 #: models.py:219
 msgid "reply to"
-msgstr ""
+msgstr "Odpovědět komu"
 
 #: models.py:222 models.py:320
 msgid "status"
-msgstr ""
+msgstr "Stav"
 
 #: models.py:223
 msgid "sending date"
-msgstr ""
+msgstr "Bude odesláno v"
 
 #: models.py:225
 msgid "Used for displaying the newsletter on the site."
-msgstr ""
+msgstr "Použito pro zobrazení newsletteru na stránkách."
 
 #: models.py:250 models.py:281 models.py:318
 #: cmsplugin_newsletter/cms_plugins.py:13
 msgid "newsletter"
-msgstr ""
+msgstr "newsletter"
 
 #: models.py:251 models.py:346
 msgid "newsletters"
-msgstr ""
+msgstr "newslettery"
 
 #: models.py:258
 msgid "url"
-msgstr ""
+msgstr "URL"
 
 #: models.py:270 models.py:321
 msgid "link"
-msgstr ""
+msgstr "odkaz"
 
 #: models.py:271
 msgid "links"
-msgstr ""
+msgstr "odkaz"
 
 #: models.py:283
 msgid "file to attach"
-msgstr ""
+msgstr "příloha"
 
 #: models.py:287
 msgid "attachment"
-msgstr ""
+msgstr "příloha"
 
 #: models.py:288
 msgid "attachments"
-msgstr ""
+msgstr "přílohy"
 
 #: models.py:308
 msgid "sent in test"
-msgstr ""
+msgstr "Odesláno jako test"
 
 #: models.py:310
 msgid "error"
-msgstr ""
+msgstr "Chyba"
 
 #: models.py:311
 msgid "invalid email"
-msgstr ""
+msgstr "Neplatný e-mail"
 
 #: models.py:312
 msgid "opened"
-msgstr ""
+msgstr "Otevřen"
 
 #: models.py:313
 msgid "opened on site"
-msgstr ""
+msgstr "Otevřen na stránkých"
 
 #: models.py:314
 msgid "link opened"
-msgstr ""
+msgstr "Odkaz otevřen"
 
 #: models.py:315
 msgid "unsubscription"
-msgstr ""
+msgstr "Odhlášení od odběru"
 
 #: models.py:333
 msgid "contact mailing status"
-msgstr ""
+msgstr "Stav zasílání"
 
 #: models.py:334
 msgid "contact mailing statuses"
-msgstr ""
+msgstr "Stav zasílání"
 
 #: models.py:340
 msgid "permissions group"
-msgstr ""
+msgstr "Skupina oprávnění"
 
 #: models.py:353
 msgid "workgroup"
-msgstr ""
+msgstr "Pracovní skupina"
 
 #: models.py:354
 msgid "workgroups"
-msgstr ""
+msgstr "Pracovní skupiny"
 
 #: admin/contact.py:36 templates/newsletter/newsletter_statistics.html:188
 msgid "Status"
-msgstr ""
+msgstr "Stav"
 
 #: admin/contact.py:37
 msgid "Advanced"
-msgstr ""
+msgstr "Pokročilé"
 
 #: admin/contact.py:69
 msgid "No relative object"
-msgstr ""
+msgstr "Žádný související objekt"
 
 #: admin/contact.py:71
 msgid "Related object"
-msgstr ""
+msgstr "Související objekt"
 
 #: admin/contact.py:78
 msgid "Total subscriptions"
-msgstr ""
+msgstr "Celkem přihlášek k odběru"
 
 #: admin/contact.py:83
 msgid "Export contacts as VCard"
-msgstr ""
+msgstr "Exportovat kontakty jako VCard"
 
 #: admin/contact.py:90
 msgid "Export contacts in Excel"
-msgstr ""
+msgstr "Exportovat kontakty jako VCard"
 
 #: admin/contact.py:95
 #, python-format
 msgid "New mailinglist at %s"
-msgstr ""
+msgstr "Nový mailing list ze dne %s"
 
 #: admin/contact.py:96
 #, python-format
 msgid "New mailing list created in admin at %s"
-msgstr ""
+msgstr "Nový mailing list vytvořený v administraci dne %s"
 
 #: admin/contact.py:104
 #, python-format
 msgid "%s succesfully created."
-msgstr ""
+msgstr "%s byl úspěšně vytvořen."
 
 #: admin/contact.py:107
 msgid "Create a mailinglist"
-msgstr ""
+msgstr "Vytvořit mailing list"
 
 #: admin/contact.py:126
 #, python-format
 msgid "%s contacts succesfully imported."
-msgstr ""
+msgstr "%s kontaktů bylo úspěšně importováno."
 
 #: admin/contact.py:128
 msgid "Contact importation"
-msgstr ""
+msgstr "Importovat"
 
 #: admin/mailinglist.py:65
 msgid "Please select a least 2 mailing list."
-msgstr ""
+msgstr "Prosím zvolte alespoň 2 mailing listy."
 
 #: admin/mailinglist.py:77
 #, python-format
 msgid "Merging list at %s"
-msgstr ""
+msgstr "Slučuji mailing list dne %s."
 
 #: admin/mailinglist.py:78
 #, python-format
 msgid "Mailing list created by merging at %s"
-msgstr ""
+msgstr "Mailing list vytvořený sloučením v %s."
 
 #: admin/mailinglist.py:87
 #, python-format
 msgid "%s succesfully created by merging."
-msgstr ""
+msgstr "%s byl úspěšně vytvořen sloučením."
 
 #: admin/mailinglist.py:90
 msgid "Merge selected mailinglists"
-msgstr ""
+msgstr "Sloučit vybrané mailing listy."
 
 #: admin/mailinglist.py:96
 msgid "Export Subscribers"
-msgstr ""
+msgstr "Exportovat přihlášky k odběru"
 
 #: admin/mailinglist.py:98
 msgid "Export"
-msgstr ""
+msgstr "Exportovat"
 
 #: admin/newsletter.py:41
 msgid "Receivers"
-msgstr ""
+msgstr "Odběratelé"
 
 #: admin/newsletter.py:42
 msgid "Sending"
-msgstr ""
+msgstr "Odesílání"
 
 #: admin/newsletter.py:43 admin/smtpserver.py:36
 msgid "Miscellaneous"
-msgstr ""
+msgstr "Různé"
 
 #: admin/newsletter.py:79
 msgid "Default"
-msgstr ""
+msgstr "Výchozí"
 
 #: admin/newsletter.py:106
 msgid "Unable to download HTML, due to errors within."
-msgstr ""
+msgstr "Nelze stáhnout HTML kvůli interní chybě."
 
 #: admin/newsletter.py:108
 msgid "Please install lxml for parsing an URL."
-msgstr ""
+msgstr "Prosím nainstalujte lxml pro parsování URL."
 
 #: admin/newsletter.py:120
 msgid "View historic"
-msgstr ""
+msgstr "Zobrazit historii"
 
 #: admin/newsletter.py:121 admin/newsletter.py:130
 msgid "Not available"
-msgstr ""
+msgstr "nedostupné"
 
 #: admin/newsletter.py:123
 msgid "Historic"
-msgstr ""
+msgstr "Historie"
 
 #: admin/newsletter.py:129
 msgid "View statistics"
-msgstr ""
+msgstr "Zobrazit statistiky"
 
 #: admin/newsletter.py:132
 msgid "Statistics"
-msgstr ""
+msgstr "Statistiky"
 
 #: admin/newsletter.py:142
 msgid "Unable send newsletter, due to errors within HTML."
-msgstr ""
+msgstr "Nelze odeslat newsletter kvůli interní HTML chybě."
 
 #: admin/newsletter.py:144
 #, python-format
 msgid "%s succesfully sent."
-msgstr ""
+msgstr "%s úspěšně odeslán."
 
 #: admin/newsletter.py:146
 #, python-format
 msgid "No test contacts assigned for %s."
-msgstr ""
+msgstr "K %s nejsou přiřazeny žádné kontakty."
 
 #: admin/newsletter.py:147
 msgid "Send test email"
-msgstr ""
+msgstr "Odeslat test emailu."
 
 #: admin/newsletter.py:155
 #, python-format
 msgid "%s newletters are ready to send"
-msgstr ""
+msgstr "%s newsletterů je připraveno k odeslání"
 
 #: admin/newsletter.py:156
 msgid "Make ready to send"
-msgstr ""
+msgstr "Změnit na \"připraveno k odeslání\""
 
 #: admin/newsletter.py:165
 #, python-format
 msgid "%s newletters are cancelled"
-msgstr ""
+msgstr "%s newsletterů bylo zrušeno"
 
 #: admin/newsletter.py:166
 msgid "Cancel the sending"
-msgstr ""
+msgstr "Zrušit odeslání"
 
 #: admin/smtpserver.py:18
 msgid "Invalid syntax, do not forget the \":\"."
-msgstr ""
+msgstr "Neplatná syntaxe, nezapomeňte na \":\"."
 
 #: admin/smtpserver.py:20
 msgid "Invalid syntax, several assignments by line."
-msgstr ""
+msgstr "Neplatná syntaxe více přiřazení na řádku."
 
 #: admin/smtpserver.py:34
 msgid "Configuration"
-msgstr ""
+msgstr "Konfigurace"
 
 #: admin/smtpserver.py:57
 msgid "Check connection"
-msgstr ""
+msgstr "Připojení úspěšné"
 
 #: admin/workgroup.py:18
 msgid "Contacts length"
-msgstr ""
+msgstr "Počet kontaktů"
 
 #: admin/workgroup.py:22
 msgid "Mailing List length"
-msgstr ""
+msgstr "Počet mailing listů"
 
 #: admin/workgroup.py:26
 msgid "Newsletter length"
-msgstr ""
+msgstr "Počet newsletterů"
 
 #: cmsplugin_newsletter/cms_plugins.py:15
 msgid "Subscription Form"
-msgstr ""
+msgstr "Odhlášení"
 
 #: cmsplugin_newsletter/models.py:13
 msgid "show description"
-msgstr ""
+msgstr "Popis"
 
 #: cmsplugin_newsletter/models.py:14
 msgid "Show the mailing list's description."
-msgstr ""
+msgstr "Zobrazit popis mailing listu."
 
 #: cmsplugin_newsletter/models.py:16
 msgid "Mailing List to subscribe to."
-msgstr ""
+msgstr "Počet mailing listů"
 
 #: templates/admin/newsletter/contact/change_list.html:36
 #, python-format
 msgid "Add %(name)s"
-msgstr ""
+msgstr "Přidat %(name)s"
 
 #: templates/admin/newsletter/contact/change_list.html:42
 msgid "Actions"
-msgstr ""
+msgstr "Akce"
 
 #: templates/admin/newsletter/contact/change_list.html:51
 #, python-format
 msgid "Import %(name)ss"
-msgstr ""
+msgstr "Importovat %(name)s"
 
 #: templates/admin/newsletter/contact/change_list.html:58
 msgid "Add to a mailing list"
-msgstr ""
+msgstr "Vytvořit mailing list"
 
 #: templates/admin/newsletter/contact/change_list.html:65
 #, python-format
 msgid "Export %(name)s as VCard"
-msgstr ""
+msgstr "Exportovat kontakty jako VCard"
 
 #: templates/admin/newsletter/contact/change_list.html:70
 #, python-format
 msgid "Export %(name)s as Excel"
-msgstr ""
+msgstr "Exportovat %(name)s"
 
 #: templates/newsletter/contact_import.html:7
 msgid "Home"
-msgstr ""
+msgstr "Domů"
 
 #: templates/newsletter/contact_import.html:10
 msgid "Importation"
-msgstr ""
+msgstr "Import"
 
 #: templates/newsletter/contact_import.html:24
 msgid "Excel"
-msgstr ""
+msgstr "Excel"
 
 #: templates/newsletter/contact_import.html:27
 msgid "Excel file (.xls)"
-msgstr ""
+msgstr "Soubor Excelu (.xls)"
 
 #: templates/newsletter/contact_import.html:31
 msgid "Import contacts from a Excel file."
-msgstr ""
+msgstr "Exportovat kontakty jako VCard"
 
 #: templates/newsletter/contact_import.html:32
 msgid "Columns are [email][last name][first name][tags]."
-msgstr ""
+msgstr "Sloupce jsou [email][příjmení][křestní jméno][tagy]."
 
 #: templates/newsletter/contact_import.html:33
 #: templates/newsletter/contact_import.html:56
 #: templates/newsletter/contact_import.html:98
 msgid "All columns are optionnal excepting the email."
-msgstr ""
+msgstr "Všechny sloupce jsou volitelné kromě e-mailu."
 
 #: templates/newsletter/contact_import.html:38
 #: templates/newsletter/contact_import.html:61
 #: templates/newsletter/contact_import.html:81
 #: templates/newsletter/contact_import.html:103
 msgid "Import"
-msgstr ""
+msgstr "Import"
 
 #: templates/newsletter/contact_import.html:47
 msgid "Text"
-msgstr ""
+msgstr "Text"
 
 #: templates/newsletter/contact_import.html:50
 msgid "Text file (.txt, .csv)"
-msgstr ""
+msgstr "Textový soubor (.txt, .csv)"
 
 #: templates/newsletter/contact_import.html:54
 msgid "Import contacts from a text file, or a CSV file."
-msgstr ""
+msgstr "Importovat kontakty z textového souboru, nebo CSV."
 
 #: templates/newsletter/contact_import.html:55
 #: templates/newsletter/contact_import.html:97
 msgid ""
 "Columns are [email][last name][first name][tags], splitted by a dot coma."
 msgstr ""
+"Sloupce jsou [email][příjmení][křestní jméno][tagy] oddělené středníkem."
 
 #: templates/newsletter/contact_import.html:70
 msgid "VCard"
-msgstr ""
+msgstr "VCard"
 
 #: templates/newsletter/contact_import.html:73
 msgid "VCard file (.cvf)"
-msgstr ""
+msgstr "Soubor elektronické vizitky (.cvf)"
 
 #: templates/newsletter/contact_import.html:77
 msgid ""
 "Import contacts from your favorite mail client, by providing a VCard file."
 msgstr ""
+"Importovat kontakty z vašeho oblíbeného mailového klienta poskytnutím "
+"elektronické vizitky VCard."
 
 #: templates/newsletter/contact_import.html:90
 #: templates/newsletter/contact_import.html:93
 msgid "Raw text"
-msgstr ""
+msgstr "Prostý text"
 
 #: templates/newsletter/mailing_list_subscribe.html:4
 #: templates/newsletter/mailing_list_subscribe.html:7
 msgid "Subscription to mailing list"
-msgstr ""
+msgstr "Vytvořit mailing list"
 
 #: templates/newsletter/mailing_list_subscribe.html:10
 msgid "Thanks for your subscription!"
-msgstr ""
+msgstr "Celkem přilhášení k odběru"
 
 #: templates/newsletter/mailing_list_subscribe.html:16
 msgid "Validate this form to subscribe to the mailing lists."
-msgstr ""
+msgstr "Vyplňte tento formulář pro odhlášení od oběru."
 
 #: templates/newsletter/mailing_list_subscribe.html:21
 #: templates/newsletter/cms/subscription_form.html:20
 msgid "Subscribe"
-msgstr ""
+msgstr "Přilháška k odběru"
 
 #: templates/newsletter/mailing_list_unsubscribe.html:4
 #: templates/newsletter/mailing_list_unsubscribe.html:7
 msgid "Unsubscription"
-msgstr ""
+msgstr "Odhlášení od odběru"
 
 #: templates/newsletter/mailing_list_unsubscribe.html:9
 msgid "You are unsubscribed for this mailing list."
-msgstr ""
+msgstr "Jste odhlášen od odběru tohoto newsletteru."
 
 #: templates/newsletter/mailing_list_unsubscribe.html:11
 msgid "Validate this form to unsubscribe to this mailing list."
-msgstr ""
+msgstr "Vyplňte tento formulář pro odhlášení od oběru."
 
 #: templates/newsletter/mailing_list_unsubscribe.html:15
 msgid "Unsubscribe"
-msgstr ""
+msgstr "Odhlásit se od odběru"
 
 #: templates/newsletter/newsletter_historic.html:9
 #: templates/newsletter/newsletter_statistics.html:68
 msgid "Admin."
-msgstr ""
+msgstr "Administrátor"
 
 #: templates/newsletter/newsletter_historic.html:23
 msgid "Date"
-msgstr ""
+msgstr "Datu"
 
 #: templates/newsletter/newsletter_historic.html:24
 msgid "Contact"
-msgstr ""
+msgstr "Kontakt"
 
 #: templates/newsletter/newsletter_historic.html:25
 msgid "Action"
-msgstr ""
+msgstr "Akce"
 
 #: templates/newsletter/newsletter_link_site.html:5
 msgid "If you cannot see this email,"
-msgstr ""
+msgstr "Pokud nevidíte tento e-mail"
 
 #: templates/newsletter/newsletter_link_site.html:6
 #: templates/newsletter/newsletter_link_unsubscribe.html:6
 msgid "click here"
-msgstr ""
+msgstr "klikněte zde"
 
 #: templates/newsletter/newsletter_link_unsubscribe.html:5
 msgid "For unsubscribing to this mailing list,"
-msgstr ""
+msgstr "Byl jste odhlášen od odběru."
 
 #: templates/newsletter/newsletter_statistics.html:86 views/statistics.py:147
 msgid "Consultation histogram"
-msgstr ""
+msgstr "Histogram konzultací"
 
 #: templates/newsletter/newsletter_statistics.html:89
 msgid "Period"
-msgstr ""
+msgstr "Období"
 
 #: templates/newsletter/newsletter_statistics.html:112
 #: templates/newsletter/newsletter_statistics.html:113
 msgid "Broadcasting statistics"
-msgstr ""
+msgstr "Zobrazit statistiky"
 
 #: templates/newsletter/newsletter_statistics.html:115 views/statistics.py:139
 msgid "Total openings"
-msgstr ""
+msgstr "Celkem přihlášek"
 
 #: templates/newsletter/newsletter_statistics.html:120
 msgid "Openings on site"
-msgstr ""
+msgstr "Otevřeno na stránce"
 
 #: templates/newsletter/newsletter_statistics.html:125
 msgid "Total openings unique"
-msgstr ""
+msgstr "Celkem otevření"
 
 #: templates/newsletter/newsletter_statistics.html:130
 msgid "Unknow delivery"
-msgstr ""
+msgstr "Stav doručení není znám"
 
 #: templates/newsletter/newsletter_statistics.html:135
 msgid "Unsubscriptions"
-msgstr ""
+msgstr "Odhlášení od odběru"
 
 #: templates/newsletter/newsletter_statistics.html:140
 msgid "Openings average"
-msgstr ""
+msgstr "Celkem přihlášek"
 
 #: templates/newsletter/newsletter_statistics.html:148
 #: templates/newsletter/newsletter_statistics.html:149
 msgid "Links statistics"
-msgstr ""
+msgstr "Zobrazit statistiky"
 
 #: templates/newsletter/newsletter_statistics.html:151 views/statistics.py:143
 msgid "Total clicked links"
-msgstr ""
+msgstr "Celkem přihlášek"
 
 #: templates/newsletter/newsletter_statistics.html:156
 msgid "Total clicked links unique"
-msgstr ""
+msgstr "Celkem kliků na odkazy"
 
 #: templates/newsletter/newsletter_statistics.html:161
 msgid "Clicked links by openings"
-msgstr ""
+msgstr "Kliků na jedno otevření"
 
 #: templates/newsletter/newsletter_statistics.html:166
 msgid "Clicked links average"
-msgstr ""
+msgstr "Celkem přihlášek"
 
 #: templates/newsletter/newsletter_statistics.html:178
 msgid "Report"
-msgstr ""
+msgstr "Exportovat zprávu"
 
 #: templates/newsletter/newsletter_statistics.html:180
 msgid "Download CSV report"
-msgstr ""
+msgstr "Stáhnout CSV report"
 
 #: templates/newsletter/newsletter_statistics.html:185
 msgid "Informations"
-msgstr ""
+msgstr "Importovat"
 
 #: templates/newsletter/newsletter_statistics.html:186
 msgid "Recipients"
-msgstr ""
+msgstr "Odběratelé"
 
 #: templates/newsletter/newsletter_statistics.html:187
 msgid "View"
-msgstr ""
+msgstr "Zobrazit"
 
 #: templates/newsletter/newsletter_statistics.html:190
 msgid "Sending date"
-msgstr ""
+msgstr "Datum odeslání"
 
 #: templates/newsletter/newsletter_statistics.html:193
 msgid "Tests sent"
-msgstr ""
+msgstr "Testů odesláno"
 
 #: templates/newsletter/newsletter_statistics.html:198
 msgid "Top Links"
-msgstr ""
+msgstr "Nejúspěšnější odkazy"
 
 #: templates/newsletter/newsletter_statistics.html:199
 msgid "Density map"
-msgstr ""
+msgstr "Mapa hustoty"
 
 #: templates/newsletter/newsletter_statistics.html:208
 msgid "No Top Links yet."
-msgstr ""
+msgstr "Zatím nejsou žádné odkazy k dispozici"
 
 #: templates/newsletter/cms/subscription_form.html:8
 msgid "You have successfully subscribed to the mailing list!"
-msgstr ""
+msgstr "Byl jste odhlášen od odběru."
 
 #: utils/importation.py:52
 #, python-format
 msgid "Mailing list created by importation at %s"
-msgstr ""
+msgstr "Mailing list vytvořený sloučením jiných v %s"
 
 #: utils/importation.py:53
 #, python-format
 msgid "Contacts imported by %s."
-msgstr ""
+msgstr "Importovat"
 
 #: views/statistics.py:54
 #, python-format
 msgid "Statistics of %s"
-msgstr ""
+msgstr "Statistiky %s"
 
 #: views/statistics.py:76
 msgid "openings"
-msgstr ""
+msgstr "Celkem přihlášek"
 
 #: views/statistics.py:139
 msgid "#val# openings"
-msgstr ""
+msgstr "Celkem přihlášek"
 
 #: views/statistics.py:143
 msgid "#val# clicks"
-msgstr ""
+msgstr "#val# kliků"
 
 #: views/tracking.py:67
 #, python-format
 msgid "Historic of %s"
-msgstr ""
+msgstr "Historie %s"
 
 #~ msgid "key1: value1 key2: value2, splitted by return line."
 #~ msgstr "key1: value1 key2: value2, splitted by return line."
