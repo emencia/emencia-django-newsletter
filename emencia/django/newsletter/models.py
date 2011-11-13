@@ -144,11 +144,29 @@ class Contact(models.Model):
         if self.tags:
             return '%s | %s' % (contact_name, self.tags)
         return contact_name
+    
+    def getlanguage(self):
+        
+        try :
+            return LocalContact.objects.get(contact=language)
+        except LocalContact.DoesNotExist :
+            return settings.DEFAULT_LANGUAGE
 
     class Meta:
         ordering = ('creation_date',)
         verbose_name = _('contact')
         verbose_name_plural = _('contacts')
+        
+    
+class LocalContact(models.Model):
+    
+    contact = models.OnetoOneField(Contact)
+    language = models.ChoiceField(settings.LANGUAGES)
+    
+    class Meta:
+        verbose_name = _('language')
+        verbose_name_plural = _('language')
+        
 
 
 class MailingList(models.Model):
@@ -241,6 +259,12 @@ class Newsletter(models.Model):
     @models.permalink
     def get_statistics_url(self):
         return ('newsletter_newsletter_statistics', (self.slug,))
+    
+    def get_translation(self,language):
+        try :
+            return NewsLetterTranslation.objects.get(self,language).content
+        except NewsLetterTranslation.DoesNotExist :
+            return self.content
 
     def __unicode__(self):
         return self.title
@@ -251,6 +275,17 @@ class Newsletter(models.Model):
         verbose_name_plural = _('newsletters')
         permissions = (('can_change_status', 'Can change status'),)
 
+class NewsLetterTranslation(models.Model):
+    
+    newsletter = models.ForeignKey(Newsletter)
+    language = models.ChoiceField(settings.LANGUAGES)
+    
+    class Meta:
+        ordering = ('-creation_date',)
+        verbose_name = _('newsletter translation')
+        verbose_name_plural = _('newsletters translation')
+    
+    
 
 class Link(models.Model):
     """Link sended in a newsletter"""

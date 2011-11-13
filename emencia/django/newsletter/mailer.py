@@ -211,9 +211,9 @@ class Mailer(object):
         uidb36, token = tokenize(contact)
         context = Context({'contact': contact,
                            'domain': Site.objects.get_current().domain,
-                           'newsletter': self.newsletter,
+                           'newsletter': self.newsletter.get_translation(contact.LocalContact.language),
                            'tracking_image_format': TRACKING_IMAGE_FORMAT,
-                           'uidb36': uidb36, 'token': token})
+                           'uidb36': uidb36, 'token': token, 'LANGUAGE' : contact.LocalContact.language})
         content = self.newsletter_template.render(context)
         if TRACKING_LINKS:
             content = track_links(content, context)
