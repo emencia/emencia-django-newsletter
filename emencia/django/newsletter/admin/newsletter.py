@@ -10,6 +10,7 @@ from emencia.django.newsletter.models import Contact
 from emencia.django.newsletter.models import Newsletter
 from emencia.django.newsletter.models import Attachment
 from emencia.django.newsletter.models import MailingList
+from emencia.django.newsletter.models import NewsLetterTranslation
 from emencia.django.newsletter.mailer import Mailer
 from emencia.django.newsletter.settings import USE_TINYMCE
 from emencia.django.newsletter.settings import USE_WORKGROUPS
@@ -24,6 +25,13 @@ from emencia.django.newsletter.utils.workgroups import request_workgroups_contac
 from emencia.django.newsletter.utils.workgroups import request_workgroups_newsletters_pk
 from emencia.django.newsletter.utils.workgroups import request_workgroups_mailinglists_pk
 
+
+class NewsLetterTranslationInline(admin.TabularInline):
+    
+    model = NewsLetterTranslation
+    extra = 1
+    can_delete = True
+    fieldsets = ((None, {'fields' : (('language', 'title','translation'))}),)
 
 class AttachmentAdminInline(admin.TabularInline):
     model = Attachment
@@ -47,7 +55,7 @@ class BaseNewsletterAdmin(admin.ModelAdmin):
                                        'classes': ('collapse',)}),
                  )
     prepopulated_fields = {'slug': ('title',)}
-    inlines = (AttachmentAdminInline,)
+    inlines = (AttachmentAdminInline,NewsLetterTranslationInline,)
     actions = ['send_mail_test', 'make_ready_to_send', 'make_cancel_sending']
     actions_on_top = False
     actions_on_bottom = True

@@ -12,7 +12,7 @@ from django.contrib.contenttypes import generic
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.auth.models import Group
 from django.utils.encoding import force_unicode
-
+from django.conf import settings
 from tagging.fields import TagField
 from emencia.django.newsletter.managers import ContactManager
 from emencia.django.newsletter.settings import BASE_PATH
@@ -99,7 +99,7 @@ class Contact(models.Model):
     email = models.EmailField(_('email'), unique=True)
     first_name = models.CharField(_('first name'), max_length=50, blank=True)
     last_name = models.CharField(_('last name'), max_length=50, blank=True)
-
+    language = models.CharField(max_length=2,choices=settings.LANGUAGES,default=settings.DEFAULT_LANGUAGE)
     subscriber = models.BooleanField(_('subscriber'), default=True)
     valid = models.BooleanField(_('valid email'), default=True)
     tester = models.BooleanField(_('contact tester'), default=False)
@@ -145,27 +145,13 @@ class Contact(models.Model):
             return '%s | %s' % (contact_name, self.tags)
         return contact_name
     
-    def getlanguage(self):
-        
-        try :
-            return LocalContact.objects.get(contact=language)
-        except LocalContact.DoesNotExist :
-            return settings.DEFAULT_LANGUAGE
+
 
     class Meta:
         ordering = ('creation_date',)
         verbose_name = _('contact')
         verbose_name_plural = _('contacts')
         
-    
-class LocalContact(models.Model):
-    
-    contact = models.OnetoOneField(Contact)
-    language = models.ChoiceField(settings.LANGUAGES)
-    
-    class Meta:
-        verbose_name = _('language')
-        verbose_name_plural = _('language')
         
 
 
@@ -262,9 +248,15 @@ class Newsletter(models.Model):
     
     def get_translation(self,language):
         try :
-            return NewsLetterTranslation.objects.get(self,language).content
+            return NewsLetterTranslation.objects.get(language=language).translation
         except NewsLetterTranslation.DoesNotExist :
             return self.content
+        
+    def get_translation_title(self,language):
+        try :
+            return NewsLetterTranslation.objects.get(language=language).title
+        except NewsLetterTranslation.DoesNotExist :
+            return self.title
 
     def __unicode__(self):
         return self.title
@@ -277,13 +269,18 @@ class Newsletter(models.Model):
 
 class NewsLetterTranslation(models.Model):
     
-    newsletter = models.ForeignKey(Newsletter)
-    language = models.ChoiceField(settings.LANGUAGES)
+    newsletter = models.ForeignKey(Newsletter,blank=True)
+    language = models.CharField(max_length=2,choices=settings.LANGUAGES)
+    title = models.CharField(_('title'), max_length=255)
+    translation = models.TextField()
+
     
     class Meta:
-        ordering = ('-creation_date',)
         verbose_name = _('newsletter translation')
         verbose_name_plural = _('newsletters translation')
+    
+    def __unicode__(self):
+        return self.title
     
     
 
