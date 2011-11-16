@@ -213,7 +213,7 @@ class Mailer(object):
                            'domain': Site.objects.get_current().domain,
                            'newsletter': self.newsletter,
                            'tracking_image_format': TRACKING_IMAGE_FORMAT,
-                           'uidb36': uidb36, 'token': token, 'LANGUAGE' : contact.language})
+                           'uidb36': uidb36, 'token': token, 'LANGUAGE_CODE' : contact.language})
         content = Template(self.newsletter.get_translation(contact.language)).render(context)
         if TRACKING_LINKS:
             content = track_links(content, context)
@@ -230,10 +230,7 @@ class Mailer(object):
                 unsubscription = render_to_string('newsletter/newsletter_link_unsubscribe.html', context)
             content = body_insertion(content, unsubscription, end=True)
         if TRACKING_IMAGE:
-            try :
-                image_tracking = render_to_string(contact.language+'/newsletter/newsletter_image_tracking.html', context)
-            except :
-                image_tracking = render_to_string(contact.language+'/newsletter/newsletter_image_tracking.html', context)
+            image_tracking = render_to_string('newsletter/newsletter_image_tracking.html', context)
             content = body_insertion(content, image_tracking, end=True)
         return smart_unicode(content)
 
