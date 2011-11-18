@@ -137,7 +137,7 @@ Settings
 You have to add in your settings the email address used to send the newsletter : ::
 
   NEWSLETTER_DEFAULT_HEADER_SENDER = 'My NewsLetter <newsletter@myhost.com>'
-  
+
 
 DBMS considerations
 ===================
@@ -180,11 +180,11 @@ In his AdminModel definition add this method and register it into the *actions* 
 
           subscribers = []
           for profile in queryset:
-            contact, created = Contact.objects.get_or_create(email=profile.mail,
-                                                             defaults={'first_name': profile.first_name,
-                                                                       'last_name': profile.last_name,
-                                                                       'content_object': profile})
-          subscribers.append(contact)
+              contact, created = Contact.objects.get_or_create(email=profile.mail,
+                                                               defaults={'first_name': profile.first_name,
+                                                                         'last_name': profile.last_name,
+                                                                         'content_object': profile})
+              subscribers.append(contact)
           new_mailing = MailingList(name='New mailing list',
                                     description='New mailing list created from admin/profile')
           new_mailing.save()
@@ -193,7 +193,7 @@ In his AdminModel definition add this method and register it into the *actions* 
           self.message_user(request, '%s succesfully created.' % new_mailing)
       make_mailing_list.short_description = 'Create a mailing list'
 
-      actions = ['make_mailing_list',]
+      actions = ['make_mailing_list']
 
 This action will create or retrieve all the **Contact** instances needed for the mailing list creation.
 
