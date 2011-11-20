@@ -1,5 +1,5 @@
 include README.rst
 recursive-include docs *
 recursive-include emencia/django/newsletter/locale *
-recursive-include emencia/django/newsletter/media *
+recursive-include emencia/django/newsletter/static *
 recursive-include emencia/django/newsletter/templates *.html
