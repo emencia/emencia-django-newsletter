@@ -203,7 +203,7 @@ class Mailer(object):
         context = Context({'contact': contact,
                            'UNIQUE_KEY': ''.join(sample(UNIQUE_KEY_CHAR_SET,
                                                         UNIQUE_KEY_LENGTH))})
-        title = self.title_template.render(context)
+        title = Template(self.newsletter.get_translation_title(contact.language)).render(context)
         return title
 
     def build_email_content(self, contact):
@@ -213,15 +213,21 @@ class Mailer(object):
                            'domain': Site.objects.get_current().domain,
                            'newsletter': self.newsletter,
                            'tracking_image_format': TRACKING_IMAGE_FORMAT,
-                           'uidb36': uidb36, 'token': token})
-        content = self.newsletter_template.render(context)
+                           'uidb36': uidb36, 'token': token, 'LANGUAGE_CODE' : contact.language})
+        content = Template(self.newsletter.get_translation(contact.language)).render(context)
         if TRACKING_LINKS:
             content = track_links(content, context)
-        link_site = render_to_string('newsletter/newsletter_link_site.html', context)
+        try :
+            link_site = render_to_string(contact.language+'/newsletter/newsletter_link_site.html', context)
+        except :
+            link_site = render_to_string('newsletter/newsletter_link_site.html', context)            
         content = body_insertion(content, link_site)
 
         if INCLUDE_UNSUBSCRIPTION:
-            unsubscription = render_to_string('newsletter/newsletter_link_unsubscribe.html', context)
+            try :
+                unsubscription = render_to_string(contact.language +'/newsletter/newsletter_link_unsubscribe.html', context)
+            except :
+                unsubscription = render_to_string('newsletter/newsletter_link_unsubscribe.html', context)
             content = body_insertion(content, unsubscription, end=True)
         if TRACKING_IMAGE:
             image_tracking = render_to_string('newsletter/newsletter_image_tracking.html', context)

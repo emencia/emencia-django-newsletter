@@ -12,7 +12,7 @@ from django.template import RequestContext
 from django.utils.translation import ugettext_lazy as _
 from django.http import HttpResponseRedirect
 from django.contrib.admin.views.main import ChangeList
-
+from django.conf import settings
 from emencia.django.newsletter.models import MailingList
 from emencia.django.newsletter.settings import USE_WORKGROUPS
 from emencia.django.newsletter.utils.importation import import_dispatcher
@@ -27,11 +27,11 @@ contacts_imported = Signal(providing_args=['source', 'type'])
 
 class ContactAdmin(admin.ModelAdmin):
     date_hierarchy = 'creation_date'
-    list_display = ('email', 'first_name', 'last_name', 'tags', 'tester', 'subscriber',
+    list_display = ('email', 'first_name', 'last_name', 'language','tags', 'tester', 'subscriber',
                     'valid', 'total_subscriptions', 'creation_date', 'related_object_admin')
     list_filter = ('subscriber', 'valid', 'tester', 'creation_date', 'modification_date')
     search_fields = ('email', 'first_name', 'last_name', 'tags')
-    fieldsets = ((None, {'fields': ('email', 'first_name', 'last_name')}),
+    fieldsets = ((None, {'fields': ('email', 'first_name', 'last_name','language')}),
                  (None, {'fields': ('tags',)}),
                  (_('Status'), {'fields': ('subscriber', 'valid', 'tester')}),
                  (_('Advanced'), {'fields': ('object_id', 'content_type'),
@@ -54,6 +54,7 @@ class ContactAdmin(admin.ModelAdmin):
                and USE_WORKGROUPS:
             workgroups = request_workgroups(request)
         contact.save()
+
         for workgroup in workgroups:
             workgroup.contacts.add(contact)
 
