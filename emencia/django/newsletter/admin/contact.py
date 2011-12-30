@@ -95,7 +95,7 @@ class ContactAdmin(admin.ModelAdmin):
         new_mailing = MailingList(name=_('New mailinglist at %s') % when,
                                   description=_('New mailing list created in admin at %s') % when)
         new_mailing.save()
-        new_mailing.subscribers = queryset.all()
+        new_mailing.subscribers = queryset.none()
 
         if not request.user.is_superuser and USE_WORKGROUPS:
             for workgroup in request_workgroups(request):
