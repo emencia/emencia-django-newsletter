@@ -1,8 +1,10 @@
 """ModelAdmin for Contact"""
 import StringIO
+from django.conf import settings
 from datetime import datetime
 
 from django.contrib import admin
+from django.contrib import messages
 from django.dispatch import Signal
 from django.conf.urls.defaults import url
 from django.conf.urls.defaults import patterns
@@ -12,6 +14,7 @@ from django.template import RequestContext
 from django.utils.translation import ugettext_lazy as _
 from django.http import HttpResponseRedirect
 from django.contrib.admin.views.main import ChangeList
+from django.db import DatabaseError
 
 from emencia.django.newsletter.models import MailingList
 from emencia.django.newsletter.settings import USE_WORKGROUPS
@@ -95,7 +98,15 @@ class ContactAdmin(admin.ModelAdmin):
         new_mailing = MailingList(name=_('New mailinglist at %s') % when,
                                   description=_('New mailing list created in admin at %s') % when)
         new_mailing.save()
-        new_mailing.subscribers = queryset.all()
+        db_engine = settings.DATABASES['default']['ENGINE']
+        if settings.DATABASES['default']['ENGINE'].find('sqlite3') > -1 \
+            or settings.DATABASES['default']['ENGINE'].index('django.contrib.gis.db.backends.spatialite') > -1:
+            messages.warning(request, 'SQLite3 or a SpatialLite database type detected, please note you will be limited to 999 contacts per mailing list.')
+        try:
+            new_mailing.subscribers = queryset.all()
+        except DatabaseError:
+            new_mailing.subscribers = queryset.none()
+
 
         if not request.user.is_superuser and USE_WORKGROUPS:
             for workgroup in request_workgroups(request):

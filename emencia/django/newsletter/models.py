@@ -73,7 +73,9 @@ class SMTPServer(models.Model):
             models.Q(status=ContactMailingStatus.SENT_TEST),
             newsletter__server=self,
             creation_date__gte=last_hour).count()
-        return self.mails_hour - sent_last_hour
+        credits = self.mails_hour - sent_last_hour
+        if credits < 0: creidts = 0
+        return credits
 
     @property
     def custom_headers(self):

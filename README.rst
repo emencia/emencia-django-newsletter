@@ -74,6 +74,60 @@ The package below is optionnal but handy for rendering a webpage in your newslet
 
  * lxml
 
+Setup up a logger handler for `emencia.django.newsletter` or catch all handler in your `settings.py` example below:: 
+
+	LOGGING = {
+	    'version': 1,
+	    'disable_existing_loggers': True,
+	    'formatters': {
+	        # http://docs.python.org/dev/library/logging.html#logrecord-attributes
+	        'balanced': {
+	            'format': '%(levelname)s %(pathname)s@%(lineno)d %(message)s'
+	        },
+	        'verbose': {
+	            'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
+	        },
+	        'simple': {
+	            'format': '%(levelname)s %(message)s'
+	        },
+	    },
+	    'handlers': {
+	        'null': {
+	            'level':'DEBUG',
+	            'class':'django.utils.log.NullHandler',
+	        },
+	        'console':{
+	            'level':'DEBUG',
+	            'class':'logging.StreamHandler',
+	            'formatter': 'balanced'
+	        },
+	        'mail_admins': {
+	            'level': 'ERROR',
+	            'class': 'django.utils.log.AdminEmailHandler',
+	            'formatter': 'simple'
+	        },
+	
+	
+	    },
+	    'loggers': {
+	        '': { # catch all logger
+	            'handlers': ['console'],
+	            'level': 'DEBUG',
+	            'propagate': True
+	        },
+	        'django': {
+	            'handlers':['null'],
+	            'propagate': True,
+	            'level':'INFO',
+	        },
+	        'django.request': {
+	            'handlers': ['mail_admins', 'console'],
+	            'level': 'WARNING',
+	            'propagate': False,
+	        },
+	    }
+	}
+
 Getting the code
 ----------------
 

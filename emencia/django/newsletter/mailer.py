@@ -1,12 +1,14 @@
 """Mailer for emencia.django.newsletter"""
 import re
+import sys
+import logging
 import time
 import mimetypes
 from random import sample
 from StringIO import StringIO
 from smtplib import SMTPRecipientsRefused
 from datetime import datetime
-
+import time
 try:
     from email.mime.multipart import MIMEMultipart
     from email.mime.text import MIMEText
@@ -46,8 +48,7 @@ from emencia.django.newsletter.settings import \
 
 
 LINK_RE = re.compile(r"https?://([^ \n]+\n)+[^ \n]+", re.MULTILINE)
-
-
+logger = logging.getLogger('emencia.django.newsletter')
 def html2text(html):
     """Use html2text but repair newlines cutting urls.
     Need to use this hack until
@@ -86,16 +87,19 @@ class Mailer(object):
             self.smtp_connect()
 
         self.attachments = self.build_attachments()
+        per_hour = self.newsletter.server.mails_hour
+        sleep_time = 60.0 * 60 / per_hour
 
         number_of_recipients = len(self.expedition_list)
         if self.verbose:
-            print '%i emails will be sent' % number_of_recipients
+            print '%i emails will be sent up to %s/hour at one every %s seconds.' % (number_of_recipients, per_hour, round(sleep_time, 2))
 
         i = 1
+        critical_errors = 0
         for contact in self.expedition_list:
             if self.verbose:
-                print '- Processing %s/%s (%s)' % (
-                    i, number_of_recipients, contact.pk)
+                print '- Processing %s/%s (%s - %s)' % (
+                    i, number_of_recipients, contact.pk, contact)
 
             try:
                 message = self.build_message(contact)
@@ -109,16 +113,28 @@ class Mailer(object):
                 contact.valid = False
                 contact.save()
             except:
+                e = sys.exc_info()[1]
+                logger.error('Sending to %s failed: \n%s' % (contact, e))
                 status = ContactMailingStatus.ERROR
+                critical_errors += 1
 
             ContactMailingStatus.objects.create(newsletter=self.newsletter,
                                                 contact=contact, status=status)
+
+            # exit if to many critical erros
+            if critical_errors >= 3:
+                logger.error('Max 3 critical errors reached, aborting this batch and will attempt again on next cron call (if it was setup)')
+                break
+
             if SLEEP_BETWEEN_SENDING:
                 time.sleep(SLEEP_BETWEEN_SENDING)
+            else:
+                time.sleep(sleep_time)
             if RESTART_CONNECTION_BETWEEN_SENDING:
                 self.smtp.quit()
                 self.smtp_connect()
             i += 1
+
         self.smtp.quit()
         self.update_newsletter_status()
 

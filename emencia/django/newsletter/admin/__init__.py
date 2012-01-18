@@ -16,7 +16,7 @@ from emencia.django.newsletter.admin.workgroup import WorkGroupAdmin
 from emencia.django.newsletter.admin.newsletter import NewsletterAdmin
 from emencia.django.newsletter.admin.smtpserver import SMTPServerAdmin
 from emencia.django.newsletter.admin.mailinglist import MailingListAdmin
-
+from emencia.django.newsletter.admin.contactmailingstatus import ContactMailingStatusAdmin
 
 admin.site.register(Contact, ContactAdmin)
 admin.site.register(SMTPServer, SMTPServerAdmin)
@@ -30,6 +30,5 @@ if USE_WORKGROUPS:
 class LinkAdmin(admin.ModelAdmin):
     list_display = ('title', 'url', 'creation_date')
 
-if settings.DEBUG:
-    admin.site.register(Link, LinkAdmin)
-    admin.site.register(ContactMailingStatus)
+admin.site.register(Link, LinkAdmin)
+admin.site.register(ContactMailingStatus, ContactMailingStatusAdmin)

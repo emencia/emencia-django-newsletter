@@ -1,8 +1,8 @@
 """Settings for emencia.django.newsletter"""
+from django.conf import settings
 import os
 import string
-from django.conf import settings
-
+import warnings
 BASE64_IMAGES = {
     'gif': 'AJEAAAAAAP///////wAAACH5BAEHAAIALAAAAAABAAEAAAICVAEAOw==',
     'png': 'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAABBJREFUeNpi+P//PwNAgAEACPwC/tuiTRYAAAAASUVORK5CYII=',
@@ -32,6 +32,9 @@ TRACKING_LINKS = getattr(settings, 'NEWSLETTER_TRACKING_LINKS', True)
 TRACKING_IMAGE_FORMAT = getattr(settings, 'NEWSLETTER_TRACKING_IMAGE_FORMAT', 'jpg')
 TRACKING_IMAGE = getattr(settings, 'NEWSLETTER_TRACKING_IMAGE',
                          BASE64_IMAGES[TRACKING_IMAGE_FORMAT])
+
+if hasattr(settings, 'NEWSLETTER_SLEEP_BETWEEN_SENDING'):
+    warnings.warn('`NEWSLETTER_SLEEP_BETWEEN_SENDING` is being depreciated in favor of automaticly calcuated sending delay; please remvoe it from your `settings.py`')
 
 SLEEP_BETWEEN_SENDING = getattr(
     settings, 'NEWSLETTER_SLEEP_BETWEEN_SENDING', 0)
