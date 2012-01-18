@@ -240,15 +240,15 @@ class MailerTestCase(TestCase):
 
     def test_expedition_list(self):
         mailer = Mailer(self.newsletter, test=True)
-        self.assertEquals(len(mailer.get_expedition_list()), 2)
+        self.assertEquals(len(mailer.expedition_list), 2)
         self.server.mails_hour = 1
-        self.assertEquals(len(mailer.get_expedition_list()), 1)
+        self.assertEquals(len(mailer.expedition_list), 1)
 
         self.server.mails_hour = 100
         mailer = Mailer(self.newsletter)
-        self.assertEquals(len(mailer.get_expedition_list()), 4)
+        self.assertEquals(len(mailer.expedition_list), 4)
         self.server.mails_hour = 3
-        self.assertEquals(len(mailer.get_expedition_list()), 3)
+        self.assertEquals(len(mailer.expedition_list), 3)
 
         self.server.mails_hour = 100
         ContactMailingStatus.objects.create(newsletter=self.newsletter,
@@ -260,8 +260,8 @@ class MailerTestCase(TestCase):
         ContactMailingStatus.objects.create(newsletter=self.newsletter,
                                             contact=self.contacts[1],
                                             status=ContactMailingStatus.SENT)
-        self.assertEquals(len(mailer.get_expedition_list()), 2)
-        self.assertFalse(self.contacts[0] in mailer.get_expedition_list())
+        self.assertEquals(len(mailer.expedition_list), 2)
+        self.assertFalse(self.contacts[0] in mailer.expedition_list)
 
     def test_can_send(self):
         mailer = Mailer(self.newsletter)

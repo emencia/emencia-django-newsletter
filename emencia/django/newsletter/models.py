@@ -62,6 +62,17 @@ class SMTPServer(models.Model):
             smtp.login(smart_str(self.user), smart_str(self.password))
         return smtp
 
+    def delay(self):
+        """compute the delay (in seconds) between mails to ensure mails
+        per hour limit is not reached
+
+        :rtype: float
+        """
+        if not self.mails_hour:
+            return 0.0
+        else:
+            return 3600.0 / self.mails_hour
+
     def credits(self):
         """Return how many mails the server can send"""
         if not self.mails_hour:
