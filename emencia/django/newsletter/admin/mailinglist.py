@@ -4,6 +4,7 @@ from datetime import datetime
 from django.contrib import admin
 from django.conf.urls.defaults import url
 from django.conf.urls.defaults import patterns
+from django.utils.encoding import smart_str
 from django.core.urlresolvers import reverse
 from django.shortcuts import get_object_or_404
 from django.utils.translation import ugettext_lazy as _
@@ -100,7 +101,7 @@ class MailingListAdmin(admin.ModelAdmin):
     def export_subscribers(self, request, mailinglist_id):
         """Export subscribers in the mailing in VCard"""
         mailinglist = get_object_or_404(MailingList, pk=mailinglist_id)
-        name = 'contacts_%s' % mailinglist.name
+        name = 'contacts_%s' % smart_str(mailinglist.name)
         return vcard_contacts_export_response(mailinglist.subscribers.all(), name)
 
     def get_urls(self):
