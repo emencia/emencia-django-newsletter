@@ -1,13 +1,14 @@
 """Mailer for emencia.django.newsletter"""
-from datetime import datetime, timedelta
+import re
+import sys
+import time
+import threading
 import mimetypes
 from random import sample
-import re
-from smtplib import SMTPRecipientsRefused
 from StringIO import StringIO
-import sys
-import threading
-import time
+from datetime import datetime
+from datetime import timedelta
+from smtplib import SMTPRecipientsRefused
 
 try:
     from email.mime.multipart import MIMEMultipart
@@ -76,14 +77,13 @@ def html2text(html):
 
 
 class NewsLetterSender(object):
-   
+
     def __init__(self, newsletter, test=False, verbose=0):
         self.test = test
         self.verbose = verbose
         self.newsletter = newsletter
         self.newsletter_template = Template(self.newsletter.content)
         self.title_template = Template(self.newsletter.title)
-
 
     def build_message(self, contact):
         """
@@ -145,7 +145,6 @@ class NewsLetterSender(object):
             attachments.append(message_attachment)
 
         return attachments
-
 
     def build_title_content(self, contact):
         """Generate the email title for a contact"""
@@ -309,7 +308,7 @@ class SMTPMailer(object):
     reach the limit.
 
     It is more robust in term of predictability.
-     
+
     In test mode the mailer always send mails but do not log it"""
 
     smtp = None
@@ -358,7 +357,6 @@ class SMTPMailer(object):
                 else:
                     nl.next()
 
-                
                 sleep_time = (delay * i -
                               total_seconds(datetime.now() - self.start))
                 if SLEEP_BETWEEN_SENDING:

@@ -1,5 +1,4 @@
 """Settings for emencia.django.newsletter"""
-import os
 import string
 from django.conf import settings
 

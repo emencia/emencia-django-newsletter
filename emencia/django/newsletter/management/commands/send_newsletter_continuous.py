@@ -38,7 +38,7 @@ class Command(NoArgsCommand):
 
         # first close current connection
         signals.request_finished.send(sender=self.__class__)
-        
+
         for worker, thread in workers:
             thread.start()
 

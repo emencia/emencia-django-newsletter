@@ -5,6 +5,7 @@ from django.core.urlresolvers import reverse
 from emencia.django.newsletter.models import Link
 from emencia.django.newsletter.settings import USE_PRETTIFY
 
+
 def body_insertion(content, insertion, end=False):
     """Insert an HTML content into the body HTML node"""
     if not content.startswith('<body'):
