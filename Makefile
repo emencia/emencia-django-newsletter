@@ -20,7 +20,7 @@ test:
 
 kwalitee:
 	@echo "$(COLOR)* Running pyflakes$(NO_COLOR)"
-	@./bin/pyflakes emencia
+	-@./bin/pyflakes emencia
 	@echo "$(COLOR)* Running pep8$(NO_COLOR)"
 	@./bin/pep8 --count -r --exclude=migrations emencia
 	@echo "$(SUCCESS_COLOR)* No kwalitee errors, congratulations $(USER) ! :)$(NO_COLOR)"
