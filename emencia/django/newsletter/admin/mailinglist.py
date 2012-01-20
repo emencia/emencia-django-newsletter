@@ -17,13 +17,14 @@ from emencia.django.newsletter.utils.workgroups import request_workgroups
 from emencia.django.newsletter.utils.workgroups import request_workgroups_contacts_pk
 from emencia.django.newsletter.utils.workgroups import request_workgroups_mailinglists_pk
 from emencia.django.newsletter.utils.vcard import vcard_contacts_export_response
+from emencia.django.newsletter.utils.excel import ExcelResponse
 
 
 class MailingListAdmin(admin.ModelAdmin):
     date_hierarchy = 'creation_date'
     list_display = ('creation_date', 'name', 'description',
                     'subscribers_count', 'unsubscribers_count',
-                    'exportation_link')
+                    'exportation_links')
     list_editable = ('name', 'description')
     list_filter = ('creation_date', 'modification_date')
     search_fields = ('name', 'description',)
@@ -90,24 +91,35 @@ class MailingListAdmin(admin.ModelAdmin):
                                             args=[new_mailing.pk]))
     merge_mailinglist.short_description = _('Merge selected mailinglists')
 
-    def exportation_link(self, mailinglist):
-        """Display link for exportation"""
-        return u'<a href="%s">%s</a>' % (reverse('admin:newsletter_mailinglist_export',
-                                                args=[mailinglist.pk]),
-                                        _('Export Subscribers'))
-    exportation_link.allow_tags = True
-    exportation_link.short_description = _('Export')
+    def exportation_links(self, mailinglist):
+        """Display links for exportation"""
+        return u'<a href="%s">%s</a> / <a href="%s">%s</a>' % (
+            reverse('admin:newsletter_mailinglist_export_excel',
+                    args=[mailinglist.pk]), _('Excel'),
+            reverse('admin:newsletter_mailinglist_export_vcard',
+                    args=[mailinglist.pk]), _('VCard'))
+    exportation_links.allow_tags = True
+    exportation_links.short_description = _('Export')
 
-    def export_subscribers(self, request, mailinglist_id):
+    def exportion_vcard(self, request, mailinglist_id):
         """Export subscribers in the mailing in VCard"""
         mailinglist = get_object_or_404(MailingList, pk=mailinglist_id)
         name = 'contacts_%s' % smart_str(mailinglist.name)
         return vcard_contacts_export_response(mailinglist.subscribers.all(), name)
 
+    def exportion_excel(self, request, mailinglist_id):
+        """Export subscribers in the mailing in Excel"""
+        mailinglist = get_object_or_404(MailingList, pk=mailinglist_id)
+        name = 'contacts_%s' % smart_str(mailinglist.name)
+        return ExcelResponse(mailinglist.subscribers.all(), name)
+
     def get_urls(self):
         urls = super(MailingListAdmin, self).get_urls()
         my_urls = patterns('',
-                           url(r'^export/(?P<mailinglist_id>\d+)/$',
-                               self.admin_site.admin_view(self.export_subscribers),
-                               name='newsletter_mailinglist_export'),)
+                           url(r'^export/vcard/(?P<mailinglist_id>\d+)/$',
+                               self.admin_site.admin_view(self.exportion_vcard),
+                               name='newsletter_mailinglist_export_vcard'),
+                           url(r'^export/excel/(?P<mailinglist_id>\d+)/$',
+                               self.admin_site.admin_view(self.exportion_excel),
+                               name='newsletter_mailinglist_export_excel'))
         return my_urls + urls

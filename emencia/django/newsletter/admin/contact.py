@@ -175,10 +175,10 @@ class ContactAdmin(admin.ModelAdmin):
                            url(r'^create_mailinglist/$',
                                self.admin_site.admin_view(self.creation_mailinglist),
                                name='newsletter_contact_create_mailinglist'),
-                           url(r'^export_vcard/$',
+                           url(r'^export/vcard/$',
                                self.admin_site.admin_view(self.exportation_vcard),
                                name='newsletter_contact_export_vcard'),
-                           url(r'^export_excel/$',
+                           url(r'^export/excel/$',
                                self.admin_site.admin_view(self.exportation_excel),
                                name='newsletter_contact_export_excel'),)
         return my_urls + urls
