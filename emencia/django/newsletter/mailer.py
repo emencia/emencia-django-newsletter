@@ -289,6 +289,8 @@ class Mailer(NewsLetterSender):
     def expedition_list(self):
         """Build the expedition list"""
         credits = self.newsletter.server.credits()
+        if credits <= 0:
+            return []
         return super(Mailer, self).expedition_list[:credits]
 
     @property
