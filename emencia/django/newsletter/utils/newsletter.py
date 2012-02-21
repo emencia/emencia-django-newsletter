@@ -11,11 +11,12 @@ def body_insertion(content, insertion, end=False):
     if not content.startswith('<body'):
         content = '<body>%s</body>' % content
     soup = BeautifulSoup(content)
+    soup_ins = BeautifulSoup(insertion)
 
     if end:
-        soup.body.append(insertion)
+        soup.body.append(soup_ins)
     else:
-        soup.body.insert(0, insertion)
+        soup.body.insert(0, soup_ins)
 
     if USE_PRETTIFY:
         return soup.prettify()
