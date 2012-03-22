@@ -1,0 +1,24 @@
+{#--- subscriber verification --- start -------------------------------------#}
+{% extends "newsletter/base.html"%}
+{% load i18n %}
+
+{% block title %}
+    {% trans "Subscription to the newsletter" %}
+{% endblock %}
+
+{% block content %}
+  <h2>{% trans "Subscription to the newsletter" %}</h2>
+
+{% if send %}
+    <p>{% trans "Thanks for your email subscription!" %}</p>
+{% else %}
+    <p>{% trans "Validate this form to subscribe to the newsletter." %}</p>
+    <form action="." method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="{% trans "Subscribe" %}" />
+    </form>
+{% endif %}
+
+{% endblock %}
+{#--- subscriber verification --- end ---------------------------------------#}

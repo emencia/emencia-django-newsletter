@@ -7,19 +7,19 @@
   <h2>{% trans "Subscription to mailing list" %}</h2>
 
 {% if subscribed %}
-  <p>{% trans "Thanks for your subscription!" %}</p>
+    <p>{% trans "Thanks for your subscription!" %}</p>
 {% else %}
-{% if mailing_list %}
-  <h3>{{ mailing_list }}</h3>
-  {{ mailing_list|linebreaks }}
-{% else %}
-  <p>{% trans "Validate this form to subscribe to the mailing lists." %}</p>
-{% endif %}
-  <form action="." method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="{% trans "Subscribe" %}" />
-  </form>
+    {% if mailing_list %}
+        <h3>{{ mailing_list }}</h3>
+        {{ mailing_list|linebreaks }}
+    {% else %}
+        <p>{% trans "Validate this form to subscribe to the mailing lists." %}</p>
+    {% endif %}
+    <form action="." method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="{% trans "Subscribe" %}" />
+    </form>
 {% endif %}
 
 {% endblock %}

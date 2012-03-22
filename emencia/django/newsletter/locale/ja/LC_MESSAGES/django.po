@@ -1,300 +1,312 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# 
+#
 # Translators:
 msgid ""
 msgstr ""
 "Project-Id-Version: Emencia Django Newsletter\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-22 06:00-0500\n"
+"POT-Creation-Date: 2011-11-30 06:05-0600\n"
 "PO-Revision-Date: 2010-11-30 00:55+0000\n"
 "Last-Translator: Fantomas <Fantomas42@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: ja\n"
 "Plural-Forms: nplurals=1; plural=0\n"
 
-#: forms.py:20
+#: forms.py:26
 msgid "Email"
 msgstr ""
 
-#: forms.py:44
+#: forms.py:50 forms.py:72
 msgid "Mailing lists"
 msgstr ""
 
-#: models.py:39 models.py:156 models.py:339
+#: models.py:48 models.py:170 models.py:371
 msgid "name"
 msgstr ""
 
-#: models.py:40
+#: models.py:49
 msgid "server host"
 msgstr ""
 
-#: models.py:41
+#: models.py:50
 msgid "server user"
 msgstr ""
 
-#: models.py:42 models.py:44
+#: models.py:51 models.py:53
 msgid "Leave it empty if the host is public."
 msgstr ""
 
-#: models.py:43
+#: models.py:52
 msgid "server password"
 msgstr ""
 
-#: models.py:45
+#: models.py:54
 msgid "server port"
 msgstr ""
 
-#: models.py:46
+#: models.py:55
 msgid "server use TLS"
 msgstr ""
 
-#: models.py:48
+#: models.py:57
 msgid "custom headers"
 msgstr ""
 
-#: models.py:49
+#: models.py:58
 msgid ""
 "key1: value1 key2: value2, splitted by return line.\n"
 "Useful for passing some tracking headers if your provider allows it."
 msgstr ""
 
-#: models.py:51
+#: models.py:60
 msgid "mails per hour"
 msgstr ""
 
-#: models.py:93
+#: models.py:102
 msgid "SMTP server"
 msgstr ""
 
-#: models.py:94
+#: models.py:103
 msgid "SMTP servers"
 msgstr ""
 
-#: models.py:99 views/statistics.py:76
+#: models.py:113 views/statistics.py:76
 msgid "email"
 msgstr ""
 
-#: models.py:100 views/statistics.py:75
+#: models.py:114 views/statistics.py:75
 msgid "first name"
 msgstr ""
 
-#: models.py:101 views/statistics.py:75
+#: models.py:115 views/statistics.py:75
 msgid "last name"
 msgstr ""
 
-#: models.py:103
+#: models.py:117
 msgid "subscriber"
 msgstr ""
 
-#: models.py:104
+#: models.py:118
 msgid "valid email"
 msgstr ""
 
-#: models.py:105
+#: models.py:119
 msgid "contact tester"
 msgstr ""
 
-#: models.py:106
+#: models.py:120
 msgid "tags"
 msgstr ""
 
-#: models.py:112 models.py:165 models.py:227 models.py:260 models.py:324
+#: models.py:126 models.py:179 models.py:259 models.py:292 models.py:356
 msgid "creation date"
 msgstr ""
 
-#: models.py:113 models.py:166 models.py:228
+#: models.py:127 models.py:180 models.py:260
 msgid "modification date"
 msgstr ""
 
-#: models.py:132
+#: models.py:146
 msgid "mail format"
 msgstr ""
 
-#: models.py:150 models.py:319
+#: models.py:164 models.py:351
 msgid "contact"
 msgstr ""
 
-#: models.py:151 models.py:342
+#: models.py:165 models.py:374
 msgid "contacts"
 msgstr ""
 
-#: models.py:157
+#: models.py:171
 msgid "description"
 msgstr ""
 
-#: models.py:159 models.py:170
+#: models.py:173 models.py:184
 msgid "subscribers"
 msgstr ""
 
-#: models.py:161 models.py:174
+#: models.py:175 models.py:188
 msgid "unsubscribers"
 msgstr ""
 
-#: models.py:186 models.py:211 cmsplugin_newsletter/models.py:15
+#: models.py:200 models.py:243 cmsplugin_newsletter/models.py:15
 msgid "mailing list"
 msgstr ""
 
-#: models.py:187 models.py:344
+#: models.py:201 models.py:376
 msgid "mailing lists"
 msgstr ""
 
-#: models.py:198
+#: models.py:212
 msgid "draft"
 msgstr ""
 
-#: models.py:199
+#: models.py:213
 msgid "waiting sending"
 msgstr ""
 
-#: models.py:200
+#: models.py:214
 msgid "sending"
 msgstr ""
 
-#: models.py:201 models.py:309
+#: models.py:215 models.py:341
 msgid "sent"
 msgstr ""
 
-#: models.py:202
+#: models.py:216
 msgid "canceled"
 msgstr ""
 
-#: models.py:205 models.py:257 models.py:282 cmsplugin_newsletter/models.py:12
+#: models.py:219 models.py:289 models.py:314 cmsplugin_newsletter/models.py:12
 msgid "title"
 msgstr ""
 
-#: models.py:206
+#: models.py:220
 msgid ""
 "You can use the \"{{ UNIQUE_KEY }}\" variable for unique identifier within "
 "the newsletter's title."
 msgstr ""
 
-#: models.py:208
+#: models.py:226 models.py:237
 msgid "content"
 msgstr ""
 
-#: models.py:208
+#: models.py:227 models.py:238
 msgid "Or paste an URL."
 msgstr ""
 
-#: models.py:209
+#: models.py:228
+msgid "<!-- Edit your newsletter here -->"
+msgstr ""
+
+#: models.py:231
+msgid "template"
+msgstr ""
+
+#: models.py:239
 msgid ""
 "<body>\n"
 "<!-- Edit your newsletter here -->\n"
 "</body>"
 msgstr ""
 
-#: models.py:212
+#: models.py:244
 msgid "test contacts"
 msgstr ""
 
-#: models.py:215
+#: models.py:247
 msgid "smtp server"
 msgstr ""
 
-#: models.py:217
+#: models.py:249
 msgid "sender"
 msgstr ""
 
-#: models.py:219
+#: models.py:251
 msgid "reply to"
 msgstr ""
 
-#: models.py:222 models.py:320
+#: models.py:254 models.py:352
 msgid "status"
 msgstr ""
 
-#: models.py:223
+#: models.py:255
 msgid "sending date"
 msgstr ""
 
-#: models.py:225
+#: models.py:257
 msgid "Used for displaying the newsletter on the site."
 msgstr ""
 
-#: models.py:250 models.py:281 models.py:318
+#: models.py:282 models.py:313 models.py:350
 #: cmsplugin_newsletter/cms_plugins.py:13
 msgid "newsletter"
 msgstr ""
 
-#: models.py:251 models.py:346
+#: models.py:283 models.py:378
 msgid "newsletters"
 msgstr ""
 
-#: models.py:258
+#: models.py:290
 msgid "url"
 msgstr ""
 
-#: models.py:270 models.py:321
+#: models.py:302 models.py:353
 msgid "link"
 msgstr ""
 
-#: models.py:271
+#: models.py:303
 msgid "links"
 msgstr ""
 
-#: models.py:283
+#: models.py:315
 msgid "file to attach"
 msgstr ""
 
-#: models.py:287
+#: models.py:319
 msgid "attachment"
 msgstr ""
 
-#: models.py:288
+#: models.py:320
 msgid "attachments"
 msgstr ""
 
-#: models.py:308
+#: models.py:340
 msgid "sent in test"
 msgstr ""
 
-#: models.py:310
+#: models.py:342
 msgid "error"
 msgstr ""
 
-#: models.py:311
+#: models.py:343
 msgid "invalid email"
 msgstr ""
 
-#: models.py:312
+#: models.py:344
 msgid "opened"
 msgstr ""
 
-#: models.py:313
+#: models.py:345
 msgid "opened on site"
 msgstr ""
 
-#: models.py:314
+#: models.py:346
 msgid "link opened"
 msgstr ""
 
-#: models.py:315
+#: models.py:347
 msgid "unsubscription"
 msgstr ""
 
-#: models.py:333
+#: models.py:365
 msgid "contact mailing status"
 msgstr ""
 
-#: models.py:334
+#: models.py:366
 msgid "contact mailing statuses"
 msgstr ""
 
-#: models.py:340
+#: models.py:372
 msgid "permissions group"
 msgstr ""
 
-#: models.py:353
+#: models.py:385
 msgid "workgroup"
 msgstr ""
 
-#: models.py:354
+#: models.py:386
 msgid "workgroups"
+msgstr ""
+
+#: models.py:392
+msgid "link_id"
 msgstr ""
 
 #: admin/contact.py:36 templates/newsletter/newsletter_statistics.html:188
@@ -384,83 +396,83 @@ msgstr ""
 msgid "Export"
 msgstr ""
 
-#: admin/newsletter.py:41
+#: admin/newsletter.py:46
 msgid "Receivers"
 msgstr ""
 
-#: admin/newsletter.py:42
+#: admin/newsletter.py:47
 msgid "Sending"
 msgstr ""
 
-#: admin/newsletter.py:43 admin/smtpserver.py:36
+#: admin/newsletter.py:48 admin/smtpserver.py:36
 msgid "Miscellaneous"
 msgstr ""
 
-#: admin/newsletter.py:79
+#: admin/newsletter.py:89
 msgid "Default"
 msgstr ""
 
-#: admin/newsletter.py:106
+#: admin/newsletter.py:116
 msgid "Unable to download HTML, due to errors within."
 msgstr ""
 
-#: admin/newsletter.py:108
+#: admin/newsletter.py:118
 msgid "Please install lxml for parsing an URL."
 msgstr ""
 
-#: admin/newsletter.py:120
+#: admin/newsletter.py:130
 msgid "View historic"
 msgstr ""
 
-#: admin/newsletter.py:121 admin/newsletter.py:130
+#: admin/newsletter.py:131 admin/newsletter.py:140
 msgid "Not available"
 msgstr ""
 
-#: admin/newsletter.py:123
+#: admin/newsletter.py:133
 msgid "Historic"
 msgstr ""
 
-#: admin/newsletter.py:129
+#: admin/newsletter.py:139
 msgid "View statistics"
 msgstr ""
 
-#: admin/newsletter.py:132
+#: admin/newsletter.py:142
 msgid "Statistics"
 msgstr ""
 
-#: admin/newsletter.py:142
+#: admin/newsletter.py:152
 msgid "Unable send newsletter, due to errors within HTML."
 msgstr ""
 
-#: admin/newsletter.py:144
+#: admin/newsletter.py:154
 #, python-format
 msgid "%s succesfully sent."
 msgstr ""
 
-#: admin/newsletter.py:146
+#: admin/newsletter.py:156
 #, python-format
 msgid "No test contacts assigned for %s."
 msgstr ""
 
-#: admin/newsletter.py:147
+#: admin/newsletter.py:157
 msgid "Send test email"
-msgstr ""
-
-#: admin/newsletter.py:155
-#, python-format
-msgid "%s newletters are ready to send"
-msgstr ""
-
-#: admin/newsletter.py:156
-msgid "Make ready to send"
 msgstr ""
 
 #: admin/newsletter.py:165
 #, python-format
-msgid "%s newletters are cancelled"
+msgid "%s newletters are ready to send"
 msgstr ""
 
 #: admin/newsletter.py:166
+msgid "Make ready to send"
+msgstr ""
+
+#: admin/newsletter.py:175
+#, python-format
+msgid "%s newletters are cancelled"
+msgstr ""
+
+#: admin/newsletter.py:176
 msgid "Cancel the sending"
 msgstr ""
 
@@ -623,6 +635,8 @@ msgid "Validate this form to subscribe to the mailing lists."
 msgstr ""
 
 #: templates/newsletter/mailing_list_subscribe.html:21
+#: templates/newsletter/subscriber_verification.html:19
+#: templates/newsletter/uuid_verification.html:18
 #: templates/newsletter/cms/subscription_form.html:20
 msgid "Subscribe"
 msgstr ""
@@ -772,6 +786,33 @@ msgstr ""
 msgid "No Top Links yet."
 msgstr ""
 
+#: templates/newsletter/subscriber_verification.html:6
+#: templates/newsletter/subscriber_verification.html:10
+msgid "Subscription to the newsletter"
+msgstr ""
+
+#: templates/newsletter/subscriber_verification.html:13
+#: templates/newsletter/uuid_verification.html:11
+msgid "Thanks for your email subscription!"
+msgstr ""
+
+#: templates/newsletter/subscriber_verification.html:15
+msgid "Validate this form to subscribe to the newsletter."
+msgstr ""
+
+#: templates/newsletter/uuid_verification.html:5
+#: templates/newsletter/uuid_verification.html:9
+msgid "Subscriber verification"
+msgstr ""
+
+#: templates/newsletter/uuid_verification.html:22
+msgid "No verification found"
+msgstr ""
+
+#: templates/newsletter/uuid_verification.html:24
+msgid "Can't find the ID to verificate the email!"
+msgstr ""
+
 #: templates/newsletter/cms/subscription_form.html:8
 msgid "You have successfully subscribed to the mailing list!"
 msgstr ""
@@ -803,9 +844,23 @@ msgstr ""
 msgid "#val# clicks"
 msgstr ""
 
-#: views/tracking.py:67
+#: views/tracking.py:68
 #, python-format
 msgid "Historic of %s"
+msgstr ""
+
+#: views/verification.py:50
+msgid "Subriber verification"
+msgstr ""
+
+#: views/verification.py:51
+msgid ""
+"Thanks for subscription, please click the following link to verificate your "
+"email address."
+msgstr ""
+
+#: views/verification.py:57
+msgid "verify link"
 msgstr ""
 
 #~ msgid "key1: value1 key2: value2, splitted by return line."
@@ -846,5 +901,3 @@ msgstr ""
 
 #~ msgid "Double openings"
 #~ msgstr "Total Subscriptions"
-
-

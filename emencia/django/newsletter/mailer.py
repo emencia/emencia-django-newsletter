@@ -1,4 +1,5 @@
 """Mailer for emencia.django.newsletter"""
+import os
 import re
 import sys
 import time
@@ -47,6 +48,13 @@ from emencia.django.newsletter.settings import SLEEP_BETWEEN_SENDING
 from emencia.django.newsletter.settings import \
      RESTART_CONNECTION_BETWEEN_SENDING
 
+# --- subscriber verification --- start ---------------------------------------
+from emencia.django.newsletter.settings import SUBSCRIBER_VERIFICATION
+# --- subscriber verification --- end -----------------------------------------
+
+# --- template --- start ------------------------------------------------------
+from emencia.django.newsletter.settings import USE_TEMPLATE
+# --- template --- end --------------------------------------------------------
 
 if not hasattr(timedelta, 'total_seconds'):
     def total_seconds(td):
@@ -156,24 +164,78 @@ class NewsLetterSender(object):
 
     def build_email_content(self, contact):
         """Generate the mail for a contact"""
+        # --- template --- start ----------------------------------------------
+        link_site = unsubscription = image_tracking = ''
+        # --- template --- end ------------------------------------------------
+
         uidb36, token = tokenize(contact)
-        context = Context({'contact': contact,
-                           'domain': Site.objects.get_current().domain,
-                           'newsletter': self.newsletter,
-                           'tracking_image_format': TRACKING_IMAGE_FORMAT,
-                           'uidb36': uidb36, 'token': token})
+
+        pre_context = {
+            'contact': contact,
+            'domain': Site.objects.get_current().domain,
+            'newsletter': self.newsletter,
+            'tracking_image_format': TRACKING_IMAGE_FORMAT,
+            'uidb36': uidb36,
+            'token': token
+        }
+
+        link_site_exist = False
+        link_site = render_to_string('newsletter/newsletter_link_site.html', Context(pre_context))
+        if '{{ link_site }}' in self.newsletter.content:
+            link_site_exist = True
+            pre_context['link_site'] = link_site
+
+        if INCLUDE_UNSUBSCRIPTION:
+            unsubscribtion_exist = False
+            
+            unsubscription = render_to_string(
+                'newsletter/newsletter_link_unsubscribe.html',
+                Context(pre_context)
+            )
+            
+            if '{{ unsubscription }}' in self.newsletter.content:
+                unsubscribtion_exist = True
+                pre_context['unsubscription'] = unsubscription
+
+        context = Context(pre_context)
+        
         content = self.newsletter_template.render(context)
         if TRACKING_LINKS:
             content = track_links(content, context)
-        link_site = render_to_string('newsletter/newsletter_link_site.html', context)
-        content = body_insertion(content, link_site)
 
-        if INCLUDE_UNSUBSCRIPTION:
-            unsubscription = render_to_string('newsletter/newsletter_link_unsubscribe.html', context)
-            content = body_insertion(content, unsubscription, end=True)
+        # --- template --- start ----------------------------------------------
         if TRACKING_IMAGE:
-            image_tracking = render_to_string('newsletter/newsletter_image_tracking.html', context)
-            content = body_insertion(content, image_tracking, end=True)
+            image_tracking = render_to_string(
+                'newsletter/newsletter_image_tracking.html',
+                context
+            )
+
+        if USE_TEMPLATE:
+            content_context = {'content': content}
+
+            if not link_site_exist:
+                content_context['link_site'] = link_site
+
+            if not unsubscribtion_exist:
+                content_context['unsubscription'] = unsubscription
+            
+            content =  render_to_string(
+                'mailtemplates/{0}/{1}'.format(
+                    self.newsletter.template,
+                    'index.html'
+                ),
+                content_context
+            )
+            #insert image_tracking
+        else:
+            content = body_insertion(content, link_site)
+            if INCLUDE_UNSUBSCRIPTION:
+                content = body_insertion(content, unsubscription, end=True)
+            if TRACKING_IMAGE:
+                content = body_insertion(content, image_tracking, end=True)
+
+        # --- template --- end ------------------------------------------------
+
         return smart_unicode(content)
 
     def update_newsletter_status(self):
@@ -254,6 +316,13 @@ class Mailer(NewsLetterSender):
 
         i = 1
         for contact in expedition_list:
+            # --- subscriber verification --- start ---------------------------
+            if SUBSCRIBER_VERIFICATION:
+                if not contact.verified:
+                    print '- No verified email: {0}'.format(contact.email)
+                    continue
+            # --- subscriber verification --- end -----------------------------
+            
             if self.verbose:
                 print '- Processing %s/%s (%s)' % (
                     i, number_of_recipients, contact.pk)

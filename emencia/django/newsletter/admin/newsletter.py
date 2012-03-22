@@ -24,6 +24,9 @@ from emencia.django.newsletter.utils.workgroups import request_workgroups_contac
 from emencia.django.newsletter.utils.workgroups import request_workgroups_newsletters_pk
 from emencia.django.newsletter.utils.workgroups import request_workgroups_mailinglists_pk
 
+# --- templates --- start -----------------------------------------------------
+from emencia.django.newsletter.settings import USE_TEMPLATE
+# --- templates --- end -------------------------------------------------------
 
 class AttachmentAdminInline(admin.TabularInline):
     model = Attachment
@@ -39,16 +42,21 @@ class BaseNewsletterAdmin(admin.ModelAdmin):
     list_filter = ('status', 'sending_date', 'creation_date', 'modification_date')
     search_fields = ('title', 'content', 'header_sender', 'header_reply')
     filter_horizontal = ['test_contacts']
-    fieldsets = ((None, {'fields': ('title', 'content',)}),
+    fieldsets = ((None, {'fields': ['title', 'content',]}),
                  (_('Receivers'), {'fields': ('mailing_list', 'test_contacts',)}),
                  (_('Sending'), {'fields': ('sending_date', 'status',)}),
                  (_('Miscellaneous'), {'fields': ('server', 'header_sender',
                                                   'header_reply', 'slug'),
                                        'classes': ('collapse',)}),
                  )
+    # --- templates --- start -------------------------------------------------
+    if USE_TEMPLATE:
+        fieldsets[0][1]['fields'].append('template')
+    # --- templates --- end ---------------------------------------------------
+
     prepopulated_fields = {'slug': ('title',)}
     inlines = (AttachmentAdminInline,)
-    actions = ['send_mail_test', 'make_ready_to_send', 'make_cancel_sending']
+    actions = ['send_mail_test', 'make_ready_to_send', 'make_cancel_sending', 'duplicate']
     actions_on_top = False
     actions_on_bottom = True
 
@@ -166,6 +174,20 @@ class BaseNewsletterAdmin(admin.ModelAdmin):
             newsletter.save()
         self.message_user(request, _('%s newletters are cancelled') % queryset.count())
     make_cancel_sending.short_description = _('Cancel the sending')
+
+    # --- duplicate newsletter --- start --------------------------------------
+    def duplicate(self, request, queryset):
+        """Duplicate selected newsletters"""
+        for newsletter in queryset:
+            newsletter.pk = None
+            i = 1
+            while Newsletter.objects.filter(slug=u'%s-%s' % (newsletter.slug, i)).count() > 0:
+                i += 1
+            newsletter.slug = u'%s-%s' % (newsletter.slug, i)
+            newsletter.title = u'%s [%s]' % (newsletter.title, i)
+            newsletter.save()
+        
+    # --- duplicate newsletter --- end ----------------------------------------
 
 
 if USE_TINYMCE:

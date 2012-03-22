@@ -17,4 +17,4 @@ urlpatterns = patterns('emencia.django.newsletter.views.mailing_list',
                            'view_mailinglist_subscribe',
                            {'form_class': AllMailingListSubscriptionForm},
                            name='newsletter_mailinglist_subscribe_all'),
-                       )
+)

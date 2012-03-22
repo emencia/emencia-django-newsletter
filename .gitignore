@@ -18,4 +18,4 @@ uploads/*
 develop-eggs/*
 downloads/*
 src_eggs/*
-
+.mr.developer.cfg

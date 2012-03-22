@@ -75,3 +75,9 @@ INSTALLED_APPS = (
     'tagging',
     'emencia.django.newsletter',
     )
+
+# --- templates --- start -----------------------------------------------------
+TEMPLATE_DIRS = (
+    os.path.join(os.path.dirname(__file__), 'templates'),
+)
+# --- templates --- end -------------------------------------------------------

@@ -3,6 +3,11 @@ from BeautifulSoup import BeautifulSoup
 from django.core.urlresolvers import reverse
 
 from emencia.django.newsletter.models import Link
+
+# --- tracking ignore anchor --- start ----------------------------------------
+from emencia.django.newsletter.settings import TRACKING_IGNORE_ANCHOR
+# --- tracking ignore anchor --- end ------------------------------------------
+
 from emencia.django.newsletter.settings import USE_PRETTIFY
 
 
@@ -33,6 +38,13 @@ def track_links(content, context):
     for link_markup in soup('a'):
         if link_markup.get('href') and \
                'no-track' not in link_markup.get('rel', ''):
+
+            # --- tracking ignore anchor --- start ----------------------------
+            if TRACKING_IGNORE_ANCHOR:
+                if '#' in link_markup.get('href')[0]:
+                    continue
+            # --- tracking ignore anchor --- end ------------------------------
+
             link_href = link_markup['href']
             link_title = link_markup.get('title', link_href)
             link, created = Link.objects.get_or_create(url=link_href,

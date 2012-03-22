@@ -1,0 +1,28 @@
+{#--- subscriber verification --- start -------------------------------------#}
+{% extends "newsletter/base.html"%}
+{% load i18n %}
+
+{% block title %}{% trans "Subscriber verification" %}{% endblock %}
+
+{% block content %}
+    {% if uuid_exist %}
+        <h2>{% trans "Subscriber verification" %}</h2>
+        <p>
+            {% trans "Thanks for your email subscription!" %}
+        </p>
+
+        {% if mailing_list_count > 1 and not send %}
+            <form action="." method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" value="{% trans "Subscribe" %}" />
+            </form>
+        {% endif %}
+    {% else %}
+        <h2>{% trans "No verification found" %}</h2>
+        <p>
+            {% trans "Can't find the ID to verificate the email!" %}
+        </p>
+    {% endif %}
+{% endblock %}
+{#--- subscriber verification --- end ---------------------------------------#}

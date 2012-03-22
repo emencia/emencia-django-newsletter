@@ -27,7 +27,7 @@ setup(name='emencia.django.newsletter',
 
       license=newsletter.__license__,
       packages=find_packages(exclude=['demo']),
-      namespace_packages=['emencia', 'emencia.django'],
+      namespace_packages=['emencia'],
       include_package_data=True,
       zip_safe=False,
       install_requires=['setuptools',

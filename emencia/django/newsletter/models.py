@@ -1,8 +1,6 @@
 """Models for emencia.django.newsletter"""
-from smtplib import SMTP
-from smtplib import SMTPHeloError
-from datetime import datetime
-from datetime import timedelta
+from smtplib import SMTP, SMTPHeloError
+from datetime import datetime, timedelta
 
 from django.db import models
 from django.utils.encoding import smart_str
@@ -15,11 +13,22 @@ from django.utils.encoding import force_unicode
 
 from tagging.fields import TagField
 from emencia.django.newsletter.managers import ContactManager
-from emencia.django.newsletter.settings import BASE_PATH
-from emencia.django.newsletter.settings import MAILER_HARD_LIMIT
-from emencia.django.newsletter.settings import DEFAULT_HEADER_REPLY
-from emencia.django.newsletter.settings import DEFAULT_HEADER_SENDER
+from emencia.django.newsletter.settings \
+    import BASE_PATH, MAILER_HARD_LIMIT, DEFAULT_HEADER_REPLY, \
+        DEFAULT_HEADER_SENDER
 from emencia.django.newsletter.utils.vcard import vcard_contact_export
+
+# --- subscriber verification --- start ---------------------------------------
+from emencia.django.newsletter.settings import SUBSCRIBER_VERIFICATION
+
+if SUBSCRIBER_VERIFICATION:
+    import uuid
+# --- subscriber verification --- end -----------------------------------------
+
+# --- templates --- start -----------------------------------------------------
+from emencia.django.newsletter.settings import USE_TEMPLATE
+from emencia.django.newsletter.utils.template import get_templates
+# --- templates --- end -------------------------------------------------------
 
 # Patch for Python < 2.6
 try:
@@ -107,6 +116,11 @@ class SMTPServer(models.Model):
 
 class Contact(models.Model):
     """Contact for emailing"""
+    # --- subscriber verification --- start -----------------------------------
+    if SUBSCRIBER_VERIFICATION:
+        verified = models.BooleanField('verified', default=False)
+    # --- subscriber verification --- end -------------------------------------
+
     email = models.EmailField(_('email'), unique=True)
     first_name = models.CharField(_('first name'), max_length=50, blank=True)
     last_name = models.CharField(_('last name'), max_length=50, blank=True)
@@ -138,7 +152,7 @@ class Contact(models.Model):
 
     def mail_format(self):
         if self.first_name and self.last_name:
-            return '%s %s <%s>' % (self.last_name, self.first_name, self.email)
+            return '%s %s <%s>' % (self.first_name, self.last_name, self.email)
         return self.email
     mail_format.short_description = _('mail format')
 
@@ -216,8 +230,26 @@ class Newsletter(models.Model):
     title = models.CharField(_('title'), max_length=255,
                              help_text=_('You can use the "{{ UNIQUE_KEY }}" variable ' \
                                          'for unique identifier within the newsletter\'s title.'))
-    content = models.TextField(_('content'), help_text=_('Or paste an URL.'),
-                               default=_('<body>\n<!-- Edit your newsletter here -->\n</body>'))
+
+    # --- templates --- start -------------------------------------------------
+    if USE_TEMPLATE:
+        content = models.TextField(
+            _('content'),
+            help_text=_('Or paste an URL.'),
+            default=_('<!-- Edit your newsletter here -->')
+        )
+        template = models.CharField(
+            _('template'),
+            max_length=100,
+            choices=get_templates(),
+        )
+    else:
+        content = models.TextField(
+            _('content'),
+            help_text=_('Or paste an URL.'),
+            default=_('<body>\n<!-- Edit your newsletter here -->\n</body>')
+        )
+    # --- templates --- end ---------------------------------------------------
 
     mailing_list = models.ForeignKey(MailingList, verbose_name=_('mailing list'))
     test_contacts = models.ManyToManyField(Contact, verbose_name=_('test contacts'),
@@ -363,3 +395,18 @@ class WorkGroup(models.Model):
     class Meta:
         verbose_name = _('workgroup')
         verbose_name_plural = _('workgroups')
+
+# --- subscriber verification --- start ---------------------------------------
+if SUBSCRIBER_VERIFICATION:
+    class SubscriberVerification(models.Model):
+        link_id = models.CharField(
+            _('link_id'),
+            max_length=255,
+            default=uuid.uuid4
+        )
+        contact = models.ForeignKey(Contact)
+
+        def __unicode__(self):
+            return unicode(self.id)
+
+# --- subscriber verification --- end -----------------------------------------

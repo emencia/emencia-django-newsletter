@@ -26,6 +26,8 @@ More than a long speech, here the list of the main features :
   * Attachments in newsletters.
   * Unique urls for an user.
   * Tracking statistics.
+  * Email verification
+  * Templates
 
 
 Architecture
@@ -253,3 +255,67 @@ Database Representation
 
 .. image:: https://github.com/Fantomas42/emencia-django-newsletter/raw/master/docs/graph_model.png
 
+
+Tracking Ignore Ankers
+======================
+
+How to use
+----------
+Simply set the option ``NEWSLETTER_TRACKING_IGNORE_ANCHOR = True`` to track no
+ankers in your email.
+
+The goal of this option is so send emails with a template that has ankers, but
+if ``NEWSLETTER_TRACKING_LINKS`` is enabled, the ankers won't work.
+
+Subscriber Verification
+=======================
+**!IMPORTANT! This modification has no backwards compatibility support.
+!IMPORTANT!**
+
+How to use
+----------
+After installation of the newsletter, subcriber verification is set to
+``NEWSLETTER_SUBSCRIBER_VERIFICATION = True``. If there is no need for, set it
+on ``False``.
+
+To set an reply email adress, you will edit the option
+``NEWSLETTER_DEFAULT_HEADER_REPLY`` in *settings.py* for example to
+``Freshmilk NoReply<noreply@freshmilk.tv>``.
+
+Functionality
+-------------
+The subscriber verification has a table called SubscriberVerifications. If an
+user subscribes over the ``<host>/newsletters/subscribe`` page, the view will
+create a **Contact** in the **contacts** table and will also generate a uuid
+which is saved with the new **Contact** in SubscriberVerifications. After an
+call of ``<host>/newsletters/subscribe/<uuid>`` the view will delete the row in
+SubscriberVerifications and set the **Contact** in **contacts** as verified.
+
+Thats all. :)
+
+Urls
+----
+  * <host>/newsletters/subscribe > to subscribe the email
+  * <host>/newsletters/subscribe/<uuid> > to verificate the email
+
+Templates
+---------
+  * subscriber_verification.html > to subscribe the email
+  * uuid_verification.html > to verificate the email
+
+Notes
+-----
+  * if you had more than one mailing list, all will shown in the verification
+    link
+  * if you had only one mailing list, the user will add to this one
+  * translations are made for en and de. Please run ``makemessages`` for other
+    languages
+
+Update
+------
+If you update from a prior version of this newsletter, please run ``dbshell``
+and add the column vriefied to newsletter_contact.
+
+sqlite command ::
+
+    ALTER TABLE newsletter_contact ADD COLUMN verified bool;
