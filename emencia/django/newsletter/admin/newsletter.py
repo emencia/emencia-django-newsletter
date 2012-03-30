@@ -1,6 +1,7 @@
 """ModelAdmin for Newsletter"""
 from HTMLParser import HTMLParseError
 
+from django.conf import settings
 from django import forms
 from django.db.models import Q
 from django.contrib import admin
@@ -13,6 +14,9 @@ from emencia.django.newsletter.models import MailingList
 from emencia.django.newsletter.mailer import Mailer
 from emencia.django.newsletter.settings import USE_TINYMCE
 from emencia.django.newsletter.settings import USE_WORKGROUPS
+
+CAN_USE_CMS = "emencia.django.newsletter.cmsplugin_newsletter" in settings.INSTALLED_APPS
+
 try:
     CAN_USE_PREMAILER = True
     from emencia.django.newsletter.utils.premailer import Premailer
@@ -39,7 +43,7 @@ class BaseNewsletterAdmin(admin.ModelAdmin):
     list_filter = ('status', 'sending_date', 'creation_date', 'modification_date')
     search_fields = ('title', 'content', 'header_sender', 'header_reply')
     filter_horizontal = ['test_contacts']
-    fieldsets = ((None, {'fields': ('title', 'content',)}),
+    fieldsets = ((None, {'fields': ('title', 'content')}),
                  (_('Receivers'), {'fields': ('mailing_list', 'test_contacts',)}),
                  (_('Sending'), {'fields': ('sending_date', 'status',)}),
                  (_('Miscellaneous'), {'fields': ('server', 'header_sender',
@@ -167,8 +171,13 @@ class BaseNewsletterAdmin(admin.ModelAdmin):
         self.message_user(request, _('%s newletters are cancelled') % queryset.count())
     make_cancel_sending.short_description = _('Cancel the sending')
 
+if CAN_USE_CMS:
+    from emencia.django.newsletter.cmsplugin_newsletter import forms as cms_forms
+    
+    class NewsletterAdmin(BaseNewsletterAdmin):
+        form = cms_forms.NewsletterCMSForm
 
-if USE_TINYMCE:
+elif USE_TINYMCE:
     from tinymce.widgets import TinyMCE
 
     class NewsletterTinyMCEForm(forms.ModelForm):
