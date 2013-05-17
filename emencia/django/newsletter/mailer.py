@@ -140,6 +140,9 @@ class NewsLetterSender(object):
                 message_attachment.set_payload(fd.read())
                 encode_base64(message_attachment)
             fd.close()
+            if attachment.title:
+                message_attachment.add_header('Content-ID',
+                                              "<%s>" % attachment.title)
             message_attachment.add_header('Content-Disposition', 'attachment',
                                           filename=attachment.title)
             attachments.append(message_attachment)
