@@ -1,5 +1,5 @@
 """Models for emencia.django.newsletter"""
-from smtplib import SMTP
+from smtplib import SMTP, SMTP_SSL
 from smtplib import SMTPHeloError
 from datetime import datetime
 from datetime import timedelta
@@ -44,6 +44,7 @@ class SMTPServer(models.Model):
                                 help_text=_('Leave it empty if the host is public.'))
     port = models.IntegerField(_('server port'), default=25)
     tls = models.BooleanField(_('server use TLS'))
+    ssl = models.BooleanField(_('server use SSL'), default=False)
 
     headers = models.TextField(_('custom headers'), blank=True,
                                help_text=_('key1: value1 key2: value2, splitted by return line.\n'\
@@ -52,7 +53,10 @@ class SMTPServer(models.Model):
 
     def connect(self):
         """Connect the SMTP Server"""
-        smtp = SMTP(smart_str(self.host), int(self.port))
+        if self.ssl:
+            smtp = SMTP_SSL(smart_str(self.host), int(self.port))
+        else:
+            smtp = SMTP(smart_str(self.host), int(self.port))
         smtp.ehlo_or_helo_if_needed()
         if self.tls:
             smtp.starttls()

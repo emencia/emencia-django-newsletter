@@ -1,6 +1,11 @@
 Changelog
 =========
 
+0.4 (unreleased)
+----------------
+
+- Added support for sending with SMTP_SSL
+
 0.3
 ---
 
