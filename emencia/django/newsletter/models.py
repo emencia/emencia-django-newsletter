@@ -3,6 +3,7 @@ from smtplib import SMTP
 from smtplib import SMTPHeloError
 from datetime import datetime
 from datetime import timedelta
+from email.header import Header
 
 from django.db import models
 from django.utils.encoding import smart_str
@@ -138,7 +139,7 @@ class Contact(models.Model):
 
     def mail_format(self):
         if self.first_name and self.last_name:
-            return '%s %s <%s>' % (self.last_name, self.first_name, self.email)
+            return Header('%s %s <%s>' % (self.last_name, self.first_name, self.email), 'utf-8').encode()
         return self.email
     mail_format.short_description = _('mail format')
 

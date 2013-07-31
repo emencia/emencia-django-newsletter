@@ -1,6 +1,6 @@
 """Views for emencia.django.newsletter Tracking"""
 import base64
-from urllib import urlencode
+from django.utils.http import urlencode
 from urlparse import urlparse
 from urlparse import urlunparse
 # For Python < 2.6
@@ -53,9 +53,9 @@ def view_newsletter_tracking_link(request, slug, uidb36, token, link_id):
     query_dict = parse_qs(url_parts.query)
     query_dict.update({'utm_source': 'newsletter_%s' % newsletter.pk,
                        'utm_medium': 'mail',
-                       'utm_campaign': smart_str(newsletter.title)})
+                       'utm_campaign': newsletter.title})
     url = urlunparse((url_parts.scheme, url_parts.netloc, url_parts.path,
-                      url_parts.params, urlencode(query_dict), url_parts.fragment))
+                      url_parts.params, urlencode(query_dict, True), url_parts.fragment))
     return HttpResponseRedirect(url)
 
 
