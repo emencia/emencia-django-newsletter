@@ -1,20 +1,22 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# 
+#
 # Translators:
+#   <tiago.ale.santos@gmail.com>, 2012.
+# Tiago Santos <tiago.ale.santos@gmail.com>, 2012.
 msgid ""
 msgstr ""
 "Project-Id-Version: Emencia Django Newsletter\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-22 06:00-0500\n"
-"PO-Revision-Date: 2010-11-30 00:55+0000\n"
-"Last-Translator: Fantomas <Fantomas42@gmail.com>\n"
+"POT-Creation-Date: 2012-02-22 11:40+0000\n"
+"PO-Revision-Date: 2012-02-20 18:25+0000\n"
+"Last-Translator: Tiago Santos <tiago.ale.santos@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: pt\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
 #: forms.py:20
@@ -23,518 +25,538 @@ msgstr ""
 
 #: forms.py:44
 msgid "Mailing lists"
-msgstr ""
+msgstr "listas de discussão"
 
-#: models.py:39 models.py:156 models.py:339
+#: models.py:39 models.py:167 models.py:350
 msgid "name"
-msgstr ""
+msgstr "nome"
 
 #: models.py:40
 msgid "server host"
-msgstr ""
+msgstr "host do servidor"
 
 #: models.py:41
 msgid "server user"
-msgstr ""
+msgstr "Utilizador do servidor"
 
 #: models.py:42 models.py:44
 msgid "Leave it empty if the host is public."
-msgstr ""
+msgstr "Não preencha se o host é público."
 
 #: models.py:43
 msgid "server password"
-msgstr ""
+msgstr "Password do servidor"
 
 #: models.py:45
 msgid "server port"
-msgstr ""
+msgstr "Porto do servidor"
 
 #: models.py:46
 msgid "server use TLS"
-msgstr ""
+msgstr "Servidor usa TLS"
 
 #: models.py:48
 msgid "custom headers"
-msgstr ""
+msgstr "cabeçalhos personalizados"
 
 #: models.py:49
 msgid ""
 "key1: value1 key2: value2, splitted by return line.\n"
 "Useful for passing some tracking headers if your provider allows it."
 msgstr ""
+"Chave1: valor1 Chave2: valor2, separado por enter.⏎\n"
+"Útil para passar alguns cabeçalhos de rastreamento se o seu provedor "
+"permitir."
 
 #: models.py:51
 msgid "mails per hour"
-msgstr ""
+msgstr "emails por hora"
 
-#: models.py:93
+#: models.py:104
 msgid "SMTP server"
 msgstr ""
 
-#: models.py:94
+#: models.py:105
 msgid "SMTP servers"
 msgstr ""
 
-#: models.py:99 views/statistics.py:76
+#: models.py:110 views/statistics.py:76
 msgid "email"
 msgstr ""
 
-#: models.py:100 views/statistics.py:75
+#: models.py:111 views/statistics.py:75
 msgid "first name"
-msgstr ""
+msgstr "Nome"
 
-#: models.py:101 views/statistics.py:75
+#: models.py:112 views/statistics.py:75
 msgid "last name"
-msgstr ""
+msgstr "Apelido"
 
-#: models.py:103
+#: models.py:114
 msgid "subscriber"
-msgstr ""
+msgstr "Subcristor"
 
-#: models.py:104
+#: models.py:115
 msgid "valid email"
-msgstr ""
+msgstr "Email Válido"
 
-#: models.py:105
+#: models.py:116
 msgid "contact tester"
-msgstr ""
+msgstr "Contacto de teste"
 
-#: models.py:106
+#: models.py:117
 msgid "tags"
 msgstr ""
 
-#: models.py:112 models.py:165 models.py:227 models.py:260 models.py:324
+#: models.py:123 models.py:176 models.py:238 models.py:271 models.py:335
 msgid "creation date"
-msgstr ""
+msgstr "Data de Criação"
 
-#: models.py:113 models.py:166 models.py:228
+#: models.py:124 models.py:177 models.py:239
 msgid "modification date"
-msgstr ""
+msgstr "Data de Modificação"
 
-#: models.py:132
+#: models.py:143
 msgid "mail format"
-msgstr ""
+msgstr "Formato do email"
 
-#: models.py:150 models.py:319
+#: models.py:161 models.py:330
 msgid "contact"
-msgstr ""
+msgstr "contacto"
 
-#: models.py:151 models.py:342
+#: models.py:162 models.py:353
 msgid "contacts"
-msgstr ""
+msgstr "contactos"
 
-#: models.py:157
+#: models.py:168
 msgid "description"
-msgstr ""
+msgstr "Descrição"
 
-#: models.py:159 models.py:170
+#: models.py:170 models.py:181
 msgid "subscribers"
-msgstr ""
+msgstr "Subcristores"
 
-#: models.py:161 models.py:174
+#: models.py:172 models.py:185
 msgid "unsubscribers"
-msgstr ""
+msgstr "Cancelaram a subscrição"
 
-#: models.py:186 models.py:211 cmsplugin_newsletter/models.py:15
+#: models.py:197 models.py:222 cmsplugin_newsletter/models.py:15
 msgid "mailing list"
-msgstr ""
+msgstr "Lista de discussão"
 
-#: models.py:187 models.py:344
+#: models.py:198 models.py:355
 msgid "mailing lists"
-msgstr ""
+msgstr "Listas de discussão"
 
-#: models.py:198
+#: models.py:209
 msgid "draft"
-msgstr ""
+msgstr "Rascunho"
 
-#: models.py:199
+#: models.py:210
 msgid "waiting sending"
-msgstr ""
+msgstr "Aguardando envio"
 
-#: models.py:200
+#: models.py:211
 msgid "sending"
-msgstr ""
+msgstr " A enviar"
 
-#: models.py:201 models.py:309
+#: models.py:212 models.py:320
 msgid "sent"
-msgstr ""
+msgstr "Enviado"
 
-#: models.py:202
+#: models.py:213
 msgid "canceled"
-msgstr ""
+msgstr "Cancelado"
 
-#: models.py:205 models.py:257 models.py:282 cmsplugin_newsletter/models.py:12
+#: models.py:216 models.py:268 models.py:293 cmsplugin_newsletter/models.py:12
 msgid "title"
-msgstr ""
+msgstr "Título"
 
-#: models.py:206
+#: models.py:217
 msgid ""
 "You can use the \"{{ UNIQUE_KEY }}\" variable for unique identifier within "
 "the newsletter's title."
 msgstr ""
+"Pode usar a variável \"{{ unique_key }}\" no título da newsletter como "
+"identificador único."
 
-#: models.py:208
+#: models.py:219
 msgid "content"
-msgstr ""
+msgstr "Conteúdo"
 
-#: models.py:208
+#: models.py:219
 msgid "Or paste an URL."
-msgstr ""
+msgstr "Ou cola um URL"
 
-#: models.py:209
+#: models.py:220
 msgid ""
 "<body>\n"
 "<!-- Edit your newsletter here -->\n"
 "</body>"
 msgstr ""
+"<body>\n"
+"<!-- Edite a sua newsletter aqui -->\n"
+"</body>"
 
-#: models.py:212
+#: models.py:223
 msgid "test contacts"
-msgstr ""
+msgstr "Contactos de teste"
 
-#: models.py:215
+#: models.py:226
 msgid "smtp server"
 msgstr ""
 
-#: models.py:217
+#: models.py:228
 msgid "sender"
-msgstr ""
+msgstr "Remetente"
 
-#: models.py:219
+#: models.py:230
 msgid "reply to"
-msgstr ""
+msgstr "Responder para"
 
-#: models.py:222 models.py:320
+#: models.py:233 models.py:331
 msgid "status"
-msgstr ""
+msgstr "Estado"
 
-#: models.py:223
+#: models.py:234
 msgid "sending date"
-msgstr ""
+msgstr "Data de Envio"
 
-#: models.py:225
+#: models.py:236
 msgid "Used for displaying the newsletter on the site."
-msgstr ""
+msgstr "Usado para mostar newsletters no site"
 
-#: models.py:250 models.py:281 models.py:318
+#: models.py:261 models.py:292 models.py:329
 #: cmsplugin_newsletter/cms_plugins.py:13
 msgid "newsletter"
 msgstr ""
 
-#: models.py:251 models.py:346
+#: models.py:262 models.py:357
 msgid "newsletters"
 msgstr ""
 
-#: models.py:258
+#: models.py:269
 msgid "url"
 msgstr ""
 
-#: models.py:270 models.py:321
+#: models.py:281 models.py:332
 msgid "link"
 msgstr ""
 
-#: models.py:271
+#: models.py:282
 msgid "links"
 msgstr ""
 
-#: models.py:283
+#: models.py:294
 msgid "file to attach"
-msgstr ""
+msgstr "Ficheiro para anexar"
 
-#: models.py:287
+#: models.py:298
 msgid "attachment"
-msgstr ""
+msgstr "anexo"
 
-#: models.py:288
+#: models.py:299
 msgid "attachments"
-msgstr ""
+msgstr "Anexos"
 
-#: models.py:308
+#: models.py:319
 msgid "sent in test"
-msgstr ""
+msgstr "Teste de envio"
 
-#: models.py:310
+#: models.py:321
 msgid "error"
-msgstr ""
+msgstr "Erro"
 
-#: models.py:311
+#: models.py:322
 msgid "invalid email"
-msgstr ""
+msgstr "Email Inválido"
 
-#: models.py:312
+#: models.py:323
 msgid "opened"
-msgstr ""
+msgstr "Acedido"
 
-#: models.py:313
+#: models.py:324
 msgid "opened on site"
-msgstr ""
+msgstr "Acedido no site"
 
-#: models.py:314
+#: models.py:325
 msgid "link opened"
-msgstr ""
+msgstr "Link acedido"
 
-#: models.py:315
+#: models.py:326
 msgid "unsubscription"
-msgstr ""
+msgstr "Cancelar Subscrição"
 
-#: models.py:333
+#: models.py:344
 msgid "contact mailing status"
-msgstr ""
+msgstr "Estado do envio"
 
-#: models.py:334
+#: models.py:345
 msgid "contact mailing statuses"
-msgstr ""
+msgstr "Estado do envio"
 
-#: models.py:340
+#: models.py:351
 msgid "permissions group"
-msgstr ""
+msgstr "Permissões de grupo"
 
-#: models.py:353
+#: models.py:364
 msgid "workgroup"
-msgstr ""
+msgstr "Grupo de Trabalho"
 
-#: models.py:354
+#: models.py:365
 msgid "workgroups"
-msgstr ""
+msgstr "Grupos de Trabalho"
 
-#: admin/contact.py:36 templates/newsletter/newsletter_statistics.html:188
+#: admin/contact.py:38 templates/newsletter/newsletter_statistics.html:188
 msgid "Status"
-msgstr ""
+msgstr "Estado"
 
-#: admin/contact.py:37
+#: admin/contact.py:39
 msgid "Advanced"
-msgstr ""
-
-#: admin/contact.py:69
-msgid "No relative object"
-msgstr ""
+msgstr "Avançado"
 
 #: admin/contact.py:71
+msgid "No relative object"
+msgstr "Sem objectos relacionados"
+
+#: admin/contact.py:73
 msgid "Related object"
-msgstr ""
+msgstr "Objecto relacionado"
 
-#: admin/contact.py:78
+#: admin/contact.py:80
 msgid "Total subscriptions"
-msgstr ""
+msgstr "Total de subscrições"
 
-#: admin/contact.py:83
+#: admin/contact.py:85
 msgid "Export contacts as VCard"
-msgstr ""
+msgstr "Exportar contactos como VCard"
 
-#: admin/contact.py:90
+#: admin/contact.py:92
 msgid "Export contacts in Excel"
-msgstr ""
+msgstr "Exportar contatos como VCard"
 
-#: admin/contact.py:95
+#: admin/contact.py:97
 #, python-format
 msgid "New mailinglist at %s"
-msgstr ""
+msgstr "Nova lista de discussão em %s"
 
-#: admin/contact.py:96
+#: admin/contact.py:98
 #, python-format
 msgid "New mailing list created in admin at %s"
-msgstr ""
+msgstr "Nova lista de discussão criada em admin em %s"
 
-#: admin/contact.py:104
+#: admin/contact.py:102
+msgid ""
+"SQLite3 or a SpatialLite database type detected, please note you will be "
+"limited to 999 contacts per mailing list."
+msgstr ""
+"Base de dados SQLite3 ou SpatialLite foi detectada, por favor note que "
+"estará limitado a 999 contactos por lista de discussão."
+
+#: admin/contact.py:114
 #, python-format
 msgid "%s succesfully created."
-msgstr ""
+msgstr "%s criada com sucesso."
 
-#: admin/contact.py:107
+#: admin/contact.py:117
 msgid "Create a mailinglist"
-msgstr ""
+msgstr "Criar uma lista de discussão"
 
-#: admin/contact.py:126
+#: admin/contact.py:136
 #, python-format
 msgid "%s contacts succesfully imported."
-msgstr ""
+msgstr "%s contactos importados com sucesso"
 
-#: admin/contact.py:128
+#: admin/contact.py:138
 msgid "Contact importation"
-msgstr ""
+msgstr "Importação de contacto"
 
-#: admin/mailinglist.py:65
+#: admin/mailinglist.py:67
 msgid "Please select a least 2 mailing list."
-msgstr ""
+msgstr "Por favor, seleccione pelo menos 2 listas de discussão."
 
-#: admin/mailinglist.py:77
+#: admin/mailinglist.py:79
 #, python-format
 msgid "Merging list at %s"
-msgstr ""
+msgstr "Fundir lista em %s"
 
-#: admin/mailinglist.py:78
+#: admin/mailinglist.py:80
 #, python-format
 msgid "Mailing list created by merging at %s"
-msgstr ""
+msgstr "Lista de discussão criada por fusão em %s"
 
-#: admin/mailinglist.py:87
+#: admin/mailinglist.py:89
 #, python-format
 msgid "%s succesfully created by merging."
-msgstr ""
+msgstr "%s successfully created by merging."
 
-#: admin/mailinglist.py:90
+#: admin/mailinglist.py:92
 msgid "Merge selected mailinglists"
+msgstr "Fundir listas seleccionadas"
+
+#: admin/mailinglist.py:98 templates/newsletter/contact_import.html:24
+msgid "Excel"
 msgstr ""
 
-#: admin/mailinglist.py:96
-msgid "Export Subscribers"
+#: admin/mailinglist.py:100 templates/newsletter/contact_import.html:70
+msgid "VCard"
 msgstr ""
 
-#: admin/mailinglist.py:98
+#: admin/mailinglist.py:102
 msgid "Export"
-msgstr ""
+msgstr "Exportar"
 
-#: admin/newsletter.py:41
+#: admin/newsletter.py:43
 msgid "Receivers"
-msgstr ""
+msgstr "receptores"
 
-#: admin/newsletter.py:42
+#: admin/newsletter.py:44
 msgid "Sending"
-msgstr ""
+msgstr "A enviar"
 
-#: admin/newsletter.py:43 admin/smtpserver.py:36
+#: admin/newsletter.py:45 admin/smtpserver.py:36
 msgid "Miscellaneous"
-msgstr ""
+msgstr "Diversos"
 
-#: admin/newsletter.py:79
+#: admin/newsletter.py:81
 msgid "Default"
-msgstr ""
-
-#: admin/newsletter.py:106
-msgid "Unable to download HTML, due to errors within."
-msgstr ""
+msgstr "Omissão"
 
 #: admin/newsletter.py:108
+msgid "Unable to download HTML, due to errors within."
+msgstr "Não é possível transferir HTML, devido a erros internos."
+
+#: admin/newsletter.py:110
 msgid "Please install lxml for parsing an URL."
-msgstr ""
+msgstr "Por favor, instale lxml para analisar um URL."
 
-#: admin/newsletter.py:120
+#: admin/newsletter.py:122
 msgid "View historic"
-msgstr ""
+msgstr "Ver histórico"
 
-#: admin/newsletter.py:121 admin/newsletter.py:130
+#: admin/newsletter.py:123 admin/newsletter.py:132
 msgid "Not available"
-msgstr ""
+msgstr "Não está disponível"
 
-#: admin/newsletter.py:123
+#: admin/newsletter.py:125
 msgid "Historic"
-msgstr ""
+msgstr "Histórico"
 
-#: admin/newsletter.py:129
+#: admin/newsletter.py:131
 msgid "View statistics"
-msgstr ""
+msgstr "Ver estatísticas"
 
-#: admin/newsletter.py:132
+#: admin/newsletter.py:134
 msgid "Statistics"
-msgstr ""
-
-#: admin/newsletter.py:142
-msgid "Unable send newsletter, due to errors within HTML."
-msgstr ""
+msgstr "Estatísticas"
 
 #: admin/newsletter.py:144
-#, python-format
-msgid "%s succesfully sent."
-msgstr ""
+msgid "Unable send newsletter, due to errors within HTML."
+msgstr "Não foi possível enviar a newsletter, devido a erros de HTML internos."
 
 #: admin/newsletter.py:146
 #, python-format
+msgid "%s succesfully sent."
+msgstr "%s enviada com sucesso."
+
+#: admin/newsletter.py:148
+#, python-format
 msgid "No test contacts assigned for %s."
-msgstr ""
+msgstr "Sem contacto de teste atribuído a %s."
 
-#: admin/newsletter.py:147
+#: admin/newsletter.py:149
 msgid "Send test email"
-msgstr ""
+msgstr "Enviar email de teste"
 
-#: admin/newsletter.py:155
+#: admin/newsletter.py:157
 #, python-format
 msgid "%s newletters are ready to send"
-msgstr ""
+msgstr "%s newsletters estão prontas para enviar"
 
-#: admin/newsletter.py:156
+#: admin/newsletter.py:158
 msgid "Make ready to send"
-msgstr ""
+msgstr "Tornar pronto para enviar"
 
-#: admin/newsletter.py:165
+#: admin/newsletter.py:167
 #, python-format
 msgid "%s newletters are cancelled"
-msgstr ""
+msgstr "%s newsletters estão canceladas"
 
-#: admin/newsletter.py:166
+#: admin/newsletter.py:168
 msgid "Cancel the sending"
-msgstr ""
+msgstr "Anular o envio"
 
 #: admin/smtpserver.py:18
 msgid "Invalid syntax, do not forget the \":\"."
-msgstr ""
+msgstr "Sintaxe inválida, não se esqueça do \":\"."
 
 #: admin/smtpserver.py:20
 msgid "Invalid syntax, several assignments by line."
-msgstr ""
+msgstr "Sintaxe inválida, várias atribuições por linha."
 
 #: admin/smtpserver.py:34
 msgid "Configuration"
-msgstr ""
+msgstr "Configuração"
 
 #: admin/smtpserver.py:57
 msgid "Check connection"
-msgstr ""
+msgstr "Conexão Válida"
 
 #: admin/workgroup.py:18
 msgid "Contacts length"
-msgstr ""
+msgstr "Número de contactos"
 
 #: admin/workgroup.py:22
 msgid "Mailing List length"
-msgstr ""
+msgstr "Dimensão da Lista de discussão"
 
 #: admin/workgroup.py:26
 msgid "Newsletter length"
-msgstr ""
+msgstr "Dimensão da newsletter"
 
 #: cmsplugin_newsletter/cms_plugins.py:15
 msgid "Subscription Form"
-msgstr ""
+msgstr "Cancelar Subscrição"
 
 #: cmsplugin_newsletter/models.py:13
 msgid "show description"
-msgstr ""
+msgstr "Descrição"
 
 #: cmsplugin_newsletter/models.py:14
 msgid "Show the mailing list's description."
-msgstr ""
+msgstr "Mostrar a descrição da lista de discussão."
 
 #: cmsplugin_newsletter/models.py:16
 msgid "Mailing List to subscribe to."
-msgstr ""
+msgstr "Número de Lista de discussão"
 
 #: templates/admin/newsletter/contact/change_list.html:36
 #, python-format
 msgid "Add %(name)s"
-msgstr ""
+msgstr "Add %(name)s"
 
 #: templates/admin/newsletter/contact/change_list.html:42
 msgid "Actions"
-msgstr ""
+msgstr "Acção"
 
 #: templates/admin/newsletter/contact/change_list.html:51
 #, python-format
 msgid "Import %(name)ss"
-msgstr ""
+msgstr "Import %(name)s"
 
 #: templates/admin/newsletter/contact/change_list.html:58
 msgid "Add to a mailing list"
-msgstr ""
+msgstr "Criar um lista de discussão"
 
 #: templates/admin/newsletter/contact/change_list.html:65
 #, python-format
 msgid "Export %(name)s as VCard"
-msgstr ""
+msgstr "Exportar contactos como VCard"
 
 #: templates/admin/newsletter/contact/change_list.html:70
 #, python-format
 msgid "Export %(name)s as Excel"
-msgstr ""
+msgstr "Exportar %(name)s"
 
 #: templates/newsletter/contact_import.html:7
 msgid "Home"
@@ -542,107 +564,105 @@ msgstr ""
 
 #: templates/newsletter/contact_import.html:10
 msgid "Importation"
-msgstr ""
-
-#: templates/newsletter/contact_import.html:24
-msgid "Excel"
-msgstr ""
+msgstr "Importar"
 
 #: templates/newsletter/contact_import.html:27
 msgid "Excel file (.xls)"
-msgstr ""
+msgstr "Ficheiro Excel (.xls)"
 
 #: templates/newsletter/contact_import.html:31
 msgid "Import contacts from a Excel file."
-msgstr ""
+msgstr "Exportar contactos como Vcard"
 
 #: templates/newsletter/contact_import.html:32
 msgid "Columns are [email][last name][first name][tags]."
-msgstr ""
+msgstr "As colunas são [email][last name][first name][tags]."
 
 #: templates/newsletter/contact_import.html:33
 #: templates/newsletter/contact_import.html:56
 #: templates/newsletter/contact_import.html:98
 msgid "All columns are optionnal excepting the email."
-msgstr ""
+msgstr "Todas as colunas são opcionais com excepção do email."
 
 #: templates/newsletter/contact_import.html:38
 #: templates/newsletter/contact_import.html:61
 #: templates/newsletter/contact_import.html:81
 #: templates/newsletter/contact_import.html:103
 msgid "Import"
-msgstr ""
+msgstr "Importar"
 
 #: templates/newsletter/contact_import.html:47
 msgid "Text"
-msgstr ""
+msgstr "Texto"
 
 #: templates/newsletter/contact_import.html:50
 msgid "Text file (.txt, .csv)"
-msgstr ""
+msgstr "Ficheiro de texto (.txt, .csv)"
 
 #: templates/newsletter/contact_import.html:54
 msgid "Import contacts from a text file, or a CSV file."
-msgstr ""
+msgstr "Importar contactos de um ficheiro de texto ou um ficheiro CSV."
 
 #: templates/newsletter/contact_import.html:55
 #: templates/newsletter/contact_import.html:97
 msgid ""
 "Columns are [email][last name][first name][tags], splitted by a dot coma."
 msgstr ""
-
-#: templates/newsletter/contact_import.html:70
-msgid "VCard"
-msgstr ""
+"As colunas são [email][last name][first name][tags], separadas por um ponto "
+"e vírgula."
 
 #: templates/newsletter/contact_import.html:73
 msgid "VCard file (.cvf)"
-msgstr ""
+msgstr "Ficheiro VCard (.cvf)"
 
 #: templates/newsletter/contact_import.html:77
 msgid ""
 "Import contacts from your favorite mail client, by providing a VCard file."
 msgstr ""
+"Importar contactos do seu cliente de email favorito, fornecendo um ficheiro "
+"VCard."
 
 #: templates/newsletter/contact_import.html:90
 #: templates/newsletter/contact_import.html:93
 msgid "Raw text"
-msgstr ""
+msgstr "Texto simples"
 
 #: templates/newsletter/mailing_list_subscribe.html:4
 #: templates/newsletter/mailing_list_subscribe.html:7
 msgid "Subscription to mailing list"
-msgstr ""
+msgstr "Criar uma lista de discussão"
 
 #: templates/newsletter/mailing_list_subscribe.html:10
 msgid "Thanks for your subscription!"
-msgstr ""
+msgstr "Total de Subscrições"
 
 #: templates/newsletter/mailing_list_subscribe.html:16
 msgid "Validate this form to subscribe to the mailing lists."
 msgstr ""
+"Validar este formulário para anular a subscrição esta lista de discussão."
 
 #: templates/newsletter/mailing_list_subscribe.html:21
 #: templates/newsletter/cms/subscription_form.html:20
 msgid "Subscribe"
-msgstr ""
+msgstr "Subscrever"
 
 #: templates/newsletter/mailing_list_unsubscribe.html:4
 #: templates/newsletter/mailing_list_unsubscribe.html:7
 msgid "Unsubscription"
-msgstr ""
+msgstr "Anular subscrição"
 
 #: templates/newsletter/mailing_list_unsubscribe.html:9
 msgid "You are unsubscribed for this mailing list."
-msgstr ""
+msgstr "Foi anulada a sua subscrição da lista de discussão."
 
 #: templates/newsletter/mailing_list_unsubscribe.html:11
 msgid "Validate this form to unsubscribe to this mailing list."
 msgstr ""
+"Validar este formulário para anular a subscrição esta lista de discussão."
 
 #: templates/newsletter/mailing_list_unsubscribe.html:15
 msgid "Unsubscribe"
-msgstr ""
+msgstr "Anular Subscrição"
 
 #: templates/newsletter/newsletter_historic.html:9
 #: templates/newsletter/newsletter_statistics.html:68
@@ -651,114 +671,114 @@ msgstr ""
 
 #: templates/newsletter/newsletter_historic.html:23
 msgid "Date"
-msgstr ""
+msgstr "Data"
 
 #: templates/newsletter/newsletter_historic.html:24
 msgid "Contact"
-msgstr ""
+msgstr "contacto"
 
 #: templates/newsletter/newsletter_historic.html:25
 msgid "Action"
-msgstr ""
+msgstr "Acção"
 
 #: templates/newsletter/newsletter_link_site.html:5
 msgid "If you cannot see this email,"
-msgstr ""
+msgstr "Se não consegue ver este e-mail,"
 
 #: templates/newsletter/newsletter_link_site.html:6
 #: templates/newsletter/newsletter_link_unsubscribe.html:6
 msgid "click here"
-msgstr ""
+msgstr "clique aqui"
 
 #: templates/newsletter/newsletter_link_unsubscribe.html:5
 msgid "For unsubscribing to this mailing list,"
-msgstr ""
+msgstr "Para anular a sua subscrição desta lista de discussão."
 
 #: templates/newsletter/newsletter_statistics.html:86 views/statistics.py:147
 msgid "Consultation histogram"
-msgstr ""
+msgstr "Consultar histograma"
 
 #: templates/newsletter/newsletter_statistics.html:89
 msgid "Period"
-msgstr ""
+msgstr "Período"
 
 #: templates/newsletter/newsletter_statistics.html:112
 #: templates/newsletter/newsletter_statistics.html:113
 msgid "Broadcasting statistics"
-msgstr ""
+msgstr "Difundir estatísticas"
 
 #: templates/newsletter/newsletter_statistics.html:115 views/statistics.py:139
 msgid "Total openings"
-msgstr ""
+msgstr "Total de acessos"
 
 #: templates/newsletter/newsletter_statistics.html:120
 msgid "Openings on site"
-msgstr ""
+msgstr "Acedido no site"
 
 #: templates/newsletter/newsletter_statistics.html:125
 msgid "Total openings unique"
-msgstr ""
+msgstr "Total de acessos únicos"
 
 #: templates/newsletter/newsletter_statistics.html:130
 msgid "Unknow delivery"
-msgstr ""
+msgstr "Entrega desconhecida"
 
 #: templates/newsletter/newsletter_statistics.html:135
 msgid "Unsubscriptions"
-msgstr ""
+msgstr "Anular subscrições"
 
 #: templates/newsletter/newsletter_statistics.html:140
 msgid "Openings average"
-msgstr ""
+msgstr "Média de acessos"
 
 #: templates/newsletter/newsletter_statistics.html:148
 #: templates/newsletter/newsletter_statistics.html:149
 msgid "Links statistics"
-msgstr ""
+msgstr "Links Estatísticas"
 
 #: templates/newsletter/newsletter_statistics.html:151 views/statistics.py:143
 msgid "Total clicked links"
-msgstr ""
+msgstr "Total de links acedidos"
 
 #: templates/newsletter/newsletter_statistics.html:156
 msgid "Total clicked links unique"
-msgstr ""
+msgstr "Total de links únicos acedidos"
 
 #: templates/newsletter/newsletter_statistics.html:161
 msgid "Clicked links by openings"
-msgstr ""
+msgstr "Links acedidos"
 
 #: templates/newsletter/newsletter_statistics.html:166
 msgid "Clicked links average"
-msgstr ""
+msgstr "Média de links acedidos"
 
 #: templates/newsletter/newsletter_statistics.html:178
 msgid "Report"
-msgstr ""
+msgstr "Relatório"
 
 #: templates/newsletter/newsletter_statistics.html:180
 msgid "Download CSV report"
-msgstr ""
+msgstr "Download relatório CSV"
 
 #: templates/newsletter/newsletter_statistics.html:185
 msgid "Informations"
-msgstr ""
+msgstr "Informações"
 
 #: templates/newsletter/newsletter_statistics.html:186
 msgid "Recipients"
-msgstr ""
+msgstr "Receptores"
 
 #: templates/newsletter/newsletter_statistics.html:187
 msgid "View"
-msgstr ""
+msgstr "Ver"
 
 #: templates/newsletter/newsletter_statistics.html:190
 msgid "Sending date"
-msgstr ""
+msgstr "Data de envio"
 
 #: templates/newsletter/newsletter_statistics.html:193
 msgid "Tests sent"
-msgstr ""
+msgstr "Testes enviados"
 
 #: templates/newsletter/newsletter_statistics.html:198
 msgid "Top Links"
@@ -766,85 +786,44 @@ msgstr ""
 
 #: templates/newsletter/newsletter_statistics.html:199
 msgid "Density map"
-msgstr ""
+msgstr "Mapa de densidade"
 
 #: templates/newsletter/newsletter_statistics.html:208
 msgid "No Top Links yet."
-msgstr ""
+msgstr "Ainda não existem Top Links disponíveis"
 
 #: templates/newsletter/cms/subscription_form.html:8
 msgid "You have successfully subscribed to the mailing list!"
-msgstr ""
+msgstr "Foi cancelada a sua subscrição desta lista de discussão."
 
 #: utils/importation.py:52
 #, python-format
 msgid "Mailing list created by importation at %s"
-msgstr ""
+msgstr "Lista de discussão criada por fusão em %s"
 
 #: utils/importation.py:53
 #, python-format
 msgid "Contacts imported by %s."
-msgstr ""
+msgstr "Contactos importados por %s."
 
 #: views/statistics.py:54
 #, python-format
 msgid "Statistics of %s"
-msgstr ""
+msgstr "Estatísticas de %s"
 
 #: views/statistics.py:76
 msgid "openings"
-msgstr ""
+msgstr "Acessos"
 
 #: views/statistics.py:139
 msgid "#val# openings"
-msgstr ""
+msgstr "#val# acessos"
 
 #: views/statistics.py:143
 msgid "#val# clicks"
-msgstr ""
+msgstr "#val# cliques"
 
-#: views/tracking.py:67
+#: views/tracking.py:68
 #, python-format
 msgid "Historic of %s"
-msgstr ""
-
-#~ msgid "key1: value1 key2: value2, splitted by return line."
-#~ msgstr "key1: value1 key2: value2, splitted by return line."
-
-#~ msgid "Can change status"
-#~ msgstr "Can change status"
-
-#~ msgid "VCard import"
-#~ msgstr "VCard import"
-
-#~ msgid "Contacts"
-#~ msgstr "Contacts"
-
-#~ msgid "Mailing List"
-#~ msgstr "Mailing List"
-
-#~ msgid "Mailing Lists"
-#~ msgstr "Mailing Lists"
-
-#~ msgid "Newsletter"
-#~ msgstr "Newsletter"
-
-#~ msgid "Newsletters"
-#~ msgstr "Newsletters"
-
-#~ msgid "Link"
-#~ msgstr "Link"
-
-#~ msgid "Links"
-#~ msgstr "Links"
-
-#~ msgid "group"
-#~ msgstr "group"
-
-#~ msgid "Connection valid"
-#~ msgstr "Connection valid"
-
-#~ msgid "Double openings"
-#~ msgstr "Total Subscriptions"
-
-
+msgstr "Histórico of %s"

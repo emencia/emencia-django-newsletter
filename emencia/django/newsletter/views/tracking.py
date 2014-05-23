@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """Views for emencia.django.newsletter Tracking"""
 import base64
 from urllib import urlencode
@@ -5,9 +6,9 @@ from urlparse import urlparse
 from urlparse import urlunparse
 # For Python < 2.6
 try:
-    from urlparse import parse_qs
+    from urlparse import parse_qsl
 except ImportError:
-    from cgi import parse_qs
+    from cgi import parse_qsl
 
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
@@ -50,7 +51,7 @@ def view_newsletter_tracking_link(request, slug, uidb36, token, link_id):
         return HttpResponseRedirect(link.url)
 
     url_parts = urlparse(link.url)
-    query_dict = parse_qs(url_parts.query)
+    query_dict = dict(parse_qsl(url_parts.query))
     query_dict.update({'utm_source': 'newsletter_%s' % newsletter.pk,
                        'utm_medium': 'mail',
                        'utm_campaign': smart_str(newsletter.title)})
