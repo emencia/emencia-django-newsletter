@@ -11,6 +11,7 @@ def body_insertion(content, insertion, end=False):
     if not content.startswith('<body'):
         content = '<body>%s</body>' % content
     soup = BeautifulSoup(content)
+    insertion = BeautifulSoup(insertion)
 
     if end:
         soup.body.append(insertion)
