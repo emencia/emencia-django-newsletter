@@ -5,6 +5,7 @@ import re
 from urllib2 import urlopen
 from lxml.html import parse
 from lxml.html import tostring
+from lxml import etree
 
 
 _css_comments = re.compile(r'/\*.*?\*/', re.MULTILINE | re.DOTALL)
@@ -82,6 +83,7 @@ class Premailer(object):
         self.url = url
         try:
             self.page = parse(self.url).getroot()
+            self.page.body.append(etree.Comment('CMS Origin URL: %s' % url))
         except:
             raise PremailerError('Could not parse the html')
 
