@@ -1,19 +1,17 @@
 """ModelAdmin for Contact"""
-import StringIO
-from django.conf import settings
 from datetime import datetime
 
 from django.contrib import admin
 from django.dispatch import Signal
-from django.conf.urls.defaults import url
-from django.conf.urls.defaults import patterns
+
+from django.conf.urls import url
+from django.conf.urls import patterns
 from django.core.urlresolvers import reverse
 from django.shortcuts import render_to_response
 from django.template import RequestContext
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import ugettext as _
 from django.http import HttpResponseRedirect
 from django.contrib.admin.views.main import ChangeList
-from django.db import DatabaseError
 
 from emencia.django.newsletter.models import MailingList
 from emencia.django.newsletter.settings import USE_WORKGROUPS
@@ -52,8 +50,7 @@ class ContactAdmin(admin.ModelAdmin):
 
     def save_model(self, request, contact, form, change):
         workgroups = []
-        if not contact.pk and not request.user.is_superuser \
-               and USE_WORKGROUPS:
+        if not contact.pk and not request.user.is_superuser:
             workgroups = request_workgroups(request)
         contact.save()
         for workgroup in workgroups:
@@ -86,6 +83,8 @@ class ContactAdmin(admin.ModelAdmin):
 
     def export_excel(self, request, queryset, export_name=''):
         """Export selected contact in Excel"""
+        if not queryset:
+            return HttpResponseRedirect(request.META.get('HTTP_REFERER'))        
         if not export_name:
             export_name = 'contacts_edn_%s' % datetime.now().strftime('%d-%m-%Y')
         return ExcelResponse(queryset, export_name)
@@ -97,17 +96,9 @@ class ContactAdmin(admin.ModelAdmin):
         new_mailing = MailingList(name=_('New mailinglist at %s') % when,
                                   description=_('New mailing list created in admin at %s') % when)
         new_mailing.save()
+        new_mailing.subscribers = queryset.all()
 
-        if 'lite' in settings.DATABASES['default']['ENGINE']:
-            self.message_user(request, _('SQLite3 or a SpatialLite database type detected, ' \
-                                         'please note you will be limited to 999 contacts ' \
-                                         'per mailing list.'))
-        try:
-            new_mailing.subscribers = queryset.all()
-        except DatabaseError:
-            new_mailing.subscribers = queryset.none()
-
-        if not request.user.is_superuser and USE_WORKGROUPS:
+        if not request.user.is_superuser:
             for workgroup in request_workgroups(request):
                 workgroup.mailinglists.add(new_mailing)
 
@@ -120,15 +111,10 @@ class ContactAdmin(admin.ModelAdmin):
         """Import contacts from a VCard"""
         opts = self.model._meta
 
-        if request.POST:
-            source = request.FILES.get('source') or \
-                     StringIO.StringIO(request.POST.get('source', ''))
-            if not request.user.is_superuser and USE_WORKGROUPS:
-                workgroups = request_workgroups(request)
-            else:
-                workgroups = []
+        if request.FILES:
+            source = request.FILES.get('source')
             inserted = import_dispatcher(source, request.POST['type'],
-                                         workgroups)
+                                         request_workgroups(request))
             if inserted:
                 contacts_imported.send(sender=self, source=source,
                                        type=request.POST['type'])
@@ -137,7 +123,7 @@ class ContactAdmin(admin.ModelAdmin):
 
         context = {'title': _('Contact importation'),
                    'opts': opts,
-                   'root_path': self.admin_site.root_path,
+                   'root_path': reverse('admin:index'),
                    'app_label': opts.app_label}
 
         return render_to_response('newsletter/contact_import.html',
@@ -149,8 +135,8 @@ class ContactAdmin(admin.ModelAdmin):
                         self.list_display_links, self.list_filter,
                         self.date_hierarchy, self.search_fields,
                         self.list_select_related, self.list_per_page,
-                        self.list_editable, self)
-        return cl.get_query_set()
+                        self.list_max_show_all, self.list_editable, self)
+        return cl.get_queryset(request)
 
     def creation_mailinglist(self, request):
         """Create a mailing list form the filtered contacts"""
@@ -175,10 +161,10 @@ class ContactAdmin(admin.ModelAdmin):
                            url(r'^create_mailinglist/$',
                                self.admin_site.admin_view(self.creation_mailinglist),
                                name='newsletter_contact_create_mailinglist'),
-                           url(r'^export/vcard/$',
+                           url(r'^export_vcard/$',
                                self.admin_site.admin_view(self.exportation_vcard),
                                name='newsletter_contact_export_vcard'),
-                           url(r'^export/excel/$',
+                           url(r'^export_excel/$',
                                self.admin_site.admin_view(self.exportation_excel),
                                name='newsletter_contact_export_excel'),)
         return my_urls + urls
